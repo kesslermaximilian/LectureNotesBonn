@@ -1,61 +1,34 @@
-%Partially taken from
+%Mainly taken from
 %https://github.com/gillescastel/university-setup/blob/master/preamble.tex
 %but edited for own purposes
 
+%%Own basic package
+\usepackage[fancythm]{mymath}
+
 % Some basic packages
-\usepackage[ngerman]{babel}
-\usepackage[T1]{fontenc}
-\usepackage[mathletters]{ucs}
-\usepackage[utf8x]{inputenc}
 \usepackage{textcomp}
 \usepackage{url}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{booktabs}
-\usepackage[shortlabels]{enumitem}
-\usepackage{hyperref}
-
-
-
-\makeatletter
-\newcommand\setItemnumber[1]{\setcounter{enum\romannumeral\@enumdepth}{\numexpr#1-1\relax}}
-\makeatother
 
 % for wrapping text around figures
 \usepackage{wrapfig}
 
-
-\pdfminorversion=7
+%\pdfminorversion=7
 
 % Don't indent paragraphs, leave some space between them
 \usepackage{parskip}
 
 % Hide page number when page is empty
 \usepackage{emptypage}
-\usepackage{subcaption}
 \usepackage{multicol}
 % Other font I sometimes use.
 \usepackage{xcolor}
-\usepackage{comment}
 % \usepackage{cmbright}
 
 % Math stuff
-\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}
-% Fancy script capitals
-\usepackage{mathrsfs}
-\usepackage{cancel}
-% Bold math
-\usepackage{bm}
-% Some shortcuts
-\newcommand\N{\ensuremath{\mathbb{N}}}
-\newcommand\R{\ensuremath{\mathbb{R}}}
-\newcommand\Z{\ensuremath{\mathbb{Z}}}
-\renewcommand\O{\ensuremath{\emptyset}}
-\newcommand\Q{\ensuremath{\mathbb{Q}}}
-\newcommand\C{\ensuremath{\mathbb{C}}}
-
-% Easily typeset systems of equations (French package)
-\usepackage{systeme}
+\usepackage{amsfonts}
 
 % Put x \to \infty below \lim
 \let\svlim\lim\def\lim{\svlim\limits}
@@ -66,9 +39,6 @@
 \let\iff\Leftrightarrow
 \let\epsilon\varepsilon
 
-% Add \contra symbol to denote contradiction
-\usepackage{stmaryrd} % for \lightning
-\newcommand\contra{\scalebox{1.5}{$\lightning$}}
 
 % \let\phi\varphi
 
@@ -87,81 +57,6 @@
 % hide parts
 \newcommand\hide[1]{}
 
-% si unitx
-\usepackage{siunitx}
-\sisetup{locale = FR}
-
-%Theorem-environments
-\usepackage{mdframed}
-\mdfsetup{skipabove=\topskip,skipbelow=\topskip}
-
-\newtheoremstyle{own}%〈name〉
-{3pt}%〈Space above〉1
-{3pt}%〈Space below〉1
-{}%〈Body font〉
-{}%〈Indent amount〉2
-{\bfseries}%〈Theorem head font〉
-{.}%〈Punctuation after theorem head〉
-{.5em}%〈Space after theorem head〉3
-{}%〈Theorem head spec(can be left empty, meaning ‘normal’)〉
-
-\theoremstyle{own}
-
-\global\mdfdefinestyle{thm}{linecolor=red,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, backgroundcolor=red!8, rightline=false, topline=false, bottomline=false}
-
-\global\mdfdefinestyle{lemma}{linecolor=orange,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, backgroundcolor=orange!10, rightline=false, topline=false, bottomline=false}
-
-\global\mdfdefinestyle{definition}{linecolor=blue,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, backgroundcolor=blue!7, rightline=false, topline=false, bottomline=false}
-
-\global\mdfdefinestyle{example}{linecolor=green!70!black,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, rightline=false, topline=false, bottomline=false}
-
-\global\mdfdefinestyle{remark}{linecolor=yellow!80!orange,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, rightline=false, topline=false, bottomline=false}
-
-
-\global\mdfdefinestyle{notation}{linecolor=violet,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, backgroundcolor=violet!7, rightline=false, topline=false, bottomline=false}
-
-\global\mdfdefinestyle{theoremdef}{linecolor=red,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, backgroundcolor=blue!7, rightline=false, topline=false, bottomline=false}
-
-\newtheorem{protothm}{Theorem}[section]
-\newenvironment{theorem}{\begin{mdframed}[style=thm] \begin{protothm}}{\end{protothm}\end{mdframed}}
-
-\newtheorem*{protothm*}{Theorem}
-\newenvironment{theorem*}{\begin{mdframed}[style=thm] \begin{protothm*}}{\end{protothm*}\end{mdframed}}
-
-\newtheorem{protoprop}[protothm]{Proposition}
-\newenvironment{proposition}{\begin{mdframed}[style=thm] \begin{protoprop}}{\end{protoprop}\end{mdframed}}
-
-
-
-\newtheorem{protocor}[protothm]{Corollary}
-\newenvironment{corollary}{\begin{mdframed}[style=thm] \begin{protocor}}{\end{protocor}\end{mdframed}}
-
-\newtheorem{protolemma}[protothm]{Lemma}
-\newenvironment{lemma}{\begin{mdframed}[style=lemma] \begin{protolemma}}{\end{protolemma}\end{mdframed}}
-
-\newtheorem*{protlemma*}{Lemma}
-\newenvironment{lemma*}{\begin{mdframed}[style=lemma] \begin{protolemma*}}{\end{protolemma*}\end{mdframed}}
-
-\newtheorem{protodefinition}[protothm]{Definition}
-\newenvironment{definition}{\begin{mdframed}[style=definition] \begin{protodefinition}}{\end{protodefinition}\end{mdframed}}
-
-
-\newtheorem{prototheoremdef}[protothm]{Theorem and Definition}
-\newenvironment{theoremdef}{\begin{mdframed}[style=theoremdef] \begin{prototheoremdef}}{\end{prototheoremdef}\end{mdframed}}
-
-
-\newtheorem*{protodefinition*}{Definition}
-\newenvironment{definition*}{\begin{mdframed}[style=definition] \begin{protodefinition*}}{\end{protodefinition*}\end{mdframed}}
-
-\newtheorem*{protonotation}{Notation}
-\newenvironment{notation}{\begin{mdframed}[style=notation] \begin{protonotation}}{\end{protonotation}\end{mdframed}}
-
-\newtheorem*{protoexample}{Example}
-\newenvironment{example}{\begin{mdframed}[style=example] \begin{protoexample}}{\end{protoexample}\end{mdframed}}
-
-\newtheorem*{protoremark}{Remark}
-\newenvironment{remark}{\begin{mdframed}[style=remark] \begin{protoremark}}{\end{protoremark}\end{mdframed}}
-
 % Recaps
 \usepackage[skins]{tcolorbox}
 
@@ -176,7 +71,7 @@
 
 % Environments
 \makeatother
-% For box around Definition, Theorem, \ldots
+\usepackage{amsthm}
 \theoremstyle{definition}
 \newtheorem*{problem}{Problem}
 
@@ -212,27 +107,6 @@
 \makeatletter
 \def\thm@space@setup{%
   \thm@preskip=\parskip \thm@postskip=0pt
-}
-
-
-% Exercise 
-% Usage:
-% \oefening{5}
-% \suboefening{1}
-% \suboefening{2}
-% \suboefening{3}
-% gives
-% Oefening 5
-%   Oefening 5.1
-%   Oefening 5.2
-%   Oefening 5.3
-\newcommand{\oefening}[1]{%
-    \def\@oefening{#1}%
-    \subsection*{Oefening #1}
-}
-
-\newcommand{\suboefening}[1]{%
-    \subsubsection*{Oefening \@oefening.#1}
 }
 
 
@@ -291,7 +165,6 @@
 
 % Todonotes and inline notes in fancy boxes
 \usepackage{todonotes}
-\usepackage{tcolorbox}
 
 % Make boxes breakable
 \tcbuselibrary{breakable}
@@ -343,47 +216,6 @@
 
 % My name
 \author{Maximilian Keßler}
-
-
-
-
-\DeclarePairedDelimiter\abs{\lvert}{\rvert}
-\DeclareMathOperator{\id}{id}
-\DeclareMathOperator{\coker}{coker}
-\DeclareMathOperator{\dz}{dz}
-\DeclareMathOperator{\diam}{diam}
-\DeclareMathOperator{\ex}{ex}
-\DeclareMathOperator{\dt}{dt}
-\DeclareMathOperator{\dist}{dist}
-\DeclareMathOperator{\Ext}{Ext}
-\DeclareMathOperator{\Tor}{Tor}
-\DeclareMathOperator{\supp}{supp}
-\DeclareMathOperator{\im}{im}
-\DeclareMathOperator{\Lip}{Lip}
-\DeclareMathOperator{\Mspec}{MaxSpec}
-\DeclareMathOperator{\Proj}{Proj}
-\DeclareMathOperator{\QCoh}{QCoh}
-\renewcommand\Im\im
-\DeclareMathOperator{\Mor}{Mor}
-\DeclareMathOperator{\Hom}{Hom}
-\DeclareMathOperator{\Gal}{Gal}
-\DeclareMathOperator{\MaxSpec}{MaxSpec}
-\DeclareMathOperator{\Aut}{Aut}
-\DeclareMathOperator{\dy}{dy}
-\DeclareMathOperator{\Fun}{Fun}
-\DeclareMathOperator{\Presh}{Pre-Sh}
-\DeclareMathOperator{\Sh}{Sh}
-\DeclareMathOperator{\dif}{diff}
-\DeclareMathOperator{\opp}{opp}
-\DeclareMathOperator{\Ob}{Ob}
-
-\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
-            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
-
-            \usepackage[ngerman,ruled,vlined]{algorithm2e}
-
-\newcommand{\vocab}[1]{\textbf{\color{blue} #1}}
-
-\usepackage{tikz-cd}
+\usepackage[ngerman,ruled,vlined]{algorithm2e}
 \newcommand{\cat}[1]{ \mathscr{#1} }
 
