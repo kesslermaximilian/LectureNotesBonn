@@ -1,0 +1,279 @@
+\lecture{1}{Di 13 Apr 2021 12:16}{Einführung}
+
+\section*{Organisatorisches}
+\begin{itemize}
+\item    Die Vorlesung wird aufgezeichnet.
+\item Wir duzen uns.
+\item Für die Übungen muss man sich auf eCampus anmelden, ob Do, 20:00 Uhr (Do 15 Apr 2021 20:00 Uhr)
+\item Die Übungsblätter werden Donnerstag zur Verfügung gestellt und werden nach 10 Tagen am Montag, 10 Uhr abgegeben.
+\item Es wird eine Fragestunde um Donnerstag, 16 Uhr geben.
+\item Es wird kein Skript geben, allerdings werden die geschriebenen Notizen auf eCampus zur Verfügung gestellt.
+\item Die Vorlesung orientiert sich an der vom letzten Jahr.
+\item Für Literatur siehe die 3 Vorschläge auf der Homepage
+\end{itemize}
+
+\setcounter{section}{-1}
+
+\section{Motivation und Überblick}
+In der Topologie studieren wir topologische Räume. Diese verallgemeinern metrische Räume. Wir wollen zwei metrische Räume $X,Y$ als 'gleich' ansehen, wenn es stetige, zueinander inverse Abbildungen  $X \to  Y, Y\to X$ gibt.
+\begin{example}
+    Betrachte ein Quadrat und einen Kreis, wir können sie durch Streckung aufeinander abbilden. Gleiches gilt für eine Tasse und einen Donut. \\
+    \begin{minipage}{\textwidth}
+    \centering
+    \begin{minipage}{0.45\textwidth}
+     \incfig{quadrat-und-kreis-sind-gleich}
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+    \incfig{tasse-und-donut-sind-gleich}
+    \end{minipage}
+    \captionof{figure}{Beispiele 'gleicher' metrischer Räume (homöomorph)}
+\end{minipage}
+\end{example}
+
+
+
+
+\begin{idea}
+    Räume sind gewissermaßen aus 'Knete'.
+\end{idea}
+\begin{aim}
+    Wann sind zwei Räume gleich?
+\end{aim}
+Dazu werden wir algebraische Invarianten verwenden.
+\begin{example}
+    $\R^n$ und $\R^m$ sind nicht 'gleich' für $n\neq m$.
+\end{example}
+Der Aufbau ist wie folgt:
+\begin{description}
+    \item[1. Teil] Grundlagen
+    \item[2. Teil] erste Invarianten: Fundamentalgruppe (dazu Überlagerungen)
+\end{description}
+
+\section{Metrische Räume}
+\begin{definition}
+    Eine \vocab{Metrik} auf einer Menge $X$ ist eine Funktion  $d: X\times X \to  \R_{\geq 0}$ mit folgenden Eigenschaften:
+    \begin{enumerate}[(i)]
+        \item $d(x,y) = 0 \iff  x = y$
+        \item $d(x,y) = d(y,x) \quad \forall x,y\in X$
+        \item (Dreiecksungleichung) $d(x,z) \leq  d(x,y) + d(y,z)$.
+    \end{enumerate}
+    Ein \vocab{Metrischer Raum} ist ein Paar $(X,d)$ aus einer Menge $X$ und einer Metrik $d$ auf $X$.
+\end{definition}
+\begin{definition}
+    Seien $(X,d)$ und  $(X',d')$ zwei metrische Räume. Dann ist eine Funktion $f:X \to  Y$ \vocab{stetig in $x\in X$}, falls
+    \[
+        \forall ε > 0 \; \exists \delta > 0 \; \forall x' \colon d(x,x') < \delta \implies d'(f(x), f(x')) < ε
+    .\] 
+    Eine Funktion $f$ heißt \vocab{stetig}, wenn sie in jedem Punkt  $x\in X$ stetig ist.
+    \begin{minipage}{\textwidth}
+        \centering
+    \incfig{definition-von-stetigkeit-in-metrischen-raeumen}
+    \captionof{figure}{Definition von Stetigkeit in metrischen Raeumen}
+    \end{minipage}
+\end{definition}
+
+
+\begin{example}
+    \begin{itemize}
+        \item 
+    Sei $V$ ein reeller Vektorraum mit Norm  $\lVert \cdot  \rVert$. Dann definiert
+    \[
+        d(v,w) :- \lVert v-w \rVert 
+    .\] 
+    eine Metrik auf $V$. Insbesondere ist $\R^n$ mit euklidischer Norm
+    \[
+        \lVert (x_1,\ldots,x_n) \rVert _2 = \sqrt{x_1^2 + \ldots + x_{n}^2} 
+    .\] 
+    dadurch ein metrischer Raum.
+\item Ist $(X,d)$ ein metrischer Raum und  $Y\subset X$ eine Teilmenge, dann ist $(Y, d| _{Y\times Y})$ ein metrischer Raum.
+\item Sei $X$ eine Menge. Dann ist
+    \[
+        d(x,y) = \begin{cases}
+            0 & \text{falls } x=y \\
+            1 & \text{sonst}
+        \end{cases}
+    .\] 
+    eine Metrik auf $X$, genannt die \vocab{diskrete Metrik}.
+    \end{itemize}
+\end{example}
+\begin{notation}
+    Sei $X$ ein metrischer Raum. Für  $x\in X$ und $ε>0$ setzen wir
+     \[
+         U(x,ε) := \left \{y\in X \mid  d(x,y) < ε\right\} 
+    .\] 
+    und nennen dies den \vocab{offenen $ε$-Ball um $x$}
+\end{notation}
+\begin{observe}
+    Sei $f: (X,d_X) \to  (Y,d_Y)$ eine Funktion, $x\in X$ sowie $ε,δ>0$. Dann sind äquivalent:
+\begin{enumerate}[1)]
+    \item $\forall x' \in X$ mit $d_X(x',x) < δ$ gilt  $d_Y(f(x'),f(x)) < ε$
+    \item Es ist $f(U(x,\delta)) \subset U(f(x),ε)$
+    \end{enumerate}
+\end{observe}
+\begin{definition}
+    Sei $X$ ein metrischer Raum,  $U\subset X$ und $x\in X$. Dann heißt $U$ \vocab{Umgebung von $x$}, falls ein $ε>0$ existiert, sodass  $U(x,ε) \subset U$. 
+\end{definition}
+\begin{theorem}
+    \label{thm:stetig_urbild_von_umgebung}
+    Sei $f:X \to  Y$ eine Abbildung zwischen metrischen Räumen und sei $x\in X$. Dann ist $f$ stetig in  $x$ genau dann, wenn für alle Umgebungen  $V$ um  $f(x)$ in  $Y$ das Urbild  $f^{-1}(V)$ eine Umgebung von $x$ ist.
+\end{theorem}
+
+\begin{proof}
+'$\implies$' Sei $V$ eine Umgebung von  $f(x)$. Dann  $\exists \; ε>0$ mit $U(f(x),ε) \subset V\}$. Da $f$ stetig ist,  $\exists \; δ>0$, sodass $f(X(x,δ)) \subset U(f(x),ε)\subset V$. Also ist $U(x,δ)\subset f^{-1}(V)$ und somit ist $f^{-1}(V)$ eine Umgebung von $x$. \\
+'$\impliedby$'.  Sei $ε>0$. Dann ist  $U(f(x),ε)$ eine Umgebung von  $f(x)$. Also ist  $f^{-1}(U(f(x),ε))$ eine Umgebung von $x$, also  $\exists \; δ>0$ mit $U(x,δ) \subset f^{-1}(U(f(x),ε))$. Also wie gewünscht $f(U(x,δ)) \subset U(f(x),ε))$.
+\end{proof}
+
+\begin{definition}
+    Sei $X$ ein metrischer Raum. Eine Teilmenge  $X\subset X$ heißt \vocab{offen}, falls sie Umgebung all ihrer Punkte ist, d.h. $\forall x\in U \;\exists ε>0$ mit $U(x,ε)\subset U$.
+\end{definition}
+\begin{remark}
+    $U(x,ε)$ ist offen.
+\end{remark}
+\begin{proof}
+    Für alle $y\in U(x,ε)$ ist
+    \[
+        U(y, \underbrace{ε - d(x,y)}_{>0}) \subset U(x,ε)
+    .\] 
+    nach der Dreiecksungleichung.
+\end{proof}
+
+\begin{theorem}
+    Eine Abbildung $f:X\to Y$ zwischen metrischen Räumen ist stetig genau dann, wenn $\forall U \subset Y \text{  offen}$ auch das Urbild $f^{-1}(U)$ offen in $X$ ist. (Urbilder offener Mengen sind offen).
+\end{theorem}
+\begin{proof}
+    '$\implies$ '. Sei $U\subset Y$ eine offene Teilmenge und $x\in f^{-1}(U)$ beliebig. Dann ist $f(x) \in U$ und somit ist $U$ eine Umgebung von  $f(x)$. Da  $f$ stetig ist, ist  $f^{-1}(U)$ eine Umgebung von $x$ nach Satz \ref{thm:stetig_urbild_von_umgebung}. Also ist $f^{-1}(U)$ offen, da $x$ beliebig war.\
+    '$\impliedby$' Sei $x\in X$, $V$ eine Umgebung von  $f(x)$. Dann  $\exists ε>0$ mit $U(f(x),ε)\subset V$. Nach Annahme ist $f^{-1}(U(f(x),ε))$ offen. Also gibt es ein $δ>0$ mit  $U(x,δ) \subset f^{-1}(U(f(x),ε))\subset f^{-1}(V)$. Also ist $f^{-1}(V)$ eine Umgebung von $x$. \\
+    Damit ist  $f$ stetig nach Satz \ref{thm:stetig_urbild_von_umgebung}.
+\end{proof}
+
+\begin{theorem}
+    Sei $X$ ein metrischer Raum. Dann gilt:
+    \begin{enumerate}[1)]
+        \item Die leere Menge $\emptyset$ und $X$ sind offen
+        \item  $\forall U_1,\ldots,U_n\subset X$ offen ist auch $\bigcap_{i=1}^n U_i$ offen.
+        \item Für jede Familie $\left \{U_i\right\} _{i\in I}$ von offenen Mengen ist auch $\bigcup_{i\in I} U_i$ offen.
+    \end{enumerate}
+\end{theorem}
+
+\warning
+    Eigenschaft $2)$ gilt nicht für unendliche Schnitte. Es ist $\left( -\frac{1}{n},\frac{1}{n} \right) \subset \R$ offen für alle $n\in \N_{>0}$, allerdings ist dann
+    \[
+        \bigcap_{n\in \N_{>0}} \left( -\frac{1}{n},\frac{1}{n} \right)  = \left \{0\right\} 
+    .\] 
+    nicht offen.
+\begin{proof}
+    \begin{enumerate}[1)]
+        \item klar
+        \item Sei $x\in \bigcap_{i=1}^n U_i$. $\forall i = 1,\ldots,n$ gibt es nun $ε_i$ mit  $U(x,ε_i)\subset U_i$. Setze $ε := \min \left \{ε_i \mid  i=1,\ldots,n\right\}$. Dann ist
+            \[
+                U(x,ε) \subset U(x,ε_i) \subset U_i
+            .\] 
+            für alle $i=1,\ldots,n$ und somit wie gewünscht $U(x,ε) \subset \bigcap_{i=1}^n U_i$
+        \item Sei $x\in \bigcup_{\in I} U_i$ beliebig. Dann $\exists i\in I$ mit $x\in U_i$. Da $U_i$ offen ist,  $\exists ε>0$ mit $U(x,ε) \subset U_i$. Also ist $U(x,ε) \subset  \bigcup_{i\in I} U_i$ und somit ist die Vereinigung offen.
+    \end{enumerate}
+\end{proof}
+
+\section{Topologische Räume} 
+    
+\begin{definition}
+    Eine Topologie auf einer Menge $X$ ist eine Menge  $\Topo$ von Teilmengen von  $X$, so dass gilt:
+    \begin{enumerate}[1)]
+        \item $\emptyset,X \in \Topo$
+        \item Für $U_1,\ldots,U_n \in \Topo$ ist auch $\bigcap_{i=1}^n U_i \in  \Topo$
+        \item Für jede Familie $\left \{U_i\right\} _{i\in I}$ mit $U_i \in \Topo$ ist auch $\bigcup_{i\in I} U_i \in  \Topo$
+    \end{enumerate}
+    Die Mengen in $\Topo$ heißen \vocab{offene Mengen}. \\
+    Ein \vocab{topologischer Raum} ist ein Paar  $(X,\Topo)$ aus einer Menge  $X$ und einer Topologie  $\Topo$ auf  $X$.
+\end{definition}
+
+
+\begin{definition}
+    Seien $X,Y$ topologische Räume. Eine Abbildung  $f:X \to  Y$ heißt \vocab{stetig}, falls für jede offene Teilmenge $U\subset Y$ das Urbild $f^{-1}(U) \subset X$ offen ist.
+\end{definition}
+
+\begin{example}
+    Sei $(X,d)$ ein metrischer Raum. Dann ist
+     \[
+         (X, \Topo := \left \{U\subset X \mid  U \text{ ist offen bezüglich $d$}\right\} )
+    .\] 
+    ein topologischer Raum. $\Topo$ ist die von der Metrik  $d$ \vocab{indupierte Topologie}.
+\end{example}
+\begin{definition}
+    Ein topologischer Raum heißt \vocab{metrisierbar}, falls die Topologie von einer Metrik induziert ist.
+\end{definition}
+
+\begin{example}
+    Sei $X$ eine Menge. Die \vocab{diskrete Topologie} auf $X$ ist die Menge aller Teilmengen, d.h.  $\Topo := \mathcal{P}(X)$. Diese ist von der diskreten Metrik
+    \[
+        d(x,y) = \begin{cases}
+            0 & \text{falls }x=y \\
+            1 & \text{sonst}
+        \end{cases}
+    .\] 
+    induziert.
+\end{example}
+\begin{proof}
+    Ist $x\in X$, dann ist
+    \[
+        \left \{x\right\} =U\left(x,\frac{1}{2}\right)
+    .\] 
+    offen. Ist $U\subset X$ eine Teilmenge, dann ist
+    \[
+    U = \bigcup_{x\in U} \left \{x\right\}
+    .\] 
+    offen als Vereinigung offener Mengen.
+\end{proof}
+
+\begin{theorem}
+    Sei $X$ ein endlicher (endlich als Menge), metrisierbarer topologischer Raum. Dann ist  $X$ diskret (d.h. $X$ trägt die diskrete Topologie).
+\end{theorem}
+\begin{proof}
+    Es reicht zu zeigen, dass $\left \{x\right\} $ offen ist $\forall x\in X$. Sei $d$ eine Metrik, die die Topologie induziert, dann wähle
+     \[
+         ε := \min \left \{d(x,y) \mid  x,y\in X , x\neq y\right\} > 0
+    .\] 
+    Beachte, dass dies existiert, da $d(x,y) >0$ für  $x\neq y$ und die Menge nach Voraussetzung endlich ist. Nun ist:
+    \[
+    \left \{x\right\}  = U(x,ε)
+    .\] 
+    offen und wir sind fertig.
+\end{proof}
+
+\begin{example}
+    \begin{enumerate}[1)]
+        \item (Sierpinski-Raum). Wähle $X = \left \{a,b\right\} $ und setze
+            \[
+            \Topo = \left \{\emptyset,X, \left \{a\right\} \right\} 
+            .\]
+            Dies ist ein topologischer Raum (leicht prüfen), er ist jedoch nicht metrisierbar, da endlich und nicht diskret.
+        \item Sei $X$ eine Menge. Die  \vocab{indiskrete Topologie} auf $X$ enthält nur  $\emptyset,X$. Man prüft leicht, dass dies eine Topologie ist. 
+            \begin{itemize}
+                \item 
+            Hat $X$ mindestens 2 Elemente, so ist  $X$ nict metrisierbar.
+             \begin{proof}
+                 Nimm $\abs{X}>2$ an und wähle $x,y\in X$ mit $x\neq y$. Sei $d$ eine Metrik, die die Topologie auf $X$ induziert und setze  $ε := d(x,y)$. Dann ist
+                  \[
+                      x\in U(x,ε) \quad y\not\in U(x,ε)
+                 .\] 
+                 also ist $U(x,ε) \neq  \emptyset,X$, Widerspruch.
+            \end{proof}
+        \item Sei $Y$ ein topologischer Raum. Dann ist  $f: Y \to  X$ stetig für beliebige Abbildungen $f$.
+             \begin{proof}
+                 Es sind $f^{-1}(\emptyset) = \emptyset$ sowie $f^{-1}(X) = Y$ beide offen.
+            \end{proof}
+            \end{itemize}
+    \end{enumerate}    
+\end{example}
+
+\begin{remark}
+    Ist $Y$ diskret und  $X$ beliebig, so ist jede Abbildung  $f:X \to  Y$ steti.
+\end{remark}
+
+
+
+
+
+
+
+
+

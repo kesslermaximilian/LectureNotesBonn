@@ -1,0 +1,221 @@
+\lecture{3}{Di 20 Apr 2021 12:16}{Trennungsaxiome, Kompaktheit}
+\begin{proof}
+    Betrachte die stetige Abbildung
+        \begin{equation*}
+        f': \left| \begin{array}{c c l} 
+            [0,1] & \longrightarrow & S^1\subset \C \\
+        t & \longmapsto &  e^{2\pi it}
+        \end{array} \right.
+    \end{equation*}
+    Wir sehen $f'(0) = f'(1) = 1$, also existiert nach der universellen Eigenschaft ein  $f$, sodass folgendes kommutiert: \\
+     \begin{tikzcd}
+         \left[ 0,1\right] \ar[two heads]{d}\ar{r}{f'} & S^1 \\
+         \left[ 0,1 \right] / (0 \sim 1) \ar[swap,two heads]{ur}{f}
+    \end{tikzcd}
+    und $f$ stetig ist. Zudem ist  $f$ bijektiv. Es bleibt zu zeigen, dass  $f^{-1}$ stetig ist, das zeigen wir jedoch nicht jetzt (ginge mit viel rechnen), sondern später, wenn wir mehr Technik haben. Anschaulich ist das jedoch klar:
+\begin{figure}[ht]
+    \centering
+    \incfig{intervall-und-kreis-sind-homeomorph}
+    \caption{$[0,1] / (0\sim 1)$ und $S^1$ sind homöomorph}
+    \label{fig:intervall-und-kreis-sind-homeomorph}
+\end{figure}
+\end{proof}
+\begin{remark}
+    Die Abbildung
+        \begin{equation*}
+        \begin{array}{c c l} 
+            [0,1) & \longrightarrow & S^1 \\
+        t & \longmapsto &  e^{2\pi it}
+        \end{array}
+    \end{equation*}
+    ist stetig und bijektiv, allerdings kein Homöomorphismus, denn $\left[ 0, \frac{1}{2} \right] \subset [0,1)$ ist offen, aber $f(\left[ 0,\frac{1}{2} \right] ) = \left( f^{-1} \right) ^{-1}\left( \left[ 0,\frac{1}{2} \right]  \right) $ ist nicht offen im Kreis.
+\end{remark}
+\begin{example}
+    \begin{itemize}
+        \item Sei $X = [0,1]^2 \subset \R$. Identifiziere nun $(t,0) \sim  (t,1)$ sowie $(0,s) \sim  (1,s)$ für $s,t\in [9,1]$. Dann ist $X / \sim $ der Torus.
+        \item Sei $X = [0,1] ^2 \subset \R^2$. Identifizieren wir $(t,0) \sim  (t,1)$ sowie $(0,s) \sim  (1, 1-s)$, so erhalten wir die \vocab{Kleinsche Flasche}. 
+        \item Betrachte auf dem $\R^{n+1}\setminus \left \{0\right\} $ die Relation $x \sim  λx$ für $λ>0\in \R$. Dann ist $\R^{n+1} / \sim  \cong S^n$. Zunächst ist nämlich die Abbildung
+                \begin{equation*}
+                f: \left| \begin{array}{c c l} 
+                \R^{n+1}\setminus \left \{0\right\}  & \longrightarrow & S^n \\
+                x & \longmapsto &  \frac{x}{\lVert x \rVert _2}
+                \end{array} \right.
+            \end{equation*}
+            stetig und die induzierte Abbildung $\R^{n+1} \setminus \left \{0\right\}  / \sim \to  S^n$ ist bijektiv. Das rechnen wir nach: Seien $x\neq y$ mit $d(x,y) < \delta$, so ist:
+            \begin{equation}
+                \begin{split}
+                    d\left( \frac{x}{\lVert x \rVert },\frac{y}{\lVert y \rVert } \right) &\leq d\left( \frac{x}{\lVert x \rVert },\frac{y}{\lVert x \rVert } \right) + d\left( \frac{y}{\lVert x \rVert },\frac{y}{\lVert y \rVert } \right)  \\
+                                                                                          &= \frac{1}{\lVert x \rVert } d(x,y) + \sqrt{\sum \left( \frac{y_i}{\lVert x \rVert }-\frac{y_i}{\lVert y \rVert } \right)^2 }  \\
+                                                                                          &= \frac{1}{\lVert x \rVert } d(x,y) + \sqrt{\frac{(\lVert x \rVert -\lVert y \rVert )^2}{\lVert x \rVert \lVert y \rVert }} \lVert y \rVert \\
+                                                                                          &< \frac{1}{\lVert x \rVert }\cdot \delta + \frac{\delta}{\lVert x \rVert ^2 + \delta \lVert x \rVert }(\lVert x \rVert +\delta) \to  0
+                \end{split}
+            \end{equation}
+            also ist $f$ stetig. Mit der Inklusion  $ι: S^n \to  \R^{n+1} \setminus \left \{0\right\} $ erhalten wir
+            \[
+            f \circ  ι = \id_{S^n}
+            .\] 
+            Übung: Daraus folgt bereits, dass $S^n$ die Quotiententopologie trägt.
+        \item Setzen wir erneut $X = \R^{n+1} \setminus \left \{0\right\} $, aber diesmal $x \sim  \lambda x$ für $λ\in \R \setminus  \left \{0\right\} $, so heißt der Quotient
+            \[
+            X / \sim  =: \R P^n
+            .\] 
+            der \vocab{reelle projektive Raum}.  Es ist
+            \[
+                \R P^n \cong S^n / (x \sim -x)
+            .\] 
+            Dies sehen wir mittels folgendem Diagramm: \\
+            \begin{tikzcd}
+                \R^{n+1} \setminus \left \{0\right\}  \ar[two heads]{d} \ar[shift left]{r}{f} & S^n \ar[shift left]{l}{ι} \ar[two heads]{d} \\
+                \R P^n \ar[dashed, shift left]{r}{\overline{f}} & S^n / (x \sim  - x) \ar[dashed, shift left]{l}{\overline{ι}}
+            \end{tikzcd}
+            \\
+            Die Abbildungen $\overline{ι}$ und $\overline{f}$ sind stetig nach der universellen Eigenschaft und invers zueinander.
+        \item Sei $X$ ein topologischer Raum und  $A\subset X$ eine Teilmenge. Definiere die Relation $\sim $ durch $a\sim a'$ für $a,a'\in A$ (bzw. erzeuge eine dadurch). Dann setzen wir
+            \[
+            X / A := X / \sim 
+            .\] 
+            Es ergibt sich
+            \begin{itemize}
+                \item $[0,1] / \left \{0,1\right\} \cong S^1$ 
+                \item $[0,1] / [0,1)$ hat zwei Punkte  $[0,1)$ und  $\left \{1\right\} $. Es ist $[0,1) \subset [0,1]$ offen, aber $\left \{1\right\} $ nicht, also handelt es sich um den Sierpinski-Raum.
+            \end{itemize}
+    \end{itemize}
+\end{example}
+\begin{remark}
+    Quotientenräume von metrischen Räumen sind im Allgemeinen nicht metrisierbar.
+\end{remark}
+
+\section{Trennugsaxiome}
+\begin{definition}
+    Ein topologischer Raum heißt \vocab{Hausdorff} (oder \vocab{Hausdorffsch}), wenn $\forall x,y\in X$ mit $x\neq y$ offene Mengen $U_x, U_y\subset X$ existieren mit $x\in U_x$ und $y\in U_y$, sodass $U_x \cap U_y = \emptyset$. Diese Eigenschaft heißt auch Trennungsaxiom $T_2$. \\
+    \begin{minipage}{\textwidth}
+    \centering    
+\begin{minipage}{0.3\textwidth}
+        \centering
+        \incfig{hausdroff-raum}
+    \end{minipage}
+    \end{minipage}
+\end{definition}
+
+\begin{theorem}
+    Ist $X$ metrisierbar, so ist  $X$ Hausdorffsch.
+\end{theorem}
+\begin{proof}
+    Sei $d$ eine Metrik auf  $X$, die die Topologie induziert. Seien  $x,y\in X$ mit $x\neq y$. Setze
+    \[
+        U_x := U\left( x, \frac{d(x,y)}{2} \right) \qquad U_y = U\left( y, \frac{d(x,y)}{2} \right) 
+    .\] 
+    Dann ist $U_x \cap U_y = \emptyset$, denn für alle $z\in U_x \cap U_y$ ist
+    \[
+        d(x,y) \leq  d(x,z) + d(z,y) < \frac{d(x,y)}{2} + \frac{d(x,y)}{2} = d(x,y)
+    .\] 
+    , was nicht sein kann.
+\end{proof}
+\begin{example}
+    $\R^n$ ist Hausdorffsch.
+\end{example}
+\begin{theorem}
+    Ist $X$ Hausdorffsch und  $x\in X$, dann ist $\left \{x\right\} \subset X$ abgeschlossen.
+\end{theorem}
+\begin{proof}
+    Für $y\neq x$ existiert $U_y$ offen mit  $x\not\in U_y$ und $y\in U_y$. Dann ist
+    \[
+    X \setminus \left \{x\right\}  = \bigcup_{y\neq x} U_y 
+    .\] 
+    offen.
+\end{proof}
+\begin{remark}
+    Ein topologischer Raum, für den alle $\left \{x\right\} $ abgeschlossen sind, heißt $T_1$-Raum.
+\end{remark}
+
+\begin{lemma}
+    Sei $X$ Hausdorffsch und $A\subset X$ ein Teilraum. Dann ist auch $A$ Hausdorffsch.
+\end{lemma}
+\begin{proof}
+    Sei $x\neq y\in A$. Dann existieren $U_x, U_y\subset X$ offen mit $x\in U_x$ und $y\in U_y$ sowie $U_x \cap U_y = \emptyset$. Dann sind
+    \[
+    U_x \cap A \qquad U_y \cap A \subset A
+    .\] 
+    offen in $A$ und erfüllen die Bedingungen.
+\end{proof}
+
+
+\begin{remark}
+    Jeder diskrete Raum ist Hausdorffsch. Ist $X$ endlich und Hausdorffsch, so ist  $X$ diskret.
+\end{remark}
+\begin{proof}
+    Für jedes $y\neq x$ existiert ein $U_x^y$ offen mit  $x\in U_x^y$ und $y\not\in U_x^y$. Dann ist aber
+    \[
+    \left \{x\right\}  = \bigcap_{y\neq x} U_x^{y}
+    .\] 
+    offen (da $X$ endlich), also ist $X$ diskret. Die Umkehrung ist offensichtlich.
+\end{proof}
+\begin{example}
+    $S^n \subset \R^{n+1}$ ist Hausdorffsch.
+\end{example}
+
+\begin{definition}
+    Ein topologischer Raum heißt \vocab{normal}, falls
+    \begin{itemize}
+        \item $X$ ist Hausdorffsch
+        \item  $\forall A,B\subset X$ abgeschlossen mit $A \cap B = \emptyset$ existieren $U_A, U_B \subset X$ offen mit $A\subset U_A$, $B\subset U_B$ und $U_A \cap U_B = \emptyset$. Diese Eigenschaft heißt auch Trennungsaxiom $T_4$. \\
+            \begin{minipage}{\textwidth}
+                \centering
+                \begin{minipage}{0.3\textwidth}
+    \incfig{normaler-raum}
+                \end{minipage}
+            \end{minipage}
+    \end{itemize}
+\end{definition}
+
+
+\begin{remark}
+    Manchmal gibt es diese Definition auch ohne Hausdorff'sch.
+\end{remark}
+
+\begin{theorem}
+    Ist $X$ metrisierbar, dann ist  $X$ normal.
+\end{theorem}
+
+\begin{proof}
+    Übung.
+\end{proof}
+
+\begin{definition}
+    Ein topologischer Raum $X$ heißt  \vocab{regulär}, falls $X$ Hausdorff ist und  $\forall  A \subset X$ abgeschlossen und $x\in X \setminus A$ existieren $U_a, U_{x}$ offen mit $A\subset U_A, x\in U_x$ und $U_A \cap U_x = \emptyset$. (Auch Trennungsaxiom $T_3$ genannt).
+\end{definition}
+
+Klar: $T_4 \implies T_3$
+
+
+\section{Kompaktheit}
+\begin{theorem}[Heine-Borel]
+    \label{thm:heine-borel}
+    Für $X\subset \R^n$ sind äquivalent:
+    \begin{enumerate}[1)]
+        \item $X$ ist abgeschlossen und beschränkt.
+        \item Jede offene Überdeckung von $X$ hat eine endliche Teilüberdeckung
+    \end{enumerate}
+\end{theorem}
+\begin{recap}
+    'Jede offene Überdeckung besitzt eine endliche Teilüberdeckung' bedeutet: \\
+    Für jede Familie $\left \{U_i\right\} _{i \in I}$ mit $U_i \subset X$ offen und $X \subset \bigcup_{i \in I}U_i$ existiert eine endliche Teilmenge $J\subset I$ mit $X \subset \bigcup_{j\in J} U_j$
+\end{recap}
+\begin{proof}
+    später.
+\end{proof}
+
+\begin{definition}
+    Ein topologischer Raum $X$ heißt  \vocab{kompakt}, falls jede offene Überdeckung eine endliche Teilüberdeckung besitzt.
+\end{definition}
+\begin{remark}
+    Manchmal heißt obige Definition auch quasi-kompakt, und kompakt bedeutet dann quasi-kompakt + Hausdorff.
+\end{remark}
+
+\begin{example}
+   Die Räume
+   \[
+       [0,1] \subset \R \qquad S^n \subset \R^{n+1}
+   .\] 
+   sind beide kompakt (nach \ref{thm:heine-borel})
+\end{example}

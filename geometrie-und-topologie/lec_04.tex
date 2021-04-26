@@ -1,0 +1,231 @@
+\lecture{4}{Do 22 Apr 2021 10:15}{}
+\begin{example}
+    Zur Frage von letzter Woche (wenn wir einen Hausdorff-Raum haben und eine Äquivalenzrelation, deren Klassen abgeschlossen sind, ist dann der Quotient wieder  Hausdorff?): Wähle auf $[0,1]$ die Relation erzeugt von
+     \[
+    \frac{1}{n} \sim  1 - \frac{1}{n}
+    .\] 
+    für alle $n\in \N_>0$. Betrachte dann die Abbildung: 
+    \[
+        [0,1] \twoheadrightarrow [0,1] / \sim 
+    .\] 
+    Punkturbilder sind endlich, also abgeschlossen. Aber der Raum $[0,1] / \sim $ ist nicht hausdorffsch, denn wri können die Punkte $0,1$ nicht trennen.
+\end{example}
+\begin{theorem}
+    Sei $X$ ein kompakter Raum und  $Y\subset X$ abgeschlossen. Dann ist $Y$ kompakt.
+    \label{thm:closed-subset-of-compact-space-is-compact}
+\end{theorem}
+\begin{proof}
+    Sei $\left \{U_i\right\} _{i \in I}$ eine offene Überdeckung von $Y$. Dann existieren $U_i' \subset X$ offen mit $U_i = U_i' \cap Y$. Die Familie
+     \[
+    \left \{U_i'\right\} _{i \in I}\cup \left \{\underbrace{X \setminus Y}_{\text{offen}}\right\} 
+    .\] 
+    ist nun eine offene Überdeckung von $X$. Dann existiert $J\subset I$ endlich, so dass
+    \[
+    \left \{U_j'\right\} _{j\in J} \cup \left \{X \setminus Y\right\} 
+    .\] 
+    die Menge $X$ überdeckt. Also ist  
+    \[
+        \left \{\underbrace{U_j' \cap Y}_{U_j}\right\} _{j\in J} \cup \left \{\underbrace{X \setminus Y \cap Y}_{=\emptyset}\right\}  
+    \]
+    eine endliche Überdeckung für $Y$.
+\end{proof}
+\begin{theorem}
+    Sei $X$ ein Hausdorff-Raum und  $Y\subset X$ kompakt. Dann ist $Y$ abgeschlossen.
+    \label{thm:compact-subset-of-hausdorff-space-is-closed}
+\end{theorem}
+
+\begin{corollary}
+    Ist $X$ kompakt und Hausdorffsch, dann sind äquivalent:
+    \label{thm:compact-iff-closed}
+\begin{enumerate}[1)]
+        \item $Y\subset X$ ist abgeschlossen
+        \item $Y$ ist kompakt.
+    \end{enumerate}
+\end{corollary}
+\begin{lemma}
+    Sei $X$ ein Hausdorff Raum und  $Y\subset X$ kompakt. Dann existiert $\forall x\in X\setminus Y$ offene Teilmengen $U_{x,Y}$ und $V_{x,Y}$ von $X$ so dass:  $x\in U_{x,Y}$ und $Y\subset V_{x,Y}$ und $U_{x,Y} \cap V_{x,Y} = \emptyset$.
+    \label{lm:compact-set-in-hausdorff-space-is-closed}
+\end{lemma}
+\begin{proof}
+    Sei $x\in X\setminus Y$. $\forall y\in Y$ existieren $U_{x,y}$ und $V_{x,y}$ offen mit $x\in U_{x,y}$ und $y\in V_{x,y}$, weil $X$ Hausdorffsch. \\
+    Dann ist  $\left \{V_{x,y} \cap Y\right\} _{y\in Y}$ eine offene Überdeckung von $Y$. Also existiert endliche Teilüberdeckung (da  $Y$ kompakt) induziert durch Punkte  $y_1,\ldots,y_n$. Also:
+    \[
+    Y\subset \bigcup_{i=1}^n V_{x,y_i}
+    .\] 
+    Sei
+    \[
+    V_{x,Y} := \bigcup_{i=1}^n V_{x,y_i} \qquad U_{x,Y} := \bigcap_{i=1}^n U_{x,y_i} 
+    .\] 
+    Es ist auch $x\in U_{x,Y}$, weil $x\in U_{x,y_i}$ für jedes $i$. Wir müssen also noch Disjunktheit prüfen, es ist:
+     \[
+    U_{x,Y} \cap V_{x,y_i} \subset U_{x,y_i} \cap V_{x,y_i} = \emptyset
+    .\] 
+    Also auch
+    \[
+        \emptyset=    U_{x,Y} \cap \bigcup_{i=1}^n V_{x,y_i} = U_{x,Y} \cap V_{x,Y}
+    .\]
+\end{proof}
+    \begin{figure}[H]
+    \includegraphics[scale=0.4]{figures/Lemma5.5.pdf}
+    \caption{Skizze zum Beweis von Lemma \ref{lm:compact-set-in-hausdorff-space-is-closed}}
+\end{figure}
+\begin{proof}[Beweis von \ref{thm:compact-subset-of-hausdorff-space-is-closed}]
+    Nach dem Lemma existieren $\forall x\in X \setminus Y$ ein $U_{x,Y}$ mit $x\in U_{x,Y}$ und $U_{x,Y} \cap Y = \emptyset$. Also ist
+    \[
+    X \setminus Y = \bigcup_{x\in X \setminus Y} U_{x,Y}
+    .\] 
+    offen und somit ist $Y$ abgeschlossen.
+\end{proof}
+
+
+\begin{example}['Gegenbeispiel' zu Satz \ref{thm:compact-subset-of-hausdorff-space-is-closed}]
+    Sei $G$ die Gerade mit zwei Urpsrüngen: \\
+    Betrachte  $\R\cup \left \{0'\right\} $ mit $U$ Umgebung von  $a\in \R$ falls $\exists ε>0$ mit $(a-ε, a+ε)\subset U$ und $U$ Umgebung von  $0'$ und  $U$ Umgebung von  $0'$, falls  $\exists ε>0$ mit $(-ε,0 \cup (0,ε) \subset U$ und $0' \in U$. \\
+    Wir können uns gewissermaßen  $0,0'$ gleichberechtigt vorstellen, nur dass die beiden Punkte verschieden sind. \\
+    Dann ist  $[-1,1] \subset G$ kompakt (Übung!), aber nicht abegschlossen, da $0' \in G \setminus [-1,1]$ ist, dies aber keine Umgebung von $0'$ ist.
+    \begin{figure}[H]
+        \includegraphics[scale=0.4]{figures/line-with-2-origins.pdf}
+    \caption{Gerade mit 2 Ursprüngen}
+    \end{figure}
+\end{example}
+
+
+\begin{proof}[Beweis von Satz \ref{thm:heine-borel}]
+    '$2) \implies 1)$'. Sei $X\subset \R^n$ kompakt. Dann ist sie abgeschlossen nach \ref{thm:compact-subset-of-hausdorff-space-is-closed}. Zudem ist $X\subset \bigcup_{x\in X} U(x,1)$ eine offene Überdeckung. Da $X$ kompakt finden wir endlich viele  $x_1,\ldots,x_n\in X$ mit
+    \[
+        X \subset \bigcup_{i=1}^n U(x_i,1)
+    .\] 
+    Also ist
+    \[
+        \diam(X) \leq  \max \left \{d(x_i,x_j)\right\} +2 < \infty
+    .\] 
+    und somit ist $X$ auch beschränkt. \\
+    ' $1)\implies 2)$'. Da $X$ beschränkt ist,  $\exists m>0$ mit $X\subset [-m,m]^n\subset \R^n$. Da $X$ abgeschlossen ist, genügt es nach \ref{thm:closed-subset-of-compact-space-is-compact} zu zeigen, dass  $[-m,m]^n$ kompakt ist. \\
+    Wir führen einen Widerspruchsbeweis, nimm also an, dass  $[-m,m]^n$ nicht kompakt ist. Dann existiert eine offene Überdeckung  $\left \{U_i\right\} _{i \in I}$ ohne endliche Teilüberdeckung. \\
+    Unterteile $[-m,m]^n$ in  $2^n$ gleich große Unterwürfel (halbiere jede Seite). Mindestens ein Unterwürfel hat keine endliche Teilüberdeckung. Unterteile diesen Würfel weiter und wähle wieder einen Unterwüfel, der keine endliche Teilüberdeckung hat. \\
+    Wir erhalten eine Folge von Würfeln
+     \[
+         [-m,m]^n =     Q_0 \supset Q_1 \supset Q_2 \supset Q_3 \supset \ldots
+    .\] 
+    die jeweils keine endliche Teilüberdeckung durch $U_i's$ besitzen. \\
+    Sei  $x_i \in Q_i$ beliebig. Dann ist $x_i$ eine Cauchy-Folge, also existiert $x = \lim_{i\to \infty} x_i$, und $x\in Q_0$, da $Q_0$ abgeschlossen. \\
+    Somit gibt es ein $U_j$ mit  $x\in U_j$, da die $\left \{U_i\right\} _{i \in I}$ eine Überedeckung von $Q_0$ waren. Damit ist auch $U(x,ε) \subset U_j$ für ein $ε>0$. Wähle einen Würfel $x\in Q_k$ mit Kantenlänge $< \frac{ε}{\sqrt{n} }$, dann ist auch $Q_k \subset U(x,ε) \subset U_j$. Das ist aber ein Widerspruch dazu, dass $Q_k$ keine endliche Teilüberdeckung hat, \contra. \\
+    Also ist  $Q_0$ kompakt.
+\end{proof}
+
+\begin{theorem}
+    Sei $f: X \to  Y$ stetig und surjektiv und $X$ kompakt. Dann ist auch  $Y$ kompakt. 
+    \label{thm:image-of-compact-space-is-compact}
+\end{theorem}
+\begin{proof}
+    Sei $\left \{U_i\right\} _{i \in I}$ offene Überdeckung von $Y$. Dann ist
+     \[
+         \left \{f^{-1}(U_i)\right\} _{i \in I}
+    .\] 
+    offene Überdeckung von $X$. Da  $X$ kompakt ist, gibt es  $J\subset I$ endlich mit $X = \bigcup_{j\in J} f^{-1}(U_j)$. Dann ist 
+    \[
+        Y = f(X) = \bigcup_{j\in J} f(f^{-1}(U_j)) = \bigcup_{j\in J} U_j
+    .\] 
+    Also existiert eine endliche Teilüberdeckung von $Y$.
+\end{proof}
+\begin{corollary}
+    Sei $f: X \to  Y$ stetig, $X$ kompakt und  $Y$ Hausdorff. Dann ist  $f$ abgeschlossen, d.h. $\forall A\subset X$ abgesclhossen ist $f(A) \subset Y$ abgeschlossen.
+\end{corollary}
+\begin{proof}
+    Sei $A\subset X$ abgeschlossen. Dann ist $A$ kompakt. Also ist  $f(A)$ kompakt. Also ist  $f(A)$ abgeschlossen
+\end{proof}
+\begin{corollary}
+    Ist $f: X \to  Y$ stetig und bijektiv, $X$ kompakt und  $Y$ Hausdorff, dann ist  $f$ ein Homöomorphismus.
+\end{corollary}
+\begin{proof}
+    Wir müssen zeigen, dass die Umkehrabbildung stetig ist. Dafür reicht es zu zeigen, dass $\forall A\subset X$ abgeschlossen auch $f(A) = (f^{-1})^{-1}(A)$ abgeschlossen ist. Das gilt nach vorherigem Korollar.
+\end{proof}
+\begin{corollary}
+    Sei $f: X \to  Y$ stetig und surjektiv, $X$ kompakt und  $Y$ Hausdorffsch. Dann trägt  $Y$ die Quotiententopologie, d.h.  $U\subset Y$ offen genau dann, wenn $f^{-1}(U) \subset X$ offen.
+\end{corollary}
+\begin{proof}
+    '$\implies$' folgt wegen Stetigkeit. \\
+    '$\impliedby$' Ist $f^{-1}(U) \subset X$ offen, dann ist $f^{-1}(Y \setminus U ) = U \setminus f^{-1}(U)$ abgeschlossen in $X$, also folgt aus dem Korollar dass
+     \[
+         Y \setminus U \stackrel{\text{surj.}}{=}   f\left( f^{-1}\left( Y \setminus U \right)  \right) 
+    .\] 
+    abgeschlossen ist, also ist $U\subset Y$ offen.
+\end{proof}
+\begin{proof}[Satz 3.3]
+    Schon gezeigt:
+        \begin{equation*}
+        \begin{array}{c c l} 
+            [0,1] & \longrightarrow & S_1 \\
+        t & \longmapsto &  2^{2\pi it}
+        \end{array}
+    \end{equation*}
+    ist stetig und surjektiv und faktorisiert über
+    \[
+        [0,1] /\left \{0,1\right\}  \to  S^1
+    .\] 
+    mit $f$ stetig und bijektiv. Wir wissen nun:  $S^1$ ist Hausdorffsch und  $[0,1]$ ist kompakt. Nach Satz 5.5 ist auch  $[0,1] /\left \{0,1\right\} $ kompakt, also ist $f$ ein Homöomorphismus nach Korollar 5.8.
+\end{proof}
+
+
+\begin{theorem}
+    Jeder kompakte Hausdorff-Raum ist normal.
+\end{theorem}
+\begin{proof}
+    Seien $A,B\subset X$ abgeschlossen und disjunkt. Da $X$ kompakt ist, sind  $A,B$ kompakt. Nach Lemma 5.5 existieren  $\forall a\in A$ offene Mengen $U_a, V_a$ mit $a\in U_a, B\subset V_a$ und $U_a \cap V_a = \emptyset$. Dann ist
+    \[
+    A \subset \bigcup_{a\in A} U_a
+    .\] 
+    Also existieren $a_1,\ldots,a_n\in A$ mit
+    \[
+    A\subset \bigcup_{i=1}^n U_{a_i}
+    .\] 
+    wegen $A$ kompakt. Setze nun
+    \[
+    U_A := \bigcup_{i=1}^n U_{a_i}\supset A \qquad U_B := \bigcap_{i=1}^n V_{a_i}\supset B
+    .\] 
+$\forall i$ ist 
+\[
+    U_{a_i} \cap U_B \subset U_{a_i} \cap V_{a_i} = \emptyset
+.\] 
+und daraus folgt, dass
+\[
+U_A \cap U_B = \emptyset
+.\] 
+\end{proof}
+
+\begin{theorem}
+    Sei $X$ kompakt und Hausdorffsch, $q: X \to  Z$ surjektiv, wobei  $Z$ die Quotiententopologie trage. Dann sind äquivalent: 
+    \begin{enumerate}[1)]
+        \item $Z$ ist Hausdorffsch
+        \item  $q$ ist abgeschlossen
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Die Richtung '$1) \implies 2)$' ist genau Korollar 5.7  \\
+    '$2)\implies_1)$': Jedes $z\in Z$ hat ein Urbild $x\in X$ unter $q$. Es ist  $\left \{x\right\} \subset X$ abgeschlossen, da $X$ hausdorffsch. Wegen  $q$ abgeschlossen folgt nun, dass auch
+    \[
+        \left \{z\right\}  = q(\left \{x\right\} )
+    .\] 
+    abgeschlossen ist. Eine Teilmenge $W\subset X$ heißt \vocab{saturiert}, falls $W = q^{-1}(q(W))$ (insbesondere sind alle Urbilder saturiert, und $\iff  \forall x\in X \setminus W : g(x) \in Z \setminus g(W)$). \\
+\begin{remark}
+    Sei $U\subset X$ offen und saturiert, dann ist $q(U)$ offen. Hierzu schreibe
+    \[
+        U = q^{-1}(q(U)) \implies q(U) \text{ offen}
+    .\] 
+\end{remark}
+Seien $y\neq z\in Z$. Dann sind $\left \{y\right\} ,\left \{z\right\} $ abgeschlossen und disjunkt. Dann sind auch
+\[
+    A = q^{-1}(y) \qquad B = q^{-1}(z)
+.\] 
+abgeschlossen und disjunkt (in  $X$). Nach Annahme ist  $X$ kompakt und Hausdorff, also normal nach Satz 5.10. Also existieren  $U_1,U_2\subset X$ offen mit $A\subset U_1,B\subset U_2$ und $U_1 \cap U_2 = \emptyset$. Setze
+\[
+    V_1 := X \setminus q^{-1}(q(X\setminus U_1)) \qquad V_2 := X \setminus q^{-1}(q(X\setminus U_2))
+.\] 
+\begin{claim}
+    Es sind $V_1,V_2$ offen, disjunkt und saturiert und $A\subset V_1$ sowie $B\subset V_2$.
+\end{claim}
+\begin{proof}
+    TODO
+\end{proof}
+Es folgt, dass $q(V_1),q(V_2)$ offen in $Z$ sind. Weiter ist  $y\in q(A)\subset q(V_1)$ und $z\in q(B) \subset q(V_2)$. Da $V_1,V_2$ disjunkt und saturiert, sind auch $q(V_1),q(V_2)$ disjunkt und wir sind fertig.
+\end{proof}
