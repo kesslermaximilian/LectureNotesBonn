@@ -1,0 +1,184 @@
+\lecture{2}{Mi 14 Apr 2021 10:17}{Wahrscheinlichkeitsräume}
+Wir kennen nun die Grundbegriffe $\Omega, \mathcal{F}, \mathbb{P}$ zur Beschreibung von Zufallsexperimenten, die wir uns nun genauer ansehen wollen:
+\begin{question}
+    Welche Struktur muss $\mathcal{F}$ besitzen.
+\end{question}
+Sein $A,B\in \mathcal{F}$, dann können wir das Ereignis $A \cap B$ betrachten, d.h. beide der Eigeschaften treten ein. Genauso sollte
+ \[
+A^{c} := \Omega \setminus A 
+.\] 
+, das \vocab{Komplement von $A$}, bzw. das \vocab{Gegenereignis} von $A$ ebenfalls in  $\mathcal{F}$  sein. Aus den beiden vorherigen Eigenschaften folgt bereits, dass
+\[
+    A \cup = (A^{c} \cap B^{c})^{c}
+.\] 
+ebenfalls in $\mathcal{F}$ sein wird. Eine Menge $\mathcal{F}$ mit solchen Eigenschaften heißt \vocab{Algebra}, d.h. wir fordern von $\mathcal{F}$, dass es sich um eine solche Algebra handelt.  \\
+Seien nun $A,B(A_i)_{i\in I}$  Ereignisse, wobei $I$ endlich oder abzählbar sei. Dann notieren wir folgendermaßen
+\begin{enumerate}[label=\protect\circled{\alph*}]
+\item \underline{$A \cup B$ :} $ω\in A \cup B \iff  ω\in A \lor ω\in B$, d.h. $A\cup B$ tritt ein, genau dann, wenn  $A$ eintritt oder  $B$ eintritt 
+    \item  $\bigcup_{i \in  I} A_i$: $ω\in \bigcup_{i \in  I} A_i$, wenn es ein $i\in I$ gibt, sodass $\omega \in A_i$
+    \item  \underline{$A \cap B$:} $\omega\in A \cap B \iff  $ A \underline{und} B treten ein.
+    \item $\bigcap_{i \in I} A_i$:  $\omega\in \bigcap_{i \in I}A_i \iff \forall i \in I \colon$ $A_i$ tritt ein.
+\item $A = \emptyset$ ist das Ereignis, das  \underline{nie} eintritt. \\
+    $A = \Omega$ ist das Ereignis, dass \underline{immer} eintritt.
+\end{enumerate}
+
+\begin{definition}
+    Sei $\mathcal{F}$ eine nicht leere Menge von Teilmengen von $\Omega$ mit den Eigenschaften:
+    \begin{enumerate}[label=\protect\circled{\alph*}]
+        \item $\Omega \in \mathcal{F}$
+        \item $\forall A\in \mathcal{F} \colon A^{c}\in \mathcal{F}$.
+        \item Falls $(A_i)_{i \in I}\in \mathcal{F}$, dann auch $\bigcup_{i=1} ^{\infty}A_i \in \mathcal{F}$
+    \end{enumerate}
+    Dann nennen wir $\mathcal{F}$ eine \vocab{$\sigma$-Algebra} und das Paar $\Omega, \mathcal{F})$ einen \vocab{Messraum}. 
+\end{definition}
+
+\begin{lemma}
+    Sei $\mathcal{F}$ eine $\sigma$-Algebra, dann ist:
+    \begin{enumerate}[label=\protect\circled{\alph*}]
+        \item $\emptyset\in \mathcal{F}$
+        \item $A,B \in \mathcal{F} \implies A \cup B \in \mathcal{F}$ und $A\cap B \in \mathcal{F}$.
+        \item $(A_i)_{i \in I}\in \mathcal{F} \implies \bigcap_{i=1}^{\infty}A_i \in \mathcal{F}$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \begin{enumerate}[label=\protect\circled{\alph*}]
+        \item $\emptyset = \Omega^{c} \in \mathcal{F}$ nach Eigenschaften \circled{a} und \circled{b} aus der Definition.
+        \item $A \cup B = A \cup B \cup \emptyset \cup \emptyset \ldots \in \mathcal{F}$ nach Eigenschaften  \circled{b} und \circled{c}. $A \cap B = (A^{c}\cup B ^{c})^{c} \in \mathcal{F}$
+        \item $\bigcap_{i=1}^{\infty}A_i = \left( \bigcup_{i=1}^{\infty}A_i^{c} \right) ^{c}\in \mathcal{F}$ nach \circled{b} und \circled{c}.
+    \end{enumerate}
+\end{proof}
+
+Wir haben nun $(\Omega, \mathcal{F})$ näher untersucht, es fehlt nun noch $\mathbb{P}$. \\
+Seien $A,B \in \mathcal{F}$ mit $A\cap B = \emptyset$, d.h. $A$ und $B$ können nicht gleichzeitig eintreten. Dann fordern wir
+\[
+    \mathbb{P}(A \cap B) = \mathbb{P}(A) + \mathbb{P}(B) \quad \text{(endliche Additivität)}
+.\] 
+Dazu wollen wir, dass $\Omega \in \mathcal{F}$ immer eintritt, d.h. $\mathbb{P}(\Omega) = 1 \equiv  100\%$ (Normierung).
+
+\begin{definition}
+    Sei $(\Omega, \mathcal{F})$ ein Messraum. Eine Abbildung $\mathbb{P} : \mathcal{F} \to  \R_+$ ist eine \vocab{Wahrscheinlichkeitsverteilung auf $(\Omega, \mathcal{F})$}, falls
+    \begin{enumerate}[(1)]
+        \item $\mathbb{P}(\Omega) = 1$
+        \item $(A_i)_{i \in I}\in \mathcal{F}$ mit $A_i \cap A_j = \emptyset$ für $i\neq j$, dann ist:
+            \[
+                \mathbb{P}\left( \bigcup_{i=1}^{\infty}A_i \right) = \sum_{i=1}^{\infty} \mathbb{P}(A_i) \quad (\sigma\text{-Additivität})
+            .\] 
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    Ein \vocab{Wahrscheinlichkeitsraum $(\Omega, \mathcal{F},\mathbb{P})$} besteht aus einer Menge $\Omega$, einer  $\sigma$-Algebra $F\subset \mathbb{P}\mathcal{(\Omega)}$ und einem Wahrschenilichkeitsmass $\mathbb{P}$ auf $(\Omega, \mathcal{F})$ 
+\end{definition}
+
+
+\begin{lemma}
+    Sei $(\Omega, \mathcal{F}, \mathbb{P})$ ein Wahrscheinlichkeitsraum. Dann ist
+\begin{enumerate}[label=\protect\circled{\alph*}]
+    \item $\mathbb{P}(\emptyset)=0$ 
+    \item $\forall A,B\in \mathcal{F}$ mit $A\cap B = \emptyset$ ist
+        \[
+            \mathbb{P}(A\cup B ) = \mathbb{P}(A) + \mathbb{P}(B)
+        .\] 
+    \item      $\forall A,B\in \mathcal{F}$ mit $A\subset B$ ist 
+        \begin{equation}
+            \begin{split}
+        \mathbb{P}(B) = \mathbb{P}(A) + \mathbb{P}(B \setminus A)  \\
+                \mathbb{P}(A^{c}) = 1 - \mathbb{P}(A) \\
+                \mathbb{P}(A) \leq  \mathbb{P}(B) \leq  1
+            \end{split}
+        \end{equation}
+    \item $\forall A,B \in \mathcal{F}$ ist
+        \begin{equation}
+            \begin{split}
+                \mathbb{P}(A \cup B) &= \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A\cap B) \\
+                                     &\leq  \mathbb{P}(A) + \mathbb{P}(B)
+            \end{split}
+        \end{equation}
+    \item Wenn $A_n $
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+    \begin{enumerate}[label=\protect\circled{\alph*}]
+        \item Wir wissen:
+            \[
+                1= \mathbb{P}(\Omega) = \mathbb{P}\left( \Omega \cup \emptyset \cup \emptyset \cup \emptyset \ldots  \right)  = \mathbb{P}(\Omega) + \mathbb{P}(\emptyset) + \mathbb{P}(\emptyset) + \ldots
+            .\] 
+            subtrahieren von $\mathbb{P}(\Omega) =1$ liefert dann $\mathbb{P}(\emptyset) = 0$.
+        \item Sei $A \cap B = \emptyset$, dann ist:
+            \begin{equation}
+                \begin{split}
+                    \mathbb{P}(A\cup B ) &= \mathbb{P}(A \cup B \cup \emptyset \cup \emptyset \cup \ldots) \\
+                                         &\stackrel{σ-\text{Additivität}}{=} \mathbb{P}(A) + \mathbb{P}(B) + \mathbb{P}(\emptyset) + \mathbb{P}(\emptyset) + \ldots \\
+                                         &= \mathbb{P}(A) + \mathbb{P}(B)
+                \end{split}
+            \end{equation}
+        \item Sei $A\subset B$. Dann ist $B = A \cup (B \setminus A)$ eine disjunkte Vereinigung, also erhalten wir
+            \[
+                \mathbb{P}(B) = \mathbb{P}(A) + \underbrace{\mathbb{P}(B \setminus A)}_{\geq 0} \geq  \mathbb{P}(A)
+            .\] 
+            Mit $B = \Omega$ ergibt sich  $1 = \mathbb{P}(A) + \mathbb{P}(A^{c})$
+        \item Es ist
+            \begin{equation}
+                \begin{split}
+                    \mathbb{P}(A \cup B) &= \mathbb{P}(A) + \mathbb{P}((A \cup B) \setminus A)  \\
+                                         &= \mathbb{P}(A) + \mathbb{P}(B \setminus (A \cap B)) \\
+                                         &= \mathbb{P}(A) + \mathbb{P}(B) - \underbrace{\mathbb{P}(A \cap B)}_{\geq 0} \\
+                                         &\geq \mathbb{P}(A) + \mathbb{P}(B)
+                \end{split}
+            \end{equation}
+        \item Übung
+    \end{enumerate}
+\end{proof}
+\begin{corollary}[Einschluss-Ausschluss-Prinzip]
+    Seien $A_1,\ldots,A_n \in \mathcal{F}$. Dann gilt
+    \[
+        \mathbb{P}(A_1 \cup \ldots \cup A_n) = \sum_{k=1}^{n} (-1)^{k-1} \sum_{1\leq i_1<i_2<\ldots<i_k \leq n} \mathbb{P}(A_{i_1} \cap A_{i_2} \cap \ldots \cap A_{i_k})
+    .\] 
+\end{corollary}
+\begin{proof}
+    Per Induktion, der Induktionsanfang lautet  $\mathbb{P}(A_1) = \mathbb{P}(A_1)$ und ist offensichtlich wahr. \\
+    Die Aussage gelte nun für ein $n\in \N$, dann erhalten wir
+    \begin{equation}
+        \begin{split}
+            \mathbb{P}\left( \bigcup_{i=1}^{n+1} A_i \right)  &= \mathbb{P}\left( \left(\bigcup_{i=1}^{n}A_i \right) \cup A_{n+1}\right)  \\
+                                                              &= \mathbb{P}\left(\bigcup_{i=1}^{n} A_i\right) + \mathbb{P}(A_{n+1}) - \mathbb{P}\left( \left( \bigcup_{i=1}^n A_i \right) \cap A_{n+1} \right)  \\
+                                                              &= \mathbb{P}\left( \bigcup_{i=1}^{n} A_i \right)  + \mathbb{P}(A_{n+1}) - \mathbb{P}\left( \bigcup_{i=1}^n \underbrace{(A_i \cap _{A_{n+1}})}_{=: \tilde{A}_i} \right)  \\
+                                                              &= \sum_{k=1}^{n} (-1)^{k-1} \sum_{1\leq i<\ldots<i_k \leq n} \mathbb{P}(A_{i_1} \cap \ldots \cap A_{i_k}) + \mathbb{P}(A_{n+1}) \\
+                                                              &\qquad -\sum_{k=1}^n (-1)^{k-1} \sum_{1\leq i_1 < \ldots < i_k \leq n} \mathbb{P}(\underbrace{\tilde{A}_{i_1} \cap \ldots \cap \tilde{A}_{i_k}}_{A_{i_1} \cap \ldots \cap A_{i_k} \cap A_{n+1}})
+        \end{split}
+    \end{equation}
+    Andererseits ist aber auch:
+    \begin{alignat*}{5}
+           &\quad&  &\sum_{k=1} ^{n+1} (-1)^{k-1} \sum_{1\leq i_1<\ldots<i_k \leq  n+1} \mathbb{P}(A_{i_1} \cap \ldots \cap A_{i_k}) &\quad & \\
+           &= & &\sum\limits_{k=1}^{n}(-1)^{k-1} \sum\limits_{1\leq i_1< \ldots < i_k \leq  \color{red} n} \mathbb{P}(A_{i_1} \cap \ldots \cap A_{i_k}) & \quad &\Big\}\text{\parbox{2cm}{Terme mit $i_k\leq n$}} \\
+           &+& &\underbrace{\sum_{k=2}^{n+2} (-1)^{k-1} \sum_{1\leq i_1<\ldots<i_{k-1}\leq n} \mathbb{P}(A_i \cap \ldots \cap A_{i_{k-1}} \cap A_{n+1})}_{\stackrel{l := k-1}{=} -\sum\limits_{l=1}^n (-1)^{l-1}\sum\limits_{1\leq i_1<...<i_l\leq n} \mathbb{P}(A_{i_1} \cap \ldots \cap A_{i_l} \cap A_{n+1})}& \quad &\Bigg\}\text{\parbox{2cm}{\small Terme mit $i_k = n+1$ und  $k\geq 2$}}\\
+           &+& & \mathbb{P}(A_{n+1}) \qquad& \quad  &\Big\}\text{\parbox{2cm}{\small Terme mit $i_k = n+1$ und  $k=1$}}
+    \end{alignat*}
+    und damit sehen wir, dass die beiden Ausdrücke übereinstimmen, also ist der Induktionsschritt erbracht.
+\end{proof}
+
+
+\subsection{Diskrete Verteilungen}
+\begin{itemize}
+    \item Sei nun $\Omega$ endlich oder abzählbar.
+    \item Falls wir $\mathcal{F}$ nicht explizit angeben, dann wird $\mathcal{F} = \mathcal{P}(\Omega)$ gewählt, d.h.
+        \[
+            \operatorname{Card} (\mathcal{P}(\Omega)) \equiv \abs{\mathcal{P}(\Omega)} = 2 ^{ \abs{\Omega}} 
+        .\] 
+\end{itemize}
+\begin{example}[Münzwurf]
+    Es sei $\Omega = \left \{K,Z\right\}$, wobei $K$ für Kopf stehe und $Z$ für Zahl. Dann ist
+    \[
+    \mathcal{F} = \left \{\left \{K\right\} ,\left \{Z\right\} ,\left \{Z,K\right\} ,\emptyset\right\} 
+    .\] 
+    Sei $p\in [0,1]$ die Wahrscheinlichkeit, dass man Kopf erhält. Da $\mathbb{P}$ für alle Element aus $\mathcal{F}$ definiert sein muss, erhalten wir
+    \[
+        \mathbb{P}(\emptyset) = 0 \qquad \mathbb{P}(K) = p, \qquad \mathbb{P}(Z) = \mathbb{P}(K^{c}) = 1-p \qquad \mathbb{P}(\left \{Z,K\right\} ) = \mathbb{P}(\Omega) = 1
+    .\] 
+\end{example}
+
+Was müssen wir fordern, sodass es ein wohldefiniertes $\mathbb{P}\mathbb{P}$ auf $\mathcal{P}(\Omega)$ gibt?.
+\begin{example}
+    $\Omega = \left \{1,2,\ldots,10\right\}$ würde genügen, da dann $\abs{\mathcal{P}(\Omega)}= 2^{\abs{\Omega} }=2^{10} = 1024 $
+    endlich (diskret) ist.
+\end{example}

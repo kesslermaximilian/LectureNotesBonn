@@ -1,0 +1,160 @@
+\lecture{5}{Mo 26 Apr 2021 10:17}{}
+
+
+\subsubsection{Die geometrische Verteilung}
+\begin{itemize}
+    \item Seien $E_1,E_2,\ldots$ unabhängige Ereignisse mit
+\end{itemize}
+
+\subsection{Simulation von Gleichverteilung}
+\underline{Typischerweise} benutzen wir folgende Situation:
+\begin{description}
+    \item[Input] Zahl(en), z.B. Redinerzeit
+    \item[Output] 'Zufällige Zahl' in $\left \{0,\ldots,n\right\} $
+\end{description}
+\subsubsection{Lineare Kongruenzgeneratoren (LCG)}
+\begin{description}
+    \item[Startwert] $x_0\in \N$ gegeben.
+    \item[Parameter] $a,c,m\in \N$
+    \item[Schritt] Setze $x_{n+1} := (a\cdot x_n + c) \mod m$.
+\end{description}
+Dieses Vorgehen produziert eine scheinbar zufällige Folge.
+\begin{example}
+    \begin{comment}
+    \begin{table}[htpb]
+        \centering
+        \caption{LCG-Generator}
+        \label{tab:LCG-Beispiele}
+        \begin{tabular}{r|c|c|c}
+            & m & a & c
+            ZX81 & $2^{16}+1$ & 75 & 0 \\
+            \sc RANDN & & & \\
+            Marsaglia & $2^{32}$
+        \end{tabular}
+    \end{table}
+    \end{comment}
+\end{example}
+\begin{example}[Eine schlechte Wahl]
+    Wenn wir $a=4, c=1, m=31$ wählen sowie  $x_0 = 3$,  so erreichen wir Periode 9, und somit werden nicht alle Zahlen erreichen / generieren.
+\end{example}
+\begin{lemma}[Knuth]
+    Die Periode eines LCG ist gleich $m$, genau dann, wenn
+     \begin{enumerate}[label=\protect\circled{\alph*}]
+        \item $c$ und  $m$ haben keine gemeinsamen Primfaktoren
+        \item Jeder Primfaktor von  $m$ ist ein Teiler von  $a-1$ 
+        \item Falls $4 \mid m$, dann $4 \mid  a-1$.
+    \end{enumerate}
+    \label{lm:knuth}
+\end{lemma}
+\begin{example}
+    
+\end{example}
+
+\subsubsection{Zufallsvariablen aus $[0,1)$}
+ \begin{itemize}
+     \item Sei $(x_n)_{n\geq 1}$ eine Folge von (Pseudo)zufallszahlen aus $\left \{0,1,\ldots,m-1\right\} $. Dann ist
+         \[
+             u_n := \left(\frac{x_n}{m}\right)_{n\geq 1}
+         .\] 
+         eine Folge von Pseudozahlen in $[0,1)$. Gut ist aber nur der Fall, wenn $m\approx 10^N$, wobei $N=$ Rechnergenauigkeit, d.h. $\#\text{Ziffern}$.
+\end{itemize}
+\subsubsection{Zufallspermutationen}
+Wie erzugt man eine gleichverteilte Permutation von $\left \{1,\ldots,N\right\} $? \\
+\begin{algorithm}[H]
+    \SetKwInput{KwInput}{Eingabe}
+    \SetKwInput{KwOutput}{Ausgabe}
+    \SetKwInput{KwLaufzeit}{Laufzeit}
+    \SetKw{KwGoTo}{go to}
+    \SetKwProg{Fn}{Def}{:}{}
+    \DontPrintSemicolon
+
+    \caption{Zufallspermutationen}
+    \KwInput{Möglichkeit, aus endlicher Menge gleichverteilt zufällige Zahlen zu ziehen}
+    \KwOutput{Eine zufällige Permutation von $\left \{1,\ldots,N\right\} $}
+    \;
+    Setze $\sigma_0:=\left \{1,\ldots,N\right\} $\;
+    \For{$i=1$ \KwTo  $n-1$}{
+    wähle $k\in \left \{i,\ldots,N\right\} $ gleichverteilt \;
+    Setze $\sigma_k := \sigma_{k-1}\circ \tau_{i,k}$ \;
+}
+\end{algorithm}
+\begin{lemma}
+    Der Algorithmus erzeugt eine zufällige gleichverteilte Permutation.
+\end{lemma}
+\begin{proof}
+    Der Algorithmus benutzt eine Gleichverteilung auf
+    \[
+    \Omega_n := \left \{1,\ldots,N\right\}  \times  \left \{2,\ldots,n\right\} \times \left \{n-1,n\right\} 
+    .\] 
+    Für $\omega = (w_1,\ldots,w_{N-1})\in \Omega_N$ ist
+    \[
+        \sigma(\omega) = τ_{N-1,\omega_{N-1}} \circ  \ldots \circ  \tau_{1,w} \circ  \underbrace{(1,\ldots,N)}_{\sigma_0}
+    .\] 
+    Es genügt also zu zeigen, dass $\sigma : \Omega_N \to  \mathcal{S}_N$ eine Bijektion ist. Wir sehen:
+    \begin{enumerate}[label=\protect\circled{\alph*}]
+        \item $\abs{\Omega_N} = \abs{\mathcal{S}_N} = N!  $ 
+        \item Sei $w\neq \tilde{\omega} $ und setze $k = \min \left \{j \mid  \omega_j \neq  \tilde{\omega} _j\right\} $. Dann ist $σ(\omega)_k \neq  σ(\tilde{\omega} )_k$ und somit ist die Funktion injektiv
+    \end{enumerate}
+    Damit ist die Abbildung sogar bijektiv und wir sind fertig.
+\end{proof}
+\subsubsection{Geometrische Verteilung}
+\begin{itemize}
+    \item Sei $X \sim  \Geo(q)$, d.h.
+        \[
+            \mathbb{P}(X=k) = (1-q)q^k
+        .\] 
+        Wie simuliert man nun $X$?
+         \begin{enumerate}[label=\protect\circled{\alph*}]
+             \item Erzeuge $n \sim  U[0,1)$ als Gleichverteilte Zufallsvarable auf $[0,1)$.
+             \item Sei  $T_k:= \mathbb{P}(X<k)$. Falls $n \in [T_k, T_{k+1})$, dann setze $X = k$.
+        \end{enumerate}
+\end{itemize}
+
+\subsection{Erwartungswert und Varianz}
+\begin{itemize}
+    \item Sei $X$ eine  \underline{reellwertige} diskrete Zufallsverteilung. Sei 
+        \[
+        X : \Omega \to  \mathcal{S}\subset \R
+        .\] 
+        eine diskrete Zufallsvariable, d.h. $\mathcal{S}$ abzählbar.
+\end{itemize}
+\begin{definition}
+    Seien $x_1,\ldots,x_n\in \mathcal{S}$ $n$ Beobachtungen einer Zufallsvariable $X$. Der \vocab{empirische Mittlewert} ist durch
+    \[
+    \frac{1}{n}\sum_{i=1}^n x_i
+    .\] 
+    definiert.
+\end{definition}
+\begin{itemize}
+    \item Wir wollen eine Sorte von Mittelwert definieren, der nur von $X$ abhängig ist, und nicht von den Beobachtungen.
+    \item Folgende Forderungen ergeben sich an solch einen Mittelwert:
+        \begin{itemize}
+            \item Falls $X(\omega) = x$ für jedes $\omega$, dann muss der \underline{Mittelwert} von $X$ gleich  $x$ sein. 
+            \item Jeder Wert $x\in \mathcal{S}$ muss bezüglich der Massenfunktion $p_X(x)$ gewichtet sein.
+        \end{itemize}
+\end{itemize}
+\begin{definition}
+    Der \vocab{Erwartungswert} von $X$ bzgl.  $\mathbb{P}$ ist durch
+    \[
+        \mathbb{E}(X) = \sum_{s\in \mathcal{S}} s\cdot \mathbb{P}(X=s) = \sum_{s\in \mathcal{S}} s\cdot p_{X}(s)
+    .\] 
+    definiert. Dies ist wohldefiniert, falls die Reiche absolut gegen einen Wert $<\infty$ konvergiert.
+\end{definition}
+\begin{remark}
+    Nicht alle Wahrscheinlichkeitsverteilungen besitzen einen endlichen Mittelwert, das zeigt folgendes
+\end{remark}
+\begin{example}
+    Sei $X$ auf  $\left \{1,2,\ldots\right\} $ verteilt mit
+    \[
+        \mathbb{P}_X(s) = \frac{6}{\pi^2\substack{r} }
+    .\] 
+    dann ergibt sich für den Erwartungswert:
+    \[
+        \mathbb{E}(X) = \sum_{s\geq 1} s\cdot \frac{6}{\pi^2s^2} = \frac{6}{\pi^2} \cdot  \sum_{s\geq 1} \frac{1}{s}\to  \infty
+    .\] 
+\end{example}
+
+
+
+
+
