@@ -6,5 +6,5 @@ https://github.com/gillescastel/university-setup
 
 | Semester | Vorlesung | Dozent | |
 | --- | --- | --- | --- |
-| SS 2021 | Algorithmische Mathematik II | Prof. Dr. Patrik Ferrari | [pdf](https://.github.com/kesslermaximilian/LectureNotesBonn/algorithmische-mathematik-2/master.pdf) |
+| SS 2021 | Algorithmische Mathematik II | Prof. Dr. Patrik Ferrari | [pdf](https://github.com/kesslermaximilian/LectureNotesBonn/algorithmische-mathematik-2/master.pdf) |
 | SS 2021 | Einführung in die Geometrie und Topologie | Dr. Daniel Kasprowski | |
