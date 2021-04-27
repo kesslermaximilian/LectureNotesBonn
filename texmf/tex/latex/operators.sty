@@ -1,0 +1,73 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{operators}[2021-04-26 - Operators package]
+
+\newif\ifenglish\englishtrue
+\DeclareOption{german}{\englishfalse}
+\DeclareOption{english}{\englishtrue}
+\DeclareOption*{\PackageWarning{operators}{Unknown '\CurrentOption'}}
+\ProcessOptions\relax
+
+
+% One with double line
+\newcommand*{\IONE}{\ensuremath{\mathds{1}}}
+
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Gr}{Gr}
+\DeclareMathOperator{\odd}{odd}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\dz}{dz}
+\DeclareMathOperator{\ex}{ex}
+\DeclareMathOperator{\dt}{dt}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Mspec}{MaxSpec}
+\DeclareMathOperator{\Proj}{Proj}
+\DeclareMathOperator{\QCoh}{QCoh}
+\renewcommand\Im\im
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Mor}{Mor}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\MaxSpec}{MaxSpec}
+\DeclareMathOperator{\Presh}{Pre-Sh}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\Sh}{Sh}
+\DeclareMathOperator{\dif}{diff}
+\DeclareMathOperator{\opp}{opp}
+%\DeclareMathOperator\ggT\relax
+\DeclareMathOperator{\ggT}{\ifenglish gcd \else ggT\fi}
+\let\kgV\relax\DeclareMathOperator{\kgV}{kgV}
+\DeclareMathOperator{\op}{op}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\Bild}{Bild}
+\DeclareMathOperator{\rhs}{RHS}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\dx}{dx}
+\DeclareMathOperator{\dy}{dy}
+\DeclareMathOperator{\Impart}{Im}
+\renewcommand\Im\Impart
+\DeclareMathOperator{\Repart}{Re}
+\renewcommand\Re\Repart
+\renewcommand{\subset}{\subseteq}
+\DeclareMathOperator{\Ob}{Ob}
+
+
+%%Stochastic (Algorithmische Mathematik II)
+\DeclareMathOperator\Bin{Bin}
+\DeclareMathOperator\Ber{Ber}
+\DeclareMathOperator\Geo{Geo}
+\DeclareMathOperator\Poi{Poi}
+
+
+%Synonyms for operators 
+\newcommand{\tensor}{\otimes}
+% Nice command for | in set description (must be between \left and \right )
+\newcommand{\cat}[1]{ \mathscr{#1} }

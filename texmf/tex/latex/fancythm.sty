@@ -1,0 +1,111 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fancythm}[2021/03/31 - Theorem-Environment Package by Maximilian Kessler (private use)]
+\newif\ifenglish\englishtrue
+\DeclareOption{english}{\englishtrue}
+\DeclareOption{german}{\englishfalse}
+\DeclareOption*{\PackageWarning{fancythm}{Unknown '\CurrentOption'}}
+
+\ProcessOptions\relax
+
+
+bla
+%Theorem-environments
+\RequirePackage{amsthm}
+\RequirePackage{mdframed}
+\RequirePackage[skins]{tcolorbox}
+\mdfsetup{skipabove=\topskip,skipbelow=\topskip}
+
+%%%Define styles
+\newtheoremstyle{own}%〈name〉
+{3pt}%〈Space above〉1
+{3pt}%〈Space below〉1
+{}%〈Body font〉
+{}%〈Indent amount〉2
+{\bfseries}%〈Theorem head font〉
+{.}%〈Punctuation after theorem head〉
+{.5em}%〈Space after theorem head〉3
+{}%〈Theorem head spec(can be left empty, meaning ‘normal’)〉
+
+\theoremstyle{own}
+
+%%%Define styles for mdframed
+\global\mdfdefinestyle{thm}{linecolor=red,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, backgroundcolor=red!8, rightline=false, topline=false, bottomline=false}
+
+\global\mdfdefinestyle{lemma}{linecolor=orange,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, backgroundcolor=orange!10, rightline=false, topline=false, bottomline=false}
+
+\global\mdfdefinestyle{definition}{linecolor=blue,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, backgroundcolor=blue!7, rightline=false, topline=false, bottomline=false}
+
+\global\mdfdefinestyle{example}{linecolor=green!70!black,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, rightline=false, topline=false, bottomline=false}
+
+\global\mdfdefinestyle{remark}{linecolor=yellow!80!orange,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, rightline=false, topline=false, bottomline=false}
+
+
+\global\mdfdefinestyle{notation}{linecolor=violet,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, backgroundcolor=violet!7, rightline=false, topline=false, bottomline=false}
+
+\global\mdfdefinestyle{theoremdef}{linecolor=red,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, backgroundcolor=blue!7, rightline=false, topline=false, bottomline=false}
+
+
+%Theorem
+\newtheorem{protothm}{\ifenglish Theorem\else Satz\fi}[section]
+\newenvironment{theorem}{\begin{mdframed}[style=thm] \begin{protothm}}{\end{protothm}\end{mdframed}}
+
+%Unnumbered Theorem
+\newtheorem*{protothm*}{\ifenglish Theorem\else Satz\fi}
+\newenvironment{theorem*}{\begin{mdframed}[style=thm] \begin{protothm*}}{\end{protothm*}\end{mdframed}}
+
+%Proposition
+\newtheorem{protoprop}[protothm]{Proposition}
+\newenvironment{proposition}{\begin{mdframed}[style=thm] \begin{protoprop}}{\end{protoprop}\end{mdframed}}
+
+%Unnumbered Proposition
+\newtheorem{protoprop*}[protothm]{Proposition}
+\newenvironment{proposition*}{\begin{mdframed}[style=thm] \begin{protoprop*}}{\end{protoprop*}\end{mdframed}}
+
+%Corollary
+\newtheorem{protocor}[protothm]{\ifenglish Corollary\else Korollar\fi}
+\newenvironment{corollary}{\begin{mdframed}[style=thm] \begin{protocor}}{\end{protocor}\end{mdframed}}
+
+%Unnumbered Corollary
+\newtheorem{protocor*}[protothm]{\ifenglish Corollary\else Korollar\fi}
+\newenvironment{corollary*}{\begin{mdframed}[style=thm] \begin{protocor*}}{\end{protocor*}\end{mdframed}}
+
+%Lemma
+\newtheorem{protolemma}[protothm]{Lemma}
+\newenvironment{lemma}{\begin{mdframed}[style=lemma] \begin{protolemma}}{\end{protolemma}\end{mdframed}}
+
+%Unnumbered Lemma
+\newtheorem*{protlemma*}{Lemma}
+\newenvironment{lemma*}{\begin{mdframed}[style=lemma] \begin{protolemma*}}{\end{protolemma*}\end{mdframed}}
+
+%Definition
+\newtheorem{protodefinition}[protothm]{Definition}
+\newenvironment{definition}{\begin{mdframed}[style=definition] \begin{protodefinition}}{\end{protodefinition}\end{mdframed}}
+
+%unnumbered Definition
+\newtheorem*{protodefinition*}{Definition}
+\newenvironment{definition*}{\begin{mdframed}[style=definition] \begin{protodefinition*}}{\end{protodefinition*}\end{mdframed}}
+
+%Theorem + Definition
+\newtheorem{prototheoremdef}[protothm]{\ifenglish Theorem and Definition\else Satz und Definition\fi}
+\newenvironment{theoremdef}{\begin{mdframed}[style=theoremdef] \begin{prototheoremdef}}{\end{prototheoremdef}\end{mdframed}}
+
+%Notation
+\newtheorem*{protonotation}{Notation}
+\newenvironment{notation}{\begin{mdframed}[style=notation] \begin{protonotation}}{\end{protonotation}\end{mdframed}}
+
+%Example
+\newtheorem*{protoexample}{\ifenglish Example\else Beispiel\fi}
+\newenvironment{example}{\begin{mdframed}[style=example] \begin{protoexample}}{\end{protoexample}\end{mdframed}}
+
+%Remark
+\newtheorem*{protoremark}{\ifenglish Remark\else Bemerkung\fi}
+\newenvironment{remark}{\begin{mdframed}[style=remark] \begin{protoremark}}{\end{protoremark}\end{mdframed}}
+
+
+
+\newtcolorbox{recap}{before skip = 0.5cm, after skip = 0.5cm, enhanced, sharp corners = all, colback = white, colframe = gray, toprule=0pt, bottomrule=0pt, leftrule=0pt,rightrule=0pt, overlay = {
+        \draw[gray, line width = 2pt] (frame.north west) -- ++(0.5cm, 0pt);
+        \draw[gray, line width=2pt] (frame.south east) -- ++(-0.5cm, 0pt);
+        \draw[gray, line width=2pt] (frame.north west) -- ++ (0pt, -0.5cm);
+        \draw[gray, line width=2pt] (frame.south east) -- ++(0pt, 0.5cm);
+}}

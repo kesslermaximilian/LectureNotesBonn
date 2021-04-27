@@ -1,0 +1,304 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mymath}[2021/03/31 - Math package by Maximilian Kessler (private use)]
+
+%The language to pass to babel
+\newif\ifenglish\englishtrue
+\DeclareOption{german}{\englishfalse}
+\DeclareOption{english}{\englishtrue}
+% When working with beamer some things have to be done differently
+\newif\ifbeamer\beamerfalse
+\DeclareOption{nobeamer}{\beamerfalse}
+\DeclareOption{beamer}{\beamertrue}
+
+%Options for onehalf-spacing of lines
+\newif\ifonehalfspacing\onehalfspacingfalse %default is normalspace
+\DeclareOption{onehalfspacing}{\onehalfspacingtrue}
+\DeclareOption{normalspacing}{\onehalfspacingfalse}
+
+%Options for utf8 or utf8x - encoding
+\newif\ifutf\utftrue %by default, utf8 is not enabled
+\DeclareOption{utf8x}{\utffalse}
+\DeclareOption{utf8}{\utftrue}
+
+%Options for lukas
+\newif\iflukas\lukasfalse
+\DeclareOption{lukas}{\lukastrue}
+
+%Options for including theorem-environments or not.
+\newif\iffancythm\fancythmfalse
+\DeclareOption{fancythm}{\fancythmtrue}
+
+
+\DeclareOption*{\PackageWarning{mymath}{Unknown '\CurrentOption'}}
+\ProcessOptions\relax
+
+
+\RequirePackage[\ifenglish english \else ngerman\fi]{babel}
+\RequirePackage[T1]{fontenc}
+
+% When using utf8x, we have to load ucs and inputenc with utf8x option and must exclude bibtex
+% When not using utf8x (plan utf8), we must NOT load ucs, and then load inputenc with utf8-option as well as bibtex
+% also, when using plain utf8, we want to load the newunicodechar package
+\ifutf
+\RequirePackage{newunicodechar}
+\newunicodechar{α}{\ensuremath\alpha}
+\newunicodechar{β}{\ensuremath\beta}
+\newunicodechar{γ}{\ensuremath\gamma}
+\newunicodechar{δ}{\ensuremath\delta}
+\newunicodechar{ε}{\ensuremath\epsilon}
+\newunicodechar{ζ}{\ensuremath\zeta}
+\newunicodechar{η}{\ensuremath\eta}
+\newunicodechar{θ}{\ensuremath\theta}
+\newunicodechar{ι}{\ensuremath\iota}
+\newunicodechar{κ}{\ensuremath\kappa}
+\newunicodechar{λ}{\ensuremath\lambda}
+\newunicodechar{μ}{\ensuremath\mu}
+\newunicodechar{ν}{\ensuremath\nu}
+\newunicodechar{ξ}{\ensuremath\xi}
+\newunicodechar{π}{\ensuremath\pi}
+\newunicodechar{ρ}{\ensuremath\rho}
+\newunicodechar{σ}{\ensuremath\sigma}
+\newunicodechar{τ}{\ensuremath\tau}
+\newunicodechar{υ}{\ensuremath\upsilon}
+\newunicodechar{φ}{\ensuremath\phi}
+\newunicodechar{χ}{\ensuremath\chi}
+\newunicodechar{ψ}{\ensuremath\psi}
+\newunicodechar{ω}{\ensuremath\omega}
+
+\RequirePackage[backend=biber,style=alphabetic]{biblatex}
+\else
+\RequirePackage[mathletters]{ucs}
+\fi
+\RequirePackage[\ifutf utf8\else utf8x\fi]{inputenc}
+
+\RequirePackage{anyfontsize}
+\RequirePackage{lmodern}
+\RequirePackage{amsmath}
+\RequirePackage{mathtools}
+\RequirePackage{amsthm}
+\RequirePackage{amssymb}
+\RequirePackage{bm} % bold math symbols
+\RequirePackage{comment}
+\RequirePackage{soul}
+\RequirePackage{subfig}
+\usepackage{mathrsfs}
+\ifbeamer
+\else \RequirePackage[shortlabels]{enumitem}\fi
+\RequirePackage[colorlinks=true]{hyperref} % Hyperlinks
+
+% TIKZ
+\RequirePackage{tikz}
+\usetikzlibrary{calc, intersections, through, quotes, angles, babel, positioning}
+\RequirePackage{tkz-euclide}
+\RequirePackage[export]{adjustbox}
+%Commutative diagrams
+\RequirePackage{tikz-cd}
+
+%%for small diagrams, similar to tikz-cd
+\usepackage{xy}        % for small diagrams, e.g. arrows
+\xyoption{all}
+
+%%% AMSTHM
+\iffancythm
+    \RequirePackage{fancythm}
+\else
+\theoremstyle{plain}
+\ifbeamer\else
+\newtheorem{theorem}{\ifenglish Theorem\else Satz\fi}
+\newtheorem{corollary}{\ifenglish Corollary\else Korollar\fi}
+\newtheorem*{lemma}{Lemma}
+\fi
+\newtheorem{proposition}{Proposition}
+
+
+\theoremstyle{definition}
+\ifbeamer\else
+\newtheorem{definition}{Definition}
+\newtheorem{example}{\ifenglish Example\else Beispiel\fi}
+\fi
+\newtheorem*{remark}{\ifenglish Remark\else Bemerkung\fi}
+\newtheorem*{notation}{Notation}
+
+\fi %end of theorem definitions
+
+
+%%Theorems needed in any case (fancy or not fancy theorems)
+
+\theoremstyle{plain}
+\newtheorem{claim}{\ifenglish Claim\else Behauptung\fi}
+\newtheorem{variant}{\ifenglish Variant\else Variante\fi}
+\newtheorem{assumption}{\ifenglish Assumption\else Annahme\fi}
+
+\theoremstyle{definition}
+\newtheorem*{fact}{\ifenglish Fact\else Fakt\fi}
+\newtheorem*{note}{\ifenglish Note\else Anmerkung\fi}
+\newtheorem*{warning}{\color{red}\ifenglish Warning \else Warnung\fi}
+\newtheorem*{goal}{\ifenglish Goal \else Ziel\fi}
+\newtheorem*{question}{\ifenglish Question \else Frage \fi}
+\newtheorem*{problem}{Problem}
+\newtheorem*{info}{Information}
+\newtheorem*{moral}{Moral}
+\newtheorem*{answer}{\ifenglish Answer\else Antwort\fi}
+\newtheorem*{observe}{\ifenglish Observe\else Beobachte\fi}
+\newtheorem*{property}{\ifenglish Property\else Eigenschaft\fi}
+\newtheorem*{intuition}{Intuition}
+\newtheorem*{recall}{\ifenglish Recall\else Erinnerung\fi}
+\newtheorem*{idea}{\ifenglish Idea\else Idee\fi}
+\newtheorem{exercise}{\ifenglish Exercise\else Aufgabe\fi}
+
+
+\ifbeamer\else\newenvironment{solution}[1][]{\begin{proof}[\ifenglish{}Solution\else{}Lösung\fi{}#1]}{\end{proof}}\fi
+
+
+% Für Formeln
+\RequirePackage{mathabx}
+\RequirePackage{faktor}
+\RequirePackage[mathscr]{eucal}
+
+\RequirePackage{blindtext}
+\RequirePackage{tabto}
+\RequirePackage{lastpage} %\pageref{LastPage} for reference on the last page
+
+% Für Tabulatoren
+
+\RequirePackage{pdfpages} % PDF-Dateien einbinden
+
+% Für Zeilenumbruch
+\RequirePackage{microtype}
+\RequirePackage{changepage}
+
+
+%Für Zeilenabstand 1,5
+\ifonehalfspacing
+\RequirePackage[onehalfspacing]{setspace} \else
+\fi
+
+%For setting counters of itemns in \enemerate
+\makeatletter
+\newcommand\setItemnumber[1]{\setcounter{enum\romannumeral\@enumdepth}{\numexpr#1-1\relax}}
+\makeatother
+
+%Make circled symbols
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+%Print a warning sign
+\newcommand\Warning{%
+ \makebox[1.4em][c]{%
+ \makebox[0pt][c]{\raisebox{.1em}{\small!}}%
+ \makebox[0pt][c]{\color{red}\Large$\bigtriangleup$}}}%
+
+% Add \contra symbol to denote contradiction
+\usepackage{stmaryrd} % for \lightning
+\newcommand\contra{\scalebox{1.5}{$\lightning$}}
+
+
+%Emphasize \vocabulary
+\newcommand{\vocab}[1]{\textbf{\color{blue} #1}}
+
+
+
+
+%%%%math operators
+\usepackage{operators}
+
+%Short commands for \mathbb{}
+
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\F}{\ensuremath{\mathbb{F}}}
+\newcommand{\K}{\ensuremath{\mathbb{K}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+
+
+%Paired Delimiters
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+%Norm and absolute value
+%Make them scaling by default and have \abs*{} as the non-scaling version of the command
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+
+%Fixes of common misbehaviour
+\renewcommand{\degree}{^\circ}
+
+%Used to start an exercise and resetting the equation number
+\newcommand{\nr}[1]{\setcounter{equation}{0}\section*{\ifenglish Exercise \else Aufgabe \fi #1}~}
+
+
+\ifbeamer\else\RequirePackage{esint}\fi
+
+\RequirePackage{IEEEtrantools}
+
+\usepackage[ngerman,ruled,vlined]{algorithm2e}
+
+\iflukas
+\newcommand{\RrClA}{\begin{IEEEeqnarray*}{RrCl}}
+\newcommand{\RrClZ}{\end{IEEEeqnarray*}}
+\newcommand{\RrCla}{\begin{IEEEeqnarray}{RrCl}}
+\newcommand{\RrClz}{\end{IEEEeqnarray}}
+\newcommand{\ud}{\,\mathrm{d}}
+\newcommand{\dLx}[1]{\;\ud\mathcal{L}^{#1}(x)}
+\setenumerate[1]{label=(\alph*)}
+
+%%%%%%%%%%%%% INDUKTION %%%%%%%%%%%%%%%%%
+\newcommand{\its}{Das gilt offentsichtlich.}
+\newcommand\induktion[6][\its]{
+    \def\n{#2}
+    \def\kn{#2}
+    Es sei $P(\n)$ die Aussage, dass:
+    \RrClA
+        P(\n) : \equiv  \qquad  \left(#5  \right) 
+    \RrClZ
+    Diese soll nun per Induktion über $#3$ gezeigt werden.
+	\begin{enumerate}
+		\item [\underline{IA:}]Für den Induktionsanfang muss $P(#4)$ gezeigt werden, d.h.:
+	\def\n{#4}
+	\def\kn{#4}
+    \RrClA
+        P(#4) \equiv  \qquad \left(#5\right)
+    \RrClZ
+    #1\ Also ist der Induktionsanfang gezeigt.
+	\def\n{#2}
+	\def\kn{#2}
+	\item [\underline{IV:}] Angenommen $P(\n)$ gilt für ein $\n \in #3$, d.h. es gilt:
+     \RrClA
+         P(\n) \equiv \qquad  \left(#5\right)
+    \RrClZ
+	\item [\underline{IS:}]    
+    Im Induktionsschritt von $\n$ auf  $\n+1$ muss gezeigt werden, dass unter Annahme der Induktionsvoraussetzung auch die Induktionsbehauptung gilt:
+    \def\n{#2+1}
+    \def\kn{(#2+1)}
+\RrClA
+    P(\n) \equiv  \qquad \left(#5\right)
+\RrClZ
+#6 
+
+\def\n{#2}
+\def\kn{#2}
+Damit ist der Induktionsschritt erbracht und es gilt für alle $#2$ in $#3$:
+\RrClA
+    \forall \n \in #3 : #5
+\RrClZ
+	\end{enumerate}
+}
+%[Begründung IA]{$Variablenname$}{$Ursprungsmenge$}{$Startwert$}{$Aussage (variable ist \n, \kn)$}{Begründung IS}
+%\n ist n oder n+1, \kn ist n oder (n+1)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\else
+\fi
+
+
+
+
