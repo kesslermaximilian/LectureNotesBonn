@@ -1,9 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{fancythm}[2021/03/31 - Theorem-Environment Package by Maximilian Kessler (private use)]
+\ProvidesPackage{mkessler-fancythm}[2021/04/27 - Theorem-Environment Package]
+%%%%%%%%m
+%Provides fancy theorem-like-environments usedd in the write-ups of my lecture nots
+
 \newif\ifenglish\englishtrue
 \DeclareOption{english}{\englishtrue}
 \DeclareOption{german}{\englishfalse}
-\DeclareOption*{\PackageWarning{fancythm}{Unknown '\CurrentOption'}}
+\DeclareOption*{\PackageWarning{mkessler-fancythm}{Unknown '\CurrentOption'}}
 
 \ProcessOptions\relax
 

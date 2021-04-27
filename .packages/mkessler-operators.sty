@@ -1,10 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{operators}[2021-04-26 - Operators package]
+\ProvidesPackage{mkessler-operators}[2021-04-27 - Operator Package]
+%%%%%%%%%%%%%%%%%%mmmm
+%Provides some commonly used Operators used in the write-ups of my lecture notes
 
 \newif\ifenglish\englishtrue
 \DeclareOption{german}{\englishfalse}
 \DeclareOption{english}{\englishtrue}
-\DeclareOption*{\PackageWarning{operators}{Unknown '\CurrentOption'}}
+\DeclareOption*{\PackageWarning{mkessler-operators}{Unknown '\CurrentOption'}}
 \ProcessOptions\relax
 
 
@@ -69,5 +71,4 @@
 
 %Synonyms for operators 
 \newcommand{\tensor}{\otimes}
-% Nice command for | in set description (must be between \left and \right )
 \newcommand{\cat}[1]{ \mathscr{#1} }

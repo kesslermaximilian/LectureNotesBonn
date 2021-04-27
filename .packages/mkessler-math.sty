@@ -1,5 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{mymath}[2021/03/31 - Math package by Maximilian Kessler (private use)]
+\ProvidesPackage{mkessler-math}[2021/03/31 - Math package]
+%%%%%%Provides the basic math packages used for my lecture-note write-ups
 
 %The language to pass to babel
 \newif\ifenglish\englishtrue
@@ -29,7 +30,7 @@
 \DeclareOption{fancythm}{\fancythmtrue}
 
 
-\DeclareOption*{\PackageWarning{mymath}{Unknown '\CurrentOption'}}
+\DeclareOption*{\PackageWarning{mkessler-math}{Unknown '\CurrentOption'}}
 \ProcessOptions\relax
 
 
@@ -100,7 +101,7 @@
 
 %%% AMSTHM
 \iffancythm
-    \RequirePackage{fancythm}
+    \RequirePackage{mkessler-fancythm}
 \else
 \theoremstyle{plain}
 \ifbeamer\else
@@ -200,7 +201,7 @@
 
 
 %%%%math operators
-\usepackage{operators}
+\usepackage{mkessler-operators}
 
 %Short commands for \mathbb{}
 
