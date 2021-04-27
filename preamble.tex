@@ -10,11 +10,9 @@
 
 %%%%%%Preamble from Gilles Castel
 % Some basic packages
-\usepackage{textcomp}
 \usepackage{url}
 \usepackage{graphicx}
 \usepackage{float}
-\usepackage{booktabs}
 
 % for wrapping text around figures
 \usepackage{wrapfig}
@@ -28,7 +26,6 @@
 
 % Hide page number when page is empty
 \usepackage{emptypage}
-\usepackage{multicol}
 % Other font I sometimes use.
 \usepackage{xcolor}
 % \usepackage{cmbright}
@@ -47,18 +44,6 @@
 
 % Command for short corrections
 % Usage: 1+1=\correct{3}{2}
-
-\definecolor{correct}{HTML}{009900}
-\newcommand\correct[2]{\ensuremath{\:}{\color{red}{#1}}\ensuremath{\to }{\color{correct}{#2}}\ensuremath{\:}}
-\newcommand\green[1]{{\color{correct}{#1}}}
-
-% horizontal rule
-\newcommand\hr{
-    \noindent\rule[0.5ex]{\linewidth}{0.5pt}
-}
-
-% hide parts
-\newcommand\hide[1]{}
 
 % Environments
 \makeatother
