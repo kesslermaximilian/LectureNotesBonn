@@ -136,6 +136,7 @@
 \end{proof}
 \begin{corollary}
     Ist $f: X \to  Y$ stetig und bijektiv, $X$ kompakt und  $Y$ Hausdorff, dann ist  $f$ ein Homöomorphismus.
+    \label{cor:compact-to-hausdorff-is-homeomorphism}
 \end{corollary}
 \begin{proof}
     Wir müssen zeigen, dass die Umkehrabbildung stetig ist. Dafür reicht es zu zeigen, dass $\forall A\subset X$ abgeschlossen auch $f(A) = (f^{-1})^{-1}(A)$ abgeschlossen ist. Das gilt nach vorherigem Korollar.
@@ -169,6 +170,7 @@
 
 \begin{theorem}
     Jeder kompakte Hausdorff-Raum ist normal.
+    \label{thm:compact-hausdorff-space-is-normal}
 \end{theorem}
 \begin{proof}
     Seien $A,B\subset X$ abgeschlossen und disjunkt. Da $X$ kompakt ist, sind  $A,B$ kompakt. Nach Lemma 5.5 existieren  $\forall a\in A$ offene Mengen $U_a, V_a$ mit $a\in U_a, B\subset V_a$ und $U_a \cap V_a = \emptyset$. Dann ist
@@ -199,6 +201,7 @@ U_A \cap U_B = \emptyset
         \item $Z$ ist Hausdorffsch
         \item  $q$ ist abgeschlossen
     \end{enumerate}
+    \label{thm:quotient-space-of-compact-hausdorff-space}
 \end{theorem}
 \begin{proof}
     Die Richtung '$1) \implies 2)$' ist genau Korollar 5.7  \\
@@ -217,7 +220,7 @@ Seien $y\neq z\in Z$. Dann sind $\left \{y\right\} ,\left \{z\right\} $ abgeschl
 \[
     A = q^{-1}(y) \qquad B = q^{-1}(z)
 .\] 
-abgeschlossen und disjunkt (in  $X$). Nach Annahme ist  $X$ kompakt und Hausdorff, also normal nach Satz 5.10. Also existieren  $U_1,U_2\subset X$ offen mit $A\subset U_1,B\subset U_2$ und $U_1 \cap U_2 = \emptyset$. Setze
+abgeschlossen und disjunkt (in  $X$). Nach Annahme ist  $X$ kompakt und Hausdorff, also normal nach Satz \ref{thm:compact-hausdorff-space-is-normal}. Also existieren  $U_1,U_2\subset X$ offen mit $A\subset U_1,B\subset U_2$ und $U_1 \cap U_2 = \emptyset$. Setze
 \[
     V_1 := X \setminus q^{-1}(q(X\setminus U_1)) \qquad V_2 := X \setminus q^{-1}(q(X\setminus U_2))
 .\] 
