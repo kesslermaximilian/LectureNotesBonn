@@ -219,16 +219,15 @@ Wir können also das Lemma von Zorn anwenden, und somit existiert ein maximales 
 \begin{claim}
     Ist $V\subset X$ offen und  $V\not\in U$, so hat $U\cup \left \{V\right\} $ eine endliche Teilüberdeckung
 \end{claim}
-\begin{proof}
+\begin{subproof}
     Sonst wäre $U \cup \left \{V\right\} \in \mathcal{C}$ und somit wäre $U$ nicht maximal
-\end{proof}
-\todo{Make claim counter reset in each proof}
+\end{subproof}
 \begin{claim}
     $U \cap \Base$ ist keine Überdeckung
 \end{claim}
-\begin{proof}
+\begin{subproof}
     Sonst hätte $U$ eine endliche Teilüberedckung nach Annahme.
-\end{proof}
+\end{subproof}
 Wegen Behauptung 2 existiert $x\in X$, der nicht von $U \cap \Base$ überdeckt wird. Sei $W\in U$ mit $x\in W$. Da $W$ offen ist, folgt
  \[
 W = \bigcup_{i \in  I} \bigcap_{k\in K_i} S_k

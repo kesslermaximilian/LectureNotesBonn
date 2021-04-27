@@ -74,6 +74,7 @@
 
 \RequirePackage{anyfontsize}
 \RequirePackage{lmodern}
+\RequirePackage{etoolbox}
 \RequirePackage{amsmath}
 \RequirePackage{mathtools}
 \RequirePackage{amsthm}
@@ -126,9 +127,14 @@
 %%Theorems needed in any case (fancy or not fancy theorems)
 
 \theoremstyle{plain}
-\newtheorem{claim}{\ifenglish Claim\else Behauptung\fi}
 \newtheorem{variant}{\ifenglish Variant\else Variante\fi}
 \newtheorem{assumption}{\ifenglish Assumption\else Annahme\fi}
+
+%%Give claim an own counter and let it reset at each proof
+%See also at:
+%https://tex.stackexchange.com/questions/283502/reset-counter-at-beginning-of-proof
+\newtheorem{claim}{\ifenglish Claim\else Behauptung\fi}
+\AtBeginEnvironment{proof}{\setcounter{claim}{0}}
 
 \theoremstyle{definition}
 \newtheorem*{fact}{\ifenglish Fact\else Fakt\fi}
@@ -149,6 +155,29 @@
 
 
 \ifbeamer\else\newenvironment{solution}[1][]{\begin{proof}[\ifenglish{}Solution\else{}Lösung\fi{}#1]}{\end{proof}}\fi
+
+
+%%subproof environment - essentially copied proof environment from amsthm and modified its name + symbol
+\makeatletter
+\DeclareRobustCommand{\blackqed}{%
+  \ifmmode \mathqed
+  \else
+    \leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
+    \quad\hbox{$\blacksquare$}%
+  \fi
+}
+\newenvironment{subproof}[1][\ifenglish Subproof\else Unterbeweis\fi]{\par
+  \pushQED{\blackqed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  \item[\hskip\labelsep
+        \itshape
+    #1\@addpunct{.}]\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\makeatother
+
 
 
 % Für Formeln
