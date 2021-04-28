@@ -6,10 +6,6 @@
 \newif\ifenglish\englishtrue
 \DeclareOption{german}{\englishfalse}
 \DeclareOption{english}{\englishtrue}
-% When working with beamer some things have to be done differently
-\newif\ifbeamer\beamerfalse
-\DeclareOption{nobeamer}{\beamerfalse}
-\DeclareOption{beamer}{\beamertrue}
 
 %Options for onehalf-spacing of lines
 \newif\ifonehalfspacing\onehalfspacingfalse %default is normalspace
@@ -20,10 +16,6 @@
 \newif\ifutf\utftrue %by default, utf8 is not enabled
 \DeclareOption{utf8x}{\utffalse}
 \DeclareOption{utf8}{\utftrue}
-
-%Options for lukas
-\newif\iflukas\lukasfalse
-\DeclareOption{lukas}{\lukastrue}
 
 %Options for including theorem-environments or not.
 \newif\iffancythm\fancythmfalse
@@ -84,9 +76,8 @@
 \RequirePackage{soul}
 \RequirePackage{subfig}
 \usepackage{mathrsfs}
-\ifbeamer
-\else \RequirePackage[shortlabels]{enumitem}\fi
-\RequirePackage[colorlinks=true]{hyperref} % Hyperlinks
+\RequirePackage[shortlabels]{enumitem}
+\RequirePackage[colorlinks]{hyperref} % Hyperlinks
 
 % TIKZ
 \RequirePackage{tikz}
@@ -100,85 +91,7 @@
 \usepackage{xy}        % for small diagrams, e.g. arrows
 \xyoption{all}
 
-%%% AMSTHM
-\iffancythm
-    \RequirePackage{mkessler-fancythm}
-\else
-\theoremstyle{plain}
-\ifbeamer\else
-\newtheorem{theorem}{\ifenglish Theorem\else Satz\fi}
-\newtheorem{corollary}{\ifenglish Corollary\else Korollar\fi}
-\newtheorem*{lemma}{Lemma}
-\fi
-\newtheorem{proposition}{Proposition}
-
-
-\theoremstyle{definition}
-\ifbeamer\else
-\newtheorem{definition}{Definition}
-\newtheorem{example}{\ifenglish Example\else Beispiel\fi}
-\fi
-\newtheorem*{remark}{\ifenglish Remark\else Bemerkung\fi}
-\newtheorem*{notation}{Notation}
-
-\fi %end of theorem definitions
-
-
 %%Theorems needed in any case (fancy or not fancy theorems)
-
-\theoremstyle{plain}
-\newtheorem{variant}{\ifenglish Variant\else Variante\fi}
-\newtheorem{assumption}{\ifenglish Assumption\else Annahme\fi}
-
-%%Give claim an own counter and let it reset at each proof
-%See also at:
-%https://tex.stackexchange.com/questions/283502/reset-counter-at-beginning-of-proof
-\newtheorem{claim}{\ifenglish Claim\else Behauptung\fi}
-\AtBeginEnvironment{proof}{\setcounter{claim}{0}}
-
-\theoremstyle{definition}
-\newtheorem*{fact}{\ifenglish Fact\else Fakt\fi}
-\newtheorem*{note}{\ifenglish Note\else Anmerkung\fi}
-\newtheorem*{warning}{\color{red}\ifenglish Warning \else Warnung\fi}
-\newtheorem*{goal}{\ifenglish Goal \else Ziel\fi}
-\newtheorem*{question}{\ifenglish Question \else Frage \fi}
-\newtheorem*{problem}{Problem}
-\newtheorem*{info}{Information}
-\newtheorem*{moral}{Moral}
-\newtheorem*{answer}{\ifenglish Answer\else Antwort\fi}
-\newtheorem*{observe}{\ifenglish Observe\else Beobachte\fi}
-\newtheorem*{property}{\ifenglish Property\else Eigenschaft\fi}
-\newtheorem*{intuition}{Intuition}
-\newtheorem*{recall}{\ifenglish Recall\else Erinnerung\fi}
-\newtheorem*{idea}{\ifenglish Idea\else Idee\fi}
-\newtheorem{exercise}{\ifenglish Exercise\else Aufgabe\fi}
-
-
-\ifbeamer\else\newenvironment{solution}[1][]{\begin{proof}[\ifenglish{}Solution\else{}Lösung\fi{}#1]}{\end{proof}}\fi
-
-
-%%subproof environment - essentially copied proof environment from amsthm and modified its name + symbol
-\makeatletter
-\DeclareRobustCommand{\blackqed}{%
-  \ifmmode \mathqed
-  \else
-    \leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
-    \quad\hbox{$\blacksquare$}%
-  \fi
-}
-\newenvironment{subproof}[1][\ifenglish Subproof\else Unterbeweis\fi]{\par
-  \pushQED{\blackqed}%
-  \normalfont \topsep6\p@\@plus6\p@\relax
-  \trivlist
-  \item[\hskip\labelsep
-        \itshape
-    #1\@addpunct{.}]\ignorespaces
-}{%
-  \popQED\endtrivlist\@endpefalse
-}
-\makeatother
-
-
 
 % Für Formeln
 \RequirePackage{mathabx}
@@ -226,11 +139,7 @@
 %Emphasize \vocabulary
 \newcommand{\vocab}[1]{\textbf{\color{blue} #1}}
 
-
-
-
 %%%%math operators
-\usepackage{mkessler-operators}
 
 %Short commands for \mathbb{}
 
@@ -241,7 +150,6 @@
 \newcommand{\Q}{\ensuremath{\mathbb{Q}}}
 \newcommand{\R}{\ensuremath{\mathbb{R}}}
 \newcommand{\Z}{\ensuremath{\mathbb{Z}}}
-
 
 %Paired Delimiters
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
@@ -259,7 +167,6 @@
 \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
 \makeatother
 
-
 %Fixes of common misbehaviour
 \renewcommand{\degree}{^\circ}
 
@@ -267,67 +174,12 @@
 \newcommand{\nr}[1]{\setcounter{equation}{0}\section*{\ifenglish Exercise \else Aufgabe \fi #1}~}
 
 
-\ifbeamer\else\RequirePackage{esint}\fi
+\RequirePackage{esint}
 
 \RequirePackage{IEEEtrantools}
 
 \usepackage[ngerman,ruled,vlined]{algorithm2e}
 
-\iflukas
-\newcommand{\RrClA}{\begin{IEEEeqnarray*}{RrCl}}
-\newcommand{\RrClZ}{\end{IEEEeqnarray*}}
-\newcommand{\RrCla}{\begin{IEEEeqnarray}{RrCl}}
-\newcommand{\RrClz}{\end{IEEEeqnarray}}
-\newcommand{\ud}{\,\mathrm{d}}
-\newcommand{\dLx}[1]{\;\ud\mathcal{L}^{#1}(x)}
-\setenumerate[1]{label=(\alph*)}
-
-%%%%%%%%%%%%% INDUKTION %%%%%%%%%%%%%%%%%
-\newcommand{\its}{Das gilt offentsichtlich.}
-\newcommand\induktion[6][\its]{
-    \def\n{#2}
-    \def\kn{#2}
-    Es sei $P(\n)$ die Aussage, dass:
-    \RrClA
-        P(\n) : \equiv  \qquad  \left(#5  \right) 
-    \RrClZ
-    Diese soll nun per Induktion über $#3$ gezeigt werden.
-	\begin{enumerate}
-		\item [\underline{IA:}]Für den Induktionsanfang muss $P(#4)$ gezeigt werden, d.h.:
-	\def\n{#4}
-	\def\kn{#4}
-    \RrClA
-        P(#4) \equiv  \qquad \left(#5\right)
-    \RrClZ
-    #1\ Also ist der Induktionsanfang gezeigt.
-	\def\n{#2}
-	\def\kn{#2}
-	\item [\underline{IV:}] Angenommen $P(\n)$ gilt für ein $\n \in #3$, d.h. es gilt:
-     \RrClA
-         P(\n) \equiv \qquad  \left(#5\right)
-    \RrClZ
-	\item [\underline{IS:}]    
-    Im Induktionsschritt von $\n$ auf  $\n+1$ muss gezeigt werden, dass unter Annahme der Induktionsvoraussetzung auch die Induktionsbehauptung gilt:
-    \def\n{#2+1}
-    \def\kn{(#2+1)}
-\RrClA
-    P(\n) \equiv  \qquad \left(#5\right)
-\RrClZ
-#6 
-
-\def\n{#2}
-\def\kn{#2}
-Damit ist der Induktionsschritt erbracht und es gilt für alle $#2$ in $#3$:
-\RrClA
-    \forall \n \in #3 : #5
-\RrClZ
-	\end{enumerate}
-}
-%[Begründung IA]{$Variablenname$}{$Ursprungsmenge$}{$Startwert$}{$Aussage (variable ist \n, \kn)$}{Begründung IS}
-%\n ist n oder n+1, \kn ist n oder (n+1)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\else
-\fi
 
 
 

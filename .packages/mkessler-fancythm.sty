@@ -22,10 +22,13 @@
 
 \ProcessOptionsX*\relax
 
-%Theorem-environments
+%Required Packages
+\RequirePackage{amsmath}
 \RequirePackage{amsthm}
 \RequirePackage{mdframed}
 \RequirePackage{thmtools}
+\RequirePackage[colorlinks]{hyperref}
+\RequirePackage{cleveref}
 \RequirePackage[skins]{tcolorbox}
 %\RequirePackage[usenames,svgnames,dvipsnames]{xcolor}
 \mdfsetup{skipabove=\topskip,skipbelow=\topskip}
@@ -158,8 +161,9 @@
     notefont=\mdseries
 ]{thmredmarginbluefill}
 
+
 %Theorem
-\declaretheorem[style=thmredmargin,name=\ifenglish Theorem\else Satz\fi,numberwithin=section]{theorem}
+\global\declaretheorem[style=thmredmargin,name=\ifenglish Theorem\else Satz\fi,numberwithin=section, refname = {Satz,Sätze}, Refname = {Satz,Sätze}]{theorem}
 
 %Unnumbered Theorem
 \declaretheorem[style=thmredmargin,name=\ifenglish Theorem\else Satz\fi,numbered=no]{theorem*}
@@ -208,3 +212,56 @@
         \draw[gray, line width=2pt] (frame.north west) -- ++ (0pt, -0.5cm);
         \draw[gray, line width=2pt] (frame.south east) -- ++(0pt, 0.5cm);
 }}
+
+
+
+\theoremstyle{plain}
+\newtheorem{variant}{\ifenglish Variant\else Variante\fi}
+\newtheorem{assumption}{\ifenglish Assumption\else Annahme\fi}
+
+%%Give claim an own counter and let it reset at each proof
+%See also at:
+%https://tex.stackexchange.com/questions/283502/reset-counter-at-beginning-of-proof
+\newtheorem{claim}{\ifenglish Claim\else Behauptung\fi}
+\AtBeginEnvironment{proof}{\setcounter{claim}{0}}
+
+\theoremstyle{definition}
+\newtheorem*{fact}{\ifenglish Fact\else Fakt\fi}
+\newtheorem*{note}{\ifenglish Note\else Anmerkung\fi}
+\newtheorem*{warning}{\color{red}\ifenglish Warning \else Warnung\fi}
+\newtheorem*{goal}{\ifenglish Goal \else Ziel\fi}
+\newtheorem*{question}{\ifenglish Question \else Frage \fi}
+\newtheorem*{problem}{Problem}
+\newtheorem*{info}{Information}
+\newtheorem*{moral}{Moral}
+\newtheorem*{answer}{\ifenglish Answer\else Antwort\fi}
+\newtheorem*{observe}{\ifenglish Observe\else Beobachte\fi}
+\newtheorem*{property}{\ifenglish Property\else Eigenschaft\fi}
+\newtheorem*{intuition}{Intuition}
+\newtheorem*{recall}{\ifenglish Recall\else Erinnerung\fi}
+\newtheorem*{idea}{\ifenglish Idea\else Idee\fi}
+\newtheorem{exercise}{\ifenglish Exercise\else Aufgabe\fi}
+
+
+%%subproof environment - essentially copied proof environment from amsthm and modified its name + symbol
+\makeatletter
+\DeclareRobustCommand{\blackqed}{%
+  \ifmmode \mathqed
+  \else
+    \leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
+    \quad\hbox{$\blacksquare$}%
+  \fi
+}
+\newenvironment{subproof}[1][\ifenglish Subproof\else Unterbeweis\fi]{\par
+  \pushQED{\blackqed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  \item[\hskip\labelsep
+        \itshape
+    #1\@addpunct{.}]\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\makeatother
+
+\newenvironment{solution}[1][]{\begin{proof}[\ifenglish{}Solution\else{}Lösung\fi{}#1]}{\end{proof}}
