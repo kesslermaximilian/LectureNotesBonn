@@ -10,97 +10,195 @@
 
 \ProcessOptions\relax
 
+
+%%(Optional) Options for layout of the environments
+\RequirePackage{xkeyval}
+\newcommand{\fancythmlinewidth}{2pt}
+\newcommand{\fancythmskipabove}{8pt}
+
+\DeclareOptionX{linewidth}{\renewcommand\fancythmlinewidth{#1}}
+\DeclareOption{\fancythmskipabove}{\renewcommand{\fancythmskipabove}{#1}}
+\DeclareOptionX*{\PackageWarning{mkessler-fancythm}{Unknown `\CurrentOption'}}% For unknown options
+
+\ProcessOptionsX*\relax
+
 %Theorem-environments
 \RequirePackage{amsthm}
 \RequirePackage{mdframed}
+\RequirePackage{thmtools}
 \RequirePackage[skins]{tcolorbox}
+%\RequirePackage[usenames,svgnames,dvipsnames]{xcolor}
 \mdfsetup{skipabove=\topskip,skipbelow=\topskip}
 
-%%%Define styles
-\newtheoremstyle{own}%〈name〉
-{3pt}%〈Space above〉1
-{3pt}%〈Space below〉1
-{}%〈Body font〉
-{}%〈Indent amount〉2
-{\bfseries}%〈Theorem head font〉
-{.}%〈Punctuation after theorem head〉
-{.5em}%〈Space after theorem head〉3
-{}%〈Theorem head spec(can be left empty, meaning ‘normal’)〉
+%%mdframed styles
+\mdfdefinestyle{mdredmargin}{%
+    skipabove =\fancythmskipabove,
+    linecolor=red,
+    linewidth = \fancythmlinewidth,
+    leftmargin = 0cm,
+    rightmargin=0cm,
+    backgroundcolor=red!8,
+    rightline=false,
+    topline=false,
+    bottomline=false
+}
 
-\theoremstyle{own}
+\mdfdefinestyle{mdorangemargin}{%
+    skipabove =\fancythmskipabove,
+    linecolor=orange,
+    linewidth = \fancythmlinewidth,
+    leftmargin = 0cm,
+    rightmargin=0cm,
+    backgroundcolor=orange!10,
+    rightline=false,
+    topline=false,
+    bottomline=false
+}
 
-%%%Define styles for mdframed
-\global\mdfdefinestyle{thm}{linecolor=red,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, backgroundcolor=red!8, rightline=false, topline=false, bottomline=false}
+\mdfdefinestyle{mdbluemargin}{%
+    skipabove =\fancythmskipabove,
+    linecolor=blue,
+    linewidth = \fancythmlinewidth,
+    leftmargin = 0cm,
+    rightmargin=0cm,
+    backgroundcolor=blue!7,
+    rightline=false,
+    topline=false,
+    bottomline=false
+}
 
-\global\mdfdefinestyle{lemma}{linecolor=orange,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, backgroundcolor=orange!10, rightline=false, topline=false, bottomline=false}
+\mdfdefinestyle{mdgreenmargin}{%
+    skipabove =\fancythmskipabove,
+    linecolor=green!70!black,
+    linewidth = \fancythmlinewidth,
+    leftmargin = 0cm,
+    rightmargin=0cm,
+    rightline=false,
+    topline=false,
+    bottomline=false
+}
 
-\global\mdfdefinestyle{definition}{linecolor=blue,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, backgroundcolor=blue!7, rightline=false, topline=false, bottomline=false}
+\mdfdefinestyle{mdyellowmargin}{%
+    skipabove =\fancythmskipabove,
+    linecolor=yellow!80!orange,
+    linewidth = \fancythmlinewidth,
+    leftmargin = 0cm,
+    rightmargin=0cm,
+    rightline=false,
+    topline=false,
+    bottomline=false
+}
 
-\global\mdfdefinestyle{example}{linecolor=green!70!black,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, rightline=false, topline=false, bottomline=false}
+\mdfdefinestyle{mdvioletmargin}{%
+    skipabove =\fancythmskipabove,
+    linecolor=violet,
+    linewidth = \fancythmlinewidth,
+    leftmargin = 0cm,
+    rightmargin=0cm,
+    backgroundcolor=violet!7,
+    rightline=false,
+    topline=false,
+    bottomline=false
+}
 
-\global\mdfdefinestyle{remark}{linecolor=yellow!80!orange,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, rightline=false, topline=false, bottomline=false}
+
+\mdfdefinestyle{mdredmarginbluefill}{%
+    skipabove =\fancythmskipabove,
+    linecolor=red,
+    linewidth = \fancythmlinewidth,
+    leftmargin = 0cm,
+    rightmargin=0cm,
+    backgroundcolor=blue!7,
+    rightline=false,
+    topline=false,
+    bottomline=false
+}
+
+\declaretheoremstyle[
+	mdframed={style=mdredmargin},
+	postheadspace={0.3em},
+    notefont=\mdseries
+]{thmredmargin}
+
+\declaretheoremstyle[
+	mdframed={style=mdorangemargin},
+	postheadspace={0.3em},
+    notefont=\mdseries
+]{thmorangemargin}
+
+\declaretheoremstyle[
+	mdframed={style=mdbluemargin},
+	postheadspace={0.3em},
+    notefont=\mdseries
+]{thmbluemargin}
 
 
-\global\mdfdefinestyle{notation}{linecolor=violet,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, backgroundcolor=violet!7, rightline=false, topline=false, bottomline=false}
+\declaretheoremstyle[
+	mdframed={style=mdgreenmargin},
+	postheadspace={0.3em},
+    notefont=\mdseries
+]{thmgreenmargin}
 
-\global\mdfdefinestyle{theoremdef}{linecolor=red,linewidth=2pt,leftmargin=0cm,rightmargin=0cm, backgroundcolor=blue!7, rightline=false, topline=false, bottomline=false}
+\declaretheoremstyle[
+	mdframed={style=mdyellowmargin},
+	postheadspace={0.3em},
+    notefont=\mdseries
+]{thmyellowmargin}
 
+\declaretheoremstyle[
+	mdframed={style=mdvioletmargin},
+	postheadspace={0.3em},
+    notefont=\mdseries
+]{thmvioletmargin}
+
+
+\declaretheoremstyle[
+	mdframed={style=mdredmarginbluefill},
+	postheadspace={0.3em},
+    notefont=\mdseries
+]{thmredmarginbluefill}
 
 %Theorem
-\newtheorem{protothm}{\ifenglish Theorem\else Satz\fi}[section]
-\newenvironment{theorem}{\begin{mdframed}[style=thm] \begin{protothm}}{\end{protothm}\end{mdframed}}
+\declaretheorem[style=thmredmargin,name=\ifenglish Theorem\else Satz\fi,numberwithin=section]{theorem}
 
 %Unnumbered Theorem
-\newtheorem*{protothm*}{\ifenglish Theorem\else Satz\fi}
-\newenvironment{theorem*}{\begin{mdframed}[style=thm] \begin{protothm*}}{\end{protothm*}\end{mdframed}}
+\declaretheorem[style=thmredmargin,name=\ifenglish Theorem\else Satz\fi,numbered=no]{theorem*}
 
 %Proposition
-\newtheorem{protoprop}[protothm]{Proposition}
-\newenvironment{proposition}{\begin{mdframed}[style=thm] \begin{protoprop}}{\end{protoprop}\end{mdframed}}
+\declaretheorem[style=thmredmargin,name=Proposition,sibling=theorem]{proposition}
 
 %Unnumbered Proposition
-\newtheorem{protoprop*}[protothm]{Proposition}
-\newenvironment{proposition*}{\begin{mdframed}[style=thm] \begin{protoprop*}}{\end{protoprop*}\end{mdframed}}
+\declaretheorem[style=thmredmargin,name=Proposition,numbered=no]{proposition*}
 
 %Corollary
-\newtheorem{protocor}[protothm]{\ifenglish Corollary\else Korollar\fi}
-\newenvironment{corollary}{\begin{mdframed}[style=thm] \begin{protocor}}{\end{protocor}\end{mdframed}}
+\declaretheorem[style=thmredmargin,name=\ifenglish Corollary\else Korollar\fi,sibling=theorem]{corollary}
 
 %Unnumbered Corollary
-\newtheorem{protocor*}[protothm]{\ifenglish Corollary\else Korollar\fi}
-\newenvironment{corollary*}{\begin{mdframed}[style=thm] \begin{protocor*}}{\end{protocor*}\end{mdframed}}
+\declaretheorem[style=thmredmargin,name=\ifenglish Corollary\else Korollar\fi,numbered=no]{corollary*}
 
 %Lemma
-\newtheorem{protolemma}[protothm]{Lemma}
-\newenvironment{lemma}{\begin{mdframed}[style=lemma] \begin{protolemma}}{\end{protolemma}\end{mdframed}}
+\declaretheorem[style=thmorangemargin,name=Lemma,sibling=theorem]{lemma}
 
 %Unnumbered Lemma
-\newtheorem*{protolemma*}{Lemma}
-\newenvironment{lemma*}{\begin{mdframed}[style=lemma] \begin{protolemma*}}{\end{protolemma*}\end{mdframed}}
+\declaretheorem[style=thmorangemargin,name=Lemma,,numbered=no]{lemma*}
 
 %Definition
-\newtheorem{protodefinition}[protothm]{Definition}
-\newenvironment{definition}{\begin{mdframed}[style=definition] \begin{protodefinition}}{\end{protodefinition}\end{mdframed}}
+\declaretheorem[style=thmbluemargin,name=Definition]{definition}
 
 %unnumbered Definition
-\newtheorem*{protodefinition*}{Definition}
-\newenvironment{definition*}{\begin{mdframed}[style=definition] \begin{protodefinition*}}{\end{protodefinition*}\end{mdframed}}
+\declaretheorem[style=thmbluemargin,name=Definition,numbered=no]{definition*}
 
 %Theorem + Definition
-\newtheorem{prototheoremdef}[protothm]{\ifenglish Theorem and Definition\else Satz und Definition\fi}
-\newenvironment{theoremdef}{\begin{mdframed}[style=theoremdef] \begin{prototheoremdef}}{\end{prototheoremdef}\end{mdframed}}
+\declaretheorem[style=thmredmarginbluefill,name=\ifenglish Theorem and Definition\else Satz und Definition\fi,sibling=theorem]{theoremdef}
 
 %Notation
-\newtheorem*{protonotation}{Notation}
-\newenvironment{notation}{\begin{mdframed}[style=notation] \begin{protonotation}}{\end{protonotation}\end{mdframed}}
+\declaretheorem[style=thmvioletmargin,name=Notation,numbered=no]{notation}
 
 %Example
-\newtheorem*{protoexample}{\ifenglish Example\else Beispiel\fi}
-\newenvironment{example}{\begin{mdframed}[style=example] \begin{protoexample}}{\end{protoexample}\end{mdframed}}
+\declaretheorem[style=thmgreenmargin,name=\ifenglish Example\else Beispiel\fi,numbered=no]{example}
 
 %Remark
-\newtheorem*{protoremark}{\ifenglish Remark\else Bemerkung\fi}
-\newenvironment{remark}{\begin{mdframed}[style=remark] \begin{protoremark}}{\end{protoremark}\end{mdframed}}
+\declaretheorem[style=thmyellowmargin,name=\ifenglish Remark\else Bemerkung\fi,numbered=no]{remark}
 
 
 
