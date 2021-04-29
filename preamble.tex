@@ -80,9 +80,9 @@
 \def\@lecture{}%
 \newcommand{\lecture}[3]{
     \ifthenelse{\isempty{#3}}{%
-        \def\@lecture{Lecture #1}%
+    \def\@lecture{\ifenglish Lecture\else Vorlesung\fi\, #1}%
     }{%
-        \def\@lecture{Lecture #1: #3}%
+\def\@lecture{\ifenglish Lecture\else Vorlesung\fi\, #1: #3}%
     }%
     \subsection*{\@lecture}
     \marginpar{\small\textsf{\mbox{#2}}}

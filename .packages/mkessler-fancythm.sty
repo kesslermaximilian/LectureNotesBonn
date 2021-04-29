@@ -169,7 +169,7 @@
 
 %Theorem
 \global\declaretheorem[style=thmredmargin,name=\ifenglish Theorem\else Satz\fi,numberwithin=section, refname = {Satz,Sätze}, Refname = {Satz,Sätze}]{theorem}
-%\AtBeginDocument{\def\theoremautorefname{\ifenglish Theorem \else Satz\fi}}
+\AtBeginDocument{\def\theoremautorefname{\ifenglish Theorem \else Satz\fi}}
 
 %Unnumbered Theorem
 \ifnumberall

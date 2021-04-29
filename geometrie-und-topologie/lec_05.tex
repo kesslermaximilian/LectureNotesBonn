@@ -1,4 +1,4 @@
-\lecture{5}{Di 27 Apr 2021 12:16}{}
+\lecture{5}{Di 27 Apr 2021 12:16}{Basen, Subbasen}
 \begin{proof}[Beweis der Behauptung]
     Es ist klar, dass $V_1, V_2$ offen sind. Für Disjunktheit sehen wir mit
     \[
@@ -28,7 +28,7 @@
     die Projektion. Da $S^n$ kompakt und Hausdorffsch ist, ist  $\R \mathbb{P}^n$ Hausdorffsch genau dann, wenn $q$ abgeschlossen ist. Ist  $A\subset S^n$, so ist $q^{-1}(Q(A)) = A \cup -A$. \\
 Da $-: S^n \to  S^n$ ein Homöomorphismus ist, ist $-A$ abgeschlossen, wenn  $A$ abgeschlossen ist. Dann ist auch  $A \cup -A$ abgeschlossen.
 \end{example}
-\begin{corollary*}
+\begin{corollary*}[Projektiver Raum]\label{cor:reeller-projektiver-raum-ist-quotientenraum-von-dn}
     Sei $\sim $ auf $D^n = \left \{x \in \R^n \mid  \lVert x \rVert \leq 1\right\} $ erzeugt durch $x \sim -x$ für alle $x\in S^{n-1}\subset D^n$. Dann ist
     \[
     D^n / \sim  \cong \R \mathbb{P}^n
@@ -57,10 +57,10 @@ Da $-: S^n \to  S^n$ ein Homöomorphismus ist, ist $-A$ abgeschlossen, wenn  $A$
     D^n / \sim \ar[dashed,swap]{r}{\overline{f}} & S^n / (x\sim -x) \cong \R\mathbb{P}^n
     \end{tikzcd}
     \end{figure}
-    Wir sehen leicht, dass $\overline{f}$ bijektiv ist. Da $D^n$ kompakt, ist auch  $D^n / \sim $ kompakt, und $\R\mathbb{P}^n$ ist Hausdorffsch, also handelt es sich um einen Homöomorphismus (mit \ref{cor:compact-to-hausdorff-is-homeomorphism})
+    Wir sehen leicht, dass $\overline{f}$ bijektiv ist. Da $D^n$ kompakt, ist auch  $D^n / \sim $ kompakt, und $\R\mathbb{P}^n$ ist Hausdorffsch, also handelt es sich um einen Homöomorphismus (mit \autoref{cor:compact-to-hausdorff-is-homeomorphism})
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}\label{cor:quotientenraum-von-kompaktem-hausdorffraum-mit-teilmenge-ist-hausdorff-gdw-teilmenge-abgeschlossen}
     Sei $X$ kompakt und Hausdorffsch und  $A\subset X$. Dann sind äquivalent
     \begin{enumerate}[1)]
         \item $X / A$ ist Hausdorffsch
@@ -68,8 +68,8 @@ Da $-: S^n \to  S^n$ ein Homöomorphismus ist, ist $-A$ abgeschlossen, wenn  $A$
     \end{enumerate}
 \end{corollary}
 \begin{proof}
-    '$1)\implies_2)$'. Ist $X // A$ Hausdorffsch, so ist die einpunktige Menge $\left \{A\right\} $ abgeschlossen (nach \ref{thm:point-in-hausdorff-space-is-closed}). Also ist $q^{-1}(A) = A$ abgeschlossen. \\
-    '$2)\implies 1)$' Nach \ref{thm:quotient-space-of-compact-hausdorff-space} genügt es zu zeigen, dass $q: X \to  X / A$ abgeschlossen ist. Für $B\subset X$ abgeschlossen ist
+    '$1)\implies_2)$'. Ist $X / A$ Hausdorffsch, so ist die einpunktige Menge $\left \{[A]\right\}$ abgeschlossen (nach \autoref{thm:hausdorff-impliziert-t1}). Also ist $q^{-1}(A) = A$ abgeschlossen nach Definition der Quotiententopologie. \\
+    '$2)\implies 1)$' Nach \autoref{thm:quotientenraum-von-hausdorffraum-ist-hausdorff-gdw-projektion-abgeschlossen} genügt es zu zeigen, dass $q: X \to  X / A$ abgeschlossen ist. Für $B\subset X$ abgeschlossen ist, müssen wir also zeigen, dass $q(B)$ abgeschlossen ist, nach Definiton also, dass  $q^{-1}(q(B))\subset X$ abgeschlossen ist. Nun ist
     \[
         q^{-1}(q(B)) = \begin{cases}
             B & \text{falls } B\cap A = \emptyset \\
@@ -116,7 +116,7 @@ und somit ist $f(x) = (0,-1) \in \R^n \times \R$. Also faktorisiert $f$ über  $
 
 \def\Base{\mathcal{S}} %temporary
 \section{Basen und Subbasen}
-\begin{definition}
+\begin{definition}[Basis]\label{def:basis}
     Sei $(X, \mathcal{O})$ ein topologischer Raum. Sei $\Base \subset \mathcal{O}$ eine Menge offener Mengen. Dann heißt $\Base$
     \begin{description}
         \item[\vocab{Basis}], falls $\forall U\subset \mathcal{O}$ existiert $S_i \in \Base$ mit $U = \bigcup_{i\in I} S_i$ 
@@ -136,7 +136,7 @@ Ist     $\Base$ eine Basis, so ist $\Base$ eine Subbasis.
     .\] 
     eine Basis der Topologie.
 \end{example}
-\begin{theorem}
+\begin{theorem}[Erzeugte Topologie]\label{thm:erzeugte-topologie}
     Sei $X$ eine Menge,  $\Base \subset \mathcal{P}(X)$ eine Menge von Teilmengen. Dann existiert genau eine Topologie auf  $X$, für die  $\Base$ eine Subbasis ist, nämlich:
      \[
     \mathcal{O} = \left \{U\subset X \mid  U = \bigcup_{i \in  I} \bigcap_{k\in K_i} S_k \text{ mit } \abs{K_i}<\infty, S_k \in  \Base  \right\} 
@@ -148,7 +148,7 @@ Ist     $\Base$ eine Basis, so ist $\Base$ eine Subbasis.
 \begin{notation}
     Wir nennen $\mathcal{O}$ die \vocab[Topologie!von $\Base$ erzeugte]{von $\Base$ erzeugte Topologie}.
 \end{notation}
-\begin{lemma}
+\begin{lemma}[Stetigkeit auf Subbasiselementen]\label{lm:stetigkeit-auf-subbasis}
     Sei $f: X \to  Y$ eine Abbildung zwischen topologischen Räumen, $\Base$ eine Subbasis von $Y$. Dann sind äquivalent:
     \begin{enumerate}[1)]
         \item $f$ ist stetig
@@ -168,7 +168,7 @@ Ist     $\Base$ eine Basis, so ist $\Base$ eine Subbasis.
     offen, weil endliche Schnitte und beliebige Vereinigung offener Mengen offen sind. Also ist $f$ stetig.
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{thm:subbasis-ist-basis-wenn-schnitt-generiert-wird}
     Eine Subbasis $\Base$ von  $(X, \mathcal{O})$ ist eine Basis genau dann, wenn
     \[
     \forall S_1, S_2 \in \Base \;\exists S_i \in \Base \colon S_1 \cap S_2 = \bigcup_{i \in I} S_i
@@ -199,8 +199,7 @@ U = \bigcup_{i\in I} \bigcup_{j\in J_i} S_j
     .\]
     für geeignete $S_i, S_j\in \Base$ schreiben.
 \end{remark}
-\begin{theorem}[Satz von Alexander]
-    \label{thm:alexander}
+\begin{theorem}[Satz von Alexander]\label{thm:alexander}
     Sei $X$ ein topologischer Raum und  $\Base$ eine Subbasis. Dann ist  $X$ kompakt genau dann, wenn jede Überdeckung durch Elemente aus  $\Base$ eine endliche Teilüberdeckung besitzt.
 \end{theorem}
 \begin{proof}

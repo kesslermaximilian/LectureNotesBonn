@@ -1,6 +1,6 @@
-\lecture{6}{Do 29 Apr 2021 10:01}{}
+\lecture{6}{Do 29 Apr 2021 10:01}{Produkte}
 \section{Produkte}
-\begin{definition}
+\begin{definition}[Produkttopologie]\label{def:produkttopologie}
     Seien $X_1,X_2$ topologische Räume. Die \vocab[Topologie!Produkt-]{Produkttopologie} auf $X_1\times X_2$ ist die Topologie erzeugt von
     \[
     \mathcal{B} = \left \{U_1\times U_2 \mid  U_1\subset X_1 \text{ offen }, U_2\subset X_2\text{ offen}\right\} 
@@ -34,7 +34,7 @@
         das Produkt zweier Basiselemente ist, und somit sind wir fertig.
     \end{proof}
 \end{remark}
-\begin{theorem}
+\begin{theorem}[Projektion auf Komponenten]\label{thm:projektion-auf-komponente-ist-stetig}
     Die Projektionen
         \begin{equation*}
         p_x: \left| \begin{array}{c c l} 
@@ -67,7 +67,7 @@
          Betrachte $A = \left \{\left( \frac{1}{n},n \right) \in \R^2 \mid  n \in \N_{>0}\right\} \subset \R^2$  abgeschlossen. Dann ist aber $p_1(A) = \left \{\frac{1}{n}\mid n \in \N_{>0}\right\} \subset \R$ \underline{nicht} abgeschlossen.
     \end{proof}
 \end{remark}
-\begin{theorem}
+\begin{theorem}\label{thm:projektion-auf-x-ist-abgeschlossen-wenn-y-kompakt}
     Ist $Y$ kompakt, so ist  $p_X$ abgeschlossen. 
 \end{theorem}
 \begin{proof}
@@ -89,7 +89,7 @@
     .\] 
     gelten, und damit ist dieses $U$ eine offene Umgebung von  $x\in X \setminus p_X(A)$.
 \end{proof}
-\begin{lemma}
+\begin{lemma}[Subbasis der Produkttopologie]\label{lm:subbasis-der-produkttopologie}
     Seien $X,Y$ topologische Räume. Die Menge
      \[
     \mathcal{S} = \left \{U\times Y, X\times V \mid  U\subset X \text{ offen}, V\subset Y \text{ offen}\right\} 
@@ -111,17 +111,19 @@
 \begin{theorem}[Universelle Eigenschaft des Produkts]
     Seien $A,X_1,X_2$ topologische Räume sowie $f_i: A \to  X_i$. Dann ist die Abbildung
         \begin{equation*}
-            (f_1\times f_2) =: f: \left| \begin{array}{c c l} 
+            (f_1\times f_2) =: f \left| \begin{array}{c c l} 
         A & \longrightarrow & X_1\times X_2 \\
         a & \longmapsto &  (f_1(a),f_2(a))
         \end{array} \right.
     \end{equation*}
-    stetig genau dann, wenn $f_1,f_2$ stetig sind. \\
+    stetig genau dann, wenn $f_1,f_2$ stetig sind. 
+    \[
     \begin{tikzcd}
         & & X_1 \\
         A \ar[dashed]{r}{f} \ar[bend left = 30]{rru}{f_1} \ar[swap, bend right = 30]{rrd}{f_2} & X_1\times X_2 \ar{ur}{p_1} \ar{dr}{p_2} \\
                                                                               & & X_2
     \end{tikzcd}
+\]
 \end{theorem}
 \begin{proof}
     Es ist $f_i = p_i \circ  f$. Ist $f$ stetig, so ist  $f_i$ stetig als Verknüpfung stetiger Funktionen. \\
@@ -164,10 +166,10 @@
                \left[0,1\right]^2 \ar{r}{\varphi } \ar{d} & S^1 \times S^1  \\
                \left[0,1\right]^2 / \sim \ar[swap]{ur}{\varphi '}
            \end{tikzcd}
-           wobei $\sim $ die Relation ist, die wir für die Konstruktion des Torus verwendet hatten. $\varphi '$ ist stetig und surjektiv nach der Universellen Eigenschaft, und wir sehen leicht, dass $\varphi '$ injektiv ist. Also ist $\varphi '$ stetig und bijektiv. Nun ist aber $[0,1]^2$ kompakt und $S^1 \times S^1$ Hausdorff (z.B. als metrisierbare Teilmenge von $\R^2 \times \R^2$), und somit ist $\varphi '$ ein Homöomorphismus nach \autoref{cor:compact-to-hausdorff-is-homeomorphism}
+           wobei $\sim $ die Relation ist, die wir für die Konstruktion des Torus verwendet hatten. $\varphi '$ ist stetig und surjektiv nach der Universellen Eigenschaft, und wir sehen leicht, dass $\varphi '$ injektiv ist. Also ist $\varphi '$ stetig und bijektiv. Nun ist aber $[0,1]^2$ kompakt und $S^1 \times S^1$ Hausdorff (z.B. als metrisierbare Teilmenge von $\R^2 \times \R^2$), und somit ist $\varphi '$ ein Homöomorphismus nach \autoref{cor:stetige-bijektion-von-kompaktem-raum-in-hausdorff-raum-ist-homöomorphismus}
     \end{enumerate}
 \end{example}
-\begin{corollary}
+\begin{corollary}[Komponente eines Produkts]\label{cor:topologischer-raum-ist-natürlich-in-seinem-produkt-enthalten}
     Seien $X,Y$ topologische Räume sowie  $y\in Y$. Dann ist $X\cong X\times \left \{y\right\} \subset X\times Y$ mittels $x \mapsto (x,y)$.
 \end{corollary}
 \begin{proof}
@@ -178,7 +180,7 @@
         x & \longmapsto &  (x,y)
         \end{array} \right.
     \end{equation*}
-$f$ ist stetig, da sowohl  $\id_X$ als auc h
+$f$ ist stetig, da sowohl  $\id_X$ als auch
     \begin{equation*}
     c_Y: \left| \begin{array}{c c l} 
     X & \longrightarrow & Y \\
@@ -192,7 +194,7 @@ Sei  $U\subset X$ offen, dann ist $U\times Y \subset X\times Y$ offen. Es ist zu
 .\] 
 in $X\times \left \{y\right\} $ offen.
 \end{proof}
-\begin{theorem}
+\begin{theorem}[Produkteigenschaften]\label{thm:produkte-erhalten-hausdorff-und-kompaktheit}
     Seien $X,Y$ topologische Räume.
 \begin{enumerate}[1)]
         \item Sind $X$ und  $Y$ Hausdorffsch, so auch  $X\times Y$
@@ -223,14 +225,14 @@ in $X\times \left \{y\right\} $ offen.
     \end{enumerate}
 \end{proof}
 \begin{remark}
-    Der Beweis geht auch ohne \autoref{thm:alexander}. Viel leichter: Es genügt, offene Überdeckungen bezüglich einer Basis zu betrachten (Spezialfall von Alexander, leicht zu zeigen), dann verfahren wir wie folgt: \\
+    Der Beweis geht auch ohne \nameref{thm:alexander}. Viel leichter: Es genügt, offene Überdeckungen bezüglich einer Basis zu betrachten (Spezialfall von Alexander, leicht zu zeigen), dann verfahren wir wie folgt: \\
     Sei $\mathcal{U}$ eine Überdeckung von $X\times Y$ mit Elementen aus $\mathcal{B}$. Dann gibt es eine endliche Teilüebredckung von $X\times \left \{y\right\} $. Sei diese $\left \{U_i^y \times V_i^y\right\} i=1^{n_y}$. Setze
     \[
         V_y := \bigcap_{i=1} ^{n_Y} V_i^{y}
     .\] 
     Dann ist dies eine Überdeckung von $X\times V_y$. Die $V_y$ bilden nun eine offene Überdeckung von  $Y$, also finden wir wieder eine endliche Teilüberdeckung durch  $V_{y_1}, \ldots, V_{y_n}$. Da wir aber die $X\times V_{y_i}$ jeweils endlich überdeckt haben, können wir nun auch $X\times Y$ endlich überdecken.
 \end{remark}
-\begin{definition*}
+\begin{definition*}[Produkt endlich vieler Mengen]\label{def:produkt-endlich-vieler-mengen}
 Seien $X_1,\ldots,X_n$ topologische Räume. Dann definieren wir ihr Produkt rekursiv durch
 \[
     X_1\times \ldots\times X_n := (X_1\times \ldots\times X_{n-1})\times X_n
@@ -244,7 +246,7 @@ Seien $X_1,\ldots,X_n$ topologische Räume. Dann definieren wir ihr Produkt reku
     .\] 
     eine Basis der Topologie auf $X\times Y$.
 \end{lemma}
-\begin{corollary*}
+\begin{corollary*}[Basis endlicher Produkte]\label{cor:basis-endlicher-produkte}
     Die Mengen $U_1\times U_2\times \ldots.\times U_n$ mit $U_i\subset X_i$ offen sind eine Basis der Topologie auf $X_1\times \ldots\times X_n$. \\
     Insbesondere ist die Topologie unabhängig von der Klammerung.
 \end{corollary*}
@@ -266,7 +268,12 @@ Seien $X_1,\ldots,X_n$ topologische Räume. Dann definieren wir ihr Produkt reku
     .\] 
     Umgekehrt ist klar, dass die $U_i\times V_j$ offen in der Produkttopologie sind.
 \end{proof}
-\begin{theorem}
+
+\begin{remark}
+    Eigentlich haben wir in obigem Beweis nur den Fall $n=2$ behandelt. Man verallgemeinert induktiv jedoch leicht (kanonisch) auf endlich viele Mengen.
+\end{remark}
+
+\begin{theorem}[Diagonaleigenschaft]\label{thm:raum-ist-hausdorff-gdw-diagonale-abgeschlossen}
     Sei $X$ ein topologischer Raum. Dann ist  $X$ Hausdorffsch, genau dann, wenn
      \[
          \Delta_X := \left \{(x,x) \mid  x\in X\right\}  \subset X\times X
@@ -288,7 +295,7 @@ Seien $X_1,\ldots,X_n$ topologische Räume. Dann definieren wir ihr Produkt reku
     .\] 
     Also ist $(x,y) \in U\times V \subset X\times X\setminus \Delta_X$ für eine Wahl von $U,V$. Dann ist aber  $x\in U, y\in V$ sowie $U\cap V = \emptyset$, denn wenn $a\in U\times V$, so $(a,a) \in U\times V \cap  \Delta_X = \emptyset$, \contra.
 \end{proof}
-\begin{definition}
+\begin{definition}[Produkte beliebiger Mengen]\label{def:produkt-beliebiger-mengen}
     Sei $\left \{X_i\right\} _{i \in I}$ eine Familie topologischer Räume. Die Produkttopologie auf
     \[
         \prod_{i\in I} X_i := \left \{(x_i)_{i\in I} \mid  x_i \in X_i\right\} 
@@ -312,6 +319,21 @@ Seien $X_1,\ldots,X_n$ topologische Räume. Dann definieren wir ihr Produkt reku
     \prod_{i\in I} U_i
     .\] 
     mit $U_i \subset X_i$ offen \underline{nicht} offen. 
+    \end{itemize}
+\end{remark}
+\begin{remark}[Mengentheorie-Spam]
+    \begin{itemize}
+        \item Wir benötigen das Auswahlaxiom, um einzusehen, dass obiges Produkt überhaupt nichtleer ist, sofern keiner der Faktoren leer ist. Formal ist das Produkt der $X_i$ nämlich definiert als
+     \[
+         \prod_{i\in I} X_i := \left \{f: I \to  \bigcup_{i\in I} X_i \mid \forall i\colon f(i) \in X_i \right\} 
+    .\] 
+    und das Auswahlaxiom besagt genau, dass es für jede solche Familie nichtleerere Mengene (mindestens) eine solche Funktion gibt (es ist also äquivalent dazu, dass die Produkte nichtleer sind).
+\item Im Gegensatz zu dem, was in der Vorlesung genannt wurde, ist es kein Problem, wenn $I = \emptyset$, also die Familie leer ist. Dann ist nämlich
+    \[
+        \prod_{i\in I} X_i = \left \{f: \emptyset \to \emptyset \mid  \forall i\colon f(i)\in \emptyset\right\} = \left \{\emptyset\right\}  
+    .\] 
+    \underline{nicht} leer. (Hierzu sollte man sich klarmachen, dass eine Funktion  $f:A\to B$ eine Teilmenge von $A\times B$ war, sodass $\forall a\in A \;\exists !b \in B\colon (a,b) \in f$, und somit suchen wir eine Teilmenge $f\subset \emptyset\times \emptyset = \emptyset$). \\
+    Auch die Topologie ist in diesem Fall wohldefiniert, weil die Subbasis wieder die leere Menge ist (nämlich eine Teilmenge von $\prod X_i = \left \{\emptyset\right\} $, und zwar $\left \{\emptyset\right\} $ selbst), und diese ist auch eine vollständige Topologie, weil unser topologischer Raum nur einen Punkt enthält (nämlich $\emptyset$). Wir erhalten also den einpunktigen topologischen Raum.
     \end{itemize}
 \end{remark}
 
