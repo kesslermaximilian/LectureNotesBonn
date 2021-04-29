@@ -6,7 +6,12 @@
 \newif\ifenglish\englishtrue
 \DeclareOption{english}{\englishtrue}
 \DeclareOption{german}{\englishfalse}
+
+\newif\ifnumberall\numberallfalse
+\DeclareOption{numberall}{\numberalltrue}
+
 \DeclareOption*{\PackageWarning{mkessler-fancythm}{Unknown '\CurrentOption'}}
+
 
 \ProcessOptions\relax
 
@@ -164,34 +169,54 @@
 
 %Theorem
 \global\declaretheorem[style=thmredmargin,name=\ifenglish Theorem\else Satz\fi,numberwithin=section, refname = {Satz,Sätze}, Refname = {Satz,Sätze}]{theorem}
-\AtBeginDocument{\def\theoremautorefname{\ifenglish Theorem \else Satz\fi}}
+%\AtBeginDocument{\def\theoremautorefname{\ifenglish Theorem \else Satz\fi}}
 
 %Unnumbered Theorem
-\declaretheorem[style=thmredmargin,name=\ifenglish Theorem\else Satz\fi,numbered=no]{theorem*}
+\ifnumberall
+\declaretheorem[style=thmredmargin,name=\ifenglish Theorem\else Satz\fi]{theorem*}
+\else
+\declaretheorem[style=thmredmargin,name=\ifenglish Theorem\else Satz\fi,numbered = no]{theorem*}
+\fi
 
 %Proposition
 \declaretheorem[style=thmredmargin,name=Proposition,sibling=theorem]{proposition}
 
 %Unnumbered Proposition
+\ifnumberall
+\declaretheorem[style=thmredmargin,name=Proposition]{proposition*}
+\else
 \declaretheorem[style=thmredmargin,name=Proposition,numbered=no]{proposition*}
+\fi
 
 %Corollary
 \declaretheorem[style=thmredmargin,name=\ifenglish Corollary\else Korollar\fi,sibling=theorem]{corollary}
 
 %Unnumbered Corollary
-\declaretheorem[style=thmredmargin,name=\ifenglish Corollary\else Korollar\fi,numbered=no]{corollary*}
+\ifnumberall
+\declaretheorem[style=thmredmargin,name=\ifenglish Corollary\else Korollar\fi]{corollary*}
+\else
+\declaretheorem[style=thmredmargin,name=\ifenglish Corollary\else Korollar\fi, numbered = no]{corollary*}
+\fi
 
 %Lemma
 \declaretheorem[style=thmorangemargin,name=Lemma,sibling=theorem]{lemma}
 
 %Unnumbered Lemma
-\declaretheorem[style=thmorangemargin,name=Lemma,,numbered=no]{lemma*}
+\ifnumberall
+\declaretheorem[style=thmorangemargin,name=Lemma]{lemma*}
+\else
+\declaretheorem[style=thmorangemargin,name=Lemma, numbered=no]{lemma*}
+\fi
 
 %Definition
 \declaretheorem[style=thmbluemargin,name=Definition,sibling=theorem]{definition}
 
 %unnumbered Definition
+\ifnumberall
+\declaretheorem[style=thmbluemargin,name=Definition]{definition*}
+\else
 \declaretheorem[style=thmbluemargin,name=Definition,numbered=no]{definition*}
+\fi
 
 %Theorem + Definition
 \declaretheorem[style=thmredmarginbluefill,name=\ifenglish Theorem and Definition\else Satz und Definition\fi,sibling=theorem]{theoremdef}
