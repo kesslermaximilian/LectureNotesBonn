@@ -17,11 +17,6 @@
 \DeclareOption{utf8x}{\utffalse}
 \DeclareOption{utf8}{\utftrue}
 
-%Options for including theorem-environments or not.
-\newif\iffancythm\fancythmfalse
-\DeclareOption{fancythm}{\fancythmtrue}
-
-
 \DeclareOption*{\PackageWarning{mkessler-math}{Unknown '\CurrentOption'}}
 \ProcessOptions\relax
 
@@ -77,6 +72,8 @@
 \RequirePackage{subfig}
 \usepackage{mathrsfs}
 \RequirePackage[shortlabels]{enumitem}
+\RequirePackage{imakeidx}
+\makeindex[columns=2, title = Stichwortverzeichnis, intoc]
 \RequirePackage[colorlinks]{hyperref} % Hyperlinks
 
 % TIKZ

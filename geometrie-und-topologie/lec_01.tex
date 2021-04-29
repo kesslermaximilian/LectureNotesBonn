@@ -176,14 +176,14 @@ Der Aufbau ist wie folgt:
 \section{Topologische Räume} 
     
 \begin{definition}
-    Eine \vocab{Topologie} auf einer Menge $X$ ist eine Menge  $\Topo$ von Teilmengen von  $X$, so dass gilt:
+    Eine \vocab{Topologie} auf einer Menge $X$ ist eine Menge  $\mathcal{O}$ von Teilmengen von  $X$, so dass gilt:
     \begin{enumerate}[1)]
-        \item $\emptyset,X \in \Topo$
-        \item Für $U_1,\ldots,U_n \in \Topo$ ist auch $\bigcap_{i=1}^n U_i \in  \Topo$
-        \item Für jede Familie $\left \{U_i\right\} _{i\in I}$ mit $U_i \in \Topo$ ist auch $\bigcup_{i\in I} U_i \in  \Topo$
+        \item $\emptyset,X \in \mathcal{O}$
+        \item Für $U_1,\ldots,U_n \in \mathcal{O}$ ist auch $\bigcap_{i=1}^n U_i \in  \mathcal{O}$
+        \item Für jede Familie $\left \{U_i\right\} _{i\in I}$ mit $U_i \in \mathcal{O}$ ist auch $\bigcup_{i\in I} U_i \in  \mathcal{O}$
     \end{enumerate}
-    Die Mengen in $\Topo$ heißen \vocab[Offene Menge]{offene Mengen}. \\
-    Ein \vocab[Topologischer Raum]{topologischer Raum} ist ein Paar  $(X,\Topo)$ aus einer Menge  $X$ und einer Topologie  $\Topo$ auf  $X$.
+    Die Mengen in $\mathcal{O}$ heißen \vocab[Offene Menge]{offene Mengen}. \\
+    Ein \vocab[Topologischer Raum]{topologischer Raum} ist ein Paar  $(X,\mathcal{O})$ aus einer Menge  $X$ und einer Topologie  $\mathcal{O}$ auf  $X$.
 \end{definition}
 
 
@@ -194,16 +194,16 @@ Der Aufbau ist wie folgt:
 \begin{example}
     Sei $(X,d)$ ein metrischer Raum. Dann ist
      \[
-         (X, \Topo := \left \{U\subset X \mid  U \text{ ist offen bezüglich $d$}\right\} )
+         (X, \mathcal{O} := \left \{U\subset X \mid  U \text{ ist offen bezüglich $d$}\right\} )
     .\] 
-    ein topologischer Raum. $\Topo$ ist die von der Metrik  $d$ \vocab[Topologie!induzierte]{induzierte Topologie}.
+    ein topologischer Raum. $\mathcal{O}$ ist die von der Metrik  $d$ \vocab[Topologie!induzierte]{induzierte Topologie}.
 \end{example}
 \begin{definition}
     Ein topologischer Raum heißt \vocab[Metrisierbar]{metrisierbar}, falls die Topologie von einer Metrik induziert ist.
 \end{definition}
 
 \begin{example}
-    Sei $X$ eine Menge. Die \vocab[Diskrete Topologie]{diskrete Topologie} auf $X$ ist die Menge aller Teilmengen, d.h.  $\Topo := \mathcal{P}(X)$. Diese ist von der diskreten Metrik
+    Sei $X$ eine Menge. Die \vocab[Diskrete Topologie]{diskrete Topologie} auf $X$ ist die Menge aller Teilmengen, d.h.  $\mathcal{O} := \mathcal{P}(X)$. Diese ist von der diskreten Metrik
     \[
         d(x,y) = \begin{cases}
             0 & \text{falls }x=y \\
@@ -243,7 +243,7 @@ Der Aufbau ist wie folgt:
     \begin{enumerate}[1)]
         \item (Sierpinski-Raum). Wähle $X = \left \{a,b\right\} $ und setze
             \[
-            \Topo = \left \{\emptyset,X, \left \{a\right\} \right\} 
+            \mathcal{O} = \left \{\emptyset,X, \left \{a\right\} \right\} 
             .\]
             Dies ist ein topologischer Raum (leicht prüfen), er ist jedoch nicht metrisierbar, da endlich und nicht diskret.
         \item Sei $X$ eine Menge. Die  \vocab[Topologie!indiskrete]{indiskrete Topologie} auf $X$ enthält nur  $\emptyset,X$. Man prüft leicht, dass dies eine Topologie ist. 
