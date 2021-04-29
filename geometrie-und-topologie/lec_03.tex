@@ -85,9 +85,9 @@
     Quotientenräume von metrischen Räumen sind im Allgemeinen nicht metrisierbar.
 \end{remark}
 
-\section{Trennugsaxiome\index{Trennungsaxiom}}
-\begin{definition}
-    Ein topologischer Raum heißt \vocab{Hausdorff} (oder \vocab[Hausdorff!Hausdorffsch]{Hausdorffsch}), wenn $\forall x,y\in X$ mit $x\neq y$ offene Mengen $U_x, U_y\subset X$ existieren mit $x\in U_x$ und $y\in U_y$, sodass $U_x \cap U_y = \emptyset$. Diese Eigenschaft heißt auch Trennungsaxiom \vocab[Trennungsaxiom!$T_2$]{$T_2$}. \\
+\section{Trennungsaxiome}
+\begin{definition}[Hausdorff'sch]\label{def:hausdorff}
+    Ein topologischer Raum heißt \vocab{Hausdorff} (oder \vocab[Hausdorff!Hausdorffsch]{Hausdorffsch}), wenn $\forall x,y\in X$ mit $x\neq y$ offene Mengen $U_x, U_y\subset X$ existieren mit $x\in U_x$ und $y\in U_y$, sodass $U_x \cap U_y = \emptyset$. Diese Eigenschaft heißt auch Trennungsaxiom\index{Trennungsaxiom} \vocab[Trennungsaxiom!$T_2$]{$T_2$}. \\
     \begin{minipage}{\textwidth}
     \centering    
 \begin{minipage}{0.3\textwidth}
@@ -97,7 +97,7 @@
     \end{minipage}
 \end{definition}
 
-\begin{theorem}
+\begin{theorem}\label{thm:metrisierbarer-raum-ist-hausdorff}
     Ist $X$ metrisierbar, so ist  $X$ Hausdorffsch.
 \end{theorem}
 \begin{proof}
@@ -114,7 +114,7 @@
 \begin{example}
     $\R^n$ ist Hausdorffsch.
 \end{example}
-\begin{theorem}
+\begin{theorem}\label{thm:hausdorff-impliziert-t1}
     Ist $X$ Hausdorffsch und  $x\in X$, dann ist $\left \{x\right\} \subset X$ abgeschlossen.
     \label{thm:point-in-hausdorff-space-is-closed}
 \end{theorem}
@@ -129,7 +129,7 @@
     Ein topologischer Raum, für den alle $\left \{x\right\} $ abgeschlossen sind, heißt \vocab[Trennungsaxiom!$T_1$]{$T_1$-Raum}.
 \end{remark}
 
-\begin{lemma}
+\begin{lemma}\label{lm:teilraum-von-hausdorffraum-ist-hausdorff}
     Sei $X$ Hausdorffsch und $A\subset X$ ein Teilraum. Dann ist auch $A$ Hausdorffsch.
 \end{lemma}
 \begin{proof}
@@ -155,11 +155,11 @@
     $S^n \subset \R^{n+1}$ ist Hausdorffsch.
 \end{example}
 
-\begin{definition}
+\begin{definition}[Normal]\label{def:normal}
     Ein topologischer Raum heißt \vocab[Topologischer Raum!normal]{normal}, falls
     \begin{itemize}
         \item $X$ ist Hausdorffsch
-        \item  $\forall A,B\subset X$ abgeschlossen mit $A \cap B = \emptyset$ existieren $U_A, U_B \subset X$ offen mit $A\subset U_A$, $B\subset U_B$ und $U_A \cap U_B = \emptyset$. Diese Eigenschaft heißt auch Trennungsaxiom $T_4$. \\
+        \item  $\forall A,B\subset X$ abgeschlossen mit $A \cap B = \emptyset$ existieren $U_A, U_B \subset X$ offen mit $A\subset U_A$, $B\subset U_B$ und $U_A \cap U_B = \emptyset$. Diese Eigenschaft heißt auch Trennungsaxiom \vocab[Trennungsaxiom!$T_4$]{$T_4$}. \\
             \begin{minipage}{\textwidth}
                 \centering
                 \begin{minipage}{0.3\textwidth}
@@ -174,7 +174,7 @@
     Manchmal gibt es diese Definition auch ohne Hausdorff'sch.
 \end{remark}
 
-\begin{theorem}
+\begin{theorem}\label{thm:metrischer-raum-ist-normal}
     Ist $X$ metrisierbar, dann ist  $X$ normal.
 \end{theorem}
 
@@ -182,7 +182,7 @@
     Übung.
 \end{proof}
 
-\begin{definition}
+\begin{definition}[Regulär]\label{def:regulär}
     Ein topologischer Raum $X$ heißt  \vocab[Topologischer Raum!regulär]{regulär}, falls $X$ Hausdorff ist und  $\forall  A \subset X$ abgeschlossen und $x\in X \setminus A$ existieren $U_a, U_{x}$ offen mit $A\subset U_A, x\in U_x$ und $U_A \cap U_x = \emptyset$. (Auch Trennungsaxiom \vocab[Trennungsaxiom!$T_3$]{$T_3$} genannt).
 \end{definition}
 
@@ -190,14 +190,15 @@ Klar: $T_4 \implies T_3$
 
 
 \section{Kompaktheit}
-\begin{theorem}[Heine-Borel]
-    \label{thm:heine-borel}
+Aus der Analysis ist (vielleicht) folgender Satz bekannt.
+\begin{theorem}[Heine-Borel]\label{thm:heine-borel}
     Für $X\subset \R^n$ sind äquivalent:
     \begin{enumerate}[1)]
         \item $X$ ist abgeschlossen und beschränkt.
         \item Jede offene Überdeckung von $X$ hat eine endliche Teilüberdeckung
     \end{enumerate}
 \end{theorem}
+
 \begin{recap}
     'Jede offene Überdeckung besitzt eine endliche Teilüberdeckung' bedeutet: \\
     Für jede Familie $\left \{U_i\right\} _{i \in I}$ mit $U_i \subset X$ offen und $X \subset \bigcup_{i \in I}U_i$ existiert eine endliche Teilmenge $J\subset I$ mit $X \subset \bigcup_{j\in J} U_j$
@@ -206,7 +207,7 @@ Klar: $T_4 \implies T_3$
     später.
 \end{proof}
 
-\begin{definition}
+\begin{definition}[Kompaktheit]\label{def:kompakt}
     Ein topologischer Raum $X$ heißt  \vocab[Topologischer Raum!kompakt]{kompakt}, falls jede offene Überdeckung eine endliche Teilüberdeckung besitzt.
 \end{definition}
 \begin{remark}

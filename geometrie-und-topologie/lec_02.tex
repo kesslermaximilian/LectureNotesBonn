@@ -1,13 +1,13 @@
 \lecture{2}{Do 15 Apr 2021 10:14}{Grundbegriffe}
 
 
-\begin{definition}
+\begin{definition}[Äquivalente Metriken]\label{def:äquivalente-metrik}
     Zwei Metriken $d_1,d_2$ auf $X$ heißen \vocab[Metrik!äquivalente]{äquivalent}, falls Konstanten $c_1,c_2$ existieren, sodass
     \[
         \forall x,y\in X \colon \quad c_1\cdot d_1(x,y) \leq  d_2(x,y) \leq  c_2\cdot d_1(x,y)
     .\] 
 \end{definition}
-\begin{theorem}
+\begin{theorem}\label{thm:äquivalenz-von-metriken-ist-äquivalenzrelation}
     Äquivalenz (von Metriken) ist eine Äquivalenzrelation.
 \end{theorem}
 \begin{proof}
@@ -24,7 +24,7 @@
     \end{description}
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{thm:äquivalente-metriken-erzeugen-dieselbe-topologie}
     Äquivalente Metriken induzieren dieselbe Topologie.
 \end{theorem}
 \begin{proof}
@@ -47,7 +47,7 @@ und somit ist $U$ auch offen bezüglich  $d_1$.
     Je zwei Normen auf $\R^n$ sind äquivalent, induzieren also dieselbe Topologie.
 \end{remark}
 
-\begin{definition}
+\begin{definition}[Umgebung]\label{def:umgebung}
     Sei $X$ ein topologischer Raum und $U\subset X$ sowie $x\in X$. Dann heißt $U$ \vocab[Umgebung!von $x$]{Umgebung von $x$}, falls es eine offene Teilmenge  $O\subset X$ gibt, mit $x\in O\subset U$.
 \end{definition}
 \begin{remark}
@@ -55,7 +55,7 @@ und somit ist $U$ auch offen bezüglich  $d_1$.
 \end{remark}
 
 
-\begin{theorem}
+\begin{theorem}\label{thm:offene-menge-ist-umgebung-all-ihrer-punkte}
     Sei $X$ ein topologischer Raum und  $U\subset X$. Dann sind äquivalent:
     \begin{enumerate}[1)]
         \item $U$ ist offen.
@@ -71,7 +71,7 @@ und somit ist $U$ auch offen bezüglich  $d_1$.
     offen als Vereinigung offener Mengen.
 \end{proof}
 
-\begin{definition}
+\begin{definition}[Abgeschlossene Mengen]\label{def:abgeschlossene-menge}
     Sei $X$ ein topologischer Raum. Eine Teilmenge  $A\subset X$ heißt \vocab[Menge!abgeschlossen]{abgeschlossen}, falls ihr Komplement $X \setminus A = \left \{x\in X \mid  x\not\in A\right\} $ offen ist.
 \end{definition}
 \begin{remark}
@@ -79,7 +79,7 @@ und somit ist $U$ auch offen bezüglich  $d_1$.
 \end{remark}
 
 
-\begin{theorem}
+\begin{theorem}[Dualität]\label{offen-abgeschlossen-ist-dual}
     Ein topologischer Raum lässt sich auch über seine abgeschlossenen Mengen charakterisieren. Diese müssen erfüllen:
     \begin{enumerate}[i)]
         \item $\emptyset,X$ sind abgeschlossen
@@ -107,7 +107,7 @@ und somit ist $U$ auch offen bezüglich  $d_1$.
     \end{enumerate}
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}[Stetigkeit mit abgeschlossenen Mengen]\label{thm:stetig-gdw-urbilder-abgeschlossener-mengen-sind-abgeschlossen}
     Sei $f:X \to  Y$ eine Funktion zwischen topologischen Räumen. Dann sind äuqivalent:
     \begin{enumerate}[1)]
         \item $f$ ist stetig
@@ -131,7 +131,7 @@ Wir erinnern uns: Ist $(X,d)$ ein metrischer Raum, so auch  $\left(Y, d_{Y\times
 \begin{warning}
     $(Y, \mathcal{S}_X \cap \mathcal{P}(Y))$ ist im allgemeinen \textbf{kein} topologischer Raum. (wenn $Y$ nicht offen ist, denn dann ist $Y\not\in \mathcal{S}_X \cap \mathcal{P}(X)$)
 \end{warning}
-\begin{theoremdef}
+\begin{theoremdef}[Teilraumtopologie]\label{def:teilraumtopologie}
     Sei $X$ ein topologischer Raum,  $Y\subset X$. Dann ist
     \[
     \mathcal{S}_Y := \left \{U \cap Y \mid  U\subset X \text{ offen}\right\} 
@@ -191,7 +191,7 @@ Wir erinnern uns: Ist $(X,d)$ ein metrischer Raum, so auch  $\left(Y, d_{Y\times
     .\] 
 \end{example}
 
-\begin{definition}
+\begin{definition}[Homöomorphie]\label{def:homöomorph}
     Eine Abbildung $f: X \to  Y$ zwischen topologischen Räumen heißt \vocab{Homöomorphismus}, falls $f$ stetig und bijektiv ist und  auch $f^{-1}: Y \to  X$ stetig ist.  \\
     Existiert solch ein $f$, so heißen  $X,Y$  \vocab[Homöomorphismus!homöomorph]{homöomorph} 
 \end{definition}
@@ -240,7 +240,7 @@ als die \vocab[Projektion!kanonische]{kanonische Projektion} von $X$ auf seine �
 ist eine Bijektion, wir erhalten also eine Korrespondenz zwischen Äquivalenzrelationen und surjektiven Abbildungen aus $X$.
 \end{recap}
 
-\begin{theoremdef}
+\begin{theoremdef}[Quotiententopologie]\label{def:quotiententopologie}
     Sei $X$ ein topologischer Raum und  $\sim $ eine Äquivalenzrelation auf $X$. Sei  $q: X \to  X / \sim $ die kanonische Projektion. Dann definiert
     \[
         \mathcal{S}_{X / \sim } := \left \{U\subset X / \sim \mid  q^{-1}(U) \subset X \text{ offen}\right\} 
@@ -272,7 +272,7 @@ ist eine Bijektion, wir erhalten also eine Korrespondenz zwischen Äquivalenzrel
 \begin{remark}
     Die Projektion $q: X \to  X / \sim $ ist stetig und die Quotiententopologie ist maximal (bezüglich Inklusion, lies: 'am feinsten') unter allen Topologien auf $X / \sim $, für die $q$ stetig ist.
 \end{remark}
-\begin{theorem}[Universelle Eigenschaft der Quotiententopologie]
+\begin{theorem}[Universelle Eigenschaft der Quotiententopologie]\label{thm:universelle-eigenschaft-der-quotiententopologie}
     Sei $f : X \to  Y$ stetig und $q : X \to  X / \sim $ die kanonische Projektion. Angenommen, es existiert $g : X / \sim \to  Y$ mit $f = g \circ  q$. Dann ist $g$ stetig und in diesem Fall ist $g$ eindeutig. \\
     \begin{minipage}{\textwidth}
     \centering    
@@ -299,7 +299,7 @@ ist eine Bijektion, wir erhalten also eine Korrespondenz zwischen Äquivalenzrel
 \begin{example}
 Sei $X = [0,1]\subset \R$ das \vocab{Einheitsintervall} (mit der Unterraumtopologie bezüglich $\R$) mit der Äquivalenzrelation erzeugt von $0\sim 1$. Wir 'identifizieren' also die Punkte $\left \{0\right\} ,\left \{1\right\} $ miteinander.
 \end{example}
-\begin{theorem}
+\begin{theorem}[Kreishomöomorphie]\label{thm:kreis-ist-quotientenraum-von-einheitsintervall}
     Der Quotientenraum $[0,1] / (0\sim 1)$ ist homöomorph zu $S_1$.
 \end{theorem}
 
