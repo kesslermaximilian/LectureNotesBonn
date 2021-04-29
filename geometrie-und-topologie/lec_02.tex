@@ -2,7 +2,7 @@
 
 
 \begin{definition}
-    Zwei Metriken $d_1,d_2$ auf $X$ heißen \vocab{äquivalent}, falls Konstanten $c_1,c_2$ existieren, sodass
+    Zwei Metriken $d_1,d_2$ auf $X$ heißen \vocab[Metrik!äquivalente]{äquivalent}, falls Konstanten $c_1,c_2$ existieren, sodass
     \[
         \forall x,y\in X \colon \quad c_1\cdot d_1(x,y) \leq  d_2(x,y) \leq  c_2\cdot d_1(x,y)
     .\] 
@@ -48,7 +48,7 @@ und somit ist $U$ auch offen bezüglich  $d_1$.
 \end{remark}
 
 \begin{definition}
-    Sei $X$ ein topologischer Raum und $U\subset X$ sowie $x\in X$. Dann heißt \vocab{$U$ Umgebung} von $x$, falls es eine offene Teilmenge  $O\subset X$ gibt, mit $x\in O\subset U$.
+    Sei $X$ ein topologischer Raum und $U\subset X$ sowie $x\in X$. Dann heißt $U$ \vocab[Umgebung!von $x$]{Umgebung von $x$}, falls es eine offene Teilmenge  $O\subset X$ gibt, mit $x\in O\subset U$.
 \end{definition}
 \begin{remark}
     Für metrische Räume stimmt dies mit der vorherigen Definiton überein.
@@ -72,7 +72,7 @@ und somit ist $U$ auch offen bezüglich  $d_1$.
 \end{proof}
 
 \begin{definition}
-    Sei $X$ ein topologischer Raum. Eine Teilmenge  $A\subset X$ heißt \vocab{abgeschlossen}, falls ihr Komplement $X \setminus A = \left \{x\in X \mid  x\not\in A\right\} $ offen ist.
+    Sei $X$ ein topologischer Raum. Eine Teilmenge  $A\subset X$ heißt \vocab[Menge!abgeschlossen]{abgeschlossen}, falls ihr Komplement $X \setminus A = \left \{x\in X \mid  x\not\in A\right\} $ offen ist.
 \end{definition}
 \begin{remark}
     Für metrische Räume stimmt das mit dem Begriff aus der Analysis überein.
@@ -136,7 +136,7 @@ Wir erinnern uns: Ist $(X,d)$ ein metrischer Raum, so auch  $\left(Y, d_{Y\times
     \[
     \Topo_Y := \left \{U \cap Y \mid  U\subset X \text{ offen}\right\} 
     .\] 
-    eine Topologie auf $Y$, die  \vocab{Teilraumtopologie} oder auch \vocab{Unterraumtopologie} genannt wird.  
+    eine Topologie auf $Y$, die  \vocab[Topologie!Teilraum-]{Teilraumtopologie} oder auch \vocab[Topologie!Unterraum-]{Unterraumtopologie} genannt wird.  
 \end{theoremdef}
 
 \begin{example}
@@ -193,7 +193,7 @@ Wir erinnern uns: Ist $(X,d)$ ein metrischer Raum, so auch  $\left(Y, d_{Y\times
 
 \begin{definition}
     Eine Abbildung $f: X \to  Y$ zwischen topologischen Räumen heißt \vocab{Homöomorphismus}, falls $f$ stetig und bijektiv ist und  auch $f^{-1}: Y \to  X$ stetig ist.  \\
-    Existiert solch ein $f$, so heißen  $X,Y$  \vocab{homöomorph} 
+    Existiert solch ein $f$, so heißen  $X,Y$  \vocab[Homöomorphismus!homöomorph]{homöomorph} 
 \end{definition}
 \begin{example}
     Die Räume $(\R^2, \lVert \cdot  \rVert _2)$ und $(\C, \abs{\cdot })$ sind homöomorph mittels der Abbildung
@@ -212,7 +212,7 @@ Wir erinnern uns: Ist $(X,d)$ ein metrischer Raum, so auch  $\left(Y, d_{Y\times
 \end{example}
 
 \section{Quotientenräume} 
-Sei $\sim $ eine Äquivalenzrelation auf $X$. Für  $x\in X$ definieren wir die \vocab{Äquivalenzklasse $[x]$} von $x$ durch:
+Sei $\sim $ eine Äquivalenzrelation auf $X$. Für  $x\in X$ definieren wir die \vocab{Äquivalenzklasse} $[x]$ von $x$ durch:
  \[
      [x] := \left \{x' \in X \mid  x\sim x'\right\} 
 .\] 
@@ -220,14 +220,14 @@ Wir setzen
 \[
 X / \sim  := \left \{[x] \mid  x\in X\right\} 
 .\] 
-als die \vocab{Menge der Äquivalenzklassen} von $X$ bezüglich  $\sim $. Definiere nun
+als die \vocab[Äquivalenzklasse!Menge der]{Menge der Äquivalenzklassen} von $X$ bezüglich  $\sim $. Definiere nun
     \begin{equation*}
     q: \left| \begin{array}{c c l} 
     X & \longrightarrow & X / \sim  \\
     x & \longmapsto &  [x]
     \end{array} \right.
 \end{equation*}
-als die \vocab{kanonische Projektion} von $X$ auf seine Äquivalenzklassen. Wir stellen fest, dass $q$ surjektiv ist.
+als die \vocab[Projektion!kanonische]{kanonische Projektion} von $X$ auf seine Äquivalenzklassen. Wir stellen fest, dass $q$ surjektiv ist.
 
  \begin{recap}
      Für eine Surjektion $f: X \to  Y$ ist $x\sim y :\iff  f(x) = f(y)$ eine Äquivalenzrelation auf $X$ und
@@ -245,7 +245,7 @@ ist eine Bijektion, wir erhalten also eine Korrespondenz zwischen Äquivalenzrel
     \[
         \Topo_{X / \sim } := \left \{U\subset X / \sim \mid  q^{-1}(U) \subset X \text{ offen}\right\} 
     .\] 
-    eine Topologie auf $X / \sim $, genannt die \vocab{Quotiententopologie}. 
+    eine Topologie auf $X / \sim $, genannt die \vocab[Topologie!Quotienten-]{Quotiententopologie}. 
 \end{theoremdef}
 \begin{proof}
     Wir prüfen die Axiome einer Topologie:

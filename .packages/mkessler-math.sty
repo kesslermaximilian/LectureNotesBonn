@@ -137,7 +137,11 @@
 
 
 %Emphasize \vocabulary
-\newcommand{\vocab}[1]{\textbf{\color{blue} #1}}
+\def\thevocab{}
+\newcommand{\vocab}[2][\thevocab]{\renewcommand\thevocab{#2}\textbf{\color{blue} #2}\index{#1}}
+
+
+
 
 %%%%math operators
 

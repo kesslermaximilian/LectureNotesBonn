@@ -51,7 +51,7 @@ Der Aufbau ist wie folgt:
 
 \section{Metrische Räume}
 \begin{definition}
-    Eine \vocab{Metrik} auf einer Menge $X$ ist eine Funktion  $d: X\times X \to  \R_{\geq 0}$ mit folgenden Eigenschaften:
+    Eine \vocab[Metrik]{Metrik} auf einer Menge $X$ ist eine Funktion  $d: X\times X \to  \R_{\geq 0}$ mit folgenden Eigenschaften:
     \begin{enumerate}[(i)]
         \item $d(x,y) = 0 \iff  x = y$
         \item $d(x,y) = d(y,x) \quad \forall x,y\in X$
@@ -60,11 +60,11 @@ Der Aufbau ist wie folgt:
     Ein \vocab{Metrischer Raum} ist ein Paar $(X,d)$ aus einer Menge $X$ und einer Metrik $d$ auf $X$.
 \end{definition}
 \begin{definition}
-    Seien $(X,d)$ und  $(X',d')$ zwei metrische Räume. Dann ist eine Funktion $f:X \to  Y$ \vocab{stetig in $x\in X$}, falls
+    Seien $(X,d)$ und  $(X',d')$ zwei metrische Räume. Dann ist eine Funktion $f:X \to  Y$ \vocab[Stetig!in $x\in X$]{stetig in $x\in X$}, falls
     \[
         \forall ε > 0 \; \exists \delta > 0 \; \forall x' \colon d(x,x') < \delta \implies d'(f(x), f(x')) < ε
     .\] 
-    Eine Funktion $f$ heißt \vocab{stetig}, wenn sie in jedem Punkt  $x\in X$ stetig ist.
+    Eine Funktion $f$ heißt \vocab[Stetig]{stetig}, wenn sie in jedem Punkt  $x\in X$ stetig ist.
     \begin{minipage}{\textwidth}
         \centering
     \incfig{definition-von-stetigkeit-in-metrischen-raeumen}
@@ -93,7 +93,7 @@ Der Aufbau ist wie folgt:
             1 & \text{sonst}
         \end{cases}
     .\] 
-    eine Metrik auf $X$, genannt die \vocab{diskrete Metrik}.
+    eine Metrik auf $X$, genannt die \vocab[Diskrete Metrik]{diskrete Metrik}.
     \end{itemize}
 \end{example}
 \begin{notation}
@@ -101,7 +101,7 @@ Der Aufbau ist wie folgt:
      \[
          U(x,ε) := \left \{y\in X \mid  d(x,y) < ε\right\} 
     .\] 
-    und nennen dies den \vocab{offenen $ε$-Ball um $x$}
+    und nennen dies den \vocab[Offener $ε$-Ball um  $x$]{offenen $ε$-Ball um $x$}
 \end{notation}
 \begin{observe}
     Sei $f: (X,d_X) \to  (Y,d_Y)$ eine Funktion, $x\in X$ sowie $ε,δ>0$. Dann sind äquivalent:
@@ -111,7 +111,7 @@ Der Aufbau ist wie folgt:
     \end{enumerate}
 \end{observe}
 \begin{definition}
-    Sei $X$ ein metrischer Raum,  $U\subset X$ und $x\in X$. Dann heißt $U$ \vocab{Umgebung von $x$}, falls ein $ε>0$ existiert, sodass  $U(x,ε) \subset U$. 
+    Sei $X$ ein metrischer Raum,  $U\subset X$ und $x\in X$. Dann heißt $U$ \vocab[Umgebung]{Umgebung von $x$}, falls ein $ε>0$ existiert, sodass  $U(x,ε) \subset U$. 
 \end{definition}
 \begin{theorem}
     \label{thm:stetig_urbild_von_umgebung}
@@ -124,7 +124,7 @@ Der Aufbau ist wie folgt:
 \end{proof}
 
 \begin{definition}
-    Sei $X$ ein metrischer Raum. Eine Teilmenge  $X\subset X$ heißt \vocab{offen}, falls sie Umgebung all ihrer Punkte ist, d.h. $\forall x\in U \;\exists ε>0$ mit $U(x,ε)\subset U$.
+    Sei $X$ ein metrischer Raum. Eine Teilmenge  $U\subset X$ heißt \vocab[Offene Menge]{offen}, falls sie Umgebung all ihrer Punkte ist, d.h. $\forall x\in U \;\exists ε>0$ mit $U(x,ε)\subset U$.
 \end{definition}
 \begin{remark}
     $U(x,ε)$ ist offen.
@@ -176,19 +176,19 @@ Der Aufbau ist wie folgt:
 \section{Topologische Räume} 
     
 \begin{definition}
-    Eine Topologie auf einer Menge $X$ ist eine Menge  $\Topo$ von Teilmengen von  $X$, so dass gilt:
+    Eine \vocab{Topologie} auf einer Menge $X$ ist eine Menge  $\Topo$ von Teilmengen von  $X$, so dass gilt:
     \begin{enumerate}[1)]
         \item $\emptyset,X \in \Topo$
         \item Für $U_1,\ldots,U_n \in \Topo$ ist auch $\bigcap_{i=1}^n U_i \in  \Topo$
         \item Für jede Familie $\left \{U_i\right\} _{i\in I}$ mit $U_i \in \Topo$ ist auch $\bigcup_{i\in I} U_i \in  \Topo$
     \end{enumerate}
-    Die Mengen in $\Topo$ heißen \vocab{offene Mengen}. \\
-    Ein \vocab{topologischer Raum} ist ein Paar  $(X,\Topo)$ aus einer Menge  $X$ und einer Topologie  $\Topo$ auf  $X$.
+    Die Mengen in $\Topo$ heißen \vocab[Offene Menge]{offene Mengen}. \\
+    Ein \vocab[Topologischer Raum]{topologischer Raum} ist ein Paar  $(X,\Topo)$ aus einer Menge  $X$ und einer Topologie  $\Topo$ auf  $X$.
 \end{definition}
 
 
 \begin{definition}
-    Seien $X,Y$ topologische Räume. Eine Abbildung  $f:X \to  Y$ heißt \vocab{stetig}, falls für jede offene Teilmenge $U\subset Y$ das Urbild $f^{-1}(U) \subset X$ offen ist.
+    Seien $X,Y$ topologische Räume. Eine Abbildung  $f:X \to  Y$ heißt \vocab[Stetig]{stetig}, falls für jede offene Teilmenge $U\subset Y$ das Urbild $f^{-1}(U) \subset X$ offen ist.
 \end{definition}
 
 \begin{example}
@@ -196,14 +196,14 @@ Der Aufbau ist wie folgt:
      \[
          (X, \Topo := \left \{U\subset X \mid  U \text{ ist offen bezüglich $d$}\right\} )
     .\] 
-    ein topologischer Raum. $\Topo$ ist die von der Metrik  $d$ \vocab{indupierte Topologie}.
+    ein topologischer Raum. $\Topo$ ist die von der Metrik  $d$ \vocab[Topologie!induzierte]{induzierte Topologie}.
 \end{example}
 \begin{definition}
-    Ein topologischer Raum heißt \vocab{metrisierbar}, falls die Topologie von einer Metrik induziert ist.
+    Ein topologischer Raum heißt \vocab[Metrisierbar]{metrisierbar}, falls die Topologie von einer Metrik induziert ist.
 \end{definition}
 
 \begin{example}
-    Sei $X$ eine Menge. Die \vocab{diskrete Topologie} auf $X$ ist die Menge aller Teilmengen, d.h.  $\Topo := \mathcal{P}(X)$. Diese ist von der diskreten Metrik
+    Sei $X$ eine Menge. Die \vocab[Diskrete Topologie]{diskrete Topologie} auf $X$ ist die Menge aller Teilmengen, d.h.  $\Topo := \mathcal{P}(X)$. Diese ist von der diskreten Metrik
     \[
         d(x,y) = \begin{cases}
             0 & \text{falls }x=y \\
@@ -246,7 +246,7 @@ Der Aufbau ist wie folgt:
             \Topo = \left \{\emptyset,X, \left \{a\right\} \right\} 
             .\]
             Dies ist ein topologischer Raum (leicht prüfen), er ist jedoch nicht metrisierbar, da endlich und nicht diskret.
-        \item Sei $X$ eine Menge. Die  \vocab{indiskrete Topologie} auf $X$ enthält nur  $\emptyset,X$. Man prüft leicht, dass dies eine Topologie ist. 
+        \item Sei $X$ eine Menge. Die  \vocab[Topologie!indiskrete]{indiskrete Topologie} auf $X$ enthält nur  $\emptyset,X$. Man prüft leicht, dass dies eine Topologie ist. 
             \begin{itemize}
                 \item 
             Hat $X$ mindestens 2 Elemente, so ist  $X$ nict metrisierbar.
