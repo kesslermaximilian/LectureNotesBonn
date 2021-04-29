@@ -225,7 +225,7 @@ in $X\times \left \{y\right\} $ offen.
     \end{enumerate}
 \end{proof}
 \begin{remark}
-    Der Beweis geht auch ohne \nameref{thm:alexander}. Viel leichter: Es genügt, offene Überdeckungen bezüglich einer Basis zu betrachten (Spezialfall von Alexander, leicht zu zeigen), dann verfahren wir wie folgt: \\
+    Der Beweis geht auch ohne den \nameref{thm:alexander}. Viel leichter: Es genügt, offene Überdeckungen bezüglich einer Basis zu betrachten (Spezialfall von Alexander, leicht zu zeigen), dann verfahren wir wie folgt: \\
     Sei $\mathcal{U}$ eine Überdeckung von $X\times Y$ mit Elementen aus $\mathcal{B}$. Dann gibt es eine endliche Teilüebredckung von $X\times \left \{y\right\} $. Sei diese $\left \{U_i^y \times V_i^y\right\} i=1^{n_y}$. Setze
     \[
         V_y := \bigcap_{i=1} ^{n_Y} V_i^{y}
@@ -269,9 +269,9 @@ Seien $X_1,\ldots,X_n$ topologische Räume. Dann definieren wir ihr Produkt reku
     Umgekehrt ist klar, dass die $U_i\times V_j$ offen in der Produkttopologie sind.
 \end{proof}
 
-\begin{remark}
+\begin{remark*}
     Eigentlich haben wir in obigem Beweis nur den Fall $n=2$ behandelt. Man verallgemeinert induktiv jedoch leicht (kanonisch) auf endlich viele Mengen.
-\end{remark}
+\end{remark*}
 
 \begin{theorem}[Diagonaleigenschaft]\label{thm:raum-ist-hausdorff-gdw-diagonale-abgeschlossen}
     Sei $X$ ein topologischer Raum. Dann ist  $X$ Hausdorffsch, genau dann, wenn
@@ -321,7 +321,7 @@ Seien $X_1,\ldots,X_n$ topologische Räume. Dann definieren wir ihr Produkt reku
     mit $U_i \subset X_i$ offen \underline{nicht} offen. 
     \end{itemize}
 \end{remark}
-\begin{remark}[Mengentheorie-Spam]
+\begin{remark*}[Mengentheorie-Spam]
     \begin{itemize}
         \item Wir benötigen das Auswahlaxiom, um einzusehen, dass obiges Produkt überhaupt nichtleer ist, sofern keiner der Faktoren leer ist. Formal ist das Produkt der $X_i$ nämlich definiert als
      \[
@@ -335,5 +335,5 @@ Seien $X_1,\ldots,X_n$ topologische Räume. Dann definieren wir ihr Produkt reku
     \underline{nicht} leer. (Hierzu sollte man sich klarmachen, dass eine Funktion  $f:A\to B$ eine Teilmenge von $A\times B$ war, sodass $\forall a\in A \;\exists !b \in B\colon (a,b) \in f$, und somit suchen wir eine Teilmenge $f\subset \emptyset\times \emptyset = \emptyset$). \\
     Auch die Topologie ist in diesem Fall wohldefiniert, weil die Subbasis wieder die leere Menge ist (nämlich eine Teilmenge von $\prod X_i = \left \{\emptyset\right\} $, und zwar $\left \{\emptyset\right\} $ selbst), und diese ist auch eine vollständige Topologie, weil unser topologischer Raum nur einen Punkt enthält (nämlich $\emptyset$). Wir erhalten also den einpunktigen topologischen Raum.
     \end{itemize}
-\end{remark}
+\end{remark*}
 
