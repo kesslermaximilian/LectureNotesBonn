@@ -34,6 +34,32 @@
     \begin{enumerate}[1)]
         \item Sei $X = [0,1]^2 \subset \R$. Identifiziere nun $(t,0) \sim  (t,1)$ sowie $(0,s) \sim  (1,s)$ für $s,t\in [9,1]$. Dann ist $X / \sim $ der Torus.
         \item Sei $X = [0,1] ^2 \subset \R^2$. Identifizieren wir $(t,0) \sim  (t,1)$ sowie $(0,s) \sim  (1, 1-s)$, so erhalten wir die \vocab{Kleinsche Flasche}. 
+            \begin{minipage}{\textwidth}
+                \begin{minipage}{0.3\textwidth}
+                        \includegraphics[width=\textwidth]{figures/1024px-Klein_Bottle_Folding_1.svg.png}
+                \end{minipage}
+                \begin{minipage}{0.3\textwidth}
+                    \centering
+                    \includegraphics[width=0.6\textwidth]{figures/800px-Klein_Bottle_Folding_2.svg.png}
+                \end{minipage}
+                \begin{minipage}{0.3\textwidth}
+                    \includegraphics[width=\textwidth]{figures/800px-Klein_Bottle_Folding_3.svg.png}
+                \end{minipage}
+                \\
+                \begin{minipage}{0.3\textwidth}
+                    \includegraphics[width=\textwidth]{figures/800px-Klein_Bottle_Folding_4.svg.png}
+                \end{minipage}
+                \begin{minipage}{0.3\textwidth}
+                    \includegraphics[width=\textwidth]{figures/800px-Klein_Bottle_Folding_5.svg.png}
+                \end{minipage}
+                \begin{minipage}{0.3\textwidth}
+                    \includegraphics[width=\textwidth]{figures/800px-Klein_Bottle_Folding_6.svg.png}
+                \end{minipage}
+                \\
+                \begin{minipage}{\textwidth}
+                \captionof{figure}{Entstehung der Kleinschen Flasche als Quotientenraum des Einheitsquadrats. Quelle: \\\href{https://commons.wikimedia.org/wiki/File:Klein_Bottle_Folding_1.svg}{https://commons.wikimedia.org/wiki/File:Klein\_Bottle\_Folding\_1.svg}}
+                \end{minipage}
+            \end{minipage}
         \item Betrachte auf dem $\R^{n+1}\setminus \left \{0\right\} $ die Relation $x \sim  λx$ für $λ>0\in \R$. Dann ist $\R^{n+1} / \sim  \cong S^n$. Zunächst ist nämlich die Abbildung
                 \begin{equation*}
                 f: \left| \begin{array}{c c l} 
@@ -122,11 +148,27 @@
     \[
     X \setminus \left \{x\right\}  = \bigcup_{y\neq x} U_y 
     .\] 
-    offen.
+    offen. \\
 \end{proof}
+    \begin{minipage}{\textwidth}
+        \centering
+    \incfig{hausdorff-impliziert-t1}
+    \captionof{figure}{Skizze zum Beweis von \autoref{thm:hausdorff-impliziert-t1}}
+    \end{minipage}
 \begin{remark}
     Ein topologischer Raum, für den alle $\left \{x\right\} $ abgeschlossen sind, heißt \vocab[Trennungsaxiom!$T_1$]{$T_1$-Raum}.
 \end{remark}
+\begin{remark*}
+    Man findet in der Literatur auch folgende Definition: \\
+    Ein topologischer Raum heißt $T_1$-Raum, wenn es für je zwei verschieden Punkte $x\neq y$ Umgebungen $U_x,U_y$ gibt mit  $x\in U_x, y\in U_y$ und $x\not\in U_y, y\not\in U_x$. \\
+    Im Gegensatz zum Hausdorff-Raum trennen wir zwei Punkte also durch 2 nicht notwendigerweies offene Umgebungen. Mit dem gleichen Beweis wie in \autoref{thm:hausdorff-impliziert-t1} zeigen wir dann, dass jeder Punkt abgeschlossen ist. Ist umgekehrt $X$ ein Raum, in dem alle Punkte abgeschlossen sind, so können wir  $x,y$ stets durch die offenen Umgebungen  $y\in X \setminus \left \{x\right\} $ sowie $x\in X \setminus \left \{y\right\} $ trennen. Die beiden Definitionen sind also äquivalent.
+    \begin{minipage}{\textwidth}
+    \incfig{t1-raum}
+    \captionof{figure}{Ein $T_1$-Raum}
+    \end{minipage}
+\end{remark*}
+
+
 
 \begin{lemma}\label{lm:teilraum-von-hausdorffraum-ist-hausdorff}
     Sei $X$ Hausdorffsch und $A\subset X$ ein Teilraum. Dann ist auch $A$ Hausdorffsch.
