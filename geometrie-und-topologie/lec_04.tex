@@ -100,18 +100,33 @@ Nun sind wir gewappnet für den
         \diam(X) \leq  \max \left \{d(x_i,x_j)\right\} +2 < \infty
     .\] 
     und somit ist $X$ auch beschränkt. \\
-    ' $1)\implies 2)$'. Da $X$ beschränkt ist,  $\exists m>0$ mit $X\subset [-m,m]^n\subset \R^n$. Da $X$ abgeschlossen ist, genügt es nach \ref{thm:abgeschlossene-menge-in-kompaktem-raum-ist-kompakt} zu zeigen, dass  $[-m,m]^n$ kompakt ist. \\
+    ' $1)\implies 2)$'. Da $X$ beschränkt ist,  $\exists m>0$ mit $X\subset [-m,m]^n\subset \R^n$. Da $X$ abgeschlossen ist, genügt es nach \autoref{thm:abgeschlossene-menge-in-kompaktem-raum-ist-kompakt} zu zeigen, dass  $[-m,m]^n$ kompakt ist. \\
     Wir führen einen Widerspruchsbeweis, nimm also an, dass  $[-m,m]^n$ nicht kompakt ist. Dann existiert eine offene Überdeckung  $\left \{U_i\right\} _{i \in I}$ ohne endliche Teilüberdeckung. \\
+    \noindent\begin{minipage}{0.5\textwidth}
     Unterteile $[-m,m]^n$ in  $2^n$ gleich große Unterwürfel (halbiere jede Seite). Mindestens ein Unterwürfel hat keine endliche Teilüberdeckung. Unterteile diesen Würfel weiter und wähle wieder einen Unterwüfel, der keine endliche Teilüberdeckung hat. \\
     Wir erhalten eine Folge von Würfeln
      \[
          [-m,m]^n =     Q_0 \supset Q_1 \supset Q_2 \supset Q_3 \supset \ldots
     .\] 
     die jeweils keine endliche Teilüberdeckung durch $U_i's$ besitzen. \\
+    \end{minipage}
+    \begin{minipage}{0.5\textwidth}
+\begin{tikzpicture}
+    \draw (-2,-2) -- (-2,2) node[near end, anchor=east]{$Q_0$}-- (2,2) -- (2,-2) -- (-2,-2);
+    \draw[blue] (-2,0) -- (2,0);
+    \draw[blue] (0,-2) -- (0,2);
+    \draw[blue,very thick] (0,0) -- (2,0) -- (2,2) node[anchor=west]{$Q_1$} -- (0,2) -- (0,0) ; 
+    \draw[red] (1,0) -- (1,2);
+    \draw[red] (0,1) -- (2,1);
+    \draw[red, very thick] (1,0) -- (1,1) node[anchor=west, midway]{$Q_2$} -- (2,1) -- (2,0) -- (1,0);
+\end{tikzpicture}
+    \end{minipage}
     Sei  $x_i \in Q_i$ beliebig. Dann ist $x_i$ eine Cauchy-Folge, also existiert $x = \lim_{i\to \infty} x_i$, und $x\in Q_0$, da $Q_0$ abgeschlossen. \\
     Somit gibt es ein $U_j$ mit  $x\in U_j$, da die $\left \{U_i\right\} _{i \in I}$ eine Überedeckung von $Q_0$ waren. Damit ist auch $U(x,ε) \subset U_j$ für ein $ε>0$. Wähle einen Würfel $x\in Q_k$ mit Kantenlänge $< \frac{ε}{\sqrt{n} }$, dann ist auch $Q_k \subset U(x,ε) \subset U_j$. Das ist aber ein Widerspruch dazu, dass $Q_k$ keine endliche Teilüberdeckung hat, \contra. \\
     Also ist  $Q_0$ kompakt.
 \end{proof}
+
+
 
 \begin{theorem}[Bilder kompakter Räume]\label{thm:bild-von-kompaktem-raum-ist-kompakt}
     Sei $f: X \to  Y$ stetig und surjektiv und $X$ kompakt. Dann ist auch  $Y$ kompakt. 
@@ -128,7 +143,7 @@ Nun sind wir gewappnet für den
     Also existiert eine endliche Teilüberdeckung von $Y$.
 \end{proof}
 \begin{corollary}\label{cor:stetige-abbildung-von-kompaktem-raum-in-hausdorff-raum-ist-abgeschlossen}
-    Sei $f: X \to  Y$ stetig, $X$ kompakt und  $Y$ Hausdorff. Dann ist  $f$ abgeschlossen, d.h. $\forall A\subset X$ abgesclhossen ist $f(A) \subset Y$ abgeschlossen.
+    Sei $f: X \to  Y$ stetig, $X$ kompakt und  $Y$ Hausdorff. Dann ist  $f$ abgeschlossen, d.h. $\forall A\subset X$ abgeschlossen ist $f(A) \subset Y$ abgeschlossen.
 \end{corollary}
 \begin{proof}
     Sei $A\subset X$ abgeschlossen. Dann ist $A$ kompakt nach \autoref{thm:kompakte-menge-in-hausdorff-raum-ist-abgeschlossen}, also ist  $f(A)$ kompakt nach \autoref{thm:bild-von-kompaktem-raum-ist-kompakt} (weil $f: X \to f(A)\subset Y$ surjektiv ist). Damit ist dann $f(A)$ abegschlossen nach \autoref{thm:kompakte-menge-in-hausdorff-raum-ist-abgeschlossen}. \\
@@ -229,8 +244,8 @@ abgeschlossen und disjunkt (in  $X$). Nach Annahme ist  $X$ kompakt und Hausdorf
 \begin{claim}
     Es sind $V_1,V_2$ offen, disjunkt und saturiert und $A\subset V_1$ sowie $B\subset V_2$.
 \end{claim}
-\begin{proof}
-\end{proof}
-    \todo{Beweis einfügen}
+\begin{subproof}
+    Nächstes Mal.
+\end{subproof}
 Es folgt, dass $q(V_1),q(V_2)$ offen in $Z$ sind. Weiter ist  $y\in q(A)\subset q(V_1)$ und $z\in q(B) \subset q(V_2)$. Da $V_1,V_2$ disjunkt und saturiert, sind auch $q(V_1),q(V_2)$ disjunkt und wir sind fertig.
 \end{proof}

@@ -5,15 +5,20 @@
         X \setminus U_i \subset  q^{-1}(q(X\setminus U_i))
     .\] 
     dass $U_i \supset X \setminus q^{-1}(q(X\setminus U_i)) = V_i$ 
-    Für Saturiertheit genügt es zu sehen, dass $g^{-1}(C)$ saturiert ist für alle $C\subset Z$, da
+    Für Saturiertheit genügt es zu sehen, dass $q^{-1}(C)$ saturiert ist für alle $C\subset Z$, da
     \[
         q^{-1}(q(q^{-1}(C))) = q^{-1}(C)
     .\] 
     weil $q$ surjektiv ist. Wegen
      \[
-         A\subset U_1 \implies X \setminus A \supset X \setminus U_1 \implies q(X\setminus A) \supset q(X\setminus U_1) \implies \underbrace{q^{-1}(q(X\setminus A))}_{=X\setminus A} = q^{-1}q(X\setminus U_1)
+         \begin{split}
+             A\subset U_1 &\implies X \setminus A \supset X \setminus U_1 \\ &\implies q(X\setminus A) \supset q(X\setminus U_1)\\ &\implies \underbrace{q^{-1}(q(X\setminus A))}_{=X\setminus A} \supset q^{-1}q(X\setminus U_1)
+         \end{split}
     .\]
-    Komplementbildung liefert unser gewünschtes Eregbnis.
+    liefert nun Komplementbildung unser gewnschtes Ergebnis, dass
+    \[
+        A \subset  X \setminus q^{-1}(q(X\setminus U_1)) = V_1
+    .\] 
 \end{proof}
 
 
@@ -47,17 +52,35 @@ Da $-: S^n \to  S^n$ ein Homöomorphismus ist, ist $-A$ abgeschlossen, wenn  $A$
         x& \longmapsto &  (x,\sqrt{1-\lVert x \rVert ^2}) 
         \end{array} \right.
     \end{equation*}
-
-    \todo{        Skizze einfügen für 'ausbeulen' der Abbildung.}
-    Wir erhalten das Diagramm
-    \begin{figure}[h]
-        \centering
+    \begin{equation*}
+\begin{tikzpicture}
+    \draw[red] (-2,0) arc (180:360:2);
+    \draw[blue] (2,0) arc (0:180:2);
+    \draw[green!30!black] (1.5,1.32) -- (1.5,-1.32);
+    \draw[orange] (0,2) -- (0,-2);
+    \draw[violet] (-1.5,1.32) -- (-1.5, -1.32);
+\end{tikzpicture}
+\qquad \qquad \qquad  
+\begin{tikzpicture}
+    \shade[ball color = gray!40, opacity = 0.4] (0,0) circle (2cm);
+  \draw (0,0) circle (2cm);
+  \draw[red] (-2,0) arc (180:360:2 and 0.6);
+  \draw[dashed,blue] (2,0) arc (0:180:2 and 0.6);
+  \draw[dashed] (0,0 ) -- (2,0);
+  \fill[fill=black] (0,0) circle (1pt);
+  \draw[green!30!black] (1.5,0.39686) arc (16.699:195:0.5 and 1.8);
+  \draw[orange] (0.5,0.58) arc (16.699:197:0.5 and 1.95);
+  \draw[violet] (-0.5,0.58) arc (20:192: 0.5 and 1.75);
+\end{tikzpicture}
+    \end{equation*}
+    Wir erhalten das Diagramm:
+    \begin{equation*}
     \begin{tikzcd}
         D^n \ar{r} \ar{d} & S^n \ar{d} \\
     D^n / \sim \ar[dashed,swap]{r}{\overline{f}} & S^n / (x\sim -x) \cong \R\mathbb{P}^n
     \end{tikzcd}
-    \end{figure}
-    Wir sehen leicht, dass $\overline{f}$ bijektiv ist. Da $D^n$ kompakt, ist auch  $D^n / \sim $ kompakt, und $\R\mathbb{P}^n$ ist Hausdorffsch, also handelt es sich um einen Homöomorphismus (mit \autoref{cor:compact-to-hausdorff-is-homeomorphism})
+    \end{equation*}
+    Wir sehen leicht, dass $\overline{f}$ bijektiv ist. Da $D^n$ kompakt, ist auch  $D^n / \sim $ kompakt, und $\R\mathbb{P}^n$ ist Hausdorffsch, also handelt es sich um einen Homöomorphismus (mit \autoref{cor:stetige-bijektion-von-kompaktem-raum-in-hausdorff-raum-ist-homöomorphismus})
 \end{proof}
 
 \begin{corollary}\label{cor:quotientenraum-von-kompaktem-hausdorffraum-mit-teilmenge-ist-hausdorff-gdw-teilmenge-abgeschlossen}
@@ -94,7 +117,6 @@ Es ist $D^n / S^{n-1}$   Hausdorffsch. Alternativ können wir auch sehen, dass $
     \end{array}
 \end{equation*}
 Diese ist stetig, denn falls $\lVert x \rVert =\frac{1}{2}$ ist
-\item Wir erhalten nun eine Abbildung 
 \[
 \frac{2-2\lVert x \rVert }{\lVert x \rVert } = \frac{2-1}{\frac{1}{2}} = 2
 .\] 
@@ -107,9 +129,13 @@ Ist $\lVert x \rVert =1$, so ist
 \frac{2-2\lVert x \rVert }{\lVert x \rVert } = 0
 .\] 
 und somit ist $f(x) = (0,-1) \in \R^n \times \R$. Also faktorisiert $f$ über  $\overline{f} : D^n / S^{n-1} \to  S^n$. Wir sehen wieder leicht, dass $\overline{f}$ stetige Bijektion ist. Da $D^n / S^{n-1}$ kompakt und $S^n$ Hausdorffsch, folgt wieder, dass  $\overline{f}$ ein Homöomorphismus ist. \\
+\item Wir erhalten nun eine Abbildung:
+    \[
     \begin{tikzcd}
         S^n \ar{r}{q} & S^n / (x\sim -x) \cong \R\mathbb{P}^n \cong D^n / (x\sim -x) \ar{r} &  D^n / S^{n-1} \cong S^n
     \end{tikzcd}
+\]
+und diese ist im Allgemeinen \underline{kein} Homöomorphismus, denn jeder Punkt hat 2 Urbilder.
     \end{enumerate}
 \end{example}
 \todo{Abbildung skizzieren}

@@ -33,6 +33,11 @@
 \begin{example}
     \begin{enumerate}[1)]
         \item Sei $X = [0,1]^2 \subset \R$. Identifiziere nun $(t,0) \sim  (t,1)$ sowie $(0,s) \sim  (1,s)$ für $s,t\in [9,1]$. Dann ist $X / \sim $ der Torus.
+        \begin{minipage}{\textwidth}
+            \includegraphics[width=\textwidth]{figures/part1.png}
+            \captionof{figure}{Entstehung des Torus als Quotientenraum von $[0,1]^2$. \\
+\tiny Quelle: \href{http://3.bp.blogspot.com/_swn7VcF-Vqc/TCpcMmi8qII/AAAAAAAAAHw/3QtMkZsikpY/s1600/part1(6).png}{http://3.bp.blogspot.com/\_swn7VcF-Vqc/TCpcMmi8qII/AAAAAAAAAHw/3QtMkZsikpY/s1600/part1(6).png}}
+            \end{minipage} \\ \\
         \item Sei $X = [0,1] ^2 \subset \R^2$. Identifizieren wir $(t,0) \sim  (t,1)$ sowie $(0,s) \sim  (1, 1-s)$, so erhalten wir die \vocab{Kleinsche Flasche}. 
             \begin{minipage}{\textwidth}
                 \begin{minipage}{0.3\textwidth}
@@ -57,7 +62,7 @@
                 \end{minipage}
                 \\
                 \begin{minipage}{\textwidth}
-                \captionof{figure}{Entstehung der Kleinschen Flasche als Quotientenraum des Einheitsquadrats. Quelle: \\\href{https://commons.wikimedia.org/wiki/File:Klein_Bottle_Folding_1.svg}{https://commons.wikimedia.org/wiki/File:Klein\_Bottle\_Folding\_1.svg}}
+                    \captionof{figure}{Entstehung der Kleinschen Flasche als Quotientenraum von $[0,1]^2$. \\ \tiny Quelle: \href{https://commons.wikimedia.org/wiki/File:Klein_Bottle_Folding_1.svg}{https://commons.wikimedia.org/wiki/File:Klein\_Bottle\_Folding\_1.svg}}
                 \end{minipage}
             \end{minipage}
         \item Betrachte auf dem $\R^{n+1}\setminus \left \{0\right\} $ die Relation $x \sim  λx$ für $λ>0\in \R$. Dann ist $\R^{n+1} / \sim  \cong S^n$. Zunächst ist nämlich die Abbildung
@@ -89,13 +94,28 @@
             \[
                 \R P^n \cong S^n / (x \sim -x)
             .\] 
-            Dies sehen wir mittels folgendem Diagramm: \\
+            Dies sehen wir mittels folgendem Diagramm:
+            \begin{equation}
             \begin{tikzcd}
                 \R^{n+1} \setminus \left \{0\right\}  \ar[two heads]{d} \ar[shift left]{r}{f} & S^n \ar[shift left]{l}{ι} \ar[two heads]{d} \\
                 \R P^n \ar[dashed, shift left]{r}{\overline{f}} & S^n / (x \sim  - x) \ar[dashed, shift left]{l}{\overline{ι}}
             \end{tikzcd}
-            \\
-            Die Abbildungen $\overline{ι}$ und $\overline{f}$ sind stetig nach der universellen Eigenschaft und invers zueinander.
+            \end{equation}
+            Die Abbildungen $\overline{ι}$ und $\overline{f}$ sind stetig nach der universellen Eigenschaft und invers zueinander. \\
+            \begin{minipage}{\textwidth}
+                \centering
+\begin{tikzpicture}
+    \draw[->] (-1.5,0) -- (1.5,0);
+    \draw [->] (0,-1.5) -- (0,1.5);
+    \draw (1,0) arc (0:90:1);
+    \draw[red] (0,0) -- (1.5,1);
+    \draw[red] (0,0) -- (1.5,1.3);
+    \draw[red] (0,0) -- (1,1.5);
+    \draw[blue] (-1.5,-1.5) -- (1.5,1.5);
+\end{tikzpicture}
+\captionof{figure}{Konstruktion des reellen projektiven Raums für den Fall $n=1$. Wir identifizieren die roten Strahlen miteinander, nicht jedoch den gesamten blauen, da $λ>0$.}
+            \end{minipage}
+            \\ 
         \item Sei $X$ ein topologischer Raum und  $A\subset X$ eine Teilmenge. Definiere die Relation $\sim $ durch $a\sim a'$ für $a,a'\in A$ (bzw. erzeuge eine dadurch). Dann setzen wir
             \[
             X / A := X / \sim 
@@ -110,6 +130,9 @@
 \begin{remark}
     Quotientenräume von metrischen Räumen sind im Allgemeinen nicht metrisierbar.
 \end{remark}
+
+
+
 
 \section{Trennungsaxiome}
 \begin{definition}[Hausdorff'sch]\label{def:hausdorff}
@@ -224,10 +247,23 @@
 \end{proof}
 
 \begin{definition}[Regulär]\label{def:regulär}
-    Ein topologischer Raum $X$ heißt  \vocab[Topologischer Raum!regulär]{regulär}, falls $X$ Hausdorff ist und  $\forall  A \subset X$ abgeschlossen und $x\in X \setminus A$ existieren $U_a, U_{x}$ offen mit $A\subset U_A, x\in U_x$ und $U_A \cap U_x = \emptyset$. (Auch Trennungsaxiom \vocab[Trennungsaxiom!$T_3$]{$T_3$} genannt).
+    Ein topologischer Raum $X$ heißt  \vocab[Topologischer Raum!regulär]{regulär}, falls $X$ Hausdorff ist und  $\forall  A \subset X$ abgeschlossen und $x\in X \setminus A$ existieren $U_a, U_{x}$ offen mit $A\subset U_A, x\in U_x$ und $U_A \cap U_x = \emptyset$. (Auch Trennungsaxiom \vocab[Trennungsaxiom!$T_3$]{$T_3$} genannt). \\
+    \begin{minipage}{\textwidth}
+        \centering
+        \begin{minipage}{0.7\textwidth}
+        \centering
+        \incfig{regular-space}
+        \end{minipage}
+    \end{minipage}
 \end{definition}
 
-Klar: $T_4 \implies T_3$
+\begin{remark}
+    Klarerweise gilt $T_4 \implies T_3$, d.h. jeder normale Raum ist auch regulär. Hierzu benötigen wir nur, dass Punkte in $T_4$-Räumen abgeschlossen sind, aber das folgt mit \autoref{thm:hausdorff-impliziert-t1}, bzw. damit, dass wir bereits $T_4 \implies T_2 \implies T_1$ wissen.
+\end{remark}
+\begin{figure}[ht]
+    \centering
+    \label{fig:regular-space}
+\end{figure}
 
 
 \section{Kompaktheit}
