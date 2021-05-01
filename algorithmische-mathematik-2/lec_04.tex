@@ -1,7 +1,7 @@
 \lecture{4}{Mi 21 Apr 2021 10:15}{}
 \subsection{Zufallsvariablen}
 Wir werden Funktionen der Ergenisse betrachten:
-\begin{definition}
+\begin{definition}[Diskeret Zufallsvariable]\label{def:diskrete-zufallsvariable}
     Sei $(\Omega, \mathcal{F}, \mathbb{P})$ ein Wahrscheinlichkeitsraum. Eine \vocab{diskrete Zufallsvariable} ist eine \underline{messbare} Abbildung
     \[
     X : \Omega \longrightarrow \mathcal{S}
@@ -33,7 +33,6 @@ Wir werden Funktionen der Ergenisse betrachten:
          p_{X}(s) := \mathbb{P}
     .\] 
 \end{definition}
-
 \begin{example}[Werfen von $n$ Münzen]
     Betrachte folgende Situation:
     \begin{itemize}
@@ -76,13 +75,31 @@ Wir werden Funktionen der Ergenisse betrachten:
         p_Y(k) = \frac{1}{2^n} \abs{\left \{\omega \mid  w_1 + \ldots + \omega_n = k\right\} } = \frac{\binom{n}{k}}{2^n}
     .\] 
     Diese Verteilung sieht wie folgt aus: \\
-    TODO: Binomialverteilung \\
-    Diese sind Sonderfälle der \vocab{Bernoulliverteilung} und der \vocab{Binomialverteilung}  
+    \begin{minipage}{\textwidth}
+        \centering
+\begin{tikzpicture}[
+    declare function={binom(\k,\n,\p)=\n!/(\k!*(\n-\k)!)*\p^\k*(1-\p)^(\n-\k);}
+]
+\begin{axis}[
+    samples at={0,...,20},
+    yticklabel style={
+        /pgf/number format/fixed,
+        /pgf/number format/fixed zerofill,
+        /pgf/number format/precision=2
+    },
+    ybar=0pt, bar width=1
+]
+\addplot [fill=orange, fill opacity=0.5] {binom(x,20,0.5)};
+\end{axis}
+\end{tikzpicture}
+\captionof{figure}{Massenfunktion $p_Y(k)$}
+    \end{minipage} \\
+    Diese sind Sonderfälle der Bernoulliverteilung und der Binomialverteilung
     \end{enumerate}
 \end{example}
 
 \subsubsection{Die Bernoulli-Verteilung}
-\begin{definition}
+\begin{definition}[Bernoulli-Verteilung]\label{def:bernoulli-verteilung}
     Sei $p\in [0,1]$ gegeben. Die Wahrscheinlichkeitverteilung auf $\left \{0,1\right\} $ mit Massenfunktion
     \[
         p(k) = \begin{cases}
@@ -132,7 +149,7 @@ Also ist $X \sim \Ber\left( \frac{n}{n+m} \right) $
 \end{example}
 
 \subsubsection{Die Binomial-Verteilung}
-\begin{definition}
+\begin{definition}[Binomial-Verteilung]\label{def:binomial-verteilung}
     Seien $n\in \N$ und $p\in [0,1]$ gegeben. Die Wahrscheinlichkeitverteilung auf $\left \{0,1,\ldots,n\right\} $ mit Massenfunktion
     \[
         p(k) = \binom{n}{k}p^k(1-p)^{n-k}
@@ -173,7 +190,7 @@ Also ist $X \sim \Ber\left( \frac{n}{n+m} \right) $
 \begin{remark}
 Wir haben hier den Begriff der \vocab{Unabhängigkeit} genutzt, den wir nun genauer kennenlernen wollen.
 \end{remark}
-\begin{definition}[Unabhängige Ereignisse]
+\begin{definition}[Unabhängige Ereignisse]\label{def:unabhängige-ereignisse}
     Sei $(\Omega, \mathcal{F}, \mathbb{P})$ ein Wahrscheinlichkeitsraum. Die Ereignisse $E_1,E_2,\ldots,E_n$ heißen \vocab{unabhängig}, falls
     \[
         \mathbb{P}(E_{i_1} \cap E_{i_2} \cap \ldots \cap E_{i_k}) = \prod_{l=1}^k \mathbb{P}(E_{i_l})
@@ -231,6 +248,7 @@ eine disjunkte Vereinigung, also erhalten wir
 \end{remark}
 \subsubsection{Die Poisson-Verteilung}
 Betrachte Ereignisse $E_1,\ldots,E_n$, die unabhängig sind und jeweils Wahrscheinlichkeit $p$ haben, einzutreten. \\
+\todo{Skizze einfügen}
 \begin{question}
 Was passiert wenn $n\gg 1$.
 \end{question}

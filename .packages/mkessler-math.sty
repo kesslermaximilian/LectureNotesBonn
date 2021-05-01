@@ -66,11 +66,11 @@
 \RequirePackage{mathtools}
 \RequirePackage{amsthm}
 \RequirePackage{amssymb}
-\RequirePackage{bm} % bold math symbols
 \RequirePackage{comment}
 \RequirePackage{soul}
 \RequirePackage{subfig}
-\usepackage{mathrsfs}
+\RequirePackage{latexsym}
+\RequirePackage{mathrsfs}
 \RequirePackage[shortlabels]{enumitem}
 \RequirePackage{imakeidx}
 \makeindex[columns=2, title = Stichwortverzeichnis, intoc]
@@ -137,6 +137,7 @@
 \def\thevocab{}
 \newcommand{\vocab}[2][\thevocab]{\renewcommand\thevocab{#2}\textbf{\color{blue} #2}\index{#1}}
 
+\newcommand{\emphasize}[1]{{\color{red} #1}}
 
 
 

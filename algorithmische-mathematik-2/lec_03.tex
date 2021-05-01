@@ -1,7 +1,8 @@
 \lecture{3}{Mo 19 Apr 2021 10:23}{Gleichverteilung, empirische Verteilung}
 Wir stellen fest, dass es im letzten Beispiel auch genügt hätte, $\mathbb{P}(\left \{k\right\} )$ für $k=1,\ldots,10$ anzugeben, das motiviert Folgendes:
-\begin{theorem}
+\begin{theorem}\label{thm:wahrscheinlichkeitsverteilungen-auf-abzaehlbaren-raeumen}
     \begin{enumerate}[label=\protect\circled{\alph*}]
+        Sei $\Omega$ abzählbar.
         \item Sei $p(\omega)\in [0,1], \omega\in \Omega$, sodass
             \[
                 \sum_{\omega\in \Omega}p(\omega) = 1
@@ -32,7 +33,8 @@ Wir stellen fest, dass es im letzten Beispiel auch genügt hätte, $\mathbb{P}(\
     mit einer beliebigen Abzählung $\omega_1,\omega_2, \ldots, \omega_k$ von $A$ eine wohldefinierte Summe der  $p(\omega)$. Es ist wichtig, dass hier $p(\omega) \geq 0$, sonst ist obiges nicht wohldefiniert.
 \end{remark}
 
-\begin{lemma}
+\begin{lemma}\label{lm:approximation-von-massen-durch-endliche-teilmengen}
+        Sei  $A$ abzählbar.
     \begin{enumerate}[label=\protect\circled{\alph*}]
         \item Sei $p(\omega) \in [0,1]$ für alle $\omega$. Dann ist
             \[
@@ -83,7 +85,7 @@ Wir stellen fest, dass es im letzten Beispiel auch genügt hätte, $\mathbb{P}(\
             und somit ist das Supremum der $P(F)$ für $F\subset A, \abs{F} <\infty$ durch $P(A)$ beschränkt. \\
             Für die letzte Behauptung sehen wir mit $A\subset B$ leicht, dass
             \[
-                P(A) = \sup_{\substack{F\subset A \\ \abs{F} <\infty} } P(F) \leq  \sup_{F\subset B \\ \abs{F} <\infty} = P(B)
+                P(A) = \sup_{\substack{F\subset A \\ \abs{F} <\infty} } P(F) \leq  \sup_{\substack{ F\subset B \\ \abs{F} <\infty}} = P(B)
             .\] 
         \item ($\sigma$-Additivität) Wir unterscheiden zwei Fälle:
             \begin{enumerate}[1)]
@@ -125,13 +127,13 @@ Wir stellen fest, dass es im letzten Beispiel auch genügt hätte, $\mathbb{P}(\
             \end{enumerate}
     \end{enumerate}
 \end{proof}
-\begin{proof}[Beweis von Satz 1.7]
+\begin{proof}[Beweis von \autoref{thm:wahrscheinlichkeitsverteilungen-auf-abzaehlbaren-raeumen}]
     \begin{enumerate}[label=\protect\circled{\alph*}]
         \item Es gilt
             \[
                 \sum_{\omega\in \Omega}p(\omega) = P(\Omega) = 1
             .\] 
-            nach Voraussetzung. Die $\sigma$-Additivität folgt nun aus Lemma 1.8. Deswegen ist $P(A)$ eine Wahrscheinlichkeitsverteilung.
+            nach Voraussetzung. Die $\sigma$-Additivität folgt nun aus \autoref{lm:approximation-von-massen-durch-endliche-teilmengen}. Deswegen ist $P(A)$ eine Wahrscheinlichkeitsverteilung.
         \item Da $P$ $\sigma$-additiv ist, ist $\forall A \subset \Omega$:
             \[
                 PA) = P\left(\bigcup_{\omega\in A} \left \{\omega\right\} \right) = \sum_{\omega\in A} P(\left \{\omega\right\} )
@@ -147,7 +149,7 @@ Die \vocab{Gleichverteilung} ist die Wahrscheinlichkeitverteilung, die ein unifr
 \[
     \forall \omega\in \Omega : p(w) = \mathbb{P}\left( \left \{\omega\right\}  \right) = \frac{1}{\abs{\Omega} }
 .\] 
-Aus Satz 7 folgt dann bereits, dass $\forall A\subset \Omega\colon$
+Aus \autoref{thm:wahrscheinlichkeitsverteilungen-auf-abzaehlbaren-raeumen} folgt dann bereits, dass $\forall A\subset \Omega\colon$
 \[
     \mathbb{P}(A) = \sum_{\omega\in A} p(\omega) = \frac{\abs{A} }{\abs{\Omega} }
 .\] 
@@ -178,21 +180,26 @@ Aus Satz 7 folgt dann bereits, dass $\forall A\subset \Omega\colon$
             \end{itemize}
     \end{enumerate}
 \end{example}
-\begin{exercise}
+\begin{example}
     Sei $N$ die Anzahl von Karten eines Kartenspiels, die  \underline{gut gemischt} sind, d.h. jede Reihenfolge ist gleich wahrscheinlich. 
     \begin{enumerate}[(1)]
         \item Was ist die Wahrscheinlichkeit, dass die $k$-te Karte auf der $l$. Stelle ist? D.h, was ist:
              \[
                  \mathbb{P}(\left \{\omega\in \mathfrak{S}_n \mid  \omega(k) = l\right\} )
             .\]
+            \begin{solution}
+                
             Es ergibt sich
             \[
                 \mathbb{P}(\left \{\omega\in \mathfrak{S}_n \mid  \omega(k) = l\right\} ) = \frac{\abs{\left \{\omega\in \mathfrak{S}_n \mid  \omega(k) = l\right\} } }{\abs{\Omega} } = \frac{(n-1)!}{n!} = \frac{1}{n}
             .\] 
+            \end{solution}
         \item Was ist die Wahrscheinlichkeit, dass eine Karte 'auf ihrer Stelle' ist, dh.
             \[
                 \mathbb{P}(\left \{\omega \mid  \exists k \colon \omega(k) = k\right\} )
             .\] 
+            \begin{solution}
+                
             Definiere die Ereignisse $A_k := \left \{\omega(k) = k\right\} $. Diese sind nicht disjunkt für verschiedene $k$. Es ergibt sich:
             \begin{equation}
                 \begin{split}
@@ -205,24 +212,35 @@ Aus Satz 7 folgt dann bereits, dass $\forall A\subset \Omega\colon$
                 \end{split}
             \end{equation}
             Für $n\to \infty$ geht das gegen $1-\frac{1}{e}\in (0,1)$ .
+            \end{solution}
     \end{enumerate}
-\end{exercise}
+\end{example}
+\begin{remark*}
+    Wir verwenden hier die Exponentialreihe, d.h.
+    \[
+e^x := \exp (x) := \sum_{k=0}^{\infty} \frac{x^k}{k!}
+    .\] 
+    konvergiert absolut und auf ganz $\R$, insbesondere für $x=-1$ gegen  $\frac{1}{e}$
+\end{remark*}
 \subsection{Die empirische Verteilung}
 Diese wird aus den Beobachtungen definiert.
+\begin{definition*}[Empirische Verteilung]\label{def:empirische-verteilung}
 Seien $x_1,x_2,\ldots,x_n \in \Omega$ $n$ Beobachtungen. Setze
  \[
      N(A) := \abs{\left \{k\in \left \{1,\ldots,n\right\} \mid  x_k \in A\right\} } 
 .\] 
-Dazu setzen wir
+Denn definiert
 \[
     \mathbb{P}(A) = \frac{N(A)}{n}
 .\] 
-, die \vocab{empirische Häufigkeit} von $A$.  $\mathbb{P}$ ist die \vocab{empirische Verteilung}.  
+die \vocab{empirische Häufigkeit} von $A$. $\mathbb{P}$ nennen wir die \vocab{empirische Verteilung}. Zudem ist
 \[
     p(\omega) = \frac{N(\left \{\omega\right\} )}{n}
 .\] 
-ist die \vocab{relative Häufigkeit} von $\omega\in \Omega$.
+die \vocab{relative Häufigkeit} von $\omega\in \Omega$.
+\end{definition*}
 
 \begin{example}
     Die empirische Verteilung von $n$ Zufallswürfeln eines Würfels wird gegeben durch $x_1,\ldots,x_n \in \left \{1,\ldots,6\right\} $. Die Plots für $p_k := \frac{N(k)}{n}$ für verschieden $n$ sehen wie folgt aus:
 \end{example}
+    \todo{Plots einfügen}

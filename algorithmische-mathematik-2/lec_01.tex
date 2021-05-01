@@ -18,7 +18,7 @@
 \section*{Einleitung}
 In der Vorlesung werden wir sehen:
 \begin{description}
-    \item[Teil 1: Diskrete Stochastik]%
+    \item[Teil 1: Diskrete Stochastik]
         \begin{itemize}
             \item Zufallsvariablen
             \item Bedingte Wahrscheinlichkeiten
@@ -84,19 +84,37 @@ OBdA setzen wir $Z(0) = 0$. \\
     (0,1,0) & \text{wenn Würfel}=3 \\
     (0,-1,0) & \text{wenn Würfel}=4 \\
     (0,0,1) & \text{wenn Würfel}=5 \\
-    (0,0,-1) & \text{wenn Würfel}=6 \\
-
+    (0,0,-1) & \text{wenn Würfel}=6
 \end{cases}
 .\] 
 
 \begin{question}
-    Welche Fragen können wir mit solch einem System nun beantworten? Was pasiert, wenn $n\gg 1$.
+    Welche Fragen können wir mit solch einem System nun beantworten? Was pasiert, wenn $n\gg 1$?
 \end{question}
 \begin{enumerate}[\protect\circled{\alph*}]
     \item Typischerweise erhalten wir $\abs{Z(n)} =  O(\sqrt{n}) $ 
-    \item Wenn wir die Frequenz von $[Z(n)]_i$ betrachten, sehen wir typischerweise: \\
-        (Füge Graph mit grober Binomialverteilung ein)\\
-        Für $n\gg 1$ sieht diese Verteilung dann ungefähr wie die Gaussglocke aus. \\
+    \item Wenn wir die Frequenz von $[Z(n)]_i$ betrachten, (d.h. bei welcher Koordinate in Richtung $i$ befinden wir uns nach  $n$ Würfen) sehen wir typischerweise: 
+        \begin{figure}[h]
+            \centering
+\begin{tikzpicture}[
+    declare function={binom(\k,\n,\p)=\n!/(\k!*(\n-\k)!)*\p^\k*(1-\p)^(\n-\k);}
+]
+\begin{axis}[
+    samples at={-15,...,15},
+    yticklabel style={
+        /pgf/number format/fixed,
+        /pgf/number format/fixed zerofill,
+        /pgf/number format/precision=2
+    },
+    ybar=0pt, bar width=1
+]
+\addplot [fill=orange, fill opacity=0.5] {binom(x+30,60,0.5)}; \addlegendentry{$[Z(n)]_i$}
+    \addplot[draw=red,thick,smooth] {1/(sqrt(30*pi)) *exp(-1/30*x^2)}; \addlegendentry{\text{Gaussglocke}}
+\end{axis}
+\end{tikzpicture}
+\caption{Binomialverteilung und Gaussglocke}
+\end{figure}
+Für $n\gg 1$ sieht diese Verteilung dann ungefähr wie die Gaussglocke aus. \\
 \end{enumerate}
 \underline{Skalierung:} Wir setzen nun
 \[
@@ -104,32 +122,34 @@ OBdA setzen wir $Z(0) = 0$. \\
 .\] 
 und dies ist dann die Brownsche Bewegung.
 
+Nun möchten wir Vorhersagen treffen können:
 \begin{question}
-    \begin{itemize}
-        \item Ist $Z(n)$ in einer gegebenen Menge  $A$? \\
-    -> Im Allgemeinen kann man das nicht mit 'Ja' oder 'Nein' beantworten.
-\item Wenn man $Z(n)$ beobachtet, wie häufig wird  $Z(n)$ in  $A$ sein?\\
-    -> Diese Frage lässt sich mit einer Zahl $\in [0,1]$ beantworten.
-    \end{itemize}
+        Ist $Z(n)$ in einer gegebenen Menge  $A$?
 \end{question}
+Das kann man (im Allgemeinen) nicht einfach mit 'Ja' oder 'Nein' beantworten. Stattdessen müssen wir fragen:
+\begin{question}
+Wenn man $Z(n)$ beobachtet, wie häufig wird  $Z(n)$ in  $A$ sein?
+\end{question}
+Diese Frage lässt sich mit einer Zahl $\in [0,1]$ beantworten.
 
 \subsection{Ereignisse und Wahrscheinlichkeiten}
 Wir benötigen 3 Grundelemente:
 \begin{enumerate}[(1)]
     \item Die Menge $\Omega$ von möglichen \vocab{Ergebnissen}. die Elemente von $\Omega$ heißen auch  \vocab{Elementarereignisse}.
-    \item Die Menge $\mathcal{F}$ der \vocab{Ereignisse}. Ein Ereignis  $E$ ist eine Eigenschaft, die an einer Teilmenge von $G\subset \Omega$ assoziiert ist: $ω\in G \iff $ Eigenschaft $E$ ist erfüllt.
+    \item Die Menge $\mathcal{F}$ der \vocab{Ereignisse}. Ein Ereignis  $E$ ist eine Eigenschaft, die mit einer Teilmenge $G\subset \Omega$ assoziiert ist: $ω\in G \iff $ Eigenschaft $E$ ist erfüllt.
     \item Eine \vocab{Wahrscheinlichkeitsverteilung (auch W-maß)}:
         \[
             \mathbb{P}: \mathcal{F} \to  [0,1]
         .\] 
 \end{enumerate}
-\begin{remark}
+\begin{remark*}
     Wir werden noch sehen, dass gewisse Dinge für unsere Begriffe erfüllt sein müssen, dazu aber später mehr.
-\end{remark}
+\end{remark*}
+
 \begin{example}
     Eine Urne hat 12 nummerierte Kugeln (von 1 bis 12).
     \begin{enumerate}[(1)]
-        \item Das \underline{Zufallsexperiment} besteht daraus, dass wir eine Kugel aus der Urne ziehen und die Zahl notieren, die wir sehen. D.h.
+        \item Das \vocab{Zufallsexperiment} besteht daraus, dass wir eine Kugel aus der Urne ziehen und die Zahl notieren, die wir sehen. D.h.
             \[
             \Omega = \left \{1,\ldots,12\right\} 
             .\] 
@@ -137,9 +157,9 @@ Wir benötigen 3 Grundelemente:
         \item Mögliche Ereignisse sind z.B:
             \begin{equation}
                 \begin{split}
-                    A &= \text{"Die Zahl ist gerade} \\
-                    B&= \text{"Die Zahl ist }\leq 5 \\
-                    C &= \text{"Die Zahl ist 8}
+                    A &= \text{'Die Zahl ist gerade'} \\
+                    B&= \text{'Die Zahl ist }\leq 5 \text{'}\\
+                    C &= \text{'Die Zahl ist 8'}
                 \end{split}
             \end{equation}
             Die assoziierten Mengen sind dann
@@ -154,7 +174,7 @@ Wir benötigen 3 Grundelemente:
             \[
                 \forall G\in \mathcal{F}: \mathbb{P}(G) = \frac{\abs{G}}{\abs{\Omega} }
             .\] 
-            Wir erhalten als
+            Wir erhalten nun die Wahrscheinlichkeiten
             \[
                 \mathbb{P}(A) = \frac{6}{12}=\frac{1}{2} \qquad \mathbb{P}(B) = \frac{5}{12} \qquad \mathbb{P}(C) = \frac{1}{12}
             .\] 

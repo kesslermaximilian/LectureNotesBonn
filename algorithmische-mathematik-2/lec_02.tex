@@ -9,30 +9,33 @@ A^{c} := \Omega \setminus A
 .\] 
 , das \vocab{Komplement von $A$}, bzw. das \vocab{Gegenereignis} von $A$ ebenfalls in  $\mathcal{F}$  sein. Aus den beiden vorherigen Eigenschaften folgt bereits, dass
 \[
-    A \cup = (A^{c} \cap B^{c})^{c}
+    A \cup B= (A^{c} \cap B^{c})^{c}
 .\] 
-ebenfalls in $\mathcal{F}$ sein wird. Eine Menge $\mathcal{F}$ mit solchen Eigenschaften heißt \vocab{Algebra}, d.h. wir fordern von $\mathcal{F}$, dass es sich um eine solche Algebra handelt.  \\
-Seien nun $A,B(A_i)_{i\in I}$  Ereignisse, wobei $I$ endlich oder abzählbar sei. Dann notieren wir folgendermaßen
+ebenfalls in $\mathcal{F}$ sein wird. \\
+Eine Menge $\mathcal{F}$ mit solchen Eigenschaften heißt \vocab{Algebra}.
+\begin{notation}
+Seien nun $A,B$ und $(A_i)_{i\in I}$  Ereignisse, wobei $I$ endlich oder abzählbar sei. Dann notieren wir die folgenden Ereignisse:
 \begin{enumerate}[label=\protect\circled{\alph*}]
-\item \underline{$A \cup B$ :} $ω\in A \cup B \iff  ω\in A \lor ω\in B$, d.h. $A\cup B$ tritt ein, genau dann, wenn  $A$ eintritt oder  $B$ eintritt 
-    \item  $\bigcup_{i \in  I} A_i$: $ω\in \bigcup_{i \in  I} A_i$, wenn es ein $i\in I$ gibt, sodass $\omega \in A_i$
-    \item  \underline{$A \cap B$:} $\omega\in A \cap B \iff  $ A \underline{und} B treten ein.
-    \item $\bigcap_{i \in I} A_i$:  $\omega\in \bigcap_{i \in I}A_i \iff \forall i \in I \colon$ $A_i$ tritt ein.
-\item $A = \emptyset$ ist das Ereignis, das  \underline{nie} eintritt. \\
-    $A = \Omega$ ist das Ereignis, dass \underline{immer} eintritt.
+    \item \emphasize{$A \cup B$} : $ω\in A \cup B \iff  ω\in A \lor ω\in B$, d.h. $A\cup B$ tritt ein, genau dann, wenn  $A$ eintritt oder  $B$ eintritt.
+        \item  \emphasize{$\bigcup_{i \in  I} A_i$}: $ω\in \bigcup_{i \in  I} A_i$, wenn es ein $i\in I$ gibt, sodass $\omega \in A_i$
+    \item  \emphasize{$A \cap B$}: $\omega\in A \cap B \iff  $ A \underline{und} B treten ein.
+        \item \emphasize{$\bigcap_{i \in I} A_i$}: $\omega\in \bigcap_{i \in I}A_i \iff \forall i \in I \colon$ $A_i$ tritt ein.
+            \item \emphasize{$A = \emptyset$} ist das Ereignis, das  \underline{nie} eintritt. \\
+                \emphasize{$A = \Omega$} ist das Ereignis, dass \underline{immer} eintritt.
 \end{enumerate}
+\end{notation}
 
-\begin{definition}
-    Sei $\mathcal{F}$ eine nicht leere Menge von Teilmengen von $\Omega$ mit den Eigenschaften:
+\begin{definition}[$\sigma$-Algebra]\label{def:sigma-algebra}
+    Eine  \vocab{$\sigma$-Algebra} ist eine nicht leere Menge $\mathcal{F}$ von Teilmengen von $\Omega$ mit den Eigenschaften:
     \begin{enumerate}[label=\protect\circled{\alph*}]
         \item $\Omega \in \mathcal{F}$
         \item $\forall A\in \mathcal{F} \colon A^{c}\in \mathcal{F}$.
         \item Falls $(A_i)_{i \in I}\in \mathcal{F}$, dann auch $\bigcup_{i=1} ^{\infty}A_i \in \mathcal{F}$
     \end{enumerate}
-    Dann nennen wir $\mathcal{F}$ eine \vocab{$\sigma$-Algebra} und das Paar $\Omega, \mathcal{F})$ einen \vocab{Messraum}. 
+    Wir nennen $(\Omega,\mathcal{F})$ dann einen \vocab{Messraum}. 
 \end{definition}
 
-\begin{lemma}
+\begin{lemma}\label{lm:weitere-eigenschaften-einer-sigma-algebra}
     Sei $\mathcal{F}$ eine $\sigma$-Algebra, dann ist:
     \begin{enumerate}[label=\protect\circled{\alph*}]
         \item $\emptyset\in \mathcal{F}$
@@ -48,30 +51,36 @@ Seien nun $A,B(A_i)_{i\in I}$  Ereignisse, wobei $I$ endlich oder abzählbar sei
     \end{enumerate}
 \end{proof}
 
-Wir haben nun $(\Omega, \mathcal{F})$ näher untersucht, es fehlt nun noch $\mathbb{P}$. \\
+Wir haben nun $(\Omega, \mathcal{F})$ näher untersucht, es fehlt nun noch $\mathbb{P}$. 
+\begin{question}
+    Welche Eigenschaften soll $\mathbb{P}$ (das Wahrscheinlichkeitsmaß bzw. die Wahrscheinlichkeitsverteilung) besitzen?
+\end{question}
 Seien $A,B \in \mathcal{F}$ mit $A\cap B = \emptyset$, d.h. $A$ und $B$ können nicht gleichzeitig eintreten. Dann fordern wir
 \[
     \mathbb{P}(A \cap B) = \mathbb{P}(A) + \mathbb{P}(B) \quad \text{(endliche Additivität)}
 .\] 
 Dazu wollen wir, dass $\Omega \in \mathcal{F}$ immer eintritt, d.h. $\mathbb{P}(\Omega) = 1 \equiv  100\%$ (Normierung).
 
-\begin{definition}
-    Sei $(\Omega, \mathcal{F})$ ein Messraum. Eine Abbildung $\mathbb{P} : \mathcal{F} \to  \R_+$ ist eine \vocab{Wahrscheinlichkeitsverteilung auf $(\Omega, \mathcal{F})$}, falls
+\begin{definition}[Wahrscheinlichkeitsverteilung]\label{def:wahrscheinlichkeitsverteilung}
+Sei $(\Omega, \mathcal{F})$ ein Messraum. Eine Abbildung $\mathbb{P} : \mathcal{F} \to  \R_+$ ist eine \vocab{Wahrscheinlichkeitsverteilung} auf $(\Omega, \mathcal{F})$, falls
     \begin{enumerate}[(1)]
         \item $\mathbb{P}(\Omega) = 1$
-        \item $(A_i)_{i \in I}\in \mathcal{F}$ mit $A_i \cap A_j = \emptyset$ für $i\neq j$, dann ist:
+        \item Sind $(A_i)_{i \in I}\in \mathcal{F}$ paarweise disjunkt, so ist:
             \[
                 \mathbb{P}\left( \bigcup_{i=1}^{\infty}A_i \right) = \sum_{i=1}^{\infty} \mathbb{P}(A_i) \quad (\sigma\text{-Additivität})
             .\] 
     \end{enumerate}
 \end{definition}
+\begin{remark*}
+    Die Definition macht implizit Gebrauch davon, dass die linke Seite überhaupt definiert ist. Dies folgt jedochdaraus, dass $\mathcal{F}$ eine $\sigma$-Algebra ist.
+\end{remark*}
 
-\begin{definition}
+\begin{definition}[Wahrscheinlichkeitsraum]\label{def:wahrscheinlichkeitsraum}
     Ein \vocab{Wahrscheinlichkeitsraum $(\Omega, \mathcal{F},\mathbb{P})$} besteht aus einer Menge $\Omega$, einer  $\sigma$-Algebra $F\subset \mathbb{P}\mathcal{(\Omega)}$ und einem Wahrschenilichkeitsmass $\mathbb{P}$ auf $(\Omega, \mathcal{F})$ 
 \end{definition}
 
 
-\begin{lemma}
+\begin{lemma}\label{lm:weitere-eigenschaften-eines-wahrscheinlichkeitsraums}
     Sei $(\Omega, \mathcal{F}, \mathbb{P})$ ein Wahrscheinlichkeitsraum. Dann ist
 \begin{enumerate}[label=\protect\circled{\alph*}]
     \item $\mathbb{P}(\emptyset)=0$ 
@@ -80,21 +89,24 @@ Dazu wollen wir, dass $\Omega \in \mathcal{F}$ immer eintritt, d.h. $\mathbb{P}(
             \mathbb{P}(A\cup B ) = \mathbb{P}(A) + \mathbb{P}(B)
         .\] 
     \item      $\forall A,B\in \mathcal{F}$ mit $A\subset B$ ist 
-        \begin{equation}
+        \begin{equation*}
             \begin{split}
-        \mathbb{P}(B) = \mathbb{P}(A) + \mathbb{P}(B \setminus A)  \\
-                \mathbb{P}(A^{c}) = 1 - \mathbb{P}(A) \\
-                \mathbb{P}(A) \leq  \mathbb{P}(B) \leq  1
+                \mathbb{P}(B) &= \mathbb{P}(A) + \mathbb{P}(B \setminus A)  \\
+                \mathbb{P}(A^{c}) &= 1 - \mathbb{P}(A) \\
+                \mathbb{P}(A) &\leq  \mathbb{P}(B) \leq  1
             \end{split}
-        \end{equation}
+        \end{equation*}
     \item $\forall A,B \in \mathcal{F}$ ist
-        \begin{equation}
+        \begin{equation*}
             \begin{split}
                 \mathbb{P}(A \cup B) &= \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A\cap B) \\
                                      &\leq  \mathbb{P}(A) + \mathbb{P}(B)
             \end{split}
-        \end{equation}
-    \item Wenn $A_n $
+        \end{equation*}
+    \item Wenn $A_n \nearrow A$ ,d.h. $A_1\subset A_2\subset \ldots$ mit $\bigcup_{i =1}^{\infty} A_i = A$ (monotone Konvergenz von Mengen), oder $A_n \searrow A$ (d.h.  $A_1\supset A_2 \supset \ldots$ mit $\bigcap_{i=1}^{\infty} A_i = A $ ), so ist
+        \[
+            \lim_{n \to \infty} \mathbb{P}(A_n) = \mathbb{P}\left( \lim_{n \to \infty} A_n \right)  = \mathbb{P}(A)
+        .\] 
 \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -105,13 +117,13 @@ Dazu wollen wir, dass $\Omega \in \mathcal{F}$ immer eintritt, d.h. $\mathbb{P}(
             .\] 
             subtrahieren von $\mathbb{P}(\Omega) =1$ liefert dann $\mathbb{P}(\emptyset) = 0$.
         \item Sei $A \cap B = \emptyset$, dann ist:
-            \begin{equation}
+            \begin{equation*}
                 \begin{split}
                     \mathbb{P}(A\cup B ) &= \mathbb{P}(A \cup B \cup \emptyset \cup \emptyset \cup \ldots) \\
                                          &\stackrel{σ-\text{Additivität}}{=} \mathbb{P}(A) + \mathbb{P}(B) + \mathbb{P}(\emptyset) + \mathbb{P}(\emptyset) + \ldots \\
                                          &= \mathbb{P}(A) + \mathbb{P}(B)
                 \end{split}
-            \end{equation}
+            \end{equation*}
         \item Sei $A\subset B$. Dann ist $B = A \cup (B \setminus A)$ eine disjunkte Vereinigung, also erhalten wir
             \[
                 \mathbb{P}(B) = \mathbb{P}(A) + \underbrace{\mathbb{P}(B \setminus A)}_{\geq 0} \geq  \mathbb{P}(A)
@@ -129,7 +141,7 @@ Dazu wollen wir, dass $\Omega \in \mathcal{F}$ immer eintritt, d.h. $\mathbb{P}(
         \item Übung
     \end{enumerate}
 \end{proof}
-\begin{corollary}[Einschluss-Ausschluss-Prinzip]
+\begin{corollary}[Einschluss-Ausschluss-Prinzip]\label{cor:einschluss-ausschluss-prinzip}
     Seien $A_1,\ldots,A_n \in \mathcal{F}$. Dann gilt
     \[
         \mathbb{P}(A_1 \cup \ldots \cup A_n) = \sum_{k=1}^{n} (-1)^{k-1} \sum_{1\leq i_1<i_2<\ldots<i_k \leq n} \mathbb{P}(A_{i_1} \cap A_{i_2} \cap \ldots \cap A_{i_k})
@@ -176,8 +188,9 @@ Dazu wollen wir, dass $\Omega \in \mathcal{F}$ immer eintritt, d.h. $\mathbb{P}(
         \mathbb{P}(\emptyset) = 0 \qquad \mathbb{P}(K) = p, \qquad \mathbb{P}(Z) = \mathbb{P}(K^{c}) = 1-p \qquad \mathbb{P}(\left \{Z,K\right\} ) = \mathbb{P}(\Omega) = 1
     .\] 
 \end{example}
-
-Was müssen wir fordern, sodass es ein wohldefiniertes $\mathbb{P}\mathbb{P}$ auf $\mathcal{P}(\Omega)$ gibt?.
+\begin{question}[Charakterisierung von diskreter Wahrscheinlichkeit]
+Was müssen wir fordern, sodass $\mathbb{P}$ auf $\mathcal{P}(\Omega)$ gibt?.
+\end{question}
 \begin{example}
     $\Omega = \left \{1,2,\ldots,10\right\}$ würde genügen, da dann $\abs{\mathcal{P}(\Omega)}= 2^{\abs{\Omega} }=2^{10} = 1024 $
     endlich (diskret) ist.

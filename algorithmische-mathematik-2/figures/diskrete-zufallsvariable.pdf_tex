@@ -55,7 +55,7 @@
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{diskrete-zufallsvariable.pdf}}%
     \put(0.14822706,0.45786139){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\text{Messraum } (\Omega,F)$\end{tabular}}}}%
-    \put(0.6630565,0.45672302){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\color{green!50!} \text{Messraum } (\mathcal{S}, \tilde{F} = \mathcal{P}(\mathcal{S}))$\end{tabular}}}}%
+    \put(0.60651442,0.45672302){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\color{green!40!black} \text{Messraum } (\mathcal{S}, \tilde{F} = \mathcal{P}(\mathcal{S}))$\end{tabular}}}}%
     \put(0.22346088,0.29710445){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega$\end{tabular}}}}%
     \put(0.04607399,0.29932175){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Omega$\end{tabular}}}}%
     \put(0.22903387,0.05180359){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbb{P}$\end{tabular}}}}%
@@ -63,7 +63,9 @@
     \put(0.88204683,0.26796417){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathcal{S}$\end{tabular}}}}%
     \put(0.74677448,0.27271379){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X(\omega)$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{diskrete-zufallsvariable.pdf}}%
-    \put(0.15031102,0.23362509){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X^{-1}(s)$\end{tabular}}}}%
+    \put(0.15031102,0.23362509){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\color{green!40!black}X^{-1}(s)$\end{tabular}}}}%
     \put(0.74117184,0.19251563){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$s$\end{tabular}}}}%
+    \put(0.47118543,0.05683479){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\color{green!40!black} X ^{-1}$\end{tabular}}}}%
+    \put(0.48774134,0.39358457){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\color{blue} X$\end{tabular}}}}%
   \end{picture}%
 \endgroup%
