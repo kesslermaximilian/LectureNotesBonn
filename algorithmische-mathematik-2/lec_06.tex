@@ -1,0 +1,256 @@
+\lecture{6}{Sa 01 Mai 2021 09:18}{Erwartungswert von Zufallsvariablen,Varianz}
+\begin{example}[Zufallsvariablen mit Werten in $\left\{0,1\right\}$]
+    Sei $A\in \mathcal{F}$ ein Ereignis, und definiere $X$ durch
+     \[
+         X(\omega) := \mathbbm{1}_{A}(\omega) = \begin{cases}
+             1 & \text{falls } \omega\in A \\
+             0 & \text{sonst}
+         \end{cases}
+    .\] 
+    Dann ist
+    \[
+        \mathbb{E}(X) = \mathbb{P}(A)
+    .\] 
+    \begin{proof}
+        Nach Definition ist
+        \begin{equation*}
+            \begin{split}
+                \mathbb{E}(X) &= 0\cdot  \mathbb{P}(X= 0) + 1\cdot \mathbb{P}(X=1)  \\
+                              &= \mathbb{P}(A)
+            \end{split}
+        \end{equation*}
+    \end{proof}
+\end{example}
+\begin{example}[Binomialverteilung]
+    Sei $X\sim \Bin(n,p)$. Wir wollen zeigen, dass $\mathbb{E}(X) = p\cdot n$.
+    \begin{proof}
+        \[
+            \mathbb{E}(X) = \sum_{k=0}^n \underbrace{\binom{n}{k} p^k (1-p)^{n-k}}_{=\mathbb{P}(X=k)} \cdot k
+        .\]
+        Wir wollen nun allgemein, in Anlehnung an die Binomialformel, den Wert von
+        \[
+            \sum_{k=0}^n \binom{n}{k} p^k q^{n-k}\cdot k
+        .\] 
+berechnen. Dazu stellen wir fest, dass
+\[
+    p\cdot \frac{d}{dp} \sum_{k=0}^n \binom{n}{k}p^{k} q^{n-k} = p\cdot \sum_{k=0}^n \binom{n}{k} p^{k-1}q^{n-k}\cdot k
+.\] 
+unser Ausdruck ist, also suchen wir
+\[
+    p\cdot \frac{d}{dp}(p+q)^n = p\cdot (p+q)^{n-1}\cdot n
+.\] 
+Nun können wir $q=1-p$ auf beiden Seiten setzen, und somit erhalten wir
+ \[
+     \mathbb{E}(X) = p\cdot (p+(1-p))^{n-1}\cdot n = p\cdot n
+.\] 
+wie gewünscht.
+    \end{proof}
+\end{example}
+\begin{example}[Poisson-Verteilung]
+    Sei $X\sim \Poi(λ)$, dann behaupten wir, dass $\mathbb{E}(X) = λ$.
+    \begin{proof}
+        \[
+            \begin{split}
+                \mathbb{E}(X) &= \sum_{k\geq 0} \frac{e^{-λ} λ^k}{k!} \cdot k \\
+            &=e^{-λ} \cdot λ\cdot \underbrace{\sum_{k\geq 1} \frac{λ^{k-1}}{(k-1)!}}_{\to e^{λ}} \\
+            &= λ
+            \end{split}
+        .\] 
+    \end{proof}
+\end{example}
+\begin{remark*}
+    Diese Feststellung passt auch zur Konstruktion der Poisson-Verteilung.
+\end{remark*}
+\begin{remark}
+    Oft kann man definieren
+    \[
+        \psi (z) := \sum_{k\in \mathcal{S}} p(k) z^k
+    .\] 
+    Dann werden wir uns 
+    \[
+        \frac{d}{dz}\psi (z) = \sum_{k\in \mathcal{S}} p(k)kz^{k-1}
+    \]
+    ansehen und bei $z=1$ evaluieren, um  $\mathbb{E}(X)$ zu berechnen. \\
+    Das ganze funktioniert, wenn $X$ durch  $\mathbb{P}(X=k) = p(k)$ verteilt ist und natürlich nur, wenn alle Objekte wohldefiniert sind.
+\end{remark}
+Wir wollen auch Funktionen von $X$ betrachten.
+\begin{figure}[ht]
+    \centering
+    \incfig{funktionen-von-zufallsvariablen}
+    \caption{Funktionen von Zufallsvariablen}
+    \label{fig:funktionen-von-zufallsvariablen}
+\end{figure}
+\begin{theorem}[Transformationssatz]\label{thm:transformationssatz}
+    Sei $X:\Omega\to \mathcal{S}$ eine diskrete Zufallsvariable und $f: \mathcal{S} \to  \R$ eine Funktion. Dann ist $f(X) := f \circ  X \colon \Omega\to \R$ auch eine Zufallsvariable und 
+    \[
+        \mathbb{E}(f(X)) = \sum_{s\in \mathcal{S}} f(s) \mathbb{P}(X=s)
+    .\] 
+    falls die Summe wohldefiniert ist.
+\end{theorem}
+\begin{proof}
+    Messbarkeit: Es ist
+    \[
+        \left \{f(X) = a\right\}  = \bigcup_{s\in f^{-1}(a)} \left \{X=s\right\}  \in \mathcal{F}
+    .\] 
+    weil
+    \[
+        \left \{\omega \mid  X(\omega) = s\right\} \in \mathcal{F}
+    .\] 
+    da $X$ eine Zufallsvariable ist. Nach Definition ist nun
+    \begin{equation*}
+        \begin{split}
+            \mathbb{E}(f(X)) &= \sum_{a\in f(\mathcal{S})} a\cdot \mathbb{P}(f(X)=a) \\
+                             &= \sum_{a\in f(\mathcal{S})} a\cdot \mathbb{P}\left( \bigcup_{s\in f^{-1}(a)} \left \{X=s\right\}   \right) \\
+                             &=\sum_{a\in f(\mathcal{S})} a\cdot \sum_{s\in f^{-1}(a)} \mathbb{P}(X=s) \\
+                             &=\sum_{a\in f(\mathcal{S})} \sum_{s\in f^{-1}(a)} f(s) \mathbb{P}(X=s) \\
+                             &= \sum_{s\in \mathcal{S}} f(s) \mathbb{P}(X=s)
+        \end{split}
+    \end{equation*}
+\end{proof}
+
+Der Erwartungswert ist {\sc Linear} und {\sc Monoton}:
+\begin{theorem}[Linearität des Erwartungswerts]\label{thm:linearität-des-erwartungswerts}
+    Seien $X_1:\Omega\to \mathcal{S}_1$ und $X_2:\Omega\to \mathcal{S}_2$ zwei diskrete Zufallsvariablen auf $(\Omega,\mathcal{F},\mathbb{P})$. Falls $\mathbb{E}(\abs{X_1})<\infty $ und $\mathbb{E}(\abs{X_2})<\infty $, dann ist $\forall λ_1,λ_2\in \R$:
+    \[
+        \mathbb{E}(λ_1 X_1 + λ_2 X_2) = λ_1 \mathbb{E}(X_1) + λ_2 \mathbb{E}(X_2)
+    .\] 
+\end{theorem}
+\begin{proof}
+    Es ist
+    \[
+        \abs{\mathbb{E}(λ_1 X_1 + λ_2 X_2)} \leq  \abs{λ_1} \mathbb{E}(\abs{X_1}) + \abs{λ_2} \mathbb{E}(\abs{X_2}) < \infty     
+    .\] 
+    (nach Dreiecksungleichung). Nun rechnen wir aus:
+    \[
+        \mathbb{E}(λ_1 X_1 + λ_2 X_2) = \mathbb{E}(f(X_1,X_2))
+    .\] 
+    wobei $f(x_1,x_2) = λ_1 x_1 + λ_2x_2$, also
+    \[
+        \begin{split}
+        &= \sum_{\substack{ x_1\in \mathcal{S}_1\\x_2\in \mathcal{S}_2}}f(x_1,x_2) \mathbb{P}(X_1=x_1 \cap X_2 = x_2) \\
+        &= λ_1 \sum_{x\in \mathcal{S}_1} x_i \sum_{x_2\in \mathcal{S}_2} \mathbb{P}(X_1=x_1 \cap X_2 = x_2) + \text{sym.} \\
+        &= λ_1 \sum_{x\in \mathcal{S}_1} x_i \mathbb{P}(X_1 = x_1) + \text{sym.} \\
+        &=λ_1\mathbb{E}(X_1) + λ_2 \mathbb{E}(X_2)
+        \end{split}
+    .\] 
+\end{proof}
+\begin{corollary}[Monotonie des Erwartungswerts]\label{cor:erwartungswert-ist-monoton}
+    Seien $X_1,X_2$ reellwertige Zufallsvariablen mit $X_1(\omega) \leq  X_2(\omega)$ für alle $w\in \Omega$. Dann ist
+    \[
+        \mathbb{E}(X_1) \leq  \mathbb{E}(X_2)
+    .\] 
+\end{corollary}
+\begin{proof}
+    Da $X_2(\omega) - X_1(\omega) \geq 0$, also ist trivialerweise $\mathbb{E}(X_2-X_1)\geq 0$. Wegen der Linearität ist nun $\mathbb{E}(X_2-X_1) = \mathbb{E}(X_2) - \mathbb{E}(X_1)$ und somit sind wir fertig.
+\end{proof}
+\begin{example}
+    Seien $A_1,A_2,\ldots,A_n \in \mathcal{F}$ mit $\mathbb{P}(A_i) = p$ für alle $i$. Sei  $X_i := \mathbbm{1}$. Dann ist $X_i \sim \Ber(p)$ und $\mathbb{E}(X_i) = p$. Sei
+    \[
+    \mathcal{S}_n := \sum_{i=1}^n X_i
+    .\] 
+    Dann ist
+    \[
+        \mathbb{E}(\mathcal{S}_n) = \sum_{i=1}^n \mathbb{E}(X_i) = \sum_{i=1}^n p = np
+    .\] 
+    Das ist eine Verallgemeinerung des Falles, in dem  $A_1,\ldots,A_n$ unabhängig sind, weil dann $\mathcal{S}_n \sim  \Bin(n,p)$.
+\end{example}
+Oft interessieren wir uns auch dafür, wie weit eine Zufallsvariable von ihrem Ursprungswert entfernt ist. Ist z.B. $\mathbb{P}(X=k) = \mathbb{P}(X=-k)$, so ist $\mathbb{E}(X) = 0$, so sind immer noch folgende Fälle denkbar:
+\todo{Plot einfügen}
+\begin{question}
+    Wie weit sind die Werte vom $X$ Mittelwert ($\mathbb{E}(X)$) entfernt?
+\end{question}
+Die Antwort liefert die sogenannte Varianz $\Var(X)$:
+\begin{definition}[Varianz]\label{def:varianz}
+    Sei $X$ eine reellwertige Zufallsvariable auf  $(\Omega,\mathcal{F},\mathbb{P}\mathbb{P})$ mit $\mathbb{E}(X^2)<\infty$. Die \vocab{Varianz} von $X$ ist durch
+    \[
+        \Var(X) := \mathbb{E}((X-\mathbb{E}(X))^2)
+    .\] 
+    definiert.
+\end{definition}
+Eigenschaften der Varianz:
+\begin{enumerate}[label=\protect\circled{\alph*}]
+    \item Klarerweies ist $\Var(X) \geq 0$. Dazu $\Var(X) = 0 \iff  \mathbb{P}(X = \mathbb{E}(X)) = 1$, d.h. $X(\omega)$ ist eine Konstante.
+        \item Linearität impliziert, dass
+            \[
+                \Var(X) = \mathbb{E}(X^2) - \left( \mathbb{E}(X) \right) ^2 \qquad \Var(λ\cdot X) = λ^2\Var(X)
+            .\] 
+        \item Die Varianz hängt nicht von dem Erwartungswert ab, d.h.
+            \[
+                \Var(X) = \Var(X+a) \qquad \forall a\in \R
+            .\] 
+\end{enumerate}
+\begin{example}
+    \begin{enumerate}[label=\protect\circled{\alph*}]
+        \item Ist $X\sim \Ber(p)$, so ist $\Var(X) = p(1-p)$.
+        \item Ist  $X\sim \Bin(n,p)$, so ist $\Var(X) = n\cdot p(1-p)$.
+        \item Ist $X\sim \Poi(λ)$, so ist $\Var(X) = λ$
+        \item Ist  $X\sim \Geo(q)$, so ist $\Var(X) = \frac{q}{(1-q)^2}$
+    \end{enumerate}
+\end{example}
+\begin{proof}
+    \begin{enumerate}[label=\protect\circled{\alph*}]
+        \item Wir benutzen $\Var(X) = \mathbb{E}(X^2) - (\mathbb{E}(X))^2$. Nun ist
+            \[
+                \mathbb{E}(X^2) = 0^2 \mathbb{P}(X=0) + 1^2\mathbb{P}(X=1) = p
+            .\] 
+            und somit $\Var(X) = p-p^2 = p(1-p)$
+        \item Sei $X\sim \Bin(n,p)$, wir wissen bereits $\mathbb{E}(X) = p\cdot n$. Nun ist
+            \[
+                \mathbb{E}(X^2) = \sum_{k=0}^n \binom{n}{k} p^k (1-p)^{n-k} k^2
+            .\]
+            Wir benutznen den gleichen Trick wie vorher nochmal, indem wir feststellen:
+            \[
+                \begin{split}
+                    \sum_{k=0}^n \binom{n}{k} p^k q^{n-k}k^2 &= \sum_{k=0}^n \binom{n}{k} p^{k} q^{n-k} k (k-1) + \sum_{k=0}^n \binom{n}{k} p^{k} q^{n-k}k \\
+                                                             &= p^2 \frac{d^2}{dp^2} (p+q)^n + p \frac{d}{dp} (p+q)^n \\
+                                                             &= p^2(p+q)^{n-1}n(n-1) + p(p+q)^{n-1}\cdot n
+                \end{split}
+            .\] 
+            Einsetzen von $q=1-p$ liefert nun:
+             \[
+                 \mathbb{E}(X^2) = p^2n(n-1) + p\cdot n = p^2n^2 - p^2n + pn
+            .\] 
+            Damit erhalten wir schlussendlich
+            \[
+                \Var(X) = p^2n^2 - p^2n + pn - (pn)^2 = np(1-p)
+            .\] 
+        \item Ist $X\sim \Poi(λ)$, so wissen wir beretis $\mathbb{E}(X) = λ$. Nun ist
+            \[
+                \begin{split}
+                    \mathbb{E}(X^2) &= \sum_{k\geq 0} k^2 \cdot  \frac{e^{-λ}λ^k}{k!} = \sum_{k\geq 0}k(k-1)\frac{e^{-λ}λ^k}{k!} + \sum_{k\geq 0} k \frac{e^{-λ}λ^k}{k!} \\
+                &=λ^2e^{-λ}\sum_{k\geq 2} \frac{λ^{k-2}}{(k-2)!} + e^{-λ}λ\sum_{k\geq 1}\frac{λ^{k-1}}{(k-1)!} \\
+                &= λ^2+λ
+                \end{split}
+            .\] 
+            Und damit ergibt sich für die Varianz:
+            \[
+                \Var(X) = λ^2 + λ - (λ) ^2 = λ
+            .\] 
+    \end{enumerate}
+\end{proof}
+\begin{remark}
+    Sei $X:\Omega\to \mathcal{S}$ eine Zufallsvariable. Wir beobachten $X$  $n$ mal. Der Erwartungswert des Empirischen Masses ist genau der empirische Mittelwert, also für Beobachtungen $x_1,\ldots,x_n$ genau
+    \[
+    m_n := \frac{1}{n} \sum_{i=1}^n x_i
+    .\] 
+\end{remark}
+\begin{example}[Anwendung]
+    Ein alternativer Beweis des \nameref{cor:einschluss-ausschluss-prinzip}s lässt sich mit der Linearität des erwartungswerts führen:\\
+Es ist
+\[
+    \begin{split}
+    \mathbb{P}((A_1 \cup \ldots\cup A_n)^{c}) &= \mathbb{P}(A_1^{c}\cap \ldots\cap A_n^{c}) \\
+                                              &= E(1_{A^{c}\cap \ldots\cap A_n^{c}}) = (1_{A_1^{c}}\cdot \ldots\cdot 1_{A_n^{c}}) \\
+                                              &= E((1-1_A)\cdot \ldots\cdot (1-1_{A_n})) \\
+                                              &\stackrel{\text{Linearität}}{=} \sum_{k=0}^n (-1)^k \sum_{1\leq i_1<\ldots<i_k\leq n} \mathbb{E}(1_{A_{i_1}}\cdot \ldots\cdot 1_{A_{i_k}}) \\
+                                              &=\sum_{k=0}^n (-1)^k \sum_{1\leq i_1<\ldots<i_k\leq n}\mathbb{P}(A_{i_1}\cap \ldots\cap A_{i_k})
+    \end{split}
+.\] 
+Komplementbildung liefert nun das gewünschte Ergebnis:
+\[
+    \begin{split}
+    \mathbb{P}(A_1\cup \ldots\cup A_n) &= 1-\mathbb{P}((A_1\cap \ldots\cap A_n)^{c}) \\
+                                       &= \sum_{k=1}^n (-1)^{k-1} \sum_{1\leq i_1<\ldots<i_k\leq n} \mathbb{P}(A_{i_1}\cap \ldots\cap A_{i_k})
+    \end{split}
+.\] 
+\end{example}
