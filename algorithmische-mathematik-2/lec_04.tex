@@ -247,36 +247,88 @@ eine disjunkte Vereinigung, also erhalten wir
     wie zu zeigen war.
 \end{remark}
 \subsubsection{Die Poisson-Verteilung}
-Betrachte Ereignisse $E_1,\ldots,E_n$, die unabhängig sind und jeweils Wahrscheinlichkeit $p$ haben, einzutreten. \\
-\todo{Skizze einfügen}
+Betrachte Ereignisse $E_1,\ldots,E_n$, die unabhängig voneinander sind und jeweils Wahrscheinlichkeit $p$ haben, einzutreten. Wir skizzieren dies mit \tikz \fill[blue] circle (2pt); für ein eingetretenes Ereignis und \tikz \fill[red] circle (2pt); für das Nicht-Eintreten des entsprechenden Ereignisses \\
+\begin{tikzpicture}
+    \draw[->] (0,0) -- (8,0) node[anchor=west] {$k$ (Zeit)};
+    \foreach \x in {1,2,3,5,6} {
+        \fill[red] (\x,0) node[anchor = north,black]{$\x$} node[anchor=south] {$E_{\x}$} circle (2pt);
+    }
+    \foreach \x in {0,4,7} {
+        \fill[blue] (\x,0) node[anchor = north,black]{$\x$} node[anchor=south] {$E_{\x}$} circle (2pt);
+    }
+\end{tikzpicture}
 \begin{question}
-Was passiert wenn $n\gg 1$.
+    Was passiert wenn $n\gg 1$, d.h. wie viele Erfolge werden wir (ca.) unter diesen $n$ Ereignissen haben?
 \end{question}
-Typischerweise haben wir dann $\mathcal{O}(pn)$ Erfolge in $E_1,\ldots,E_n$.
+Typischerweise haben wir dann $\mathcal{O}(pn)$ Erfolge in $E_1,\ldots,E_n$. Die Erfolgswahrscheinlichkeit $p$ hänge nun von  $n$ ab, d.h.  $p = p(n)$. Wir wollen den Erwartungswert  $p\cdot n$ festhalten und $n$ groß werden lassen, d.h. sei  $λ\in (0,\infty)$ so, dass 
+\[
+    \lim_{n \to \infty} p(n)\cdot n = λ
+.\] 
+Wir können uns das ganze so vorstellen, dass wir in einem Zeitintervall von $1$ erwarten, dass $λ$ Ereignisse eintreten, und wir nun mit einem kleinen Zeitintervall $\delta = \frac{1}{n}$ für große $n$ das kontinuierliche Zeitintervall durch  $n$ unabhängige Ereignisse ersetzen, die jeweils mit Wahrscheinlichkeit  $\frac{λ}{n}$ eintreten, und uns nun fragen, wie wahrscheinliche es also ist, dass wir eine gewisse Anzahl an Ereignissen im Zeitintervall beobachten. \\
+\noindent\begin{tikzpicture}
+    \draw[->] (0,1) --(8.5,1) node[anchor=west] {$k$ (Zeit)};
+    \foreach \x in {1,...,8} {
+        \draw (\x,0.94) -- (\x,1.06);
+    }
+    \foreach \y in {1,3,7,8} {
+        \fill (\y,1) circle (1.5pt);
+    }
+    \draw[->] (0,0.5) --(8.5,0.5) node[anchor=west] {$k$ (Zeit)};
+    \foreach \x in {1,...,24} {
+        \draw (\x/3,0.44) -- (\x/3,0.56);
+    }
+    \foreach \y in {1,5,7,9,14,17,18,20,23} {
+        \fill (\y/3,0.5) circle (1.5pt);
+    }
+    \draw[->] (0,0) --(8.5,0) node[anchor=west] {$k$ (Zeit)};
+    \foreach \x in {1,...,80} {
+        \draw (\x/10,-2pt) -- (\x/10,2pt);
+    }
+    \foreach \y in {3,7,13,17,45,46,53,67,71} {
+        \fill (\y/10,0) circle (1pt);
+    }
+\draw [
+    thick,
+    decoration={
+        brace,
+        mirror,
+        raise=0.5cm
+    },
+    decorate
+    ] (4,0) -- (7,0) node[midway,yshift=-23pt]{A};
+\draw[->] (-0.5,1) -- (-0.5, 0) node[anchor=north] {$n \gg 0$};
+\end{tikzpicture} \\
+Es stellt sich also
+\begin{question}
+    Was ist für ein Zeitintervall $A$ die Wahrscheinlichkeit, dass wir im Intervall genau  $k$ Ereignisse beobachten, d.h. was ist
+     \[
+         \lim_{n\to \infty} \mathbb{P}(\exists k \text{ Erfolge in }  A)
+    .\] 
+    ?
+\end{question}
 \begin{itemize}
     \item Sei $p=p(n)$ sodass  $\lim_{n \to \infty} pn = λ \in (0,\infty)$
     \item Wähle Zeiteinheit $\delta = \frac{1}{n}$ 
 \end{itemize}
-Wir fragen uns nun: Was ist
-\[
-    \lim_{n \to \infty} \mathbb{P}(\exists k \text{ Erfolge } in A)
-.\] 
-für ein Intervall $A\subset [0,1]$
-
-\begin{theorem}
+Die Antwort gibt folgender
+\begin{theorem}\label{thm:poisson-verteilung-als-limes-von-binomialverteilungen}
     Sei $λ\in (0,\infty)$. Dann ist
     \[
-        \lim_{n \to \infty} \Bin(n, \frac{λ}{n}) (k) = \frac{e^{-λ}λ^k}{k!}
+        \lim_{n \to \infty} \Bin\left(n, \frac{λ}{n}\right) (k) = \frac{e^{-λ}λ^k}{k!}
     .\] 
     für $k=0,1,2,\ldots$
 \end{theorem}
 \begin{proof}
     Sei $k$ fest. Dann ist
-     \[
-         \Bin\left(n, \frac{λ}{n}\right)(k) = \frac{n!}{(n-k)^ k!} \left(\frac{λ}{n}\right)^k \left( 1-\frac{λ}{n} \right)^{n-k} = \frac{n(n-1)\cdot \ldots(n-k+1)}{n^k} \frac{λ^k}{k!} \left( 1-\frac{λ}{n} \right) ^{n} \left( 1-\frac{λ}{n} \right) ^{-k}
-    .\] 
+    \begin{equation}
+        \begin{split}
+            \Bin\left(n, \frac{λ}{n}\right)(k) &= \frac{n!}{(n-k)^ k!} \left(\frac{λ}{n}\right)^k \left( 1-\frac{λ}{n} \right)^{n-k} \\
+                                               &= \underbrace{\frac{n(n-1)\cdot \ldots(n-k+1)}{n^k}}_{\to 1} \frac{λ^k}{k!} \underbrace{\left( 1-\frac{λ}{n} \right) ^{n}}_{\to e^{-λ}} \underbrace{\left( 1-\frac{λ}{n} \right) ^{-k}}_{\to (1-0)^{-k} =1} \\
+                                               &= \frac{λ^k}{k!} \cdot e^{-λ}
+        \end{split}
+    \end{equation}
 \end{proof}
-\begin{definition}
+\begin{definition}[Poisson-Verteilung]\label{def:poisson-verteilung}
     Sei $λ\in (0,\infty)$ fest. Die Wahrscheinlichkeitsverteilung auf $\left \{0,1,2,\ldots\right\} $ mit Massenfunktion
     \[
         p(k) = \frac{e^{-λ λ^k}}{k!}
