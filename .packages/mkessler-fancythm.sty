@@ -122,6 +122,18 @@
     bottomline=false
 }
 
+\mdfdefinestyle{mdblackmargin}{%
+	skipabove=\fancythmskipabove,
+	linecolor=black,
+	linewidth=\fancythmlinewidth,
+    leftmargin = 0cm,
+    rightmargin=0cm,
+	backgroundcolor=violet!20!gray!20,
+    rightline=false,
+    topline=false,
+    bottomline=false
+}
+
 \declaretheoremstyle[
 	mdframed={style=mdredmargin},
 	postheadspace={0.3em},
@@ -166,6 +178,11 @@
     notefont=\mdseries
 ]{thmredmarginbluefill}
 
+\declaretheoremstyle[
+	mdframed={style=mdblackmargin},
+	postheadspace={0.3em},
+    notefont=\mdseries
+]{thmblackmargin}
 
 %Theorem
 \global\declaretheorem[style=thmredmargin,name=\ifenglish Theorem\else Satz\fi,numberwithin=section, refname = {Satz,Sätze}, Refname = {Satz,Sätze}]{theorem}
@@ -232,6 +249,9 @@
 \declaretheorem[style=thmyellowmargin,name=\ifenglish Remark*\else Bemerkung*\fi,numbered=no]{remark*}
 
 
+%Question
+\declaretheorem[style = thmblackmargin, name=\ifenglish Question\else Frage\fi,numbered=no]{question}
+
 \newtcolorbox{recap}{before skip = 0.5cm, after skip = 0.5cm, enhanced, sharp corners = all, colback = white, colframe = gray, toprule=0pt, bottomrule=0pt, leftrule=0pt,rightrule=0pt, overlay = {
         \draw[gray, line width = 2pt] (frame.north west) -- ++(0.5cm, 0pt);
         \draw[gray, line width=2pt] (frame.south east) -- ++(-0.5cm, 0pt);
@@ -256,7 +276,6 @@
 \newtheorem*{note}{\ifenglish Note\else Anmerkung\fi}
 \newtheorem*{warning}{\color{red}\ifenglish Warning \else Warnung\fi}
 \newtheorem*{goal}{\ifenglish Goal \else Ziel\fi}
-\newtheorem*{question}{\ifenglish Question \else Frage\fi}
 \newtheorem*{problem}{Problem}
 \newtheorem*{info}{Information}
 \newtheorem*{moral}{Moral}
