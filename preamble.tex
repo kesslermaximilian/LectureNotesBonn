@@ -1,19 +1,20 @@
-%Mainly taken from
+%Preamble Mainly taken from
 %https://github.com/gillescastel/university-setup/blob/master/preamble.tex
 %but edited for own purposes
 
 %%%%%OWN
 %%Own basic packages
 \usepackage{mkessler-math}
-\usepackage{mkessler-fancythm}
+\usepackage[lecturenumbers]{mkessler-fancythm} %%Options available:
+%lecturenumbers -> number theorems like in the lecture (default, even it ommited)
+%truenumbers -> number all theorems (corollarys, lemmata, etc), even if not numbered in the lecture
+%numberall -> number examples, notation, remark, ... as well (and all theorems etc).
+%Choose as you like
 \usepackage{mkessler-operators}
 
 \usepackage{datetime}
 \date{{\normalfont Mitschrift}\\{\sc Maximilian Keßler}}
 
-\usepackage{wrapfig}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.7}
 %%%%%%Preamble from Gilles Castel
 % Some basic packages
 \usepackage{url}
