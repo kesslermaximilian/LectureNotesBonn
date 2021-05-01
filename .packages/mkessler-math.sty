@@ -75,6 +75,11 @@
 \RequirePackage{imakeidx}
 \makeindex[columns=2, title = Stichwortverzeichnis, intoc]
 \RequirePackage[colorlinks]{hyperref} % Hyperlinks
+\RequirePackage{wrapfig}
+
+%Pgfplots
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.7}
 
 % TIKZ
 \RequirePackage{tikz}
@@ -128,10 +133,9 @@
  \makebox[0pt][c]{\raisebox{.1em}{\small!}}%
  \makebox[0pt][c]{\color{red}\Large$\bigtriangleup$}}}%
 
-% Add \contra symbol to denote contradiction
+ % Add \contra symbol to denote contradiction (from Gilles Castell)
 \usepackage{stmaryrd} % for \lightning
 \newcommand\contra{\scalebox{1.5}{$\lightning$}}
-
 
 %Emphasize \vocabulary
 \def\thevocab{}
@@ -140,11 +144,7 @@
 \newcommand{\emphasize}[1]{{\color{red} #1}}
 
 
-
-%%%%math operators
-
 %Short commands for \mathbb{}
-
 \newcommand{\C}{\ensuremath{\mathbb{C}}}
 \newcommand{\F}{\ensuremath{\mathbb{F}}}
 \newcommand{\K}{\ensuremath{\mathbb{K}}}
@@ -180,7 +180,7 @@
 
 \RequirePackage{IEEEtrantools}
 
-\usepackage[ngerman,ruled,vlined]{algorithm2e}
+\RequirePackage[ngerman,ruled,vlined]{algorithm2e}
 
 
 
