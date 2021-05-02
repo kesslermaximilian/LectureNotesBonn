@@ -167,18 +167,42 @@ Die Antwort liefert die sogenannte Varianz $\Var(X)$:
     .\] 
     definiert.
 \end{definition}
-Eigenschaften der Varianz:
-\begin{enumerate}[label=\protect\circled{\alph*}]
-    \item Klarerweies ist $\Var(X) \geq 0$. Dazu $\Var(X) = 0 \iff  \mathbb{P}(X = \mathbb{E}(X)) = 1$, d.h. $X(\omega)$ ist eine Konstante.
-        \item Linearität impliziert, dass
+\begin{lemma**}[Eigenschaften der Varianz]\label{lm:eigenschaften-der-varianz}
+    Es gilt folgendes:
+    \begin{enumerate}[i)]
+        \item $\Var(X)\geq 0$, und $\Var(X)=0 \iff \mathbb{P}(X=\mathbb{E} (X))=1$, d.h.  $X(\omega)$ ist in diesem Fall eine Konstante.
+            \item Es ist
+                \[
+                    \Var(X) = \mathbb{E}(X^2) - (\mathbb{E}(X))^2 \qquad \Var(λ\cdot X) = λ^2\Var(X
+                .\] 
+            \item Die Varianz hängt nicht vom Erwartungswert ab, d.h.
+                \[
+                    \Var(X) = \Var(X+a) \qquad \forall a\in \R
+                .\] 
+    \end{enumerate}
+\end{lemma**}
+\begin{proof*}
+    \begin{enumerate}[i)]
+        \item $\Var(X)\geq 0$ ist klar, weil Quadrate nichtnegativ sind, Gleichheit gilt, wenn $X = \mathbb{E}(X)$ für jedes $X$, also wenn  $\mathbb{P}(X = \mathbb{E}(X)) = 1$, und dann ist $X(\omega)$ konstant $\mathbb{E}(X)$.
+        \item Wir rechnen nach:
             \[
-                \Var(X) = \mathbb{E}(X^2) - \left( \mathbb{E}(X) \right) ^2 \qquad \Var(λ\cdot X) = λ^2\Var(X)
+                \begin{split}
+                    \mathbb{E}((X-\mathbb{E}(X))^2) &= \mathbb{E}(X^2-2X\mathbb{E}(X) + \mathbb{E}(X)^2) \\
+                                                    &= \mathbb{E}(X^2) - 2\mathbb{E}(X\mathbb{E}(X)) + \mathbb{E}(\mathbb{E}(X)^2) \\
+                                                    &= \mathbb{E}(X^2) - 2\mathbb{E}(X) \cdot \mathbb{E}(X) + \mathbb{E}(X)^2 \\
+                                                    &= \mathbb{E}(X^2) - \mathbb{E}(X)^2
+                \end{split}
             .\] 
-        \item Die Varianz hängt nicht von dem Erwartungswert ab, d.h.
+            Für die 2. Behauptung ist
             \[
-                \Var(X) = \Var(X+a) \qquad \forall a\in \R
+                \Var(λX) = \mathbb{E}((λX)^2) - \mathbb{E}(λX)^2 = \mathbb{E}(λ^2X^2) - (λ\mathbb{E}(X))^2 = λ^2\Var(X)
             .\] 
-\end{enumerate}
+        \item Es ist
+            \[
+                \Var(X+a) = \mathbb{E}((X+a-\mathbb{E}(X+a))^2) = \mathbb{E}((X-\mathbb{E}(X))^2) = \Var(X)
+            .\] 
+\end{enumerate}    
+\end{proof*}
 \begin{example}
     \begin{enumerate}[label=\protect\circled{\alph*}]
         \item Ist $X\sim \Ber(p)$, so ist $\Var(X) = p(1-p)$.
