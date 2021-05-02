@@ -76,9 +76,9 @@
     offen und somit ist $Y$ abgeschlossen.
 \end{proof}
 
-
+\begin{comment}
 \begin{example}['Gegenbeispiel' zu Satz \ref{thm:kompakte-menge-in-hausdorff-raum-ist-abgeschlossen}]
-    Sei $G$ die Gerade mit zwei Urpsrüngen: \\
+    Sei $G$ die \vocab{Gerade mit zwei Urpsrüngen}: \\
     Betrachte  $\R\cup \left \{0'\right\} $ mit $U$ Umgebung von  $a\in \R$ falls $\exists ε>0$ mit $(a-ε, a+ε)\subset U$ und $U$ Umgebung von  $0'$ und  $U$ Umgebung von  $0'$, falls  $\exists ε>0$ mit $(-ε,0 \cup (0,ε) \subset U$ und $0' \in U$. \\
     Wir können uns gewissermaßen  $0,0'$ gleichberechtigt vorstellen, nur dass die beiden Punkte verschieden sind. \\
     Dann ist  $[-1,1] \subset G$ kompakt (Übung!), aber nicht abegschlossen, da $0' \in G \setminus [-1,1]$ ist, dies aber keine Umgebung von $0'$ ist.
@@ -87,6 +87,48 @@
     \caption{Gerade mit 2 Ursprüngen}
     \end{figure}
 \end{example}
+\end{comment}
+
+\begin{example}['Gegenbeispiel' zu Satz \ref{thm:kompakte-menge-in-hausdorff-raum-ist-abgeschlossen}]
+    Sei $G$ die \vocab{Gerade mit zwei Urpsrüngen}: \\
+    Betrachte $G:=\R \cup  \left \{0'\right\} $ als Menge, und charakterisiere die Umgebungen folgendermaßen:
+    \begin{itemize}
+        \item Für einen Punkt $a\in \R$, d.h. $a\neq 0'$ ist $U$ eine Umgebung von  $a$ genau dann, wenn  $\exists ε>0$, sodass $(a-ε,a+ε)\subset U$. (das Intervall $(a-ε,a+ε)$ ist hier als Teilmenge von  $\R$ zu verstehen)
+        \item Für den Punkt $0'\not\in \R$ ist $U$ eine Umgebung von $a$ genau dann, wenn  $\exists ε>0$ mit $(-ε,0) \cup (0,ε)\subset U$.
+    \end{itemize}
+    Da offene Mengen genau diejenigen Mengen sind, die Umgebung all ihrer Punkte sind, haben wir damit die offenen Mengen von $G$ charakterisiert. \\
+    Wir können uns $G$ vorstellen als  $\R$, in dem der Ursprung durch zwei gleichberechtigte Ursprünge ersetzt worden ist, die beide (bis auf sich selbst) die gleichen Umgebungen besitzen, die aber nicht zwingend gegenseitig in ihren Umgebungen liegen, d.h. nicht 'nah' beieinander sind. \\
+    Dann ist $[-1,1]\subset \R\subset G$ kompakt (Übungsblatt 2, Aufgabe 3), wir behaupten, dass $[-1,1]$ jedoch nicht abgeschlossen ist in  $G$. Sonst wäre in der Tat  $G \setminus [-1,1]$ offen, und es ist $0' \in G\setminus [-1,1]$, aber es handelt sich nicht um eine Umgebung von $0'$, weil für kein  $ε$ die Intervalle  $(-ε,0)$ und  $(0,ε)$ in  $G\setminus [-1,1]$ liegen. \\
+\end{example}
+\begin{remark*}
+    Das Beispiel zeigt also, dass wir die Hausdorff-Bedingung in \autoref{thm:kompakte-menge-in-hausdorff-raum-ist-abgeschlossen} nicht fallen lassen können, d.h. es gibt nicht abgeschlossene, kompakte Mengen.
+\end{remark*}
+
+\begin{remark*}[Mehr zur Gerade mit 2 Ursprüngen]
+    Wir geben zwei weitere (äquivalente) Definitionen der Gerade mit 2 Ursprüngen, um so hoffentlich eine bessere Vorstellung zu ermöglichen:
+    \begin{enumerate}[i)]
+        \item Setze $G:= \R\setminus \left \{0\right\} \cup \left \{a,b\right\} $ als Mengen. Als Basis wählen wir
+            \begin{itemize}
+                \item Alle offenen Bälle aus $\R$, die nicht die $0$ enthalten.
+                \item Für jedes  $ε>0$ die Menge  $(-ε,0)\cup \left \{a\right\} \cup (0,ε)$
+                \item Für jedes $ε>0$ die Menge  $(-ε,0)\cup \left \{b\right\} \cup (0,ε)$
+            \end{itemize}
+        In diesem Fall können wir Homöomorphismen zu obiger Definition bauen, indem wir $0 \mapsto a$ und  $0' \mapsto b$ wählen, und alle andere Punkte kanonisch 'auf sich selbst' schicken.
+    \item  Wir können $G$ auch als Quotientenraum einer Teilmenge von  $\R$ auffassen. Betrachte hierzu $\R\times \left \{0,1\right\} \subset \R^2$ mit der Produkttopologie bzw. mit der Teilraumtopologie von $\R^2$ (diese beiden sind äquivalent, wie man sich leicht überlegt). Es handelt sich also um zwei parallele, voneinander getrennte Geraden. Nun identifizieren wir korrespondierende Punkte beider Geraden miteinander, allerdings nicht deren Ursprüngen. Wir erzeugen also die Äquivalenzrelation $\sim $ generiert durch $(x,0) \sim (x,1)$ für $x\neq 0$ und bilden bezüglich dieser Relation den Quotientenraum. Was wir erhalten, ist genau $G$. Indem wir mit  $G$ definiert wie in der Vorlesung die Abbildung von  $\R\times \left \{0,1\right\}$ nach $G$ definieren durch
+         \[
+             (a,b) \mapsto \begin{cases}
+                 a & \text{falls } a\neq 0 \\
+                 0 & \text{falls } (a,b) = (0,0) \\
+                 0' & \text{falls } (a,b) = (0,1)
+             \end{cases}
+        .\]
+        sehen wir schnell, dass diese über den Quotientenraum $\R\times \left \{0,1\right\} / \sim $ faktorisiert (universelle Eigenschaft!) und die entstehende Abbildung bijektiv und stetig ist. Dass es sich um einen Homöomorphismus handelt, sei hier nicht nachgerechnet sondern nur angemerkt.
+    \end{enumerate}
+    \begin{figure}[H]
+        \includegraphics[scale=0.4]{figures/line-with-2-origins.pdf}
+    \caption{Gerade mit 2 Ursprüngen als Quotientenraum von $\R\times \left \{0,1\right\} \subset \R^2$}
+    \end{figure}
+\end{remark*}
 
 Nun sind wir gewappnet für den
 \begin{proof}[Beweis von \autoref{thm:heine-borel} (\nameref{thm:heine-borel})]
