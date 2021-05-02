@@ -307,6 +307,8 @@
 \declaretheorem[style = thmblackmargin, name=\ifenglish Question*\else Frage*\fi,numbered=no]{question*}
 \fi
 
+%Proof (with asterisk)
+\newenvironment{proof*}[1][\ifenglish Proof\else Beweis\fi]{\begin{proof}[#1\emph{*}]}{\end{proof}}
 
 \newtcolorbox{recap}{before skip = 0.5cm, after skip = 0.5cm, enhanced, sharp corners = all, colback = white, colframe = gray, toprule=0pt, bottomrule=0pt, leftrule=0pt,rightrule=0pt, overlay = {
         \draw[gray, line width = 2pt] (frame.north west) -- ++(0.5cm, 0pt);
@@ -364,7 +366,9 @@
 }
 \makeatother
 
+%%Solution (for exercises)
 \newenvironment{solution}[1][]{\begin{proof}[\ifenglish{}Solution\else{}Lösung\fi{}#1]}{\end{proof}}
+
 
 \RequirePackage{algorithm2e}
 %Make algorithm2e numbering alike with theorems
