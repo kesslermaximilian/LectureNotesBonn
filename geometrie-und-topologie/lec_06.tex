@@ -232,14 +232,14 @@ in $X\times \left \{y\right\} $ offen.
     .\] 
     Dann ist dies eine Überdeckung von $X\times V_y$. Die $V_y$ bilden nun eine offene Überdeckung von  $Y$, also finden wir wieder eine endliche Teilüberdeckung durch  $V_{y_1}, \ldots, V_{y_n}$. Da wir aber die $X\times V_{y_i}$ jeweils endlich überdeckt haben, können wir nun auch $X\times Y$ endlich überdecken.
 \end{remark}
-\begin{definition*}[Produkt endlich vieler Mengen]\label{def:produkt-endlich-vieler-mengen}
+\begin{definition**}[Produkt endlich vieler Mengen]\label{def:produkt-endlich-vieler-mengen}
 Seien $X_1,\ldots,X_n$ topologische Räume. Dann definieren wir ihr Produkt rekursiv durch
 \[
     X_1\times \ldots\times X_n := (X_1\times \ldots\times X_{n-1})\times X_n
 .\] 
-\end{definition*}
+\end{definition**}
 
-\begin{lemma}
+\begin{lemma}[Basis des Produktes]\label{lm:basis-des-produktes-zweier-räume}
     Seien $X,Y$ topologische Räume mit Basen  $\mathcal{B}_X, \mathcal{B}_Y$. Dann ist
     \[
     \mathcal{B}_{X\times Y} := \left \{U\times V \mid  U\in \mathcal{B}_X, V\in \mathcal{B}_Y\right\} 
@@ -253,7 +253,7 @@ Seien $X_1,\ldots,X_n$ topologische Räume. Dann definieren wir ihr Produkt reku
 \begin{proof}
     Setze $\mathcal{B}_{X_i} = \mathcal{O}_{X_i}$.
 \end{proof}
-\begin{proof}
+\begin{proof}[Beweis von \autoref{lm:basis-des-produktes-zweier-räume}]
     Seien $W\in X, W'\subset Y$ offen. Dann existieren $U_i \in \mathcal{B}_X$ sowie $V_j \in \mathcal{B}_Y$ mit
     \[
     W = \bigcup_{i \in  I} U_i \qquad W' = \bigcup_{j\in J} V_j 
@@ -268,10 +268,28 @@ Seien $X_1,\ldots,X_n$ topologische Räume. Dann definieren wir ihr Produkt reku
     .\] 
     Umgekehrt ist klar, dass die $U_i\times V_j$ offen in der Produkttopologie sind.
 \end{proof}
+\begin{remark*}
+    Im Beweis wurden - der Einfachheit halber - manche Indexmengen  
+\end{remark*}
 
 \begin{remark*}
-    Eigentlich haben wir in obigem Beweis nur den Fall $n=2$ behandelt. Man verallgemeinert induktiv jedoch leicht (kanonisch) auf endlich viele Mengen.
+    Eigentlich haben wir \iflecturenumbers im Beweis des Korollars \else im Beweis von \autoref{cor:basis-endlicher-produkte} \fi die Aussage von \autoref{lm:basis-des-produktes-zweier-räume} für beliebig viele Räumen (endlich viele) benutzt. Man verallgemeinert das Lemma jedoch induktiv leicht auf endlich viele Räume:
 \end{remark*}
+\begin{proof*}[Beweis von \autoref{lm:basis-des-produktes-zweier-räume}]
+    Den Fall $n=2$ verwenden wir als Induktionsanfang, er wurde bereits gezeigt. Seien nun $X_1,\ldots,X_n$ mit Basen $\mathcal{B}_i$ gegeben, dann wissen wir per Induktionsannahme bereits, dass 
+    \[
+    \mathcal{B}_{X_1\times \ldots\times X_{n-1}} := \left \{U_1\times \ldots\times U_{n-1}\mid U_i \in \mathcal{B}_i\right\} 
+    .\] 
+    eine Basis von $X_1\times \ldots\times X_{n-1}$ ist. Zudem ist $\mathcal{B}_n$ eine Basis von $X_n$ und somit ist
+\[
+    \begin{split}
+        \mathcal{B}_{(X_1\times \ldots\times X_{n-1})\times X_n}:&= \left \{(U_1\times \ldots U_{n-1})\times U_n \mid  U_i \in \mathcal{B}_i\right\} \\
+                                                                 &=\left \{U_1\times \ldots\times U_n \mid  U_i \in \mathcal{B}_i\right\} \\
+                                                                 &=: \mathcal{B}_{X_1\times \ldots\times X_n}
+    \end{split}
+\]
+eine Basis von $(X_1\times \ldots X_{n-1})\times X_n = X_1\times \ldots\times X_n$ und der Induktionsschritt ist erbracht.
+\end{proof*}
 
 \begin{theorem}[Diagonaleigenschaft]\label{thm:raum-ist-hausdorff-gdw-diagonale-abgeschlossen}
     Sei $X$ ein topologischer Raum. Dann ist  $X$ Hausdorffsch, genau dann, wenn
