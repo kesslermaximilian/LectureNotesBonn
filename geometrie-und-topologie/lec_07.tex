@@ -1,0 +1,128 @@
+\lecture{7}{Di 04 Mai 2021 12:12}{}
+\begin{theorem}[Universelle Eigenschaft des Produkts]\label{thm:universelle-eigenschaft-des-produkts}
+    Seien $(X_i)_{i\in I}$ topologische Räume, $A$ ein topologischer Raum und seien $f_i : A \to  X_i$ Funktionen. Sei
+        \begin{equation*}
+        f: \left| \begin{array}{c c l} 
+        A & \longrightarrow & \prod_{i \in I} X_i \\
+        a & \longmapsto &  (f_i(a))_{i \in I}
+        \end{array} \right.
+    \end{equation*}
+    Dann ist $f$ stetig genau dann, wenn alle  $f_i$ stetig sind.
+\end{theorem}
+\begin{proof}
+    '$\implies$' Sei $j\in I$, setze
+        \begin{equation*}
+        pr_j: \left| \begin{array}{c c l} 
+        \prod_{i\in I}  & \longrightarrow & X_j \\
+        (x_i)_{i \in I} & \longmapsto &  x_j
+        \end{array} \right.
+    \end{equation*}
+    als Projektion auf die $j$-te Komponente.
+     \begin{claim}
+        $\pr_j$ ist stetig
+    \end{claim}
+    \begin{subproof}
+        Ist $U\subset X_j$ offen, dann ist $pr_j^{-1}(U) = U\times \prod_{i\neq j} X_i\in \mathcal{S}$ ein Element der Subbasis der Produkttopologie, also offen. Also ist $pr_j$ stetig.
+    \end{subproof}
+    Nun ist $f_j = pr_j \circ  f$ stetig als Verknüpfung stetiger Funktionen.
+    \begin{recap}
+        \emphasize{Verknüpfungen stetiger Funktionen sind stetig:}\\
+        Seien $f:X\to Y$ und $g:Y\to Z$ stetig, dann ist $g\circ  f : X \to  Z$ stetig.
+        \begin{proof}
+            Ist $U\subset Z$ offen, so ist
+            \[
+                (g \circ  f) ^{-1}(U) = f^{-1}(g^{-1}(U)) \subset X
+            .\] 
+            offen, indem wir zunächst $g$ stetig und dann  $f$ stetig verwenden.
+        \end{proof}
+    \end{recap}
+    '$\impliedby$' Es genügt zu zeigen, dass $f^{-1}(Y)\subset A$ offen ist für alle $Y\in \mathcal{S}$. Sei also solch ein $Y\in \mathcal{S}$ beliebig, dann ist dieses von der Form
+    \[
+    Y = U\times \prod_{i\neq j} X_i
+    .\] 
+    Dann ist $f^{-1}(Y) = f^{-1}_j(A)\subset A$ offen, da $f_j$ stetig ist.
+\end{proof}
+\begin{theorem}[Satz von Tychonoff]\label{thm:tychonoff}
+    Sei $(X_i)_{i \in I}$ eine Familie kompakter Räume. Dann ist $\prod _{i \in I} X_i$ kompakt.
+\end{theorem}
+\begin{proof}
+    Wir verwenden wieder den \nameref{thm:alexander} (\autoref{thm:alexander}). Sei $\mathcal{U}$ eine Überdeckung durch Elemente aus  $\mathcal{S}$. Sei $\mathcal{U}_j \subset \mathcal{U}$ gegeben durch die Elemente $V$ von  $\mathcal{U}$ der Form
+    \[
+    V = W \times \prod_{i\neq j} X_i \qquad \text{mit } W\subset X_j \text{ offen}
+    .\] 
+    Dann ist
+    \[
+    \mathcal{U} = \bigsqcup_{i \in  I} \mathcal{U}_j
+    .\] 
+    Ist nun
+    \[
+        \pr_i (\mathcal{U}_i)  = \left \{\pr_i(V) \mid  V\in \mathcal{U}_i\right\} 
+    .\] 
+    eine offene Überdeckung von $X_i$, so existiert - weil  $X_i$ kompakt - eine endliche Teilüberdeckung  $\pr_i(V_1)\cup \ldots\cup \pr_i(V_k)$ von $X_i$ mit  $V_j \in \mathcal{U}_i$. Dann ist $V_1,\ldots,V_k$ eine endliche Teilüberedckung von $\prod_{i \in I} X_i$. \\
+    Wir sind also fertig, außer im Fall \\
+    $\mathbb{A}$: $\pr_i(U_i)$ ist  \underline{keine} Überdeckung von $X_i$ für alle  $i\in I$.  \\
+    Dann finden wir $x_i \in X_i \setminus \bigcup_{V\in \mathcal{U}_i} \pr_i(V)$ für jedes $i\in I$. Dann ist aber der Punkt
+    \[
+        (x_i)_{i \in I}\in \prod_{i \in I}X_i
+    .\] 
+    nicht von $\mathcal{U}$ überdeckt: Ist $(x_ir_{i \in I} \in V\in \mathcal{U}$, dann gibt es $i\in I$ mit $V\in \mathcal{U}_i$, und daraus folgt bereits $x_i \in \pr_i(V)$, \contra.
+\end{proof}
+\begin{remark}
+    Eigentlich haben wir die Notation $\pr_j$ für die Projektion  $\prod _{i \in I}X_i \to  X_j$ eingeführt, manchmal schreiben wir aber auch einfach nur $p_j$.
+\end{remark}
+\begin{example}
+    \begin{enumerate}[a)]
+        \item Seien $X_1,\ldots,X_n$ diskrete Räume. Dann ist auch $\prod_{i \in I}X_i$ diskret.
+            \begin{proof}
+                Es ist
+                \[
+                    \left \{(x_1,\ldots,x_n)\right\}  = \left \{x_1\right\} \times \ldots\times \left \{x_n\right\} 
+                .\] 
+                Element der Produkttopologie, weil die $\left \{x_i\right\} \subset X_i$ offen sind. Also sind alle Punkte offen.
+            \end{proof}
+        \item Betrachte $\left \{0,2\right\} $ mit der diskreten Topologie. Dann ist
+            \[
+            \prod_{\N} \left \{0,2\right\} =: \left \{0,2\right\} ^{\N}
+            .\] 
+            kompakt nach dem \nameref{thm:tychonoff}. Dann ist $\prod_{\N} \left \{0,2\right\} $ aber nicht diskret, weil wir sonst die offene Überdeckung
+            \[
+            \prod_{\N} \left \{0,2\right\} = \bigcup_{x\in \left \{0,2\right\} ^{\N}}  \left \{x\right\} 
+            .\] 
+            hätten, die keine endliche Teilüberdeckung besitzt.
+    \end{enumerate}
+\end{example}
+\begin{theorem}\label{thm:produkte-von-Hausdorff-Räumen-sind-Hausdorff}
+    Sind alle $X_i$ Hausdorffsch, so auch  $\prod _{i \in I} X_i$.
+\end{theorem}
+\begin{proof}
+    Ist $(x_i)_{i \in I} \neq  (y_i)_{i \in I} \in  \prod _{i \in I}X_i$, dann gibt es $i\in I$ mit $x_i \neq  y_i$. Da $X_i$ Hausdorffsch ist, existieren  $U_i, V_i \subset X_i$ offen mit $x_i \in U_i, y_i \in V_i$ und $U_i \cap  V_i = \emptyset$. Dann sind aber beretis
+    \[
+    U_i \times  \prod_{i\neq j} X_j \qquad V_i \times \prod_{i\neq j} X_j
+    .\] 
+    zwei disjunkte, offene Umgebungen von $(x_i)_{i \in I}$ und $(y_i)_{i \in I}$.
+\end{proof}
+\begin{goal*}
+    Wir wollen uns im Folgenden Fragen, wann wir Räume in 'schöne' Räume einbetten können, wobei 'schön' für uns Kompakt + Hausdorff heißen soll.
+\end{goal*}
+
+\begin{definition}[Abschluss, Dichtheit] \label{def:abschluss-dichtheit}
+    Sei $X$ ein topologischer Raum und $Y\subset X$ eine Teilmenge.
+    \begin{enumerate}[1)]
+        \item Der \vocab{Abschluss} $\overline{Y}$ ist definiert als
+            \[
+            \overline{Y} := \bigcap_{\substack{Y\subset A \\ A\subset X \text{ abg.}} } A
+            .\] 
+            Als Schnitt abgeschlossener Mengen ist $\overline{Y}$ selbst abgeschlossen (wie der Name suggeriert).
+        \item  $Y$ ist \vocab{dicht} in $X$, falls  $\overline{Y} = X$.
+    \end{enumerate}
+\end{definition}
+\begin{definition}[Einbettung]\label{def:einbettung}
+    Sei $f:X\to Y$ stetig. Dann ist $f$ eine  \vocab{Einbettung}, falls $f: X \to  f(X)$ ein Homöomorphismus ist.
+\end{definition}
+\begin{definition}
+    Sei $ι: Y\hookrightarrow X$ eine Einbettung. Dann ist $X$ eine \vocab{Kompaktifizierung} von $Y$, falls
+    \begin{enumerate}[1)]
+        \item $X$ ist kompakt und Hausdorffsch.
+        \item  $ι(Y)\subset X$ ist dicht (in $X$).
+    \end{enumerate}
+\end{definition}
