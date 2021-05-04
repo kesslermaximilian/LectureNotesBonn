@@ -91,8 +91,12 @@
             hätten, die keine endliche Teilüberdeckung besitzt.
     \end{enumerate}
 \end{example}
+\begin{remark*}
+    Das Beispiel zeigt die wichtige Eigenschaft, dass \underline{nicht} (notwendigerweise) alle Mengen der Form $\prod_{i \in I}U_i$ für $U_i\subset X_i$ offen auch im Produkt $\prod_{i \in I}X_i$ offen sind.
+\end{remark*}
+
 \begin{theorem}\label{thm:produkte-von-Hausdorff-Räumen-sind-Hausdorff}
-    Sind alle $X_i$ Hausdorffsch, so auch  $\prod _{i \in I} X_i$.
+    Ist $\left \{X_i\right\} _{i \in I}$ eine Familie von Hausdorffräumen, so ist auch  $\prod _{i \in I} X_i$ Hausdorffsch.
 \end{theorem}
 \begin{proof}
     Ist $(x_i)_{i \in I} \neq  (y_i)_{i \in I} \in  \prod _{i \in I}X_i$, dann gibt es $i\in I$ mit $x_i \neq  y_i$. Da $X_i$ Hausdorffsch ist, existieren  $U_i, V_i \subset X_i$ offen mit $x_i \in U_i, y_i \in V_i$ und $U_i \cap  V_i = \emptyset$. Dann sind aber beretis
@@ -101,6 +105,7 @@
     .\] 
     zwei disjunkte, offene Umgebungen von $(x_i)_{i \in I}$ und $(y_i)_{i \in I}$.
 \end{proof}
+
 \begin{goal*}
     Wir wollen uns im Folgenden Fragen, wann wir Räume in 'schöne' Räume einbetten können, wobei 'schön' für uns Kompakt + Hausdorff heißen soll.
 \end{goal*}
@@ -108,21 +113,132 @@
 \begin{definition}[Abschluss, Dichtheit] \label{def:abschluss-dichtheit}
     Sei $X$ ein topologischer Raum und $Y\subset X$ eine Teilmenge.
     \begin{enumerate}[1)]
-        \item Der \vocab{Abschluss} $\overline{Y}$ ist definiert als
+        \item Der \vocab[Menge!Abschluss]{Abschluss} $\overline{Y}$ ist definiert als
             \[
             \overline{Y} := \bigcap_{\substack{Y\subset A \\ A\subset X \text{ abg.}} } A
             .\] 
             Als Schnitt abgeschlossener Mengen ist $\overline{Y}$ selbst abgeschlossen (wie der Name suggeriert).
-        \item  $Y$ ist \vocab{dicht} in $X$, falls  $\overline{Y} = X$.
+        \item  $Y$ ist \vocab[Menge!dicht]{dicht} in $X$, falls  $\overline{Y} = X$.
     \end{enumerate}
 \end{definition}
 \begin{definition}[Einbettung]\label{def:einbettung}
     Sei $f:X\to Y$ stetig. Dann ist $f$ eine  \vocab{Einbettung}, falls $f: X \to  f(X)$ ein Homöomorphismus ist.
 \end{definition}
-\begin{definition}
+\begin{definition}[Kompaktifizierung] \label{def:kompaktifizierung}
     Sei $ι: Y\hookrightarrow X$ eine Einbettung. Dann ist $X$ eine \vocab{Kompaktifizierung} von $Y$, falls
     \begin{enumerate}[1)]
         \item $X$ ist kompakt und Hausdorffsch.
         \item  $ι(Y)\subset X$ ist dicht (in $X$).
     \end{enumerate}
 \end{definition}
+\begin{definition}[Vollständige Regularität]\label{def:vollständig-regulär}
+    Ein topologischer Raum $X$ ist  \vocab[Topologischer Raum!vollständig regulär]{vollständig regulär}, falls
+    \begin{enumerate}[1)]
+        \item $X$ ist Hausdorffsch
+        \item  $\forall A\subset X$ abgeschlossen und $x\in X\setminus A$ existiert eine stetige Abbildung $f:X \to  [0,1]$, sodass $f(x) = 1$ und  $f\mid _A \equiv 0$
+    \end{enumerate}
+\end{definition}
+\begin{remark}
+    Jeder vollständig reguläre Raum ist regulär. Hierzu betrachte $f^{-1}\left( \left( \frac{1}{2},1 \right]  \right) $ sowie $f^{-1}\left( \left[ 0,\frac{1}{2}  \right)  \right) $. Diese sind offenbar disjunkt, offen, und Umgebungen von $x$ bzw.  $A$.
+\end{remark}
+\begin{lemma}\label{lm:teilraum-von-vollständig-regulärem-raum-ist-vollständig-regulär}
+    Ist $X$ vollständig regulär und  $Y\subset X$, dann ist auch $Y$ vollständig regulär.
+\end{lemma}
+\begin{proof}
+    \begin{enumerate}[1)]
+        \item Da $X$ Hausdorffsch ist, ist auch  $Y$ Hausdorffsch.
+        \item Sei  $A\subset Y$ abgeschlossen und $y\in Y \setminus A$. Dann existiert $A'\subset X$ abgeschlossen mit $A' \cap Y = A$. Da $X$ vollständig regulär ist,  gibt es  $f: X \to  [0,1]$ stetig mit $f\mid _{A'} \equiv  O$ und $f(y) = 1$. Dann erfüllt  $f\mid _Y : Y \to  [0,1]$ unsere gewünschten Bedingungen, weil
+            \[
+                \left(            f\mid _Y \right) \mid _A \equiv O \qquad f\mid _Y(y) = 1
+            .\] 
+    \end{enumerate}
+\end{proof}
+\begin{theorem}\label{thm:vollständig-regulär-wenn-kompaktifizierbar}
+    $X$ ist genau dann vollständig regulär, wenn  $X$ eine Kompaktifizierung besitzt.
+\end{theorem}
+\begin{proof}
+    Eine Richtung sei hier schon skizziert: ist $X$ kompakt und Hausdorffsch, so ist  $X$ normal (nach \autoref{thm:kompakter-hausdorff-raum-ist-normal}). Wir zeigen später, dass dann  $X$ auch vollständig regulär ist. Mit \autoref{lm:teilraum-von-vollständig-regulärem-raum-ist-vollständig-regulär} ist also $Y\subset X$ vollständig regulär.
+\end{proof}
+Konstruktion einer Kompaktifizierung: \\
+Sei $X$ ein topologischer Raum. Sei 
+\[
+    \mathcal{C}(X) := \left \{f: X \to  [0,1] \mid  f \text{ stetig}\right\} 
+.\] 
+Nach \nameref{thm:tychonoff} ist $\prod_{\mathcal{C}(X)}[0,1] $ kompakt und nach \autoref{thm:produkte-von-Hausdorff-Räumen-sind-Hausdorff} Hausdorffsch. Definiere nun eine Abbildung
+\[
+    ι : X \to  \prod_{\mathcal{C}(X)} [0,1]
+.\] 
+durch die Komponenten $ι_f(x) = f(x)$. (wir benutzen also in der  $f$-ten Komponente einfach die Abbildung  $f$). Da alle  $f\in \mathcal{C}(X)$ stetig sind, ist $ι$ stetig (nach \autoref{thm:universelle-eigenschaft-des-produkts}). Setze nun
+\[
+    βX := \overline{ι(X)} \subset \prod_{\mathcal{C}(X)} [0,1]
+.\] 
+$β(X)$ ist kompakt und Hausdorffsch. $β(X)$ heißt  \vocab{Stone-Čech-Kompaktifizierung}. Diese ist jedoch nur eine Kompaktifizierung in \autoref{def:kompaktifizierung} falls $X$ vollständig regulär ist.
+\begin{theorem}\label{thm:stone-cech-kompaktifizierung-ist-einbettung-für-vollständig-reguläre-räume}
+     $ι: X \to  \prod_{\mathcal{C}(X)}[0,1]$ ist eine Einbettung, falls $X$ vollständig regulär ist.
+\end{theorem}
+\begin{proof}
+    \textbf{Injektivität}: Seien $x\neq y\in X$. Dann sind $\left \{x\right\} ,\left \{y\right\} \subset X$ abgeschlossen und es existiert $f: X \to  [0,1]$ mit $f(x) = 0$ und  $f(y) = 1$. Dann ist aber bereits  $ι(x) \neq  ι(y)$ in Komponenten $f$. \\
+    \textbf{Einbettung}: Wir müssen noch zeigen, dass $\forall  U\subset X$ offen $ι(U) \subset ι(X)$ offen ist, damit $ι : X \to  f(X)$ ein Homöomorphismus ist. \\
+    Sei $U\subset X$ offen, setze $A := X\setminus U$ und sei $x\in U$. Dann finden wir (nach vollständiger Regularität von $X$) eine Funktion  $f: X \to  [0,1]$, sodass $f(x) = 1$ und  $f\mid _{A} = 0$. Setze
+    \[
+        V := \left( \frac{1}{2},1 \right]_f \times \prod_{\mathcal{C}(X) \setminus \left \{f\right\} } [0,1] \subset \prod_{\mathcal{C}(X)} [0,1]
+    .\] 
+    also offene Teilmenge von $\prod_{\mathcal{C}(X)} [0,1]$. Dann ist
+    \[
+        ι(x) \in \underbrace{V \cap  ι(X)}_{\text{offen in } ι(X)} \subset ι(X \setminus A) = ι(U)
+    .\] 
+    Damit ist $ι(U)\subset X$ Umgebung all seiner Punkte, also selbst offen.
+\end{proof}
+\begin{remark}
+    Ist $K$ kompakt und Hausdorffsch, so ist  $ι(K) \subset \prod_{\mathcal{C}(K)} [0,1]$ kompakt, also abgeschlossen, da $\prod_{\mathcal{C}(K)} [0,1]$ kompakt, und deswegen ist $β(K) = ι(K) \cong K$.
+\end{remark}
+\begin{remark*}
+    Der Homöomorphismus folgt daraus, dass wir (unter der noch nicht bewiesenen Annahme, dass normale Räume auch vollständig regulär sind) bereits wissen, dass es sich in diesem Fall bei $ι$ um eine Einbettung handelt.
+\end{remark*}
+\begin{lemma}[Fortsetzung stetiger Funktionen]\label{lm:fortsetzung-stetiger-funktionen-in-dichten-hausdorff-räumen-sind-eindeutig}
+   Sei $f: X \to  Y$ stetig sowie $U\subset X$.
+   \begin{enumerate}[1)]
+       \item Dann ist $f(\overline{U}) \subset \overline{f(X)}$ 
+       \item Ist $U\subset X$ dicht, $g: X\to Y$ auch stetig und $f\mid _ U = g\mid _U$ sowie $Y$ Hausdorffsch, so ist beretis  $f=g$
+   \end{enumerate}
+\end{lemma}
+\begin{proof}
+    Übung.
+\end{proof}
+\begin{theorem}\label{thm:universelle-eigenschaft-der-stone-cech-kompaktifizierung}
+    Sei $f: X \to  K$ stetig, $K$ kompakt und Hausdorffsch. Dann existiert eine eindeutige Fortsetzung $\hat{f}: β(X) \to  K$, so dass
+    \[
+   \begin{tikzcd}
+       X \ar{r}{ι} \ar[swap]{d}{f} &  β(X) \ar[dashed]{dl}{\hat{f}} \\
+       K
+   \end{tikzcd} 
+    .\]
+    kommutiert
+\end{theorem}
+\begin{recap}
+    Ist $f(X)\subset K$ dicht, so ist $\hat{f}$ surjektiv: Es ist $\hat{f}(β(X))$ kompakt, also abgeschlossen und enthält $f(X)$ (weil das Diagramm kommutiert), und daraus folgt  $\overline{f(X)}\subset \hat{f}(β(X))$.
+\end{recap}
+
+\begin{proof}
+Eindeutigkeit folgt direkt aus \autoref{lm:fortsetzung-stetiger-funktionen-in-dichten-hausdorff-räumen-sind-eindeutig}. \\
+Ist $K = [0,1]$, so wähle  $\hat{f} = \pr_f \mid _{β(X)}$. Für jedes $g\in \mathcal{C}(K)$ erhalten wir $g \circ f \in \mathcal{C}(X)$ und damit eine Abbildung $\pr_{g \circ  f}\mid _{β(X)} \colon β(X) \to [0,1]$. Zusammen (als Komponenten verwenden) ergibt sich eine Abbildung
+\[
+\begin{tikzcd}
+    X \ar{r}{ι} \ar[swap]{dr}{f} & β(X) \ar{r}{\hat{f} = \prod \pr_{g \circ  f}\mid _{β(X)}} & \prod_{\mathcal{C}(K)} [0,1] \\
+                                 & K \ar[swap]{ur}{ι}
+\end{tikzcd}
+\]
+Das ganze kommutiert: Auf dem $g$-ten Faktor von  $\prod_{\mathcal{C}(K)}[0,1]$ sind beide Kompositionen $g \circ f$. \\
+Wegen $\overline{ι(X)} = β(X)$ ist
+\[
+    \hat{f}(β(X)) = \hat{f}(\overline{ι(X)}) \subset \overline{(\hat{f} \circ  ι_X)(X)} = \overline{(ι_k \circ f)(X)} \subset \overline{ι_K(K)} = ι_K(K) \cong K
+.\] 
+\end{proof}
+\todo{Beweis nochmal durchgehen}
+\begin{remark*}
+    Der Beweis enthält sicher noch Tippfehler, muss jetzt aber zur nächsten Vorlesung. Bis Do ist das aber gefixt.
+\end{remark*}
+
+\begin{remark*}[Kategorientheorie-Spam]
+    Es ist $β(X)$ ein Funktor von  $\left \{\text{vollständig reguläre Räume}\right\} $ in $\left \{kompakte Hausdorff-Räume\right\}$.
+\end{remark*}
