@@ -1,0 +1,135 @@
+\lecture{8}{Mi 05 Mai 2021 10:11}{}
+\subsection{Mehrstufige Modelle}
+Sei eine Folge von $n$ Zufallsexperimenten in den Wahrscheinlichkeitsräumen  $\Omega_1,\Omega_2,\ldots,\Omega_n$ gegeben. Wir definieren ein \vocab{$n$-stufiges Zufallsexperiment} durch
+\begin{itemize}
+    \item $\Omega = \Omega_1\times \Omega_2\times \ldots\times \Omega_n = \left \{\omega=(\omega_1,\ldots,\omega_n) \mid  \omega_k \in \Omega_k, 1\leq k\leq n\right\} $ 
+    \item $\mathcal{F} = \mathcal{P}(\Omega)$.
+    \item Definiere die Zufallsvariablen
+        \[
+            X_k(\omega) = \omega_k \qquad 1\leq k\leq n
+        .\] 
+        Den Index $k$ interpretieren wir hierbei als Zeit.  $k \mapsto  X_k$ ist eine Trajektion von $X = (X_1,\ldots,X_n)$ ?
+    \item $\mathbb{P}=?$. Wir konstruieren $\mathbb{P}$ auf $(\Omega,\mathcal{F})$ mit
+        \begin{enumerate}[label=\protect\circled{\alph*}]
+            \item Der Anfangsverteilung $\mathbb{P}(X_1=x_1) := p_1(x_1)$ für alle $x_1\in \Omega_1$.
+            \item Den bedingten Verteilungen
+                 \[
+                     \mathbb{P}(X_k = x_k \mid  X_1 = x_1, X_2 = x_2, \ldots, X_{k-1} = x_{k-1}) =: p_k(x_k\mid x_1,\ldots,x_{k-1})
+                .\] 
+                für alle $x_l\in \Omega_l$, $1\leq l\leq k-1$, sodass $\mathbb{P}(X_1=x_1,\ldots,X_{k-1}=x_{k-1})\neq 0$.
+        \end{enumerate}
+\end{itemize}i
+\begin{remark*}
+    Man kann das Allgemeiner machen, indem wir $\mathcal{F}$ als die Produktsigmalalgebra der $\mathcal{F}_i$ wählen.
+\end{remark*}
+\begin{theorem}\label{thm:stufenmodell}
+    Sei $p_i(\cdot )$ die Massenfunktion einer Wahrscheinlichkeitsverteilung auf $\Omega_i$ und $p_k(\cdot \mid x_1,\ldots,x_{k-1})$ für alle $1\leq k\leq n$ mit $x_1\in \Omega_1, \ldots,x_{k-1} \in \Omega_{k-1}$ eine Massenfunktion auf $\Omega_k$. \\
+    Dann existiert eine eindeutige Wahrscheinlichkeitsverteilung $\mathbb{P}$ auf $(\Omega,\mathcal{F})$, sodass
+    \begin{enumerate}[label=\protect\circled{\alph*}]
+        \item $\mathbb{P}(X_1=x_1) = p_1(x_1) \quad \forall x_1\in \Omega_1$
+        \item $\mathbb{P}(X_k = x_k) \mid  X_1 = x_1,\ldots,X_{k-1}=x_{k-1}) = p_k(x_k \mid  x_1,\ldots,x_{k-1})$
+    \end{enumerate}
+    Die Wahrscheinlichkeitsverteilung $\mathbb{P}$ hat die Massenfunktion
+    \[
+        p(x_1,\ldots,x_n) = p_1(x_1) p_2(x_2\mid x_1) \cdot \ldots\cdot p_n(x_n \mid x_1,\ldots, x_{n-1})
+    .\] 
+\end{theorem}
+\begin{proof}
+    \begin{enumerate}[1)]
+        \item Nimm zunächst an, dass solch ein Maß existiert, wir zeigen die letzte Aussage. Sei $\mathbb{P}$ sodass \circled{a} und \circled{b} erfüllt sind. Dann ist
+             \[
+                 \forall 1\leq k\leq n \colon \mathbb{P}(X_1=x_1,\ldots,X_k=x_k) = p(x_1,\ldots,x_k)
+            .\] 
+            \begin{itemize}
+                \item Für $k=1$ gilt das (aus \circled{a}).
+                \item Falls es für $k-1$ gilt, so haben wir die Fälle
+                \item  $p(x_1,\ldots,x_{k-1})=0$, dann ist $0=0$ wahr.
+                \item Falls $p(x_1,\ldots,x_{k-1})\neq 0$, so ist
+                    \[
+                        \begin{split}
+                        &\; \mathbb{P}(X_1=x_1,\ldots,X_k=x_k) \\
+                        &= \mathbb{P}(X_k = x_k \mid  X_1 = x_1, \ldots, X_{k-1} = x_{k-1})\cdot \mathbb{P}(X_1=x_1, \ldots, X_{k-1} = x_{k-1}) \\
+                        &= p_1(x_1)\cdot \ldots p_{k-1}(x_{k-1}\mid x_1,\ldots,x_{k-2}r\cdot p_k(x_k\mid x_1,\ldots,x_{k-1}) = p(x_1,\ldots,x_k)
+                        \end{split}
+                    .\] 
+            \end{itemize}
+    \end{enumerate}
+    Normierung: $\forall x\in \Omega, x = (x_1,\ldots,x_n)$ mit $x_k \in \Omega_k$ ist
+    \[
+        \begin{split}
+            \sum_{x\in \Omega} p(x) &= \sum_{x_1\in \Omega_1} \ldots \sum_{x_n \in \Omega_n} p(x_1,\ldots.,x_n) \\
+                                    &= \sum_{x_1\in \Omega_1} p(x_1) \sum_{x_2\in \Omega_2} p(x_2\mid x_1) \ldots \sum_{x_n \in \Omega_n} p(x_n \mid  x_1,\ldots,x_{n-1}) = 1
+        \end{split}
+    .\] 
+    Für Eigenschaft \circled{b} ist
+    \begin{equation*}
+        \begin{split}
+            \mathbb{P}(X_1&=x_1,\ldots,X_k=x_k) = \sum_{x_{k+1}\in \Omega_{k+1}} \ldots \sum_{x_n \in \Omega_n} p(x_1,\ldots,x_n) \\
+                          &= p_1(x_1)\ldots p_{k-1}(x_{k-1}\mid  x_1,\ldots,x_{k-2}) p_k(x_k \mid  x_1,\ldots,x_{k-1}) \\
+                          &= \mathbb{P}(X_1=x_1,\ldots,X_{k-1}=x_{k-1})p_k(x_k \mid  x_1,\ldots,x_{k-1})
+        \end{split}
+    \end{equation*}
+    Also erhalten wir
+    \[
+        \mathbb{P}(X_k = x_k \mid  X_1 = x_1,\ldots,X_{k-1} = x_{k-1}) = p_k(x_k \mid  x_1,\ldots,x_{k-1})
+    .\] 
+\end{proof}
+\todo{Beweis nochmal sortieren}
+\begin{note}
+    Mir ist noch nicht klar, wo wir im Beweis des Satzes jetzt gezeigt haben wollen, dass solch ein Wahrscheinlichkeitsmaß existiert, das muss ich noch ausarbeiten.
+\end{note}
+\begin{remark}
+    Falls $p_k(x_k \mid  x_1,\ldots,x_{k-1})$ nur eine Funktion von $x_{k-1},\ldots,x_{k-m-1}$, dann sagen wir, dass unser Modell ein Gedächtnis von $m$ Schritten hat.
+\end{remark}
+
+\subsubsection{Produktmodelle}
+Falls $p_k(x_k \mid  x_1 = \ldots = x_{k-1}) = p_k(x_k)$, d.h. $x_k$ hängt nicht von den Werten  $x_1,\ldots,x_{k-1}$ ab. Dann erhalten wir aus \autoref{thm:stufenmodell}, dass
+\[
+    p(x_1,\ldots,x_n) = \prod_{k=1}^n p_k(x_k)
+.\] 
+
+\begin{definition}[Produktmodell]\label{def:produktmodell}
+    Die Wahrscheinlichkeitsverteilung $\mathbb{P}$ auf $\Omega = \Omega_1\times \ldots\times \Omega_n$ mit Massenfunktion
+    \[
+        p(x_1,\ldots,x_n) = \prod_{k=1}^n p_k(x_k)
+    .\] 
+    heißt \vocab{Produkt von $\mathbb{P}_1,\ldots,\mathbb{P}_n$}. ($\mathbb{P}_k$ hat Massenfunktion $p_k$).
+\end{definition}
+\begin{notation}
+    Wir schreiben $\mathbb{P} = \mathbb{P} \otimes \mathbb{P}_2 \otimes \ldots\otimes  \mathbb{P}_n$, wenn $\mathbb{P}$ das Produkt von $\mathbb{P}_1,\ldots,\mathbb{P}_n$ ist.
+\end{notation}
+\begin{example}
+    Seien $n$ unabhängige  0-1-Experimente mit Erfolgswahrscheinlichkeit  $p$ gegeben. Also
+     \[
+    \Omega_1=\ldots=\Omega_n =\left \{0,1\right\} 
+    .\] 
+    und $p_k(1) = p = 1-p_k(0)$ für  $k=1,\ldots,n$. dann ist $p_k(x) = (1-p)\left( \frac{p}{1-p} \right) ^x$ für $x\in \left \{0,1\right\} $. Die entstehende Verteilung
+    \[
+        p(x_1,\ldots,x_n) = (1-p)^n \prod_{k=1}^n \left( \frac{p}{1-p} \right) ^{x_k}
+    .\] 
+    ist die \vocab{$n$-dimensionale Bernoulli-Verteilung mit Parameter  $p$ }.
+\end{example}
+\begin{theorem}
+    Sei $(\Omega, \mathcal{F}, \mathbb{P})$ ein Produktmodell. Dann ist für beliebige Ereignisse $A_k \subset \Omega_k$, $k=1,\ldots,n$:
+    \[
+        \mathbb{P}(A_1\times \ldots\times A_n ) = \prod_{k=1}^n \mathbb{P}_k(A_k)
+    .\] 
+    und $\mathbb{P}(\tilde{A}_k) = \mathbb{P}_k(A_k)$, wobei
+    \[
+    \tilde{A}_k := \Omega_1\times \ldots\times \Omega_{k-1}\times A_k \times \Omega_{k+1} \times \ldots\times \Omega_n
+    .\] 
+    Deswegen sind $\tilde{A}_1,\ldots,\tilde{A}_n$ unabhängige Ereignisse.
+\end{theorem}
+\begin{proof}
+    Es ist
+    \begin{equation*}
+        \begin{split}
+            \mathbb{P}(A_1\times \ldots\times A_nr &= \mathbb{P}((X_1,\ldots,X_n)\in A_1\times \ldots\times A_n))  \\
+                                                   &= \sum_{(x_1,\ldots,x_n) \in A_1\times \ldots\times A_n} p(x_1,\ldots,x_n) \\
+                                                   &= \sum_{x_1\in A_1} \ldots\sum_{x_n\in A_n} p_1(x_1)\cdot \ldots p_n(x_n) \\
+                                                   &=\prod_{k=1}^n \sum_{x_k\in A_k} p(a_k) \\
+                                                   &= 
+        \end{split}
+    \end{equation*}
+\end{proof}
+\todo{Beweis fertig schreiben}
