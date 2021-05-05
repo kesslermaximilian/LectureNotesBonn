@@ -186,7 +186,7 @@ Sei $X$ ein topologischer Raum. Sei
 \[
     \mathcal{C}(X) := \left \{f: X \to  [0,1] \mid  f \text{ stetig}\right\} 
 .\] 
-Nach \nameref{thm:tychonoff} ist $\prod_{\mathcal{C}(X)}[0,1] $ kompakt und nach \autoref{thm:produkte-von-Hausdorff-Räumen-sind-Hausdorff} Hausdorffsch. Definiere nun eine Abbildung
+Nach dem \nameref{thm:tychonoff} ist $\prod_{\mathcal{C}(X)}[0,1] $ kompakt und nach \autoref{thm:produkte-von-Hausdorff-Räumen-sind-Hausdorff} Hausdorffsch. Definiere nun eine Abbildung
 \[
     ι : X \to  \prod_{\mathcal{C}(X)} [0,1]
 .\] 
@@ -194,7 +194,13 @@ durch die Komponenten $ι_f(x) = f(x)$. (wir benutzen also in der  $f$-ten Kompo
 \[
     βX := \overline{ι(X)} \subset \prod_{\mathcal{C}(X)} [0,1]
 .\] 
-$β(X)$ ist kompakt und Hausdorffsch. $β(X)$ heißt  \vocab{Stone-Čech-Kompaktifizierung}.
+$β(X)$ ist kompakt und Hausdorffsch als abgeschlossener Teilraum eines kompakten Hausdorffraums. \\
+\begin{theoremdef**}[Stone-Čech-Kompaktifizierung]
+    Für einen topologischen Raum $X$ heißt der eben konstruierte Raum $βX = β(X)$ \vocab{Stone-Čech-Kompaktifizierung} von $X$. $\beta X$ ist ein kompakter Hausdorffraum.
+\end{theoremdef**}
+\begin{proof*}
+    Klar nach eben gesagtem, wir verwenden \nameref{thm:tychonoff} und \autoref{thm:produkte-von-Hausdorff-Räumen-sind-Hausdorff}.
+\end{proof*}
 \begin{warning}
 Diese ist jedoch nur eine Kompaktifizierung im Sinne von \autoref{def:kompaktifizierung} falls $X$ vollständig regulär ist.
 \end{warning}
@@ -223,6 +229,9 @@ Diese ist jedoch nur eine Kompaktifizierung im Sinne von \autoref{def:kompaktifi
 \begin{remark*}
     Dass $ι(K) \cong K$ folgt in vorheriger Bemerkung daraus, dass wir wegen  $K$ kompakt und Hausdorffsch nach \autoref{thm:kompakter-hausdorff-raum-ist-normal} wissen, dass $K$ normal ist, und dann (mit der noch nicht bewiesenene Implikation normal  $\implies$ vollständig regulär) den vorherigen \autoref{thm:stone-cech-kompaktifizierung-ist-einbettung-für-vollständig-reguläre-räume} anwenden können, weswegen $ι$ eine Einbettung ist und somit einen Homöomorphismus  $K \cong ι(K)$ induziert.
 \end{remark*}
+\begin{proof*}[Beweis von \autoref{thm:vollständig-regulär-wenn-kompaktifizierbar}]
+    Wir haben bereits gesehen, dass ein kompaktifizierbarer Raum notwendigerweise vollständig regulär ist (im ersten Teil des Beweises). Ist $X$ nun vollständig regulär, so ist  $β(X)$ ein kompakter Hausdorff-Raum, und nach \autoref{thm:stone-cech-kompaktifizierung-ist-einbettung-für-vollständig-reguläre-räume} handelt es sich bei $ι_X : X \to  β(X)$ genau um eine Einbettung.
+\end{proof*}
 \begin{lemma}[Fortsetzung stetiger Funktionen]\label{lm:fortsetzung-stetiger-funktionen-in-dichten-hausdorff-räumen-sind-eindeutig}
    Sei $f: X \to  Y$ stetig sowie $U\subset X$.
    \begin{enumerate}[1)]
@@ -239,7 +248,7 @@ Diese ist jedoch nur eine Kompaktifizierung im Sinne von \autoref{def:kompaktifi
 \begin{remark*}
     Der Beweis von \autoref{lm:fortsetzung-stetiger-funktionen-in-dichten-hausdorff-räumen-sind-eindeutig} war eine Übungsaufgabe auf Blatt 4.
 \end{remark*}
-\begin{theorem}\label{thm:universelle-eigenschaft-der-stone-cech-kompaktifizierung}
+\begin{theorem}[Universelle Eigenschaft von $β$]\label{thm:universelle-eigenschaft-der-stone-cech-kompaktifizierung}
     Sei $f: X \to  K$ stetig, $K$ kompakt und Hausdorffsch. Dann existiert eine eindeutige Fortsetzung $\hat{f}: β(X) \to  K$, so dass
     \[
    \begin{tikzcd}
@@ -247,7 +256,7 @@ Diese ist jedoch nur eine Kompaktifizierung im Sinne von \autoref{def:kompaktifi
        K
    \end{tikzcd} 
     .\]
-    kommutiert
+    kommutiert.
 \end{theorem}
 \begin{recap}
     Ist $f(X)\subset K$ dicht, so ist $\hat{f}$ surjektiv: Es ist $\hat{f}(β(X))$ kompakt, also abgeschlossen und enthält $f(X)$ (weil das Diagramm kommutiert), und daraus folgt  $\overline{f(X)}\subset \hat{f}(β(X))$.
@@ -275,15 +284,30 @@ Das ganze können wir nun zwar nicht direkt für $K$ machen, allerdings für jed
 \]
 Das linke obere Quadrat kommutiert auch: Hierzu müssen wir überprüfen, dass die Kompositionen mit den Projektionen auf die Komponenten von $\prod_{\mathcal{C}(K)}[0,1]$ jeweils gleich sind, diese sind aber - nach Konstruktion - jeweils $g_i \circ f$. \\
 Wegen $\overline{ι(X)} = β(X)$ ist nun
+\begin{IEEEeqnarray*}{rCl}
+    \hat{f}(β(X))&  =  & \hat{f}(\overline{ι_X(X)}) \\
+                 &  \stackrel{\text{\autoref{lm:fortsetzung-stetiger-funktionen-in-dichten-hausdorff-räumen-sind-eindeutig}}}{\subset}  & \overline{(\hat{f} \circ  ι_X)(X)} \\
+                 & \stackrel{\text{kommutiert}}{=} & \overline{(ι_k \circ f)(X)} \\
+                 &\subset & \overline{ι_K(K)} \\
+                 &\stackrel{\text{$K$ kompakt}}{=}& ι_K(K) \\
+                 &\stackrel{\text{\autoref{thm:stone-cech-kompaktifizierung-ist-einbettung-für-vollständig-reguläre-räume}}}{\cong} &K
+\end{IEEEeqnarray*}
 \[
-    \hat{f}(β(X)) = \hat{f}(\overline{ι_X(X)}) \subset \overline{(\hat{f} \circ  ι_X)(X)} = \overline{(ι_k \circ f)(X)} \subset \overline{ι_K(K)} = ι_K(K) \cong K
+    \begin{split}
+    \end{split}
 .\] 
+und damit können wir $\hat{f}$ mit $ι_K^{-1}$ verknüpfen um unsere gewünschte Abbildung  $β(X)\to K$ zu erhalten.
 \end{proof}
-\todo{Beweis nochmal durchgehen}
-\begin{remark*}
-    Der Beweis enthält sicher noch Tippfehler, muss jetzt aber zur nächsten Vorlesung. Bis Do ist das aber gefixt.
-\end{remark*}
-
 \begin{remark*}[Kategorientheorie-Spam]
-    Es ist $β(X)$ ein Funktor von  $\left \{\text{vollständig reguläre Räume}\right\} $ in $\left \{kompakte Hausdorff-Räume\right\}$.
+    $β(X)$ ist sogar ein Funktor von  $\Top$ (Kategorie der topologischen Räume) nach $\CHaus$ (Kategorie der kompakten Hausdorff-Räume). Das liegt daran, dass wir im Beweis von \autoref{thm:universelle-eigenschaft-der-stone-cech-kompaktifizierung} alle Schritte bis $\hat{f}(β(X))\subset \overline{ι_k(K)} = β(K)$ genauso durchführen können, ohne verwenden zu müssen, dass $K$ kompakter Hausdorff-Raum ist, und wir damit für $f: X \to K$ eine entsprechende Abbildung $\hat{f}: β(X) \to  β(K)$ induzieren, sodass
+    \[
+    \begin{tikzcd}
+        X \ar[swap]{d}{f} \ar{r}{ι_X} & β(X) \ar{d}{\hat{f}}\\
+        K \ar[swap]{r}{ι_K} & β(K)
+    \end{tikzcd}
+    \]
+    kommutiert. Alternativ können wir auch \autoref{thm:universelle-eigenschaft-der-stone-cech-kompaktifizierung} auf die Abbildung $ι_k \circ  f : X \to  β(K)$ anwenden, da $β(K)$ nach Konstruktion kompakt und Hausdorffsch ist.
+\end{remark*}
+\begin{remark*}
+    Man sollte nicht zu sehr darüber nachdenken, wie $β(X)$ aussieht: Die Konstruktion des Raumes ist äußerst nicht-konstruktiv und benutzt implizit das Auswahlaxiom (damit wir Tychonoff nutzen können. Man kann sich auch überlegen, dass der Satz von Tychonoff äquivalent ist zum Auswahlaxiom, weswegen wir auch nicht ohne es auskommen, das geht hier aber zu weit). Vielmehr sollte man die bloße eines solchen Raumes als theoretisches Ergebnis im Hinterkopf behalten, die wir benötigt haben, um die Frage nach der Kompaktifizierbarkeit eines Raumes zu beantworten. Auch der Spezialfall, dass  $β(X) = X$ für kompakte Hausdorff-Räume ist wichtig.
 \end{remark*}
