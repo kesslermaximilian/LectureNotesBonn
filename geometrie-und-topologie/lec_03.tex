@@ -242,10 +242,45 @@
     Ist $X$ metrisierbar, dann ist  $X$ normal.
 \end{theorem}
 
-\begin{proof}
-    Übung.
-\end{proof}
-
+Der Beweis war Aufgabe bei Übungsblatt 2:
+\begin{proof*}
+    Wir wissen bereits mit \autoref{thm:metrisierbarer-raum-ist-hausdorff}, dass $X$ Hausdorffsch ist. Von Übungsblatt $1$ wissen wir, dass
+        \begin{equation*}
+        d_x: \left| \begin{array}{c c l} 
+        X & \longrightarrow & \R \\
+        y & \longmapsto &  d(x,y)
+        \end{array} \right.
+    \end{equation*}
+    eine stetige Abbildung ist. Dann ist für eine Teilmenge $A\subset X$ auch
+        \begin{equation*}
+        d_A: \left| \begin{array}{c c l} 
+        X & \longrightarrow & \R \\
+        y & \longmapsto &  \inf \left \{d_x(y) \mid x\in A\right\} 
+        \end{array} \right.
+    \end{equation*}
+    eine stetige Funktion, die den Abstand zur Menge $A$ ausdrückt.
+    \begin{claim}
+        Ist $A$ abgeschlossen, so ist $d_A(y) = 0 \iff y\in A$.
+    \end{claim}
+    \begin{subproof}
+        Die Richtung '$ \impliedby$' ist trivial, da dann $d_y(y) = 0$ Teil des Infimums ist. Die andere Richtung beweisen wir durch Kontraposition, d.h. sei $y \in X\setminus A$. Da $X \setminus A$ offen ist, gibt es $ε>0$ mit $U(y,ε) \subset X\setminus A$, dann ist aber sicherlich $d_x(y) \geq ε$ für alle $y \in A$, und somit ist auch das Infimum über diese $ \geq ε$.
+    \end{subproof}
+Seien nun $A,B \subset X$ abgeschlossene, disjunkte Teilmengen. Definiere
+\begin{equation*}
+        f: \left| \begin{array}{c c l} 
+        X & \longrightarrow & \R \\
+        x & \longmapsto &  \frac{d_A(x)}{d_A(x) + d_B(x)}
+        \end{array} \right.
+    \end{equation*}
+    Der Nenner wird nie Null, da dazu $d_A(x) = 0 = d_B(x)$ gelten müsste, nach der Behauptung also  $x\in A,B$ und dies trift nicht zu wegen $A\cap B = \emptyset$ nach Annahme. Als Verknüpfung stetiger Funktionen ist nun $f$ stetig. Zudem stellen wir fest, dass  $f(A) \equiv 0$ sowie $f(B) \equiv 1$. Dann sind
+     \[
+         U := f^{-1}\left( \left[ 0,\frac{1}{2} \right)  \right)  \qquad V := f^{-1}\left( \left( \frac{1}{2},1 \right]  \right) 
+    .\] 
+    zwei offene Umgebungen, die $A,B$ enthalten und disjunkt sind, wie man leicht prüft. Also ist  $X$ normal.
+\end{proof*}
+\begin{remark*}
+    Wir haben eine scheinbar stärkere Eigenschaft gezeigt als die, dass $X$ normal ist, nämlich, dass wir zwei abgeschlossene Mengen durch eine Funktion trennen können. Es stellt sich jedoch heraus, dass ein topologischer Raum genau dann diese Eigenschaft besitzt, wenn er normal ist, wobei 'normal' nicht fordert, dass der Raum Hausdorff ist. Dies nennt sich \textit{Lemma von Urysohn}, und wir werden dieses auch später noch in der Vorlesung kennenlernen, für jetzt ist dies jedoch unwichtig. Die Trennung zweier abgeschlossener Mengen mittels einer Funktion ähnelt jedoch sehr stark der folgenden Definition (und das ist kein Zufall):
+\end{remark*}
 \begin{definition}[Regulär]\label{def:regulär}
     Ein topologischer Raum $X$ heißt  \vocab[Topologischer Raum!regulär]{regulär}, falls $X$ Hausdorff ist und  $\forall  A \subset X$ abgeschlossen und $x\in X \setminus A$ existieren $U_a, U_{x}$ offen mit $A\subset U_A, x\in U_x$ und $U_A \cap U_x = \emptyset$. (Auch Trennungsaxiom \vocab[Trennungsaxiom!$T_3$]{$T_3$} genannt). \\
     \begin{minipage}{\textwidth}
