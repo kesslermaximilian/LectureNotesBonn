@@ -15,6 +15,11 @@
 \usepackage{datetime}
 \date{{\normalfont Mitschrift}\\{\sc Maximilian Keßler}}
 
+\usepackage[subfigure]{tocloft}
+\newcommand\listlecturename{Liste der Vorlesungen}
+\newlistof{mylecture}{lec}{\listlecturename}
+
+
 %%%%%%Preamble from Gilles Castel
 % Some basic packages
 \usepackage{url}
@@ -90,6 +95,8 @@
     }%
     \subsection*{\@lecture}
     \marginpar{\small\textsf{\mbox{#2}}}
+    \refstepcounter{mylecture}
+    \addcontentsline{lec}{mylecture}{\protect\numberline{\themylecture}\@lecture \\ das ist ein test}
 }
 
 % These are the fancy headers
