@@ -5,13 +5,15 @@
 %%%%%OWN
 %%Own basic packages
 \usepackage[subfigure]{tocloft}
-\newcommand\listlecturename{Vorlesungen}
+\newcommand\listlecturename{Übersicht der Vorlesungen}
 
 \newlistof{lecture}{lec}{\listlecturename}
 
-\renewcommand{\cftlectitlefont}{\Large\bfseries}
 \renewcommand{\cftdot}{}
-\renewcommand\cftlecturefont{\bfseries}
+\renewcommand\cftlecturefont{\normalfont\bfseries}
+\renewcommand\cftlecturepagefont{\normalfont\bfseries}
+\renewcommand\cftlectitlefont{\Large\bfseries}
+
 \renewcommand\cftbeforelectureskip{1em}
 
 \usepackage{mkessler-math}
@@ -101,9 +103,9 @@
     }{%
     \def\@lecture{\ifenglish Lecture\else Vorlesung\fi\, \thelecture: #3}%
     }%
-    \marginpar{\small\textsf{\parbox{10em}{Vorlesung \thelecture \\#2}}}
-    \addcontentsline{lec}{lecture}{Vorlesung \thelecture{}(#2)}
-    \ifthenelse{\isempty{#1}}{}{\addtocontents{lec}{\smallskip\hspace{1.5em}\protect #1}}
+    \marginpar{\small\textsf{\parbox{10em}{\ifenglish Lecture \else Vorlesung\fi\, \thelecture \\#2}}}
+    \addcontentsline{lec}{lecture}{\ifenglish Lecture \else Vorlesung\fi \,\thelecture\,(#2)}
+    \ifthenelse{\isempty{#1}}{}{\addtocontents{lec}{\smallskip\hspace{1.5em}\protect\parbox{\dimexpr\textwidth-\@pnumwidth - 7em}{#1}}}
 }
 
 % These are the fancy headers
