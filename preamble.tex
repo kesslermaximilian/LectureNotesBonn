@@ -4,6 +4,18 @@
 
 %%%%%OWN
 %%Own basic packages
+\usepackage[subfigure]{tocloft}
+\newcommand\listlecturename{Übersicht der Vorlesungen}
+
+\newlistof{lecture}{lec}{\listlecturename}
+
+\renewcommand{\cftdot}{}
+\renewcommand\cftlecturefont{\normalfont\bfseries}
+\renewcommand\cftlecturepagefont{\normalfont\bfseries}
+\renewcommand\cftlectitlefont{\Large\bfseries}
+
+\renewcommand\cftbeforelectureskip{1em}
+
 \usepackage{mkessler-math}
 \usepackage[lecturenumbers]{mkessler-fancythm} %%Options available:
 %lecturenumbers -> number theorems like in the lecture (default, even it ommited)
@@ -14,6 +26,8 @@
 
 \usepackage{datetime}
 \date{{\normalfont Mitschrift}\\{\sc Maximilian Keßler}}
+
+
 
 %%%%%%Preamble from Gilles Castel
 % Some basic packages
@@ -82,14 +96,16 @@
 }
 
 \def\@lecture{}%
-\newcommand{\lecture}[3]{
+\newcommand{\lecture}[3][]{
+    \refstepcounter{lecture}
     \ifthenelse{\isempty{#3}}{%
-    \def\@lecture{\ifenglish Lecture\else Vorlesung\fi\, #1}%
+    \def\@lecture{\ifenglish Lecture\else Vorlesung\fi\, \thelecture}%
     }{%
-\def\@lecture{\ifenglish Lecture\else Vorlesung\fi\, #1: #3}%
+    \def\@lecture{\ifenglish Lecture\else Vorlesung\fi\, \thelecture: #3}%
     }%
-    \subsection*{\@lecture}
-    \marginpar{\small\textsf{\mbox{#2}}}
+    \marginpar{\small\textsf{\parbox{10em}{\ifenglish Lecture \else Vorlesung\fi\, \thelecture \\#2}}}
+    \addcontentsline{lec}{lecture}{\ifenglish Lecture \else Vorlesung\fi \,\thelecture\,(#2)}
+    \ifthenelse{\isempty{#1}}{}{\addtocontents{lec}{\smallskip\hspace{1.5em}\protect\parbox{\dimexpr\textwidth-\@pnumwidth - 7em}{#1}}}
 }
 
 % These are the fancy headers
