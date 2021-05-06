@@ -253,7 +253,7 @@ Damit haben wir überprüft, dass  $X_1\coprod X_2 / \sim $ alle Eigenschaften e
     Ist $X_0 = \left \{\star\right\} $ ein Punkt, so ergibt sich
 \end{example}
 
-\begin{definition}[Wedge-Produkt]
+\begin{definition}[Wedge-Produkt]\label{def:wedge-produkt}
     Seien $X,Y$ nichtleere topologische Räume,  $x\in X$ und $y\in Y$. Bilde $f_1: \left \{\star\right\} \to X, \star \mapsto x$ und analog für $Y$ ab. Der entstehende Raum  $X \bigcup\limits_{\left \{\star\right\} }Y$ heißt \vocab{Einpunktvereinigung} oder auch \vocab{Wedge-Produkt} von $X,Y$ und wird mit  $X \twedge Y$ notiert.
 \end{definition}
 
@@ -345,7 +345,7 @@ Wir haben nun Abbildungen $j_i \colon X_i \to  X_1 \bigcup_{X_0} X_2 $:
         & X_2 \bigcup\limits_{X_0} X_1 
 \end{tikzcd}
 .\] 
-\begin{lemma}
+\begin{lemma}\label{lm:injektive-einbettung-ergibt-injetive-projektion-auf-koprodukt-über-basis}
 Seien $X_0,X_1,X_2$ topologische Räume, $f_1 \colon X_0 \to  X_1$, $f_2 \colon X_0 \to  X_2$ stetig und betrachte die kanonischen Abbildungen $ι_i\colon X_i \to  X_1 \coprod X_2$ sowie $q : X_1 \coprod X_2 \to  X_1 \bigcup\limits_{X_0} X_2$. \\
 Ist $f_1$ injektiv so ist $j_2$ injektiv. Ist  $f_2$ injektiv, so ist $j_1$ injektiv.
 \end{lemma}
