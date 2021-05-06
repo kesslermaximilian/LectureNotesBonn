@@ -1,4 +1,4 @@
-\lecture[]{Do 06 Mai 2021 10:15}{Titel}
+\lecture[Disjunkte Vereinigungen. Koprodukte. Disjunkte Vereinigungen über einem Basisraum. Wedge-Produkte. Rekonstruktion eines Raumes als Disjunkte Vereinigung über dem Schnitt zweier Teilräume.]{Do 06 Mai 2021 10:15}{Titel}
 \section{Vereinigungen}
 \begin{definition}[Disjunkte Vereinigung]\label{def:disjunkte-vereinigung}
     Es sei $\left \{X_i\right\} _{i \in I}$ eine Familie von Mengen. Die \vocab{disjunkte Vereinigung} der $X_i$ ist definiert als
@@ -55,13 +55,13 @@ Damit ist insbesondere
     Eigentlich müssen wir die Topologie erstmal als Subbasis von $\bigcup_{i \in  I} \mathcal{O}_i$ erzeugen lassen, man überprüft jedoch mit \autoref{thm:subbasis-ist-basis-wenn-schnitt-generiert-wird} leicht, dass es sich dann sogar um eine Basis handelt, was wir im Folgenden auch verwenden wollen.
 \end{remark*}
 
-\begin{abuse*}
+\begin{dabuse}
     Eigentlich ist $\mathcal{O}_i \not \subset \mathcal{P}(\coprod _{i \in I}X_i)$ keine Familie von Teilmengen von $\coprod _{i \in I}X_i$, weswegen die Definition keinen Sinn macht. Mittels den Einbettungen $ι_j:X_j \to  \coprod _{i \in I}X_i$ können wir jedoch $\mathcal{O}_j$ entsprechend auffassen. Man käme in Versuchung
     \[
         \mathcal{O} := \bigcup_{i \in  I} ι_i(\mathcal{O}_i)
     .\] 
     zu schreiben, doch eigentlich ist auch das falsch, weil wir $ι_j$ nicht nur auf die Elemente von  $\mathcal{O}_j$, sondern auf die Elemente der Elemente von $\mathcal{O}_j$ anwenden wollen - nämlich auf die Elemente der offenen Teilmengen, die in $\mathcal{O}_j$ spezifiziert waren. Im Folgenden wollen wir jedoch weiterhin $\bigcup_{i \in  I} \mathcal{O}_i$ schreiben um obiges zu meinen, die Einbettungen $ι_j$ sind in der Notation unterdrückt.
-\end{abuse*}
+\end{dabuse}
 
 \begin{warning}
     Die Menge $\bigcup_{i \in  I} \mathcal{O}_i$ ist im Allgemeinen \underline{keine} Topologie. Z.B. ist
@@ -284,12 +284,12 @@ Damit haben wir überprüft, dass  $X_1\coprod X_2 / \sim $ alle Eigenschaften e
     .\]  
 Es ist z.B. $S^1\tsmash S^1 \cong S^2$ und sogar allgemein $S^n \tsmash S^n \cong S^{2n}$.
 \end{remark*}
-\begin{ddefinition}[Smash-Produkt]\label{def:smash-produkt}
+\begin{definition*}[Smash-Produkt]\label{def:smash-produkt}
     Seien $X,Y$ topologische Räume und  $x\in X, y\in Y$ Punkte. Dann ist das \vocab{Smash-Produkt} definiert als
     \[
         (X,x) \tsmash (Y,y) = X\times Y / (X\times \left \{y\right\} \cup \left \{x\right\} \times Y)
     .\] 
-\end{ddefinition}
+\end{definition*}
 %%%%%Für die Latex-Nutzer: Ich verwende die Befehle \twedge und \tsmash, um die topologischen wedge und smash- symbole zu erzeugen. Ich bin ein Fan von semantischen Commands, das ermöglich a) sich nicht verwirren zu lassen, wenn man TeXt, wenn man den Code wieder liest etc und vermeidet Konflikte mit anderen Definitionen bzw. Dateien (und verwirrt mich weniger). Außerdem hat es den Vorteil, dass ich jederzeit \twedge und \tsmash neu definieren kann, sollte es nötig sein. Die No tation ist etwas analog zu \land und \lor für 'logic and" und 'logic ar' etc.
 \begin{remark*}
     In der Pause stellte sich die Frage, ob es ein Beispiel für einen nicht-normalen Hausdorff-Raum gibt. Siehe hierzu \cite{counterexamples}.
