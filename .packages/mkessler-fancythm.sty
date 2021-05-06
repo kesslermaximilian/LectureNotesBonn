@@ -44,7 +44,7 @@
 \mdfsetup{skipabove=\topskip,skipbelow=\topskip}
 
 %%mdframed styles
-\mdfdefinestyle{mdredmargin}{%
+\mdfdefinestyle{mdredmarginandfill}{%
     skipabove =\fancythmskipabove,
     linecolor=red,
     linewidth = \fancythmlinewidth,
@@ -56,7 +56,7 @@
     bottomline=false
 }
 
-\mdfdefinestyle{mdorangemargin}{%
+\mdfdefinestyle{mdorangemarginandfill}{%
     skipabove =\fancythmskipabove,
     linecolor=orange,
     linewidth = \fancythmlinewidth,
@@ -68,7 +68,7 @@
     bottomline=false
 }
 
-\mdfdefinestyle{mdbluemargin}{%
+\mdfdefinestyle{mdbluemarginandfill}{%
     skipabove =\fancythmskipabove,
     linecolor=blue,
     linewidth = \fancythmlinewidth,
@@ -102,7 +102,7 @@
     bottomline=false
 }
 
-\mdfdefinestyle{mdvioletmargin}{%
+\mdfdefinestyle{mdvioletmarginandfill}{%
     skipabove =\fancythmskipabove,
     linecolor=violet,
     linewidth = \fancythmlinewidth,
@@ -114,6 +114,16 @@
     bottomline=false
 }
 
+\mdfdefinestyle{mdvioletmargin}{%
+    skipabove =\fancythmskipabove,
+    linecolor=violet,
+    linewidth = \fancythmlinewidth,
+    leftmargin = 0cm,
+    rightmargin=0cm,
+    rightline=false,
+    topline=false,
+    bottomline=false
+}
 
 \mdfdefinestyle{mdredmarginbluefill}{%
     skipabove =\fancythmskipabove,
@@ -127,7 +137,7 @@
     bottomline=false
 }
 
-\mdfdefinestyle{mdblackmargin}{%
+\mdfdefinestyle{mdblackmarginandfill}{%
 	skipabove=\fancythmskipabove,
 	linecolor=black,
 	linewidth=\fancythmlinewidth,
@@ -140,22 +150,22 @@
 }
 
 \declaretheoremstyle[
-	mdframed={style=mdredmargin},
+	mdframed={style=mdredmarginandfill},
 	postheadspace={0.3em},
     notefont=\mdseries
 ]{thmredmargin}
 
 \declaretheoremstyle[
-	mdframed={style=mdorangemargin},
+	mdframed={style=mdorangemarginandfill},
 	postheadspace={0.3em},
     notefont=\mdseries
-]{thmorangemargin}
+]{thmorangemarginandfill}
 
 \declaretheoremstyle[
-	mdframed={style=mdbluemargin},
+	mdframed={style=mdbluemarginandfill},
 	postheadspace={0.3em},
     notefont=\mdseries
-]{thmbluemargin}
+]{thmbluemarginandfill}
 
 
 \declaretheoremstyle[
@@ -171,11 +181,16 @@
 ]{thmyellowmargin}
 
 \declaretheoremstyle[
+	mdframed={style=mdvioletmarginandfill},
+	postheadspace={0.3em},
+    notefont=\mdseries
+]{thmvioletmarginandfill}
+
+\declaretheoremstyle[
 	mdframed={style=mdvioletmargin},
 	postheadspace={0.3em},
     notefont=\mdseries
 ]{thmvioletmargin}
-
 
 \declaretheoremstyle[
 	mdframed={style=mdredmarginbluefill},
@@ -184,10 +199,10 @@
 ]{thmredmarginbluefill}
 
 \declaretheoremstyle[
-	mdframed={style=mdblackmargin},
+	mdframed={style=mdblackmarginandfill},
 	postheadspace={0.3em},
     notefont=\mdseries
-]{thmblackmargin}
+]{thmblackmarginandfill}
 
 
 %%Environments that are numbered by default have 3 versions:
@@ -196,62 +211,62 @@
 % - two asterisks, for marking them as self-added, so they will not be numbered, but will receive a visual asterisk. -> They will be numbered if 'truenumbers' option is set
 
 %Theorem
-\declaretheorem[style=thmredmargin,name=\ifenglish Theorem\else Satz\fi,numberwithin=section, refname = {Satz,Sätze}, Refname = {Satz,Sätze}]{theorem}
+\declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem\else Satz\fi,numberwithin=section, refname = {Satz,Sätze}, Refname = {Satz,Sätze}]{theorem}
 
 \iflecturenumbers
-\declaretheorem[style=thmredmargin,name=\ifenglish Theorem\else Satz\fi,numbered=no]{theorem*}
-\declaretheorem[style=thmredmargin,name=\ifenglish Theorem*\else Satz*\fi,numbered=no]{theorem**}
+\declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem\else Satz\fi,numbered=no]{theorem*}
+\declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem*\else Satz*\fi,numbered=no]{theorem**}
 \else
-\declaretheorem[style=thmredmargin,name=\ifenglish Theorem\else Satz\fi,numberwithin=section]{theorem*}
-\declaretheorem[style=thmredmargin,name=\ifenglish Theorem*\else Satz*\fi,numberwithin=section]{theorem**}
+\declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem\else Satz\fi,numberwithin=section]{theorem*}
+\declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem*\else Satz*\fi,numberwithin=section]{theorem**}
 \fi
 
 \AtBeginDocument{\def\theoremautorefname{\ifenglish Theorem \else Satz\fi}} %Make referencing of theorems work properly (in german) with \autoref
 
 
 %Proposition
-\declaretheorem[style=thmredmargin,name=Proposition,sibling=theorem]{proposition}
+\declaretheorem[style=thmredmarginandfill,name=Proposition,sibling=theorem]{proposition}
 
 \iflecturenumbers
-\declaretheorem[style=thmredmargin,name=Proposition,numbered=no]{proposition*}
-\declaretheorem[style=thmredmargin,name=Proposition*,numbered=no]{proposition**}
+\declaretheorem[style=thmredmarginandfill,name=Proposition,numbered=no]{proposition*}
+\declaretheorem[style=thmredmarginandfill,name=Proposition*,numbered=no]{proposition**}
 \else
-\declaretheorem[style=thmredmargin,name=Proposition,sibling=theorem]{proposition*}
-\declaretheorem[style=thmredmargin,name=Proposition,sibling=theorem]{proposition**}
+\declaretheorem[style=thmredmarginandfill,name=Proposition,sibling=theorem]{proposition*}
+\declaretheorem[style=thmredmarginandfill,name=Proposition,sibling=theorem]{proposition**}
 \fi
 
 %Corollary
-\declaretheorem[style=thmredmargin,name=\ifenglish Corollary\else Korollar\fi,sibling=theorem]{corollary}
+\declaretheorem[style=thmredmarginandfill,name=\ifenglish Corollary\else Korollar\fi,sibling=theorem]{corollary}
 
 %Unnumbered Corollary
 \iflecturenumbers
-\declaretheorem[style=thmredmargin,name=\ifenglish Corollary\else Korollar\fi, numbered = no]{corollary*}
-\declaretheorem[style=thmredmargin,name=\ifenglish Corollary*\else Korollar*\fi, numbered = no]{corollary**}
+\declaretheorem[style=thmredmarginandfill,name=\ifenglish Corollary\else Korollar\fi, numbered = no]{corollary*}
+\declaretheorem[style=thmredmarginandfill,name=\ifenglish Corollary*\else Korollar*\fi, numbered = no]{corollary**}
 \else
-\declaretheorem[style=thmredmargin,name=\ifenglish Corollary\else Korollar\fi, sibling=theorem]{corollary*}
-\declaretheorem[style=thmredmargin,name=\ifenglish Corollary*\else Korollar*\fi, sibling=theorem]{corollary**}
+\declaretheorem[style=thmredmarginandfill,name=\ifenglish Corollary\else Korollar\fi, sibling=theorem]{corollary*}
+\declaretheorem[style=thmredmarginandfill,name=\ifenglish Corollary*\else Korollar*\fi, sibling=theorem]{corollary**}
 \fi
 
 %Lemma
-\declaretheorem[style=thmorangemargin,name=Lemma,sibling=theorem]{lemma}
+\declaretheorem[style=thmorangemarginandfill,name=Lemma,sibling=theorem]{lemma}
 
 \iflecturenumbers
-\declaretheorem[style=thmorangemargin,name=Lemma, numbered=no]{lemma*}
-\declaretheorem[style=thmorangemargin,name=Lemma*, numbered=no]{lemma**}
+\declaretheorem[style=thmorangemarginandfill,name=Lemma, numbered=no]{lemma*}
+\declaretheorem[style=thmorangemarginandfill,name=Lemma*, numbered=no]{lemma**}
 \else
-\declaretheorem[style=thmorangemargin,name=Lemma, sibling = theorem]{lemma*}
-\declaretheorem[style=thmorangemargin,name=Lemma*, sibling = theorem]{lemma**}
+\declaretheorem[style=thmorangemarginandfill,name=Lemma, sibling = theorem]{lemma*}
+\declaretheorem[style=thmorangemarginandfill,name=Lemma*, sibling = theorem]{lemma**}
 \fi
 
 %Definition
-\declaretheorem[style=thmbluemargin,name=Definition,sibling=theorem]{definition}
+\declaretheorem[style=thmbluemarginandfill,name=Definition,sibling=theorem]{definition}
 
 \iflecturenumbers
-\declaretheorem[style=thmbluemargin,name=Definition,numbered=no]{definition*}
-\declaretheorem[style=thmbluemargin,name=Definition*,numbered=no]{definition**}
+\declaretheorem[style=thmbluemarginandfill,name=Definition,numbered=no]{definition*}
+\declaretheorem[style=thmbluemarginandfill,name=Definition*,numbered=no]{definition**}
 \else
-\declaretheorem[style=thmbluemargin,name=Definition, sibling=theorem]{definition*}
-\declaretheorem[style=thmbluemargin,name=Definition*,sibling=theorem]{definition**}
+\declaretheorem[style=thmbluemarginandfill,name=Definition, sibling=theorem]{definition*}
+\declaretheorem[style=thmbluemarginandfill,name=Definition*,sibling=theorem]{definition**}
 \fi
 
 %Theorem + Definition
@@ -272,11 +287,20 @@
 %Notation
 
 \ifnumberall
-\declaretheorem[style=thmvioletmargin,name=Notation,sibling=theorem]{notation}
-\declaretheorem[style=thmvioletmargin,name=Notation*,sibling=theorem]{notation*}
+\declaretheorem[style=thmvioletmarginandfill,name=Notation,sibling=theorem]{notation}
+\declaretheorem[style=thmvioletmarginandfill,name=Notation*,sibling=theorem]{notation*}
 \else
-\declaretheorem[style=thmvioletmargin,name=Notation,numbered = no]{notation}
-\declaretheorem[style=thmvioletmargin,name=Notation*,numbered = no]{notation*}
+\declaretheorem[style=thmvioletmarginandfill,name=Notation,numbered = no]{notation}
+\declaretheorem[style=thmvioletmarginandfill,name=Notation*,numbered = no]{notation*}
+\fi
+
+%%Abuse of notation
+\ifnumberall
+\declaretheorem[style=thmvioletmargin,name=\ifenglish Abuse of notation\else Notationsmissbrauch\fi,sibling=theorem]{abuse}
+\declaretheorem[style=thmvioletmargin,name=\ifenglish Abuse of notation*\else Notationsmissbrauch*\fi,sibling=theorem]{abuse*}
+\else
+\declaretheorem[style=thmvioletmargin,name=\ifenglish Abuse of notation\else Notationsmissbrauch\fi,numbered = no]{abuse}
+\declaretheorem[style=thmvioletmargin,name=\ifenglish Abuse of notation*\else Notationsmissbrauch*\fi,numbered = no]{abuse*}
 \fi
 
 %Example
@@ -297,14 +321,22 @@
 \declaretheorem[style=thmyellowmargin,name=\ifenglish Remark*\else Bemerkung*\fi,numbered=no]{remark*}
 \fi
 
+%Trivial nonsense
+\ifnumberall
+\declaretheorem[style=thmyellowmargin,name=Trivial Nonsense,sibling=theorem]{trivial}
+\declaretheorem[style=thmyellowmargin,name=Trivial Nonsense*,sibling=theorem]{trivial*}
+\else
+\declaretheorem[style=thmyellowmargin,name=Trivial Nonsense,numbered=no]{trivial}
+\declaretheorem[style=thmyellowmargin,name=Trivial Nonsense*,numbered=no]{trivial*}
+\fi
 
 %Question
 \ifnumberall
-\declaretheorem[style = thmblackmargin, name=\ifenglish Question\else Frage\fi,sibling=theorem]{question}
-\declaretheorem[style = thmblackmargin, name=\ifenglish Question*\else Frage*\fi,sibling=theorem]{question*}
+\declaretheorem[style = thmblackmarginandfill, name=\ifenglish Question\else Frage\fi,sibling=theorem]{question}
+\declaretheorem[style = thmblackmarginandfill, name=\ifenglish Question*\else Frage*\fi,sibling=theorem]{question*}
 \else
-\declaretheorem[style = thmblackmargin, name=\ifenglish Question\else Frage\fi,numbered=no]{question}
-\declaretheorem[style = thmblackmargin, name=\ifenglish Question*\else Frage*\fi,numbered=no]{question*}
+\declaretheorem[style = thmblackmarginandfill, name=\ifenglish Question\else Frage\fi,numbered=no]{question}
+\declaretheorem[style = thmblackmarginandfill, name=\ifenglish Question*\else Frage*\fi,numbered=no]{question*}
 \fi
 
 %Proof (with asterisk)
