@@ -1,0 +1,222 @@
+\lecture[]{Do 06 Mai 2021 10:15}{Titel}
+\section{Vereinigungen}
+\begin{definition}\label{def:disjunkte-vereinigung}
+    Es sei $\left \{X_i\right\} _{i \in I}$ eine Familie von Mengen. Die \vocab{disjunkte Vereinigung} der $X_i$ ist definiert als
+    \[
+        \bigsqcup_{i\in I} X_i := \left \{(i,x) \mid i\in I, x\in X_i\right\} 
+    .\] 
+\end{definition}
+Für jedes $j\in I$ ist die Abbildung
+    \begin{equation*}
+    ι_j: \left| \begin{array}{c c l} 
+    X_j & \longrightarrow & \bigsqcup_{i\in I} \\
+    x & \longmapsto &  (j,x)
+    \end{array} \right.
+\end{equation*}
+injektiv und induziert eine Bijektion
+\[
+    X_j \leftrightarrow \left \{(j,x) \mid x\in X_j\right\} \subset \bigsqcup_{i \in I}X_i
+.\] 
+
+\begin{definition}
+    Sei $(X_,\mathcal{O}_i)_{i \in I}$ eine Familie von topologischen Räumen. Wir versehen $\bigsqcup_{i \in I}X_i$ mit der Topologie, die von $\bigcup_{i \in I}ι_i(\mathcal{O}_i)$ als Basis erzeugt wird. Den entstehenden Raum nennen wir das Koprodukt der topologischen Räume.
+\end{definition}
+\begin{remark*}
+    Hier betreiben wir sehr viel Abuse of Notation.
+\end{remark*}
+\todo{Abuse of Notation klarifizieren}
+\begin{warning}
+    Die Menge $\bigcup_{i \in  I} \mathcal{O}_i$ ist im Allgemeinen \underline{keine} Topologie. Z.B. ist
+    \[
+    \bigsqcup_{i \in I}X_i \not\in \bigcup_{i \in  I} \mathcal{O}_i
+    .\] 
+\end{warning}
+Eine Menge $U\subset \coprod_{i \in I}X_i$ ist offen, genau dann, wenn $ι_j^{-1}(U)\subset X_j$ offen ist für alle $j\in I$.
+\begin{remark}
+    Per Definition ist für jedes $j\in I$ die Menge $ι(X_j) = \left \{(j,x)\mid x\in X_j\right\} $ offen in $\coprod _{i \in I} X_i$ und die von $ι_j$ induzierte Abbildung 
+    \[
+        X_j \to \left \{(j,x)\mid x\in X_j\right\} \subset \bigsqcup_{i \in I} X_i
+    .\] 
+    ist eine Einbettung. Die $X_i$ können wir also kanonisch als Teilraume von  $\coprod _{i \in I} X_i$ auffassen.
+\end{remark}
+\begin{example}
+    \begin{enumerate}[1.]
+        \item Betrachte einen Kreis und einen Torus, die getrennt in $\R^3$ liegen. Die Unterraumtopologie auf dieser Menge ist die gleiche wie die Topologie der disjunkten Vereinigung.
+        \item Auch wenn $[0,1]\cup [\frac{1}{2},1] = [0,1]$ ist die Koprodukttopologie auf $[0,1] \sqcup [\frac{1}{2},1]$ nicht die Unterraumtopologie auf $[0,1]$.
+    \end{enumerate}
+\end{example}
+\begin{theorem}[Universelle Eigenschaft des Koprodukts]
+    Sei $\left \{X_i\right\} _{i \in I}$ eine Familie von topologischen Räumen und sei $Y$ ein topologischer Raum. Seien  $f_j : X_j \to  Y$ Abbildungen für alle $j\in I$. Definiere die Abbildung
+        \begin{equation*}
+        F: \left| \begin{array}{c c l} 
+        \coprod_{i \in I}X_i & \longrightarrow & Y \\
+        (j,xr & \longmapsto &  f_j(x)
+        \end{array} \right.
+    \end{equation*}
+   Dann ist $F$ genau dann stetig, wenn alle  $f_j$ stetig sind.
+   \[
+   \begin{tikzcd}
+       TODO
+   \end{tikzcd}
+   .\] 
+\end{theorem}
+\begin{proof}
+    $f_j$ ist stetig als Verknüpfung stetiger Abbildungen, da  $F \circ  ι_j = f_j$. \\
+    '$\impliedby$' Sei nun $f_j$ stetig  für alle $j$. Sei  $V\subset Y$ offen, dann müssen wir zeigen, dass $F^{-1}(V)\subset \bigsqcup_{i \in I}X_i$ offen ist. Es ist nun aber
+    \[
+        ι_j^{-1} (F^{-1}(V)) = (F \circ  ι_j)^{-1}(V) = f_j^{-1}(V) \subset X_j
+    .\] 
+    offen in $X_j$, weil $f_j$ stetig war. Nach Definition ist dann genau  $F^{-1}(V)$ offen in $\bigsqcup_{i \in I}X_i$.
+\end{proof}
+\begin{question}
+    Was ist, wenn die Vereinigung nicht disjunkt ist?
+\end{question}
+Sei $X$ ein topologischer Raum und $X_1,X_2\subset X$ Unterräume sowie $X_1\cup X_2 = X$ Setze $X_0 := X_1\cap X_2$. Wir wollen die Topologie auf $X$ aus denen von  $X_0,X_1,X_2$ rekonstruieren.
+\begin{example}
+    Falls $X_1\cap X_2=\emptyset$, so können wir aus den Einbettungen $X_1\hookrightarrow  X$ und $X_2\hookrightarrow X$ nach der Universellen Eigenschaft eine Abbildung $F:X_1\coprod X_2 \to  X$ induzieren, die stetig und bijektiv ist. Diese ist offen, genau dann, wenn $X_1,X_2$ offen in $X$ sind.
+\end{example}
+\begin{example}
+    Sei $X = [0,1], X_1 = [0,\frac{1}{2}]$ und $X_2 = (\frac{1}{2},1]$, also $X = X_1 \sqcup X_2$. Allerdings ist $X_1 \coprod X_2 \neq X$, weil die Menge $[0,\frac{1}{2}]$ offen in $X_1\coprod X_2$ ist, allerdings nicht in $[0,1]$.
+\end{example}
+\begin{remark*}
+    Man kann sich das wirklich bildlich so vorstellen, dass die disjunkte Vereinigung von $[0,\frac{1}{2}]$ und $(\frac{1}{2},1]$ bedeutet 'lege sie mit Abstand nebeneinander auf den Zahlenstrahl". Damit geht die 'Nähe' von $\frac{1}{2}$ zum Anfangsstück von $(\frac{1}{2},1]$ 'verloren'. In der Tat ist auch
+\end{remark*}
+Konstruktion:
+Seien $X_0,X_1,X_2$ topologischen Räume und $f_1: X_0 \to  X_1$ sowie $f_2 : X_0 \to X_2$.
+\begin{definition}
+    Definiere $X_1 \bigcup\limits_{X_0} X_2$ als Quotient
+    \[
+    X_1 \coprod X_2 / \sim 
+    .\] 
+    wobei $\sim $ erzeugt wird durch $f_1(x) \sim f_2(x)$ für alle $x\in X_0$.
+\end{definition}
+\begin{example}
+    Betrachte zwei Kopien von $D^2$. Wir können $S^1$ jeweils kanonisch als Rand einbetten, dann erhalten wir
+     \[
+    D^2 \bigcup_{S^1}D^2 \cong S^2 
+    .\] 
+\end{example}
+\todo{Grafik}
+\begin{warning}
+    Der Raum $X_1\bigcup\limits_{X_0} X_2$ hängt von den Abbildungen $f_1,f_2$ ab.
+\end{warning}
+\begin{example}
+    Betrachte wieder zwei Kopien von $D^2$, bette $f_1: S^1 \hookrightarrow  D^2$ kanonisch ein, und bilde $f_2: S^1 \to  D^2$ konstant in den Mittelpunkt ab. Dann erhalten wir eine 'Kugel auf einem runden Tisch'
+\end{example}
+\todo{Grafik}
+
+\begin{example}
+    Ist $X_0 = \left \{\star\right\} $ ein Punkt, so ergibt sich
+\end{example}
+\begin{definition}
+    Seien $X,Y$ nichtleere topologische Räume,  $x\in X$ und $y\in Y$. Bilde $f_1: \left \{\star\right\} \to X, \star \mapsto x$ und analog für $Y$ ab. Der entstehende Raum  $X \bigcup_{\left \{\star\right\} }Y$ heißt \vocab{Einpunktvereinigung} oder auch \vocab{Wedge-Produkt} von $X,Y$ und wird mit  $X \twedge Y$ notiert.  
+\end{definition}
+\begin{example}
+    Sei $(X,x) = (S^1,1)$ und  $(Y,y) = (S^1,1)$. Dann ist  $X \twedge Y$ ein  \vocab{Bouqet von 2 Kreisen}.
+\end{example}
+\todo{Grafik}
+\begin{example}
+    Es ist $[0,\frac{1}{2}] \twedge_{\frac{1}{2}} [\frac{1}{2},1] \cong [0,1]$. Verkleben wir allerdings die PUnkte $\frac{1}{4}$ und $\frac{3}{4}$, so erhalten wir nicht das Einheitsintervall, sondern ein Plus-Zeichen.
+\end{example}
+
+\begin{remark*}
+    Aus anderen mathematischen Richtungen kennt man das Wort 'Wedge' eigentlich als Symbol $\wedge$. In der Topologie ist dies jedoch anderst. Das Symbol $\tsmash$ heißt 'Smash' und definiert das Smash-Produkt zweier Räume:
+     \[
+    X \land Y := X \times  Y / X \twedge Y
+    .\]  
+Es ist z.B. $S^1\tsmash S^1 \cong S^2$ und sogar allgemein $S^n \tsmash S^n \cong S^{2n}$.
+\end{remark*}
+\todo{Grafik zu Smash-Produkt}
+\begin{definition*}[Smash-Produkt]
+    Seien $X,Y$ topologische Räume und  $x\in X, y\in Y$ Punkte. Dann ist das \vocab{Smash-Produkt} definiert als
+    \[
+        (X,x) \tsmash (Y,y) = X\times Y / (X\times \left \{y\right\} \twedge \left \{x\right\} \times Y)
+    .\] 
+\end{definition*}
+\todo{Nummer 5 3/4 geben}
+%%%%%Für die Latex-Nutzer: Ich verwende die Befehle \twedge und \tsmash, um die topologischen wedge und smash- symbole zu erzeugen. Ich bin ein Fan von semantischen Commands, das ermöglich a) sich nicht verwirren zu lassen, wenn man TeXt, wenn man den Code wieder liest etc und vermeidet Konflikte mit anderen Definitionen bzw. Dateien (und verwirrt mich weniger). Außerdem hat es den Vorteil, dass ich jederzeit \twedge und \tsmash neu definieren kann, sollte es nötig sein. Die No tation ist etwas analog zu \land und \lor für 'logic and" und 'logic ar' etc.
+\begin{remark*}
+    In der Pause stellte sich die Frage, ob es ein Beispiel für einen nicht-normalen Hausdorff-Raum gibt. Siehe hierzu 'Counterexamples in Topology'.
+\end{remark*}
+
+\todo{Referenz}
+Wir haben also Abbildungen
+\[
+\begin{tikzcd}
+    X_1 \ar[swap]{dr}{j_1} \ar{r}{ι_1}& X_1 \sqcup X_2 \ar{d}{q} \\
+        & X_1 \bigcup\limits_{X_0} X_2 
+\end{tikzcd}
+\qquad
+\begin{tikzcd}
+    X_2 \ar[swap]{dr}{j_2} \ar{r}{ι_2}& X_1 \sqcup X_2 \ar{d}{q} \\
+        & X_2 \bigcup\limits_{X_0} X_1 
+\end{tikzcd}
+.\] 
+\begin{lemma}
+    Ist $f_1 : X_0 \to  X_1$ injektiv so ist $j_2$ injektiv. Ist  $f_2 : X_0 \to  X_2$ injektiv, so ist $j_1$ injektiv.
+\end{lemma}
+\begin{proof}
+    Wir zeigen nur die erste Aussage, die zweite folgt aus Symmetriegründen. Seien $x,y \in X_2$ mit $j_2(x) = j_2(y)$, also $x\sim y$. Da die Äquivalenzrelation erzeugt ist von $f_1(x) \sim f_2(x)$, gibt es nun eine Folge von Punkten $x := p_1 \sim  p_2 \sim  \ldots \sim  p_n =: y$. Genauer gibt es $x_1\in X_0$ mit $f_2(x_1 ) = p_1 = x$ und $f_1(x_1) = p_2$, und $\exists x_2\in X_0$ mit $f_2(x_2) = p_3$ sowie $f_1(x_2) = p_2$. Allgemeiner gibt es also $x_i \in X_0$ mit $f_2(x_{2i-1}) = p_{2i-1}$, $f_1(x_{2i-1} = p_{2i})$, $f_2(x_{2i}r = p_{2i+1})$ und $f_1(x_{2i}) = p_{2i}$. \\
+    Nun wissen wir aber, dass $f_1$ injektiv ist, also ergibt sich $x_{2i-1} = x_{2i}$. Also ist
+    \[
+        x = f_2(x_1) = f_2(x_2) = p_3 = = f_2(x_3) = f_2(x_4) = p_5 = \ldots = y
+    .\] 
+\end{proof}
+\todo{Skizze}
+Sei $X$ ein topologischer Raum und seien  $X_1,X_2\subset X$ Unterräume. Sei $X_1\cap X_2 = X_0$ und $X_1\cup X_2 = X$. Zudem betrachten wir die Inklusionsabbildungen $f_i : X_i \hookrightarrow  X$. Betrachte
+    \begin{equation*}
+    f': \left| \begin{array}{c c l} 
+    X_1\sqcup X_2 & \longrightarrow & X \\
+    (1,x) & \longmapsto &  x \\
+    (2,x) & \longmapsto & x
+    \end{array} \right.
+\end{equation*}
+Dann faktorisiert $f'$ über  $f: X_1 \bigcup_{X_0} X_2 \to  X$, dh.
+\[
+\begin{tikzcd}
+    X_1 \sqcup X_2 \ar{r}{f'} \ar[swap]{d}{q} & X \\
+    X_1 \bigcup_{X_0} X_2 \ar[swap]{ur}{f} 
+\end{tikzcd}
+\]
+\begin{theorem}\label{dummy}
+    $f$ ist ein Homöomorphismus falls
+     \begin{enumerate}[1.]
+        \item $X_1,X_2$ sind offen.
+        \item $X_1,X_2$ sind abgeschlossen.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Wir zeigen nur 2, es genügt zu zeigen, dass $f$ abgeschlossen ist (weil wir schon wissen, dass  $f$ eine stetige Bijektion ist). Sei  $A\subset X_1\bigcup\limits_{X_0} X_2$ abgeschlossen. Dann sind $j^{-1}_1(A)\subset X_1$ und $j^{-1}_2(A)\subset X_2$ abgeschlossen, da $j_1,j_2$ stetig. Wegen
+    \[
+        f(A) = j^{-1}_1(A) \cup j^{-1}_2(A)
+    .\] 
+    sind wir fertig, indem wir ($j^{-1}_1(A)\subset X_1$ abgeschlossen und $X_1\subset X$ abgeschlossen) $\implies j^{-1}_1(A) \subset X$ abgeschlossen bemerken. 
+\end{proof}
+\begin{remark*}
+    Der wesentliche Punkt des Beweises war, dass eine abgeschlossene Teilmenge von $X_1$ (in der Teilraumtopologie) auch abgeschlosesn in $X$ ist, weil $X_1$ abgeschlossen.
+\end{remark*}
+\begin{example}
+    Sei $X = S^n$ und betrachte die Teilräume  $X_1 = \left \{x\in S^n \mid  x_{n+1}\geq 0\right\} $, $X_2 = \left \{x\in S^n \mid  x_{n+1} \leq 0\right\} $, also obere und untere Halbkugel. Der Schnitt
+    \[
+    X_0 := X_1 \cap  X_2 = \left \{x\in S^n \mid  x_{n+1} = 0\right\} 
+    .\] 
+    ist dann genau der Äquator der Kugel, also lernen wir aus \autoref{dummy}, dass
+     \[
+    S^n \cong X_1 \bigcup_{X_0} X_2 
+    .\] 
+    Mit der Abbildung
+        \begin{equation*}
+        \begin{array}{c c l} 
+        X_1 & \longrightarrow & D^n \\
+        (x_1,\ldots,x_{n+1}) & \longmapsto &  (x_1,\ldots,x_n)
+        \end{array}
+    \end{equation*}
+    (die Projektion auf die $n$-Dimensionale Scheibe) erhalten wir einen Homöomorphismus  $D^n \cong X_1, X_2$, also haben wir eigentlich sogar
+    \[
+    S^n \cong D^n \bigcup_{S^{n-1}} D^n
+    .\] 
+    gezeigt.
+    \begin{warning}
+        Auch hier ist wieder wichtig, dass wir $S^{n-1}\hookrightarrow D^n$ jeweils kanonisch einbetten, für andere Abbildungen haben wir bereits gesehen, dass wir andere Räume erhalten können.
+    \end{warning}
+\end{example}
