@@ -216,9 +216,11 @@
 \iflecturenumbers
 \declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem\else Satz\fi,numbered=no]{theorem*}
 \declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem*\else Satz*\fi,numbered=no]{theorem**}
+\declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem$^{\dagger}$\else Satz$^{\dagger}$\fi,numbered=no]{dtheorem}
 \else
 \declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem\else Satz\fi,numberwithin=section]{theorem*}
 \declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem*\else Satz*\fi,numberwithin=section]{theorem**}
+\declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem$^{\dagger}$\else Satz$^{\dagger}$\fi,numberwithin=section]{dtheorem}
 \fi
 
 \AtBeginDocument{\def\theoremautorefname{\ifenglish Theorem \else Satz\fi}} %Make referencing of theorems work properly (in german) with \autoref
@@ -230,9 +232,11 @@
 \iflecturenumbers
 \declaretheorem[style=thmredmarginandfill,name=Proposition,numbered=no]{proposition*}
 \declaretheorem[style=thmredmarginandfill,name=Proposition*,numbered=no]{proposition**}
+\declaretheorem[style=thmredmarginandfill,name=Proposition$^{\dagger}$,numbered=no]{dproposition}
 \else
 \declaretheorem[style=thmredmarginandfill,name=Proposition,sibling=theorem]{proposition*}
 \declaretheorem[style=thmredmarginandfill,name=Proposition,sibling=theorem]{proposition**}
+\declaretheorem[style=thmredmarginandfill,name=Proposition$^{\dagger}$,sibling=theorem]{dproposition}
 \fi
 
 %Corollary
@@ -242,9 +246,11 @@
 \iflecturenumbers
 \declaretheorem[style=thmredmarginandfill,name=\ifenglish Corollary\else Korollar\fi, numbered = no]{corollary*}
 \declaretheorem[style=thmredmarginandfill,name=\ifenglish Corollary*\else Korollar*\fi, numbered = no]{corollary**}
+\declaretheorem[style=thmredmarginandfill,name=\ifenglish Corollary$^{\dagger}$\else Korollar$^{\dagger}$\fi, numbered = no]{dcorollary}
 \else
 \declaretheorem[style=thmredmarginandfill,name=\ifenglish Corollary\else Korollar\fi, sibling=theorem]{corollary*}
 \declaretheorem[style=thmredmarginandfill,name=\ifenglish Corollary*\else Korollar*\fi, sibling=theorem]{corollary**}
+\declaretheorem[style=thmredmarginandfill,name=\ifenglish Corollary$^{\dagger}$\else Korollar$^{\dagger}$\fi, sibling=theorem]{dcorollary}
 \fi
 
 %Lemma
@@ -253,9 +259,11 @@
 \iflecturenumbers
 \declaretheorem[style=thmorangemarginandfill,name=Lemma, numbered=no]{lemma*}
 \declaretheorem[style=thmorangemarginandfill,name=Lemma*, numbered=no]{lemma**}
+\declaretheorem[style=thmorangemarginandfill,name=Lemma$^{\dagger}$, numbered=no]{dlemma}
 \else
 \declaretheorem[style=thmorangemarginandfill,name=Lemma, sibling = theorem]{lemma*}
 \declaretheorem[style=thmorangemarginandfill,name=Lemma*, sibling = theorem]{lemma**}
+\declaretheorem[style=thmorangemarginandfill,name=Lemma$^{\dagger}$, sibling = theorem]{dlemma}
 \fi
 
 %Definition
@@ -264,9 +272,11 @@
 \iflecturenumbers
 \declaretheorem[style=thmbluemarginandfill,name=Definition,numbered=no]{definition*}
 \declaretheorem[style=thmbluemarginandfill,name=Definition*,numbered=no]{definition**}
+\declaretheorem[style=thmbluemarginandfill,name=Definition$^{\dagger}$,numbered=no]{ddefinition}
 \else
 \declaretheorem[style=thmbluemarginandfill,name=Definition, sibling=theorem]{definition*}
 \declaretheorem[style=thmbluemarginandfill,name=Definition*,sibling=theorem]{definition**}
+\declaretheorem[style=thmbluemarginandfill,name=Definition$^{\dagger}$,sibling=theorem]{definition**}
 \fi
 
 %Theorem + Definition
@@ -275,9 +285,11 @@
 \iflecturenumbers
 \declaretheorem[style=thmredmarginbluefill,name=\ifenglish Theorem and Definition\else Satz und Definition\fi,numbered=no]{theoremdef*}
 \declaretheorem[style=thmredmarginbluefill,name=\ifenglish Theorem and Definition*\else Satz und Definition*\fi,numbered=no]{theoremdef**}
+\declaretheorem[style=thmredmarginbluefill,name=\ifenglish Theorem and Definition$^{\dagger}$\else Satz und Definition$^{\dagger}$\fi,numbered=no]{dtheoremdef}
 \else
 \declaretheorem[style=thmredmarginbluefill,name=\ifenglish Theorem and Definition*\else Satz und Definition\fi,sibling=theorem]{theoremdef*}
-\declaretheorem[style=thmredmarginbluefill,name=\ifenglish Theorem and Definition*\else Satz und Definition\fi,sibling=theorem]{theoremdef**}
+\declaretheorem[style=thmredmarginbluefill,name=\ifenglish Theorem and Definition*\else Satz und Definition*\fi,sibling=theorem]{theoremdef**}
+\declaretheorem[style=thmredmarginbluefill,name=\ifenglish Theorem and Definition$^{\dagger}$\else Satz und Definition$^{\dagger}$\fi,sibling=theorem]{dtheoremdef}
 \fi
 
 
@@ -289,9 +301,11 @@
 \ifnumberall
 \declaretheorem[style=thmvioletmarginandfill,name=Notation,sibling=theorem]{notation}
 \declaretheorem[style=thmvioletmarginandfill,name=Notation*,sibling=theorem]{notation*}
+\declaretheorem[style=thmvioletmarginandfill,name=Notation$^{\dagger}$,sibling=theorem]{dnotation}
 \else
 \declaretheorem[style=thmvioletmarginandfill,name=Notation,numbered = no]{notation}
 \declaretheorem[style=thmvioletmarginandfill,name=Notation*,numbered = no]{notation*}
+\declaretheorem[style=thmvioletmarginandfill,name=Notation$^{\dagger}$,numbered = no]{dnotation}
 \fi
 
 %%Abuse of notation
@@ -307,27 +321,32 @@
 \ifnumberall
 \declaretheorem[style=thmgreenmargin,name=\ifenglish Example\else Beispiel\fi,sibling=theorem]{example}
 \declaretheorem[style=thmgreenmargin,name=\ifenglish Example*\else Beispiel*\fi,sibling=theorem]{example*}
+\declaretheorem[style=thmgreenmargin,name=\ifenglish Example$^{\dagger}$\else Beispiel$^{\dagger}$\fi,sibling=theorem]{dexample}
 \else
 \declaretheorem[style=thmgreenmargin,name=\ifenglish Example\else Beispiel\fi,numbered=no]{example}
-\declaretheorem[style=thmgreenmargin,name=\ifenglish Example*\else Beispiel*\fi,numbered=no]{example*}
+\declaretheorem[style=thmgreenmargin,name=\ifenglish Example$^{\dagger}$\else Beispiel$^{\dagger}$\fi,numbered=no]{dexample}
 \fi
 
 %Remark
 \ifnumberall
 \declaretheorem[style=thmyellowmargin,name=\ifenglish Remark\else Bemerkung\fi,sibling=theorem]{remark}
 \declaretheorem[style=thmyellowmargin,name=\ifenglish Remark*\else Bemerkung*\fi,sibling=theorem]{remark*}
+\declaretheorem[style=thmyellowmargin,name=\ifenglish Remark$^{\dagger}$\else Bemerkung$^{\dagger}$\fi,sibling=theorem]{dremark}
 \else
 \declaretheorem[style=thmyellowmargin,name=\ifenglish Remark\else Bemerkung\fi,numbered=no]{remark}
 \declaretheorem[style=thmyellowmargin,name=\ifenglish Remark*\else Bemerkung*\fi,numbered=no]{remark*}
+\declaretheorem[style=thmyellowmargin,name=\ifenglish Remark$^{\dagger}$\else Bemerkung$^{\dagger}$\fi,numbered=no]{dremark}
 \fi
 
 %Trivial nonsense
 \ifnumberall
 \declaretheorem[style=thmyellowmargin,name=Trivial Nonsense,sibling=theorem]{trivial}
 \declaretheorem[style=thmyellowmargin,name=Trivial Nonsense*,sibling=theorem]{trivial*}
+\declaretheorem[style=thmyellowmargin,name=Trivial Nonsense$^{\dagger}$,sibling=theorem]{dtrivial}
 \else
 \declaretheorem[style=thmyellowmargin,name=Trivial Nonsense,numbered=no]{trivial}
 \declaretheorem[style=thmyellowmargin,name=Trivial Nonsense*,numbered=no]{trivial*}
+\declaretheorem[style=thmyellowmargin,name=Trivial Nonsense$^{\dagger}$,numbered=no]{dtrivial}
 \fi
 
 %Question
