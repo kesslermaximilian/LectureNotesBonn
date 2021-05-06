@@ -292,8 +292,46 @@ Es ist z.B. $S^1\tsmash S^1 \cong S^2$ und sogar allgemein $S^n \tsmash S^n \con
 \end{definition*}
 %%%%%Für die Latex-Nutzer: Ich verwende die Befehle \twedge und \tsmash, um die topologischen wedge und smash- symbole zu erzeugen. Ich bin ein Fan von semantischen Commands, das ermöglich a) sich nicht verwirren zu lassen, wenn man TeXt, wenn man den Code wieder liest etc und vermeidet Konflikte mit anderen Definitionen bzw. Dateien (und verwirrt mich weniger). Außerdem hat es den Vorteil, dass ich jederzeit \twedge und \tsmash neu definieren kann, sollte es nötig sein. Die No tation ist etwas analog zu \land und \lor für 'logic and" und 'logic ar' etc.
 \begin{remark*}
-    In der Pause stellte sich die Frage, ob es ein Beispiel für einen nicht-normalen Hausdorff-Raum gibt. Siehe hierzu \cite{counterexamples}.
+    In der Pause stellte sich die Frage, ob es ein Beispiel für einen nicht-normalen Hausdorff-Raum gibt. Siehe hierzu \cite[][Gegenbeispiel 86]{counterexamples}.
 \end{remark*}
+
+\begin{example*}[Punktierte Tychonoff-Planke]
+
+    Wir geben (nach einem Kommentar von {\sc Melvin Weiß}) ein Beispiel für einen Hausdorff-Raum, der nicht normal ist, die sogenannte \vocab{gelöschte Tychonoff-Planke} (eng: 'deleted Tychonoff plank'). Sei hierzu $\aleph_0$ die erste unendliche Kardinalzahl und $\aleph_1$ die erste überabzählbare Kardinalzahl. Auf den Räumen $[0,\aleph_0]$ und  $[0,\aleph_1]$ können wir in natürlicher Weise eine Topologie definieren, indem wir die Anfangs- und Endstücke des Intervalls als Subbasis wählen. Der Raum
+    \[
+        T := [0,\aleph_0] \times [0,\aleph_1]
+    .\] 
+    heißt Tychonoff-Planke und ist ein kompakter Hausdorff-Raum, also insbesondere normal. Der Teilraum
+    \[
+        T_{\text{deleted}} := T \setminus \left \{\infty\right\}  := T \setminus \left \{(\aleph_0, \aleph_1)\right\} 
+    .\] 
+    heißt punktierte Tychonoff-Planke und ist ein lokal kompakter Hausdorffraum, allerdings nicht normal.
+    \begin{proof}[Beweisskizze]
+        Wir verweisen an dieser Stelle darauf, dass $[0,α]$ für jede Ordinalzahl  $α$ ein kompakter Hausdorffraum ist, das ganze beruht im Wesentlichen darauf, dass die Ordinalzahlen eine Wohlordnung bilden. Also ist  $T$ als produkt von kompakten Hausdorffräumen ebenfalls kompakter Hausdorffraum (\autoref{thm:produkte-von-Hausdorff-Räumen-sind-Hausdorff}, \autoref{thm:tychonoff}), also normal (\autoref{thm:kompakter-hausdorff-raum-ist-normal}. \\
+        Der Teilraum $T_{\text{deleted}}$ ist also als Teilraum eines Hausdorff-Raumes ebenfalls Hausdorff. Allerdings lassen sich die beiden abgeschlossenen Mengen
+        \[
+            A:= [0,\aleph_0) \times \left \{\aleph_1\right\}, \qquad B := \left \{\aleph_0\right\} \times [0,\aleph_1)
+        .\] 
+        nicht durch offene Mengen trennen: \\
+        Angenommen, wir finden $A\subset U$ und $B\subset V$ mit $U,V$ offen. Sei  $n\in \N = \aleph_0$ beliebig, dann ist $(n,\aleph_1)\in A\subset U$. Da $U$ offen, finden wir ein Basiselement der Produkttopologie, das  $(n,\aleph_1)$ enthält, also gibt es  $α_n<\aleph_1$, sodass bereits das Intervall  $\left \{n\right\} \times [α_n, \aleph_1] \subset U$ ist (an dieser Stelle sollte man sich eigentlich genauer Fragen, wie die Topologie auf einer Ordinalzahl definiert ist, die Details, und warum die behauptete Aussage folgt, sind aber leicht zu überlegen). Jetzt kommt der Trick: Wir betrachten
+        \[
+        β := \sup_{n\in \N} α_n
+        .\] 
+        \begin{claim}
+            $β<\aleph_1$
+        \end{claim}
+        \begin{subproof}
+            Es ist $β = \bigcup_{n\in \N} α_n$ (nach Konstruktion der Ordinalzahlen) wieder eine Ordinalzahl. Da $α_n < \aleph_1$ ist  $α_n$ (als Menge) abzählbar, und somit auch  $β$ als abzählbare Vereinigung abzählbarer Mengen, also ist auch  $β<\aleph_1$, weil  $\aleph_1$ überabzählbar ist.    
+        \end{subproof}
+        Jetzt wissen wir also, dass sogar der Streifen $[0,\aleph_0) \times [β,\aleph_1]\subset U$ ist (nach Wahl der $α_n$), d.h. die Menge  $U$ enthält sogar ein 'Rechteck positiver Höhe', was absurd ist. Formal können wir argumentieren, indem wir jetzt für den Punkt $(\aleph_0, β)\in B$ eine offene Umgebung wählen und somit ein Intervall $[\gamma, \aleph_0) \times \left \{β\right\} \subset V$ mit $\gamma <\aleph_0$ finden. Dann ist jedoch $(\gamma, \beta)\in U\cap V$, \contra.
+    \end{proof}
+        Das absurde an dem Beispiel ist, dass wir das Supremum der $α_n$ nehmen, die zwar alle  $<\aleph_1$ sind, aber dennoch  $β \neq \aleph_1$ folgt. Von den reellen Zahlen sind wir gewohnt, dass hier Gleichheit eintreten kann. Wir haben also sogar gezeigt, dass
+        \begin{claim}
+            Im Raum $[0,\aleph_1)$ konvergiert jede monoton steigende Folge.
+        \end{claim}
+        \noindent\textbf{obwohl} der Raum nach oben keine Schranke besitzt. Die Moral daran ist ungefähr '$\aleph_1$ ist zu groß, um von Folgen erreicht zu werden'. Das motiviert auch die Einführung von Netzen für größere topologische Räume, die wir hier aber nicht behandeln.
+\end{example*}
+
 
 Wir haben nun Abbildungen $j_i \colon X_i \to  X_1 \bigcup_{X_0} X_2 $:
 \[
