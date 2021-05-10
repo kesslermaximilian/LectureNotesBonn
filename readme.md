@@ -1,11 +1,23 @@
-Dies sind (inoffizielle) Mitschriften von Vorlesungen an der Universität Bonn.
-Ich garantiere weder für Vollständigkeit noch Korrektheit der Notizen.
-Verwendet wird unter anderem das Layout von
-https://github.com/gillescastel/university-setup
+These are (inofficial) lecture notes of my courses taken at the University of Bonn. I cannot guarantee for neither correctness nor completeness of these notes.
 
-
-| Semester | Vorlesung | Dozent | |
+## Contents
+| Semester | Course | Lecturer | |
 | --- | --- | --- | --- |
 | SS 2021 | Algorithmische Mathematik II | Prof. Dr. Patrik Ferrari | [Skript](https://github.com/kesslermaximilian/LectureNotesBonn/blob/master/algorithmische-mathematik-2/master.pdf?raw=true) |
 | SS 2021 | Einführung in die Geometrie und Topologie | Dr. Daniel Kasprowski | [Skript](https://github.com/kesslermaximilian/LectureNotesBonn/blob/master/geometrie-und-topologie/master.pdf?raw=true)|
-| WS 20/21 | Einführung in die diskrete Mathematik | Prof. Dr. Jens Vygen | [Skript (unvollständig)](https://github.com/kesslermaximilian/LectureNotesBonn/blob/master/einfuehrung-in-die-diskrete-mathematik/skript.pdf?raw=true), [Zusammenfassung](https://github.com/kesslermaximilian/LectureNotesBonn/blob/master/einfuehrung-in-die-diskrete-mathematik/zusammenfassung.pdf?raw=true)|
+| WS 20/21 | Einführung in die diskrete Mathematik | Prof. Dr. Jens Vygen | [Skript (incomplete)](https://github.com/kesslermaximilian/LectureNotesBonn/blob/master/einfuehrung-in-die-diskrete-mathematik/skript.pdf?raw=true), [Summary](https://github.com/kesslermaximilian/LectureNotesBonn/blob/master/einfuehrung-in-die-diskrete-mathematik/zusammenfassung.pdf?raw=true)|
+
+## License
+The preamble of these documents is (mainly) taken from https://github.com/gillescastel/university-setup and published under the MIT-Licence. The corresponding part of the preamble is markend and the licence is included.
+The custom packages are 'self-written', feel free to use or customise them for your own wishes.
+This work is itself licenced under MIT, which means you can freely use, distribute, modify or even sell the code found here, as long as you include this licence as well.
+
+## Customization
+The package includes some customization concerning the numbering and style of the theoremlike (coloured) environments found in the document, these are explained in the fancytheorem-package, load them either in the preamble (globally) or for each individual lecture in the options for the documentclass.
+If you havo significant suggestions for improvement that others might as well like, let me know, so that I can potentially integrate these changes or options to the document.
+
+## Errors
+If you find errors, content-wise but as well typos, please let me know so that I can correct them. Either contact me directly, use the 'Issues feature' here on GitHub or even make a Pull Request if you corrected the errors yourself.
+
+## Write-up
+I use the setup from https://github.com/gillescastel/latex-snippets (Vim + UltiSnips) to write up these lecture notes and https://github.com/gillescastel/university-setup to structure these, though i customised them heavily for my purposes. Also, the [Neo-Layout](https://neo-layout.org) comes in handy when writing LaTeX as it enables to type special characteres and greek letters directly and easily.
