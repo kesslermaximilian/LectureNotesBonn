@@ -1,1 +1,85 @@
-\lecture[]{Mo 10 Mai 2021 10:15}{}
+\lecture[]{Mo 10 Mai 2021 10:15}{Markovketten}
+\subsubsection{Markovketten (MK)}
+\begin{itemize}
+    \item Setze $X = (X_0,X_1,X_2,\ldots,X_n)$. Die Zeit beginnt hier bei $k=0$.
+    \item Betrachte  $\Omega_k = \mathcal{S}$ für festes $\mathcal{S}$, also
+        \[
+            \Omega = \mathcal{S}^{n+1} = \left \{(x_0,\ldots,x_n) \mid  x_i \in \mathcal{S}, 0\leq i\leq n\right\} 
+        .\] 
+\end{itemize}
+\begin{definition}[Markovkette]\label{def:markovkette}
+    Eine \vocab{Markovkette} (abgekürzt: MK) ist ein mehrstufiges Modell mit der Eigenschaft
+    \[
+        p_k(x_k \mid  x_0,\ldots,x_{k-1}) = p_k (x_k\mid x_{k-1})
+    .\] 
+    Diese Eigenschaft heißt auch \vocab{Markov-Eigenschaft}. 
+\end{definition}
+\begin{question}
+    Sei $\mathcal{S}$ abzählbar. Wie beschreibt man die Übergänge von $X_k$ nach  $X_{k+1}$?
+\end{question}
+\begin{definition}[Sotchastische Matrix]\label{def:stochastische-matrix}
+    Eine Matrix $P = [\mathbb{P}(x,y)]_{x,y\in \mathcal{S}}$ mit den Eigenschaften
+    \begin{enumerate}[label=\protect\circled{\alph*}]
+        \item $\forall x\, \forall y \colon\mathbb{P}(x,y) \geq  0$
+        \item $\forall x\in \mathcal{S}\colon\sum_{y\in \mathcal{S}} \mathbb{P}(x,y) = 1$
+    \end{enumerate}
+    heißt \vocab{stochastische Matrix}. 
+\end{definition}
+\begin{remark*}
+    Beachte, dass die Matrix in obiger Definition nicht zwingend endlich sein muss, Definitionen verallgemeinern sich kanonisch. Wir fordern aber, dass $\mathcal{S}$ abzählbar ist.
+\end{remark*}
+\begin{lemma}
+    Die Matrix $P_k$ mit den Einträgen
+    \[
+        P_k(x,y) = p_k(Y \mid X) \quad \forall x,y,\in \mathcal{S}
+    .\] 
+    ist eine stochastische Matrix.
+\end{lemma}
+\begin{proof}
+    Offenbar ist $p_k(Y\mid X) \geq 0$. Zudem
+    \begin{IEEEeqnarray*}{rCl}
+        \sum_{y\in \mathcal{S}} P_k(x,y) & =&  \sum_{y\in \mathcal{S}} \mathbb{P}(X_k = Y \mid  X_{k-1} = x) \\
+                                         & = & \mathbb{P}\left(\bigcup_{y\in \mathcal{S}} \left \{X_k = y\right\} \mid X_{k-1} = x\right) \\
+                                         & = &  \mathbb{P}(\Omega_k \mid  X_{k-1}=x) \\
+                                         & = & 1
+    \end{IEEEeqnarray*}
+    weil es sich bei $\mathbb{P}(\cdot \mid  X_{k-1}= x)$ um eine Wahrscheinlichkeitsverteilung handelt, und $\mathcal{S} = \bigsqcup_{y\in \mathcal{S}} \left \{y\right\} $ eine disjunkte Vereinigung ist.
+\end{proof}
+\begin{remark}
+    $P_k$ ist eine sogenannte \vocab{Übergangsmatrix}. Sie beschreibt den Übergang der Markovkette von $\Omega_k$ nach $\Omega_{k+1}$ 
+\end{remark}
+Die Massenfunktion einer Markovkette ist
+ \[
+     p(x_0,x_1,\ldots,x_n) = p_0(x_0) \cdot P_1(x_0,x_1) \cdot  \ldots \cdot  P_n(x_{n-1},x_n)
+.\] 
+wobei $p_0$ die sogenannte \vocab{Anfangsverteilung} ist.
+\begin{remark}
+    Falls $P_k = \mathbb{P}$, d.h. die Übergangsmatrixk hängt nicht von $k$ ab, dann heißt die Markovkette  (zeitlich) \vocab{homogen}. 
+\end{remark}
+\begin{remark}
+    Seien $P,Q$ zwei stochastische Matrizen. Dann ist auch $P\cdot Q$ eine stochastische Matrix, wobei
+    \[
+        (    P\cdot Q) (x,y) = \sum_{z\in \mathcal{S}} P(x,z) \cdot  Q(z,y)
+    .\] 
+\end{remark}
+\begin{question}
+    Was ist
+    \begin{enumerate}[1)]
+        \item $\mathbb{P}(X_n = x)$
+        \item $\lim_{n\to \infty} \mathbb{P}(X_n = x)$ (Existiert dieser überhaupt?)
+        \item Ist $\lim_{n \to \infty} \mathbb{P}(X_n = x)$ von $x_0$ abhängig?
+    \end{enumerate}
+\end{question}
+\begin{theorem}[Massenfunktion in Markovketten]\label{thm:massenfunktion-einer-zufallsvariable-in-markovkette}
+    Sei $μ_0$ der Zeilenvektor mit Elementen  $p_0(x), x\in \mathcal{S}$. Seien dazu $P_1,P_2,\ldots,P_n$ die Übergangsmatrizen einer Markovkette $X = (X_0,X_1,\ldots,X_n)$ auf $\mathcal{S}$. Dann hat die Wahrscheinlichkeit von $X_n$ die Massenfunkiton
+    \[
+        μ_n(x) := \mathbb{P}(X_n = x) = (μ_0 \cdot  P_1 \cdot  \ldots \cdot  P_n)(x) \quad \forall x\in \mathcal{S}
+    .\] 
+\end{theorem}
+\begin{proof}
+    \begin{IEEEeqnarray*}{rCl}
+        \mathbb{P}(X_n = x) &=& \sum_{x_0,\ldots,x_{n-1}\in \mathcal{S}} \mathbb{P}(X_0 = x_0, \ldots, X_{n-1}=x_{n-1}, X_n = x) \\
+                            & = & μ_0(x_0) P_1(x_0,x_1) \ldots P_n(x_{n-1},x)
+    \end{IEEEeqnarray*}
+    
+\end{proof}
