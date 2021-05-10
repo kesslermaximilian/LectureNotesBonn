@@ -1,4 +1,4 @@
-\lecture[]{Mo 10 Mai 2021 10:15}{Markovketten}
+\lecture[Markov-Ketten. Übergangsmatrizen.]{Mo 10 Mai 2021 10:15}{Markovketten}
 \subsubsection{Markovketten (MK)}
 \begin{itemize}
     \item Setze $X = (X_0,X_1,X_2,\ldots,X_n)$. Die Zeit beginnt hier bei $k=0$.
@@ -7,16 +7,18 @@
             \Omega = \mathcal{S}^{n+1} = \left \{(x_0,\ldots,x_n) \mid  x_i \in \mathcal{S}, 0\leq i\leq n\right\} 
         .\] 
 \end{itemize}
+
 \begin{definition}[Markovkette]\label{def:markovkette}
     Eine \vocab{Markovkette} (abgekürzt: MK) ist ein mehrstufiges Modell mit der Eigenschaft
     \[
         p_k(x_k \mid  x_0,\ldots,x_{k-1}) = p_k (x_k\mid x_{k-1})
     .\] 
-    Diese Eigenschaft heißt auch \vocab{Markov-Eigenschaft}. 
 \end{definition}
+
 \begin{question}
     Sei $\mathcal{S}$ abzählbar. Wie beschreibt man die Übergänge von $X_k$ nach  $X_{k+1}$?
 \end{question}
+
 \begin{definition}[Sotchastische Matrix]\label{def:stochastische-matrix}
     Eine Matrix $P = [\mathbb{P}(x,y)]_{x,y\in \mathcal{S}}$ mit den Eigenschaften
     \begin{enumerate}[label=\protect\circled{\alph*}]
@@ -25,16 +27,19 @@
     \end{enumerate}
     heißt \vocab{stochastische Matrix}. 
 \end{definition}
+
 \begin{remark*}
     Beachte, dass die Matrix in obiger Definition nicht zwingend endlich sein muss, Definitionen verallgemeinern sich kanonisch. Wir fordern aber, dass $\mathcal{S}$ abzählbar ist.
 \end{remark*}
-\begin{lemma}
+
+\begin{lemma}\label{lm:übergangsmatrix-ist-stochastische-matrix}
     Die Matrix $P_k$ mit den Einträgen
     \[
         P_k(x,y) = p_k(Y \mid X) \quad \forall x,y,\in \mathcal{S}
     .\] 
     ist eine stochastische Matrix.
 \end{lemma}
+
 \begin{proof}
     Offenbar ist $p_k(Y\mid X) \geq 0$. Zudem
     \begin{IEEEeqnarray*}{rCl}
@@ -45,23 +50,28 @@
     \end{IEEEeqnarray*}
     weil es sich bei $\mathbb{P}(\cdot \mid  X_{k-1}= x)$ um eine Wahrscheinlichkeitsverteilung handelt, und $\mathcal{S} = \bigsqcup_{y\in \mathcal{S}} \left \{y\right\} $ eine disjunkte Vereinigung ist.
 \end{proof}
+
 \begin{remark}
     $P_k$ ist eine sogenannte \vocab{Übergangsmatrix}. Sie beschreibt den Übergang der Markovkette von $\Omega_k$ nach $\Omega_{k+1}$ 
 \end{remark}
+
 Die Massenfunktion einer Markovkette ist
  \[
      p(x_0,x_1,\ldots,x_n) = p_0(x_0) \cdot P_1(x_0,x_1) \cdot  \ldots \cdot  P_n(x_{n-1},x_n)
 .\] 
 wobei $p_0$ die sogenannte \vocab{Anfangsverteilung} ist.
+
 \begin{remark}
     Falls $P_k = \mathbb{P}$, d.h. die Übergangsmatrixk hängt nicht von $k$ ab, dann heißt die Markovkette  (zeitlich) \vocab{homogen}. 
 \end{remark}
+
 \begin{remark}
     Seien $P,Q$ zwei stochastische Matrizen. Dann ist auch $P\cdot Q$ eine stochastische Matrix, wobei
     \[
         (    P\cdot Q) (x,y) = \sum_{z\in \mathcal{S}} P(x,z) \cdot  Q(z,y)
     .\] 
 \end{remark}
+
 \begin{question}
     Was ist
     \begin{enumerate}[1)]
@@ -70,16 +80,110 @@ wobei $p_0$ die sogenannte \vocab{Anfangsverteilung} ist.
         \item Ist $\lim_{n \to \infty} \mathbb{P}(X_n = x)$ von $x_0$ abhängig?
     \end{enumerate}
 \end{question}
+
 \begin{theorem}[Massenfunktion in Markovketten]\label{thm:massenfunktion-einer-zufallsvariable-in-markovkette}
     Sei $μ_0$ der Zeilenvektor mit Elementen  $p_0(x), x\in \mathcal{S}$. Seien dazu $P_1,P_2,\ldots,P_n$ die Übergangsmatrizen einer Markovkette $X = (X_0,X_1,\ldots,X_n)$ auf $\mathcal{S}$. Dann hat die Wahrscheinlichkeit von $X_n$ die Massenfunkiton
     \[
         μ_n(x) := \mathbb{P}(X_n = x) = (μ_0 \cdot  P_1 \cdot  \ldots \cdot  P_n)(x) \quad \forall x\in \mathcal{S}
     .\] 
 \end{theorem}
+
 \begin{proof}
     \begin{IEEEeqnarray*}{rCl}
         \mathbb{P}(X_n = x) &=& \sum_{x_0,\ldots,x_{n-1}\in \mathcal{S}} \mathbb{P}(X_0 = x_0, \ldots, X_{n-1}=x_{n-1}, X_n = x) \\
                             & = & μ_0(x_0) P_1(x_0,x_1) \ldots P_n(x_{n-1},x)
     \end{IEEEeqnarray*}
-    
 \end{proof}
+
+\begin{example}
+    \begin{enumerate}[label=\protect\circled{\alph*}]
+        \item Produktmodelle sind Markovketten.
+        \item Irrfahrten (eng: 'Random Walk') auf $\Z^d$ sind Markovketten:\\
+            Sei $\mathcal{S} = \Z^d$ mit $d\in \N$ fest. Die (symmetrische) Irrfahrt ist eine homogene Markovkette mit 
+            \[
+                P_k(x,y) = P(x,y) = \begin{cases}
+                    \frac{1}{2d} & \text{falls } \lVert x-y \rVert =1 \\
+                                0 & \text{sonst}
+                \end{cases}
+            .\] 
+In jedem Schritt bewegen wir uns also auf einen benachbarten Gitterpunkt.
+\item \vocab{Urnenmodell von Ehrenfest}. Wir haben ein System mit $N$ Teilchen, die auf zwei Urnen  $A,B$ verteilt sind. Zu jedem Zeitpunkt  $t\in \N$ welchselt eine zufällig ausgewählte Kugel die Urne. \\
+    In der Makroskopischen Modellierung sei $n_A := \# \text{Teilchen in A}$. Dann ist
+    \[
+    \rho_A := \frac{n_A}{N}\in \left \{0,\frac{1}{N}, \ldots, \frac{N-1}{N},1\right\}  = : \mathcal{S}
+    .\] 
+    und die Markovkette, die die Zeitentwicklung von $\rho_A$ beschreibt, hat die Übergangsmatrix
+     \[
+         P(x,y) = \begin{cases}
+             x & \text{falls } y = x-\frac{1}{N} \\
+             1-x & \text{falls } y = x+\frac{1}{N} \\
+             0 & \text{sonst}
+         \end{cases}
+    .\] 
+    Die Fälle spiegeln wieder, dass wir ein Teilchen aus $A$ bzw.  $B$ gezogen haben, wobei der dritte Fall dijenigen  $y$ abdeckt, die wir nicht erreichen können, weil sich  $n_A$ immer nur um $\pm_1$ ändert. \\
+    In der Mikroskopischen Modellierung nummerieren wir die Teilchen, d.h.
+     \[
+         \mathcal{S} = \left \{0,1\right\} ^n = \left \{σ = (σ_1, \ldots,σ_N) \mid  σ_k \in \left \{0,1\right\} , 1\leq k\leq N\right\} 
+    .\] 
+    wobei
+    \[
+    σ_k = \begin{cases}
+        1 & \text{falls Teilchen } k \text{ ist in $A$}\\
+        0 & \text{falls Teichen $k$ ist in  $B$}
+    \end{cases}
+    .\] 
+    Die Dynamik von $σ\in \mathcal{S}$ wir durch die Markovkette beschrieben:
+    \[
+        P(σ,\tilde{σ}) = \begin{cases}
+            \frac{1}{N} & \text{falls } \sum_{k=1}^N \abs{σ_k - \tilde{σ}_k} = 1 \\
+            0 & \text{sonst}
+        \end{cases} 
+    .\] 
+    \begin{remark}
+        Die Notation $\sum_{k=1}^N \abs{σ_k - \tilde{σ_k} } =1$ ist nur eine kurze (elegante) Möglichkeit auszudrücken, dass sich $σ_k$ nach  $\tilde{σ}_k$ in nur einem Eintrag ändert.
+    \end{remark}
+    Es ergibt sich also eine Irrfahrt auf dem Hyperwürfel $\left \{0,1\right\} ^N$.
+    \end{enumerate}
+\end{example}
+
+\begin{question}
+    Was ist $P(X_l = y \mid X_k = x)$ für $k<l$ beliebig?
+\end{question}
+
+Intuitiv sollten wir hier $P_{k+1}\cdot \ldots\cdot P_l(x_k,x_l)$ erhalten, indem wir die Übergangsmatrizen multiplizieren.
+\begin{theorem}[Markoveigenschaft]\label{thm:markov-eigenschaft}
+    Sei $X$ eine Markovkette auf  $\mathcal{S}$. Für alle $0\leq k\leq l\leq n$ und $x_0,\ldots,x_l\in \mathcal{S}$ mit $\mathbb{P}(X_0 = x_0, \ldots, X_k = x_k) \neq 0$ ist
+    \begin{equation}
+        \begin{split}
+            \mathbb{P}(X_l = x_l \mid  X_0 = x_0,\ldots,X_k = x_k) &= \mathbb{P}(X_l = x_l \mid  X_k = x_k) \\
+                                                                   &= (P_{k+1}\cdot \ldots\cdot P_l)(x_k,x_l)
+        \end{split}
+    \end{equation}
+    Diese Eigenschaft (erstes Gleichheitszeichen) heißt auch \vocab{Markov-Eigenschaft}. 
+\end{theorem}
+
+\begin{proof}
+Es ergibt sich
+\begin{IEEEeqnarray*}{Cl}
+&    P(X_l = x_l \mid  X_0 = x_0, \ldots, X_k = x_k)\\
+\stackrel{\text{Def.}}{=} &  \frac{P(X_0 = x_0, \ldots, X_k = X_k, X_l = x_l)}{P(X_0 = x_0, \ldots, X_k = X_k)} \\
+= & \frac{\sum_{\substack{ x_{k+1},\ldots,x_{l-1} \\ x_{l+1},\ldots,x_n \in \mathcal{S}}} p_0(x_0) P_1(x_0,x_1) \cdot  \ldots \cdot P_k(x_{k-1},x_k) \cdot  P_{k+1}(x_k,x_{k+1})\cdot \ldots\cdot P_l(x_{l-1},x_l) \cdot P_{l+1}(x_l, x_{l+1}) \cdot  \ldots \cdot P_(x_{n-1},x_n)}{\sum_{x_{k+1},\ldots,x_n\in \mathcal{S}} \text{analog}} \\
+= & \frac{\sum_{x_{k+1},\ldots,x_{l-1}\in \mathcal{S}} p_0(x_0)\cdot \ldots\cdot P_k(x_{k-1},x_k)\cdot P_{k+1}(x_1,x_{k+1})\cdot P_l(x_{l-1},x_l)}{p_0(x_0)\cdot \ldots\cdot P_k(x_{k-1},x_k)} \\
+= & \sum_{x_{k+1},\ldots,x_{l-1}\in \mathcal{S}} P_{k+1}(x_{k},x_{k+1}) \cdot P_{l(x_{l-1},x_{l}}) \\
+= & (P_{k+1}\cdot \ldots\cdot P_l) (x_k,x_l)
+\end{IEEEeqnarray*}
+Das zeigt die erste Gleichheit. Dazu ist
+\begin{IEEEeqnarray*}{Cl}
+    &\mathbb{P}(X_l = x_l \mid X_k = x_k) \\
+    = &\frac{\mathbb{P}(X_l = x_l,X_k = x_k)}{\mathbb{P}(X_k = x_k)} \\
+    = & \frac{\sum_{x_{k+1},\ldots,x_{l-1}\in \mathcal{S}} (μ_0 P_1\ldots P_k)(x_k)\cdot P_{k+1}(x_k,x_{k+1}\cdot P_l(x_{l-1},x_l)}{(μ_0 P_1\cdot \ldots\cdot P_k)(x_k)} \\
+    = & (P_{k+1}\cdot \ldots\cdot P_l) (x_k,x_l)
+\end{IEEEeqnarray*}
+\end{proof}
+\begin{example}
+    Ist $\mathcal{S} = \left \{1,\ldots,N\right\}$, so ergibt sich mit $μ_0 = (μ_0(1), \ldots, μ_0(N))$ \ldots
+    \[
+        = (\sum_k μ_0(k) P(k,1), \sum_k μ_0(k) P(k,2),\ldots) = ((μP)(1), (μ_0P)(2), \ldots)
+    .\] 
+\end{example}
+\todo{Beispiel fertig}
