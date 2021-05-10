@@ -1,4 +1,4 @@
-\lecture{8}{Mi 05 Mai 2021 10:11}{}
+\lecture[Mehrstufie Modelle. Produktmodelle.]{Mi 05 Mai 2021 10:11}{Mehrstufige Modelle}
 \subsection{Mehrstufige Modelle}
 Sei eine Folge von $n$ Zufallsexperimenten in den Wahrscheinlichkeitsräumen  $\Omega_1,\Omega_2,\ldots,\Omega_n$ gegeben. Wir definieren ein \vocab{$n$-stufiges Zufallsexperiment} durch
 \begin{itemize}
@@ -124,12 +124,54 @@ Falls $p_k(x_k \mid  x_1 = \ldots = x_{k-1}) = p_k(x_k)$, d.h. $x_k$ hängt nich
     Es ist
     \begin{equation*}
         \begin{split}
-            \mathbb{P}(A_1\times \ldots\times A_nr &= \mathbb{P}((X_1,\ldots,X_n)\in A_1\times \ldots\times A_n))  \\
+            \mathbb{P}(A_1\times \ldots\times A_n) &= \mathbb{P}((X_1,\ldots,X_n)\in A_1\times \ldots\times A_n))  \\
                                                    &= \sum_{(x_1,\ldots,x_n) \in A_1\times \ldots\times A_n} p(x_1,\ldots,x_n) \\
                                                    &= \sum_{x_1\in A_1} \ldots\sum_{x_n\in A_n} p_1(x_1)\cdot \ldots p_n(x_n) \\
-                                                   &=\prod_{k=1}^n \sum_{x_k\in A_k} p(a_k) \\
-                                                   &= 
+                                                   &=\prod_{k=1}^n \sum_{x_k\in A_k} p_k(a_k) \\
+                                                   &= \prod_{k=1}^n \mathbb{P}(A_k)
         \end{split}
     \end{equation*}
+    Es ergibt sich leicht
+    \begin{IEEEeqnarray*}{rCl}
+        \mathbb{P}(\tilde{A}_k) &=& \mathbb{P}(X_k \in A_k, X_l \in \Omega_l \; \forall l\neq k) \\
+                                & = & \left( \prod_{l\neq k}\underbrace{ \mathbb{P}_l(X_l \in \Omega_l) }_{=1} \right)\cdot \mathbb{P}_k(X_k\in A_k) \\
+                                & = & \mathbb{P}k(A_k)
+    \end{IEEEeqnarray*}
+    Damit ergibt sich schlussendlich für beliebiges $I = \left \{i_1,\ldots,i_l\right\}$:
+    \begin{IEEEeqnarray*}{rCl}
+    \mathbb{P}(\tilde{A}_{i_1} \cap  \ldots \cap \tilde{A}_{i_l}) & = & \mathbb{P}\left(\bigcap_{i \in  I} \left \{X_i \in A_i\right\} \cap \bigcap_{j\neq I} \left \{x_j \in \Omega_j\right\} \right) \\
+                                                                  & = & \prod_{i\in I} \mathbb{P}_i(A_i) \cdot  \prod_{j\neq I} \underbrace{\mathbb{P}_j(\Omega_j)}_{=1} \\
+                                                                  & = & \prod_{i \in I}\mathbb{P}_i(A_i) \\
+                                                                  & \stackrel{\mathbb{P}(A_i) = \mathbb{P}(\tilde{A}_i)}{=} & \prod_{k=1}^l \mathbb{P}(\tilde{A}_{i_k})
+    \end{IEEEeqnarray*}
+    
+    
 \end{proof}
-\todo{Beweis fertig schreiben}
+\begin{remark}
+    \begin{itemize}
+        \item Es ist $\Omega = \Omega_1\times \ldots\times \Omega_n$
+        \item Eigentlich müssen wir $(\Omega_i, \mathcal{F}_i, \mathbb{P}_i)$ als entsprechende Wahrscheinlichkeitsräume betrachten, wir unterdrücken aber oft die Notation $\mathcal{F}_i, \mathbb{P}_i$
+    \end{itemize}
+Im Allgemeinen setzen wir 
+\[
+\mathcal{F} = \mathcal{F}_1 \otimes \ldots\otimes \mathcal{F}_n
+.\] 
+wobei $\mathcal{F}$ dann die $\sigma$-Algebra ist, die von  $A_1\times \ldots\times A_n$ mit $A_i \in \mathcal{F}_i$ erzeugt ist. Im Spezialfall $F_i = \mathcal{P}(\Omega_i)$ ergibt sich insbesondere wieder der uns bekannte Fall $\mathcal{F} = \mathcal{P}(\Omega)$. \\
+Für Produktmodelle erhalten wir also $\Omega = \Omega_1\times \ldots\times \Omega_n$, $\mathcal{F} = \mathcal{F}_1 \otimes  \ldots \otimes  \mathcal{F}_n$ sowie $\mathbb{P} = \mathbb{P}_1 \otimes  \ldots \otimes  \mathbb{P}_n$. \\
+Beachte, dass $\mathcal{F}_1 \otimes  \ldots \otimes  \mathcal{F}_n \neq  \mathcal{F}_1 \times  \ldots \times  \mathcal{F}_n$ im Allgemeinen, wie das folgende Beispiel zeigt.
+\end{remark}
+\begin{example}
+    Im Fall $n=2$ ergibt sich Beispielsweise folgende Situation:
+     \begin{tikzpicture}
+         \draw[->] (-0.5,0) -- (5,0);
+         \draw[->] (0,-0.5) -- (0,5);
+         \coordinate (A1) at (2,3);
+         \coordinate (A2) at (4,4.5);
+         \draw (A1) -- (A1) -| (A2) node[anchor = west] {$A_1\times A_2$} -- (A2) -- (A2) -| (A1) -- (A1);
+         \coordinate (B1) at (1,1);
+         \coordinate (B2) at (3,4);
+         \draw (B1) node [anchor = north] {$B_1\times B_2$}-- (B1) -| (B2)  -- (B2) -- (B2) -| (B1) -- (B1);
+    \end{tikzpicture}
+\end{example}
+
+

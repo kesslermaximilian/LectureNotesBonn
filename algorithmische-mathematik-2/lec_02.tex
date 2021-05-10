@@ -1,4 +1,4 @@
-\lecture{2}{Mi 14 Apr 2021 10:17}{Wahrscheinlichkeitsräume}
+\lecture[$σ$-Algebren, Messräume. Wahrscheinlichkeitsverteilungen, Wahrscheinlichkeitsräume. Einschluss-Ausschluss-Prinzip. Endliche (diskrete) Wahrscheinlichkeitsräume.]{Mi 14 Apr 2021 10:17}{}
 Wir kennen nun die Grundbegriffe $\Omega, \mathcal{F}, \mathbb{P}$ zur Beschreibung von Zufallsexperimenten, die wir uns nun genauer ansehen wollen:
 \begin{question}
     Welche Struktur muss $\mathcal{F}$ besitzen.
@@ -13,7 +13,7 @@ A^{c} := \Omega \setminus A
 .\] 
 ebenfalls in $\mathcal{F}$ sein wird. \\
 Eine Menge $\mathcal{F}$ mit solchen Eigenschaften heißt \vocab{Algebra}.
-\begin{notation}
+\begin{dnotation}
 Seien nun $A,B$ und $(A_i)_{i\in I}$  Ereignisse, wobei $I$ endlich oder abzählbar sei. Dann notieren wir die folgenden Ereignisse:
 \begin{enumerate}[label=\protect\circled{\alph*}]
     \item \emphasize{$A \cup B$} : $ω\in A \cup B \iff  ω\in A \lor ω\in B$, d.h. $A\cup B$ tritt ein, genau dann, wenn  $A$ eintritt oder  $B$ eintritt.
@@ -23,7 +23,7 @@ Seien nun $A,B$ und $(A_i)_{i\in I}$  Ereignisse, wobei $I$ endlich oder abzähl
             \item \emphasize{$A = \emptyset$} ist das Ereignis, das  \underline{nie} eintritt. \\
                 \emphasize{$A = \Omega$} ist das Ereignis, dass \underline{immer} eintritt.
 \end{enumerate}
-\end{notation}
+\end{dnotation}
 
 \begin{definition}[$\sigma$-Algebra]\label{def:sigma-algebra}
     Eine  \vocab{$\sigma$-Algebra} ist eine nicht leere Menge $\mathcal{F}$ von Teilmengen von $\Omega$ mit den Eigenschaften:
