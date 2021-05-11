@@ -1,4 +1,4 @@
-\lecture[]{Di 11 Mai 2021 12:16}{Zusammenhang}
+\lecture[Zusammenhang, Wegzusammenhang. Bilder (weg-) zusammenhängender Räume. Lemma von Urysohn.]{Di 11 Mai 2021 12:16}{Zusammenhang}
 
 \section{Zusammenhang, Wegzusammenhang}
 
@@ -116,18 +116,70 @@ Ein Versuch für einen ähnlichen Beweis scheitert, weil $\R^2 \setminus \left \
 \end{remark*}
 \todo{Referenz}
 
-\begin{lemma}[Bilder von zusammenhängenden Räumen]\label{lm:bilder-von-zusammenhängenden-räumen-sind-zusammenhängend}
-    Sei $f: X \to  Y$ stetig und bijektiv.
-    \begin{enumerate}[1)]
-        \item Ist $X$ wegzusammenhängend, so ist  $Y$ wegzusammenhängend
-        \item Ist  $X$ zusammenhängend, so auch  $Y$.
-    \end{enumerate}
-\end{lemma}
-
-\begin{comment} %%Unklar, inwiefern das hier ins Skript sollte
+\begin{comment} %%Unklar, inwiefern das hier ins Skript sollte, war Thema in der Pause.
 Zur Motivation der Definition für den Zusammenhang: Man sollte über Zusammenhang eher wie in der Graphentheorie nachdenken.
-Das Königsberger Brückenproblem ist gewissermaßen ein 'Urproblem der Topologie'
+Das Königsberger Brückenproblem ist gewissermaßen ein 'Urproblem der Topologie'.
 \end{comment}
 
+\begin{lemma}[Bilder von zusammenhängenden Räumen]\label{lm:bilder-von-zusammenhängenden-räumen-sind-zusammenhängend}
+    Sei $f: X \to  Y$ stetig und surjektiv.
+    \begin{enumerate}[1)]
+        \item Ist $X$ wegzusammenhängend, so ist  $Y$ wegzusammenhängend.
+        \item Ist  $X$ zusammenhängend, so ist $Y$ zusammenhängend.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \begin{enumerate}[1)]
+        \item Seien $y_1,y_2\in Y$ beliebig. Da $f$ surjektiv ist, finden wir  $x_1,x_2\in X$ mit $f(x_1) = y_1$, $f(x_2=y_2)$. Nun finden wir wegen Wegzusammenhang von $X$ einen Weg  $w: [0,1] \to X$ mit $w(0) = x_1$ und $w(1) = x_2$. Dann ist die Verknüpfung
+                \begin{equation*}
+                f \circ  w: \left| \begin{array}{c c l} 
+                    [0,1] & \longrightarrow & Y \\
+                    0 & \longmapsto &  f(x_1) = y_1 \\
+                    1 & \longmapsto & f(x_2) = y_2
+                \end{array} \right.
+            \end{equation*}
+            ein Weg von $y_1$ nach $y_2$, also ist $Y$ wegzusammenhängend.
+        \item Nimm an, dass $Y$ nicht zusammenhängend ist, also gibt es  $U_1,U_2\neq \emptyset$ offen und disjunkt mit $Y = U_1 \cup U_2$. Dann ist auch
+            \[
+                X = f^{-1}(Y) = f^{-1}(U_1\cup U_2) = f^{-1}(U_1) \cup f^{-1}(U_2)
+            .\] 
+            und $f^{-1}(U_i)$ sind offen, disjunkt und nichtleer, weil $f$ surjektiv ist. Also ist $X$ nicht zusammenhängend, \contra.
+    \end{enumerate}
+\end{proof}
+\begin{example}
+    Die Sphäre $S^n, n\geq 1$ ist wegzusammenhängend. Hierzu stellen wir fest, dass
+    \[
+        \R^n \setminus \left \{0\right\}  \cong S^{n-1}\times \R \stackrel{\text{Projektion}}{\longrightarrow} S^{n-1}
+    .\] 
+und wir wissen schon, dass $\R^n \setminus \left \{0\right\}$ wegzusammenhängend ist, also auch $S^{n-1}$.
+\[
+\begin{tikzpicture}
+    \draw[->] (-3,0) -- (3,0);
+    \draw[->] (0,-3) -- (0,3) node[midway, anchor = north east] {$0$};
+    \fill (0,0) circle (2pt);
+    \draw[blue, thick] (0,0) circle (1.5);
+    \foreach \x in {0,...,12} {
+        \draw[red,thick,->] (\x*30 + 5:0.2) -- (\x*30:2.5);
+    }
+\end{tikzpicture}
+.\] 
+\end{example}
+
+\begin{remark}
+    Jede sternförmige Teilmenge von $\R^n$ ist wegzusammenhängend. Hierzu
+    \[
+    \text{konvex } \implies \text{ sternförmig } \implies \text{wegzusammenhängend}
+    .\] 
+\end{remark}
 
 
+\section{Lemma von Urysohn}
+
+\begin{theorem}[Urysohn'sches Lemma]\label{thm:urysohn}
+    Sei $X$ ein normaler topologischer Raum. Seien  $A,B\subset X$ abegschlossen und disjunkt. Dann existiert eine stetige Abbildung $f: X \to  [0,1]$, sodass $f\mid _A \equiv 0 $ und $f\mid _{B} \equiv  1$.
+\end{theorem}
+\todo{Grafik}
+
+\begin{lemma}\label{lm:stetige-abbildung-durch-familie-von-rationalen-offenen-mengen}
+    Sei $X$ ein topologischer Raum, sodass für jedes $r\in [0,1]\cap \Q$ offene $V_r \subset X$, sodass $r < r' \implies \overline{V_r} \subset V_{r'}$. Dann existiert eine stetige Abbildung $f: X \to  [0,1]$, sodass $f(x) = 0$ für  $x\in V_0$ und $f(x) = 1$ für  $x\not\in V_1$.
+\end{lemma}
