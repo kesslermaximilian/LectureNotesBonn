@@ -8,7 +8,7 @@ These are (inofficial) lecture notes of my courses taken at the University of Bo
 | WS 20/21 | Einführung in die diskrete Mathematik | Prof. Dr. Jens Vygen | [Skript (incomplete)](https://github.com/kesslermaximilian/LectureNotesBonn/blob/master/einfuehrung-in-die-diskrete-mathematik/skript.pdf?raw=true), [Summary](https://github.com/kesslermaximilian/LectureNotesBonn/blob/master/einfuehrung-in-die-diskrete-mathematik/zusammenfassung.pdf?raw=true)|
 
 ## License
-The preamble of these documents is (mainly) taken from https://github.com/gillescastel/university-setup and published under the MIT-Licence. The corresponding part of the preamble is markend and the licence is included.
+The preamble of these documents is (mainly) taken from https://github.com/gillescastel/university-setup and published under the MIT-License. The corresponding part of the preamble is marked and the license is included.
 The custom packages are 'self-written', feel free to use or customise them for your own wishes.
 This work is itself licenced under MIT, which means you can freely use, distribute, modify or even sell the code found here, as long as you include this license as well.
 
