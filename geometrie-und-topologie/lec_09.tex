@@ -159,7 +159,7 @@ und wir wissen schon, dass $\R^n \setminus \left \{0\right\}$ wegzusammenhängen
     \fill (0,0) circle (2pt);
     \draw[blue, thick] (0,0) circle (1.5);
     \foreach \x in {0,...,12} {
-        \draw[red,thick,->] (\x*30 + 5:0.2) -- (\x*30:2.5);
+        \draw[red,thick,->] (\x*30:0.2) -- (\x*30:2.5);
     }
 \end{tikzpicture}
 .\] 
@@ -183,3 +183,42 @@ und wir wissen schon, dass $\R^n \setminus \left \{0\right\}$ wegzusammenhängen
 \begin{lemma}\label{lm:stetige-abbildung-durch-familie-von-rationalen-offenen-mengen}
     Sei $X$ ein topologischer Raum, sodass für jedes $r\in [0,1]\cap \Q$ offene $V_r \subset X$, sodass $r < r' \implies \overline{V_r} \subset V_{r'}$. Dann existiert eine stetige Abbildung $f: X \to  [0,1]$, sodass $f(x) = 0$ für  $x\in V_0$ und $f(x) = 1$ für  $x\not\in V_1$.
 \end{lemma}
+\begin{proof}
+    Definiere
+        \begin{equation*}
+        f: \left| \begin{array}{c c l} 
+            X & \longrightarrow & [0,1] \\
+            x & \longmapsto &  \begin{cases}
+                1 & x\not\in V_1 \\
+            \inf \left \{r \mid  x\in V_r\right\} & x\not\in V_1
+            \end{cases}
+        \end{array} \right.
+    \end{equation*}
+    Die Eigenschaften $f\mid _{V_0} \equiv 0$ und $f\mid _{X \setminus V_i} \equiv  1$ sind sofort klar. Es bleibt zu zeigen, dass $f$ stetig ist. Da
+    \[
+        \mathcal{S} := \left \{[0,a) \mid  a\in [0,1]\right\}  \cup \left \{(a,1] \mid  a\in [0,1]\right\} 
+    .\] 
+    eine Subbasis der Topologie auf $[0,1]$ ist, genügt es, Stetigkeit auf  $\mathcal{S}$ zu prüfen. Sei
+    \begin{IEEEeqnarray*}{rCl}
+        x\in f^{-1}([0,a)) & \iff & f(x) < a \leq  1 \\
+                           & \stackrel{\text{Def von $f$}}{\iff} &  \inf \left \{r \mid  x\in V_r\right\} <a \\
+                           &\stackrel{\Q \text{ ist dicht}}{\iff} & \exists r < a, r\in \Q \colon x\in V_r \\
+                           & \iff&  x\in \bigcup_{r<a} V_r 
+    \end{IEEEeqnarray*}
+    Für den zweiten Typ von Basielementen ist
+    \begin{IEEEeqnarray*}{rCl}
+        x\in f^{-1}((a,1]) & \iff& \begin{cases}
+                x\not\in V_1 &\text{oder} \\
+                x\in V_1, a < f(x) = \inf \left \{r\mid x\in V_r\right\}
+        \end{cases} \\
+                           & \iff  & \exists r'>a, r'\in \Q, x\not\in V_r \\
+                           & \stackrel{\overline{V_r} \subset V_{r'}}{\iff}  & \exists r\in \Q, a<r < r', x\not\in \overline{V_r} \\
+                           & \iff  & x\in \bigcup_{r>a} \left( X \setminus \overline{V_r} \right)  
+    \end{IEEEeqnarray*}
+    also ist auch $f^{-1}((a,1])$ eine Vereinigung von offenen Mengen. \\
+    Also ist $f$ stetig, wie zu zeigen war.
+\end{proof}
+
+\begin{remark*}
+    Wir können uns die $V_r$ wie eine Art 'Höhenprofil' oder 'Höhenlienien' vorstellen, die wir in unserem Raum gegeben haben. 
+\end{remark*}
