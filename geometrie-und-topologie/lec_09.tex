@@ -1,21 +1,26 @@
 \lecture[]{Di 11 Mai 2021 12:16}{Zusammenhang}
 
 \section{Zusammenhang, Wegzusammenhang}
+
 \begin{definition}[Zusammenhang]\label{def:zusammenhang}
-    Ein topologischer Raum heißt \vocab{Topologischer Raum!zusammenhängend}, wenn er sich \underline{nicht} in zwei nichtleere, disjunkte, offene Teilmengen zerlegen lässt. 
+    Ein topologischer Raum heißt \vocab[Topologischer Raum!zusammenhängend]{zusammenhängend}, wenn er sich \underline{nicht} in zwei nichtleere, disjunkte, offene Teilmengen zerlegen lässt. 
 \end{definition}
+
 \begin{dlemma}[Offen-abgeschlossene-Mengen]\label{lm:raum-ist-zusammenhängend-gdw-offen-abgeschlossene-mengen-sind-trivial}
     Ein Raum ist zusammenhängend, wenn die leere Menge und der gesamte Raum die einzigen Teilmengen von $X$ sind, die offen und abgeschlossen sind, d.h.
      \[
     \not \exists  A\subset X, A\neq \emptyset,X \colon \quad A \text{ offen und abgeschlossen}
     .\] 
 \end{dlemma}
+
 \begin{proof*}
     Klar.
 \end{proof*}
+
 \begin{remark}
     $X$ ist nicht zusammenhängend, genau dann, wenn  $X \cong X_1 \coprod X_2$ eine disjunkte Vereinigung von 2 Räumen $X_1,X_2\neq \emptyset$ ist.
 \end{remark}
+
 \begin{example}
     \begin{enumerate}[1)]
         \item $\R\setminus \left \{0\right\}  = (-\infty,0) \cup (0,\infty)$ und $(-\infty,0),(0,\infty)$ sind offen, disjunkt und nicht leer, also ist $\R\setminus \left \{0\right\} $ \underline{nicht} zusammenhängend. 
@@ -26,15 +31,19 @@
             eine Zerlegung in offene, disjunkte, nichtleere Mengen, also ist auch $\Q$ nicht zusammenhängend.
     \end{enumerate}
 \end{example}
+
 \begin{remark*}
     Es ist meistens einfacher, zu zeigen, dass ein Raum nicht zusammenhängend ist, die Gegenrichtung erweist sich als schwerer. Deswegen folgender
 \end{remark*}
+
 \begin{theorem}[Einheitsintervall]\label{thm:einheitsintervall-ist-zusammenhängend}
     Das Intervall $[0,1]$ ist zusammenhängend.
 \end{theorem}
+
 \begin{proof}
     Nimm gegenteilig an, dass $[0,1]$ nicht zusammenhängend ist, schreibe also  $[0,1] = A \cup B$ mit $A,B \neq \emptyset$, offen und disjunkt. OBdA sei $0\in A$. Wegen $B\neq \emptyset$ gibt es $t:= \inf B$. Da  $t$ abgeschlossen (weil  $A$ offen!), ist  $t\in B$, also folgt $[0,t) \subset A$. Aber jede Umgebung von $t\in B$ schneidet $[0,t)$, also  $A$, \contra, weil  $A\cap B = \emptyset$.
 \end{proof}
+
 \begin{ddefinition}[Weg]\label{def:weg}
     Sei $X$ ein topologischer Raum und $x,y\in X$. Ein  \vocab{Weg} von $x$ nach $y$ ist eine stetige Funktion $w: [0,1] \to  X$, sodass $w(0) =x$ und  $w(1) = y$.
 \end{ddefinition}
@@ -42,6 +51,7 @@
 \begin{definition}[Wegzusammenhang]\label{def:wegzusammenhang}
     Ein topologischer Raum $X$ heißt  \vocab{wegzusammenhängend}, falls für je zwei Punkte $x,y\in X$ ein \vocab{Weg} von $x$ nach  $y$ existiert.
 \end{definition}
+
 \begin{example}
     \begin{enumerate}[1)]
         \item     Die Mengen $(a,b), [a,b), (a,b]$ und $\R$ sind alle wegzusammenhängend. Definiere hierzu
@@ -60,12 +70,15 @@
        \end{description}
     \end{enumerate}
 \end{example}
+
 \begin{lemma}\label{lm:wegzusammenhang-impliziert-zusammenhang}
     Ist $X$ wegzusammenhängend, so ist  $X$ zusammenhängend.
 \end{lemma}
+
 \begin{warning}
     Die Umkehrung von \autoref{lm:wegzusammenhang-impliziert-zusammenhang} gilt im Allgemenien nicht. Siehe hierzu Übungsblatt 5, Aufgabe 1.
 \end{warning}
+
 \begin{proof}[Beweis von \autoref{lm:wegzusammenhang-impliziert-zusammenhang}]
     Sei $X$ wegzusammenhängend, und nimm gegenteilig an, dass  $X = U_1 \sqcup U_2$ mit $U_i \subset X$ offen und disjunkt. Sei $x_1 \in U_1, x_2\in U_2$. Dann gibt es einen Weg $w$ von  $x_1$ nach $x_2$, und  wir erhalten
     \[
@@ -73,3 +86,46 @@
     .\] 
     Allerdings sind $w^{-1}(U_i)$ offen ($w$ ist stetig), disjunkt ($U_1,U_2$ sind disjunkt) und nicht leer ($0\in w^{-1}(U_1)$, $1\in w^{-1}(U_2)$), also ist $[0,1]$ nicht zusammenhängend. \contra mit \autoref{thm:einheitsintervall-ist-zusammenhängend}.
 \end{proof}
+
+\begin{corollary}\label{cor:R-und-R2-sind-nicht-homöomorph}
+    $\R$ und $\R^2$ sind nicht homöomorph.
+\end{corollary}
+\begin{proof}
+    Nimm an, es gibt einen solchen Homöomorphismus
+        \begin{equation*}
+        f: \left| \begin{array}{c c l} 
+        \R^2 & \longrightarrow & \R \\
+        0 & \longmapsto &  f(0)
+        \end{array} \right.
+    \end{equation*}
+    Dann induziert $f$ auch einen Homöomorphismus $\R^2 \setminus \left \{0\right\} \cong \R \setminus \left \{f(0)\right\} $, allerdings ist $\R^2 \setminus \left \{0\right\} $ wegzusammenhängend, und $\R \setminus \left \{f(0)\right\} $ nicht, \contra.
+\end{proof}
+
+\begin{question}
+    Sind $\R^n, \R^m$ wegzusammenhängend?
+\end{question}
+
+\begin{answer}
+    Nein, das gilt natürlich genau dann, wenn $n = m$. Allerdings warten wir mit einem solchen Beweis bis zur algebrasichen Topologie. Siehe hierzu auch 'Invariance of domain', Brower.
+\end{answer}
+\todo{Referenz}
+Ein Versuch für einen ähnlichen Beweis scheitert, weil $\R^2 \setminus \left \{0\right\}$ und $\R^3 \setminus \left \{f(0)\right\} $ beide (weg)zusammenhängend sind. Man könnte nun Versuchen, eine Gerade oder einen Kreis von $\R^2$ zu entfernen, der entsprechende Raum ist dann unzusammenhängend. Es erscheint auch klar, dass $\R^3 \setminus f(\text{Kreis / Gerade})$, allerdings ist ein entsprechender Beweis verhältnismäßig schwer. Die algebraische Topologie wird es uns ermöglichen, das wesentlich einfacher einzusehen.
+
+\begin{remark*}
+    Die Frage, ob eine Schleife in $\R^2$ (ein stetiges, injektives Bild von $\mathcal{S}^1$ in $\R^2$) den Raum in zwei Teile zerteilt, ist auch schwerer als man denkt, hierzu siehe 'Jordan curve theorem' (Satz von Jordan-Schönflies).
+\end{remark*}
+\todo{Referenz}
+
+\begin{lemma}[Bilder von zusammenhängenden Räumen]\label{lm:bilder-von-zusammenhängenden-räumen-sind-zusammenhängend}
+    Sei $f: X \to  Y$ stetig und bijektiv.
+    \begin{enumerate}[1)]
+        \item Ist $X$ wegzusammenhängend, so ist  $Y$ wegzusammenhängend
+        \item Ist  $X$ zusammenhängend, so auch  $Y$.
+    \end{enumerate}
+\end{lemma}
+
+Zur Motivation der Definition für den Zusammenhang: Man sollte über Zusammenhang eher wie in der Graphentheorie nachdenken.
+Das Königsberger Brückenproblem ist gewissermaßen ein 'Urproblem der Topologie'
+
+
+
