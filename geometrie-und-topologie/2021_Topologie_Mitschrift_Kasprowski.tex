@@ -1,0 +1,38 @@
+\documentclass[a4paper,german]{article}
+\input{../preamble.tex}
+
+\title{{Einführung in die} \\ Geometrie und Topologie}
+\author{{\normalfont Dozent}\\{\sc Dr. Daniel Kasprowski}}
+
+
+
+\begin{document}
+    \maketitle
+    \vspace{3em}
+    \centering \small Version \\
+    \today\; \currenttime
+    \vspace{10em}
+    \input{abstract.tex}
+    \newpage
+    \tableofcontents
+    \newpage
+    \listoflecture
+    \addcontentsline{toc}{section}{Übersicht der Vorlesungen}
+    \newpage
+    % start lectures
+    \input{lec_01.tex}
+    \input{lec_02.tex}
+    \input{lec_03.tex}
+    \input{lec_04.tex}
+    \input{lec_05.tex}
+    \input{lec_06.tex}
+    \input{lec_07.tex}
+    \input{lec_08.tex}
+    \input{lec_09.tex}
+    % end lectures
+    \printindex
+    \newpage
+    \thispagestyle{plain}
+    \printbibliography
+    \addcontentsline{toc}{section}{Literatur}
+\end{document}
