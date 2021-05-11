@@ -10,7 +10,7 @@ These are (inofficial) lecture notes of my courses taken at the University of Bo
 ## License
 The preamble of these documents is (mainly) taken from https://github.com/gillescastel/university-setup and published under the MIT-License. The corresponding part of the preamble is marked and the license is included.
 The custom packages are 'self-written', feel free to use or customise them for your own wishes.
-This work is itself licenced under MIT, which means you can freely use, distribute, modify or even sell the code found here, as long as you include this license as well.
+This work is itself licensed under MIT, which means you can freely use, distribute, modify or even sell the code found here, as long as you include this license as well.
 
 ## Customization
 The package includes some customization concerning the numbering and style of the theoremlike (coloured) environments found in the document, these are explained in the fancytheorem-package, load them either in the preamble (globally) or for each individual lecture in the options for the documentclass.
