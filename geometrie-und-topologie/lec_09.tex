@@ -1,3 +1,4 @@
+%! TEX root = ./master.tex
 \lecture[Zusammenhang, Wegzusammenhang. Bilder (weg-) zusammenhängender Räume. Lemma von Urysohn.]{Di 11 Mai 2021 12:16}{Zusammenhang}
 
 \section{Zusammenhang, Wegzusammenhang}
@@ -14,7 +15,7 @@
 \end{dlemma}
 
 \begin{proof*}
-    Klar.
+    Gibt es eine offene, abgeschlossene Menge $A\neq \emptyset,X$, so ist $X = A \sqcup A^{c}$ eine Zerlegung in offene, diesjunkte Mengen. Ist umgekehrt $X = U_1 \cup U_2$ mit $U_1,U_2$ offen, disjunkt und nichtleer, also auch nicht $X$, so sind $U_1,U_2$ beides offen abgeschlossene Mengen.
 \end{proof*}
 
 \begin{remark}
@@ -71,6 +72,24 @@
     \end{enumerate}
 \end{example}
 
+\begin{remark*}
+    Wir verwenden natürlich entscheidend, dass $ty + (1-t)x \in (a,b),[a,b),(a,b],\R$ für beliebige $x,y$, die auch in einer der Mengen liegen (Das ist Teil der Definition eines Weges!).
+\end{remark*}
+
+\begin{remark*}
+    Ebenfalls kann man sich kurz Überlegen, dass die Vereinigung von zwei Wegen wieder ein Weg ist. Seien hierzu $w_1,w_2$ Wege von $x$ nach  $y$ bzw. von  $y$ nach  $z$. Dann definieren  wir
+        \begin{equation*}
+        w: \left| \begin{array}{c c l} 
+            [0,1] & \longrightarrow & X \\
+        x & \longmapsto &  \begin{cases}
+            w_1(2x) & 0\leq x\leq \frac{1}{2} \\
+            w_2(2x-1) & \frac{1}{2} \leq  x \leq  1
+        \end{cases}
+        \end{array} \right.
+    \end{equation*}
+    so sehen wir leicht $w(0) = w_1(0) = x$, $w(1) = w_2(2\cdot 1-1) = w_2(1) = z$, und $w$ ist stetig, weil $f$ auf  $[0,\frac{1}{2}]$ und $[\frac{1}{2},1]$  stetig ist und bei $\frac{1}{2}$ beide Definitionen wegen $w_1(1) = y = w_2(0) = w_2(2\cdot \frac{1}{2}-1)$ übereinstimmen.
+\end{remark*}
+
 \begin{lemma}\label{lm:wegzusammenhang-impliziert-zusammenhang}
     Ist $X$ wegzusammenhängend, so ist  $X$ zusammenhängend.
 \end{lemma}
@@ -106,15 +125,24 @@
 \end{question}
 
 \begin{answer}
-    Nein, das gilt natürlich genau dann, wenn $n = m$. Allerdings warten wir mit einem solchen Beweis bis zur algebrasichen Topologie. Siehe hierzu auch 'Invariance of domain', Brower.
+    Nein, das gilt natürlich genau dann, wenn $n = m$. Allerdings warten wir mit einem solchen Beweis bis zur algebrasichen Topologie. Siehe hierzu auch den Satz zur 'Invariance of domain' von Brouwer (den wir hier aber erstmal nicht behandeln).
+    \begin{theorem**}[Invariance of domain]
+        Es sei $U\subset \R^n$ offen und $f: U -> \R^n$ injektiv und stetig. Dann ist $f(U)\subset \R^n$ offen und $f$ ist ein Homöomorphismus  $f: U \cong f(U)$.
+    \end{theorem**}
+    \begin{corollary**}
+        $\R^n \not \cong \R^m$ für $n\neq m$.
+    \end{corollary**}
 \end{answer}
-\todo{Referenz}
-Ein Versuch für einen ähnlichen Beweis scheitert, weil $\R^2 \setminus \left \{0\right\}$ und $\R^3 \setminus \left \{f(0)\right\} $ beide (weg)zusammenhängend sind. Man könnte nun Versuchen, eine Gerade oder einen Kreis von $\R^2$ zu entfernen, der entsprechende Raum ist dann unzusammenhängend. Es erscheint auch klar, dass $\R^3 \setminus f(\text{Kreis / Gerade})$, allerdings ist ein entsprechender Beweis verhältnismäßig schwer. Die algebraische Topologie wird es uns ermöglichen, das wesentlich einfacher einzusehen.
+
+Ein Versuch für einen ähnlichen Beweis wie $\R \not \cong \R^2$ scheitert, weil $\R^2 \setminus \left \{0\right\}$ und $\R^3 \setminus \left \{f(0)\right\} $ beide (weg)zusammenhängend sind. Man könnte nun Versuchen, eine Gerade oder einen Kreis von $\R^2$ zu entfernen, der entsprechende Raum ist dann unzusammenhängend. Es erscheint auch klar, dass $\R^3 \setminus f(\text{Kreis / Gerade})$, allerdings ist ein entsprechender Beweis verhältnismäßig schwer. Die algebraische Topologie wird es uns ermöglichen, das wesentlich einfacher einzusehen.
 
 \begin{remark*}
-    Die Frage, ob eine Schleife in $\R^2$ (ein stetiges, injektives Bild von $\mathcal{S}^1$ in $\R^2$) den Raum in zwei Teile zerteilt, ist auch schwerer als man denkt, hierzu siehe 'Jordan curve theorem' (Satz von Jordan-Schönflies).
+    Die Frage, ob eine Schleife in $\R^2$ (ein stetiges, injektives Bild von $\mathcal{S}^1$ in $\R^2$) den Raum in zwei Teile zerteilt, ist auch schwerer als man denkt, hierzu vergleiche den
+    \begin{theorem**}[Jordan'scher Kurvensatz]
+        Es sei $C$ eine Jordankurve in  $\R^2$, d.h. das Bild einer injektiven stetigen Abbildung $\varphi : S^1 \to  \R^2$. Dann besteht $\R^2\setminus C$ aus genau 2 Komponenten, eine davon ist beschränkt (die Innere), eine unbeschränkt (die Äußere)'
+    \end{theorem**}
+    Der Beweis verwendet aber auch Methoden aus der algebraischen Geometrie.
 \end{remark*}
-\todo{Referenz}
 
 \begin{comment} %%Unklar, inwiefern das hier ins Skript sollte, war Thema in der Pause.
 Zur Motivation der Definition für den Zusammenhang: Man sollte über Zusammenhang eher wie in der Graphentheorie nachdenken.
@@ -128,6 +156,7 @@ Das Königsberger Brückenproblem ist gewissermaßen ein 'Urproblem der Topologi
         \item Ist  $X$ zusammenhängend, so ist $Y$ zusammenhängend.
     \end{enumerate}
 \end{lemma}
+
 \begin{proof}
     \begin{enumerate}[1)]
         \item Seien $y_1,y_2\in Y$ beliebig. Da $f$ surjektiv ist, finden wir  $x_1,x_2\in X$ mit $f(x_1) = y_1$, $f(x_2=y_2)$. Nun finden wir wegen Wegzusammenhang von $X$ einen Weg  $w: [0,1] \to X$ mit $w(0) = x_1$ und $w(1) = x_2$. Dann ist die Verknüpfung
@@ -146,6 +175,7 @@ Das Königsberger Brückenproblem ist gewissermaßen ein 'Urproblem der Topologi
             und $f^{-1}(U_i)$ sind offen, disjunkt und nichtleer, weil $f$ surjektiv ist. Also ist $X$ nicht zusammenhängend, \contra.
     \end{enumerate}
 \end{proof}
+
 \begin{example}
     Die Sphäre $S^n, n\geq 1$ ist wegzusammenhängend. Hierzu stellen wir fest, dass
     \[
@@ -164,26 +194,41 @@ und wir wissen schon, dass $\R^n \setminus \left \{0\right\}$ wegzusammenhängen
 \end{tikzpicture}
 .\] 
 \end{example}
+
 \begin{remark*}
-    Stuff mit $\R$ oder $(0,\infty)$ machen.
+    Der kanonische Isomorphismus ist erstmal $\R^n \setminus \left \{0\right\}  \cong S^{n-1}\times \R$, indem wir $x \mapsto \left( \frac{x}{\lVert x \rVert_2 },\lVert x \rVert _2 \right) $ abbilden. Allerdings ist $\R \cong (0,\infty)$, z.B. mit der Exponentialabbildung.
 \end{remark*}
 
 
-
-\begin{remark}
-    Jede sternförmige Teilmenge von $\R^n$ ist wegzusammenhängend. Hierzu
+\begin{dexample}[Auf Nachfrage in der Vorlesungspause besprochen]
+    Eine Teilmenge $X\subset \R^n$ heißt konvex, wenn für $x,y\in X$ auch die Verbindungsstrecke in $X$ liegt, d.h. für  $λ\in [0,1]$ ist auch $λx + (1-λ)y \in X$. Eine Teilmenge heißt sternförmig, wenn es ein $x_0\in X$ gibt, sodass für jedes $y\in X$ die Verbindungsstrecke von $x_0$ nach $y$ in  $X$ liegt. \\
+    Dann sehen wir, dass
     \[
-    \text{konvex } \implies \text{ sternförmig } \implies \text{wegzusammenhängend}
+    X \text{ konvex}\implies X \text{ sternförmig} \implies X \text{wegzusammenhängend}
     .\] 
-\end{remark}
-
+    Die erste Implikation ist trivial, wähle $x_0\in X$ beliebig, für die zweite bilden wir $[0,1]$ einfach auf die Verbindungsstrecke von  $x_0$ nach $y$ ab, dann sind alle Punkte mit  $x_0$ verbunden, und deren Hintereinanderschalten ergibt Wege von $x$ nach  $y$ für  $x,y$ beliebig. \\
+    Im Wesentlichen ist das das gleiche Argument, dass wir auch schon für die Intervalle in $\R$ benutzt haben.
+\end{dexample}
 
 \section{Lemma von Urysohn}
 
 \begin{theorem}[Urysohn'sches Lemma]\label{thm:urysohn}
     Sei $X$ ein normaler topologischer Raum. Seien  $A,B\subset X$ abegschlossen und disjunkt. Dann existiert eine stetige Abbildung $f: X \to  [0,1]$, sodass $f\mid _A \equiv 0 $ und $f\mid _{B} \equiv  1$.
+    \[
+\begin{tikzpicture}
+    \draw (0,-0.3) -- (4,-0.3) node[anchor=west] {$X$};
+    \draw[red,very thick] (0.4,-0.3) -- (1, -0.3) node[midway, anchor = north] {$A$};
+    \draw[red, very thick] (2.5,-0.3) -- (3.5, -0.3) node[midway, anchor = north] {$B$};
+    \draw[->] (0,0) -- (0,1.5) node[anchor=south] {$\R$};
+    \draw (-0.1,0) node[anchor = east] {$0$}-- (0.1,0);
+    \draw (-0.1,1) node[anchor=east] {$1$}-- (0.1,1);
+    \draw[blue, thick] (0.4,0)-- (1,0);
+    \draw[blue, thick] (2.5,1) -- (3.5,1);
+    \draw[blue, thick, smooth, domain = 1:2.5,variable=\x] plot ({\x},{(\x-1)^2/2.25});
+\end{tikzpicture}
+    .\] 
 \end{theorem}
-\todo{Grafik}
+
 
 \begin{lemma}\label{lm:stetige-abbildung-durch-familie-von-rationalen-offenen-mengen}
     Sei $X$ ein topologischer Raum, sodass für jedes $r\in [0,1]\cap \Q$ offene $V_r \subset X$, sodass $r < r' \implies \overline{V_r} \subset V_{r'}$. Dann existiert eine stetige Abbildung $f: X \to  [0,1]$, sodass $f(x) = 0$ für  $x\in V_0$ und $f(x) = 1$ für  $x\not\in V_1$.
@@ -216,7 +261,7 @@ und wir wissen schon, dass $\R^n \setminus \left \{0\right\}$ wegzusammenhängen
                 x\not\in V_1 &\text{oder} \\
                 x\in V_1, a < f(x) = \inf \left \{r\mid x\in V_r\right\}
         \end{cases} \\
-                           & \iff  & \exists r'>a, r'\in \Q, x\not\in V_r \\
+                           & \iff  & \exists r'>a, r'\in \Q, x\not\in V_{r'} \\
                            & \stackrel{\overline{V_r} \subset V_{r'}}{\iff}  & \exists r\in \Q, a<r < r', x\not\in \overline{V_r} \\
                            & \iff  & x\in \bigcup_{r>a} \left( X \setminus \overline{V_r} \right)  
     \end{IEEEeqnarray*}
