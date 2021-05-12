@@ -90,6 +90,7 @@ Seien $A,B\in \mathcal{F}$, sodass $\mathbb{P}(A) \neq  0, \mathbb{P}(B) \neq 0$
     also sind die Ereignisse nicht unabhängig, allerdings paarweise unabhängig. Dies liegt daran, dass $A_1 \land A_2 \implies A_3$ etc.
 \end{example}
 \subsubsection{Unabhängige Zufallsvariablen}
+\todo{Skizze}
 
 \begin{definition}[Gemeinsame Verteilung]\label{def:gemeinsame-verteilung}
     Seien $X_k : \Omega\to \mathcal{S}_k$ für $1\neq k\leq n$ diskeret Zufallsvariablen auf $(\Omega,\mathcal{F},\mathbb{P})$. Die Verteilung $\mu_{X_1,\ldots,X_n}$ der Zufallsvektoren $(X_1,\ldots,X_n)$ mit Massenfunktion
@@ -106,3 +107,128 @@ Seien $A,B\in \mathcal{F}$, sodass $\mathbb{P}(A) \neq  0, \mathbb{P}(B) \neq 0$
     .\]
     für alle $a_1\in \mathcal{S}_1\ldots,a_n \in \mathcal{S}_n$.
 \end{definition}
+
+\begin{theorem}
+    Die folgenden Aussagen sind äquivalent
+    \begin{enumerate}[label=\protect\circled{\alph*}]
+        \item Die Zufallsvariablen $X_1,\ldots,X_n$ sind unabhängig
+        \item $p_{X_1,\ldots,X_n}(a_1,\ldots,a_n) = \prod_{k=1}^n p_{X_k}(a_k)$ für alle $a_k \in S_k, 1\leq k\leq n$.
+        \item \emphasize{$\mu_{X_1,\ldots,X_n} = \mu_{X_1} \otimes  \ldots \otimes \mu_{X_n}$} (Produktmass)
+        \item Die Ereignisse $\left \{X_1\in A_1\right\},\ldots,\left \{X_k \in A_k\right\}  $ sind unabhängig für alle $A_1\subset \mathcal{S}_1,\ldots,A_n \subset \mathcal{S}_n$
+        \item Die Ereignisse $\left \{X_1 = a_1\right\} ,\ldots,\left \{X_n = a_n\right\} $ sind unabhängig für $a_1\in \mathcal{S}_1,\ldots,a_n\in \mathcal{S}_n$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{itemize}
+        \item $\circled{a} \iff \circled{b}$ folgt sofort aus \autoref{def:gemeinsame-verteilung}.
+            \item $\circled(b) \iff \circled{c}$ folgt aus \autoref{def:produktmodell}, da $\mathbb{P} = \mathbb{P}_1 \otimes  \mathbb{P}_2$ genau bedeutet, dass für $A_1\subset \Omega_1,A_2\subset \Omega_2$ 
+                    \[
+                        \mathbb{P}(A_1\times A_2) = \mathbb{P}_1(A_1) \mathbb{P}_2(A_2)
+                    .\] 
+gilt
+\item $\circled{c} \implies \circled{d}$ Seien $1\leq i_1 < i_2 < \ldots < i_{k} \leq n$ und $A_{i_{k}\subset \mathcal{S}_{i_k}}$ für $1\leq k\leq n$. Für $i\not\in \left \{i_1,\ldots,i_k\right\} $ setzen wir $A_i =: \mathcal{S}_i$, dann erhalten wir
+    \begin{IEEEeqnarray*}{rCl}
+        \mathbb{P}(X_{i_1} \in A_{i_1}, \ldots, X_{i_k} \in  A_{i_k}) & = & \mathbb{P}(X_1\in A_1,\ldots,X_{n}\in A_{n}) \\
+                                                                      & = & \mu_{X_{i_1},\ldots,X_{i_k}} (A_1\times \ldots\times A_n) \\
+                                                                      & \stackrel{\autoref{thm:stufenmodell}}{=} &  \prod_{k=1}^n \mu_{X_k} (A_k) = \prod_{k=1}^m \mathbb{P}(X_{i_k} \in A_{i_k})\\
+    \end{IEEEeqnarray*}
+
+\item $\circled{d} \implies \circled{e}$ Wähle $A_i = \left \{a_/\right\} $, dann sind wir sofort fertig.
+\item $\circled{e} \implies \circled{a}$. Das folgt sofort aus \autoref{def:unabhängigkeit-von-ereignissen}.
+    \end{itemize}
+\end{proof}
+\todo{Gleichung nochmal durchgehen}
+
+\subsubsection{Die Kovarianz}
+Seien $X_1,\ldots,X_n$ Zufallsvariablen auf $(\Omega,\mathcal{F},\mathbb{P})$. Wir wissen bereits, dass
+\[
+    \mathbb{E}(X_1 + \ldots + X_n) = \sum_{k=1}^n \mathbb{E}(X_k)
+.\] 
+nach Linearität des Erwartungswerts.
+\begin{question}
+Was ist allerdings $\Var(X_1 + \ldots + X_n)$?
+\end{question}
+\begin{definition}[Kovarinz]\label{def:kovarianz}
+    Seien $X,Y$ zwei Zufallsvariablen auf  $(\Omega,\mathcal{F},\mathbb{P})$. Dann ist
+    \[
+        \Cov(X,Y) := \mathbb{E}(X\cdot Y) - \mathbb{E}(X) \cdot \mathbb{E}(Y)
+    .\] 
+    die \vocab{Kovarianz} von $X$ und  $Y$.
+\end{definition}
+
+\begin{remark}
+    Für $X = Y$ ist  $\Cov(X,X) = \Var(X)$.
+\end{remark}
+
+\begin{lemma}\label{lm:kovarianz-ist-null-für-unabhängige-variablen}
+    Seien $X_1,X_2$ zwei unabhängige Zufallsvariablen. Dann ist
+    \[
+        \Cov(X_1,X_2) = 0
+    .\] 
+\end{lemma}
+
+\begin{warning}
+    Die Umkehrung des Lemmas gilt nicht!
+\end{warning}
+
+\begin{proof}[Beweis von \autoref{lm:kovarianz-ist-null-für-unabhängige-variablen}]
+    Wir erhalten
+    \begin{IEEEeqnarray*}{rCl}
+        \mathbb{E}(X_1\cdot X_2) &=& \sum_{\substack{a_1\in \mathcal{S}_1 \\a_2\in \mathcal{S}_2}} \mathbb{P}(X_1 = a_1, X_2 = a_2) a_1a_2  \\
+         & = & \sum_{\substack{ a_1\in \mathcal{S}_1 \\ a_2 \in \mathcal{S}_2} } \mathbb{P}(X_1 = a_1) \mathbb{P}(X_2 = a_2) a_1 a_2 \\
+         & = & \sum_{a_1\in \mathcal{S}_{1}} a\mathbb{P}(X_1 = a_1) \underbrace{\sum_{a_2 \in S_2} a_2\mathbb{P}(X_2 = a_2)}_{= \mathbb{E} (X_2)} \\
+         & = & \mathbb{E}(X_1) \sum_{a_1\in \mathcal{S}_1} a_1\mathbb{P}(X_1 = a_1) \\
+         & = & \mathbb{E}(X_2) \mathbb{E}(X_1)
+    \end{IEEEeqnarray*}
+\end{proof}
+
+\begin{definition}[Unkorreliert]\label{def:unkorrelation}
+    Zwei Zufallsvariablen $X_1,X_2$ sind \vocab{unkorreliert}, falls $\Cov(X_1,X_2) = 0$. 
+\end{definition}
+
+\begin{warning}
+    Wir haben also Unabhängigkeit $\implies$ Unkorreliertheit, aber nicht die Umkehrung.
+\end{warning}
+
+\begin{lemma}\label{lm:varianz-von-summe}
+    Seien $X_1,\ldots,X_n$ Zufallsvariablen auf $(\Omega,\mathcal{F},\mathbb{P})$. Dann ist
+    \[
+        \Var(X_1+ \ldots + X_n) = \sum_{k=1}^n \Var(X_k) + 2 \sum_{1\leq i<j\leq n} \Cov(X_i,X_j)
+    .\] 
+\end{lemma}
+
+\begin{dcorollary}
+    Für unabhängige (oder auch unkorrelierte) Zufallsvariablen $X_1,\ldots,X_n$ ist
+    \[
+        \Var(X_1+ \ldots + X_n) = \sum_{k=1}^n \Var(X_k)
+    .\] 
+\end{dcorollary}
+\begin{proof*}
+    Einsetzen in \autoref{lm:varianz-von-summe} und verwenden von $\Cov(X_i, X_j) =0$ für $i\neq j$ liefert sofort das Ergebnis.
+\end{proof*}
+
+\begin{example}
+    Seien $X_1,\ldots,X_n \sim \Ber(p)$ unabhängige Zufallsvariablen. Wir wissen bereits, dass $X = X_1 + \ldots + X_n \sim \Bin(n,p)$ binomialverteilt ist. Also ergibt sich auch für die Varianz:
+    \[
+        \Var(X) = n\cdot \Var(X_1) = n p(1-p)
+    .\] 
+    - ohne eine lange Rechnung machen zu müssen, wie wir es bisher taten.
+\end{example}
+
+\begin{proof}[Beweis von \autoref{lm:varianz-von-summe}]
+    \begin{IEEEeqnarray*}{rCl}
+        \Var(X_1+\ldots+X_n)&  = &\mathbb{E}\left( \left( \sum_{i=1}^n X_i \right) ^2 \right) - \left( \sum_{i=1^n} \mathbb{E}(X_i) \right) ^2 \\
+                            & = & \mathbb{E}\left( \sum_{k,l=1}^n X_k\cdot X_l \right) - \sum_{k,l=1}^n \mathbb{E}(X_k)\mathbb{E}(X_l) \\
+                            & = & \sum_{k=1}^n \left( \mathbb{E}(X_k^2) - \left( \mathbb{E}(X_k) \right) ^2 \right)  + 2 \sum_{1\leq k<l\leq n}^n \left(\mathbb{E}(X_k\cdot X_l) - \mathbb{E}(X_k)\cdot \mathbb{E}(X_l)\right) \\
+                            & = & \sum_{k=1}^n \Var(X_k) + 2 \sum_{k=1}^n \Cov(X_k,X_l)
+    \end{IEEEeqnarray*}
+\end{proof}
+
+\begin{question}
+    Wenn $X_1,\ldots,X_n$ Zufallsvariablen sind, kennen wir bereits ihren Erwartungswert als ungefähre Näherung für ihre Summe. Genauer wollen wir aber wissen, was
+    \[
+        \mathbb{P}(\abs{X_1 + \ldots + X_n -  (\exists (X_1) + \ldots + \exists (X_n)} \geq ε)
+    .\] 
+    ist, für gegebene $ε$. Insbesondere interessieren wir uns darüber, wann dieser Wert klein ist.
+\end{question}
