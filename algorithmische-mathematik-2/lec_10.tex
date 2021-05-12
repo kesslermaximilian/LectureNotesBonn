@@ -1,0 +1,108 @@
+\lecture[]{Mi 12 Mai 2021 10:16}{}
+\begin{example}
+    Sei $\mathcal{S} = \left \{0,1\right\}$ und $α,β\in (0,1)$. Setze
+    \[
+        P = \begin{pmatrix} 1 - α & α \\ β & 1-β \end{pmatrix} 
+    .\] 
+    Oft machen wir eine graphische Darstellung:
+    Wir wollen also $P^n$ ausrechnen, um das Verhalten der Markovkette zu studieren. 
+     \begin{enumerate}[label=\protect\circled{\alph*}]
+        \item Man könnte nun $P$ diagonalisieren, also  $P = U \Lambda U^{-1}$, wobei $A$ Diagonalform hat, so ist $P^n = U \Lambda ^n U^{-1}$, und die Potenzen von $\Lambda$ können wir leicht berechnen.
+        \item  $P^n$ ist stochastisch, also ist auch  $P^n(0,0) + P^n(0,1)=1$,  $P^n(1,1) + P^n(1,0) = 1$, weil  $P^n$ stochastisch ist. Wir wollen uns nun, welchen Wert $P^n(0,0)$ hat, dazu machen wir den Rekursion Ansatz:
+            \begin{itemize}
+                \item Sind wir nach $n-1$ Schritten wieder bei der  $0$, so müssen wir von  $0$ nach  $0$ gehen
+                \item Sind wir nach  $n-1$ Schritten bei der  $1$, so müssen wir im  $n$-ten von  $1$ nach  $0$ gehen
+            \end{itemize}
+            Also ergibt sich
+            \begin{IEEEeqnarray*}{rCl}
+                P^n(0,0) &=& P^{n-1}(0,0)\cdot P(0,0) + P^{n-1}(0,1) \cdot P(1,0)  \\
+                         & = & P^{n-1}(0,0)(1-α)+ \underbrace{P^{n-1}(0,1)}_{= 1-P^{n-1}(0,0)}\cdot β \\
+                         & = & P^{n-1}(0,0)(1-α-β) + β
+            \end{IEEEeqnarray*}
+            Als Rekursion suhcne wir also eine Funktion $n \mapsto f(n)$, sodass
+             \[
+            \begin{cases}
+                f(n) & = β + (1-α-β) f(n-1) \\
+                f(1) & = 1-α
+            \end{cases}
+            .\] 
+            Als Lösung ergibt sich (Theorie der linearen Rekursionen!):
+            \[
+                f(n) = \frac{β}{α+β} + \frac{α}{α+β}(1-α-β)^n
+            .\] 
+            Damit ergibt sich
+            \[
+                P^n = \begin{pmatrix} \frac{β}{α+β} & \frac{α}{α+β} \\ \frac{β}{α+β} & \frac{α}{α+β} \end{pmatrix}  + (1-α-β)^n \begin{pmatrix} \frac{α}{α+β} & \frac{-α }{\alpha + \beta} \\ \frac{-\beta }{\alpha + \beta} & \frac{\beta}{\alpha + \beta} \end{pmatrix} 
+            .\] 
+            Wir beschränken uns auf $α,β \in (0,1)$. Da $(1-α-β)^n \to 0$ exponentiell schnell, ergibt sich
+            \[
+            \lim_{n \to \infty} P^n = \begin{pmatrix} \frac{β}{α+β} & \frac{α}{α+β} \\ \frac{β}{α+β} & \frac{α}{α+β} \end{pmatrix} 
+            .\] 
+            Wir stellen fest, dass diese Matrix Rang 1 hat. Ebenso ergibt sich
+\[
+\lim_{n \to \infty} \mu_0 P^n = \begin{pmatrix} \frac{β}{α+β}, \frac{α}{α+β} \end{pmatrix} 
+.\] 
+und dieser ist von $μ_0$ unabhängig.
+    \end{enumerate}
+\end{example}
+\todo{Grafik}
+\subsection{Unabhängige Zufallsvariablen}
+\subsubsection{Unabhängige Ereignisse}
+
+\begin{definition}[Unabhängigkeit]\label{def:unabhängigkeit-von-ereignissen}
+    Eine Familie von Ereignissen $\left \{A_k\right\} _{k \in I}$ heißt unabhängig, falls 
+    \[
+        P(A_{i_1}\cap \ldots\cap A_{i_n}) = \prod_{k=1}^n P(A_{i_k})
+    .\] 
+    für alle verschiedenen $i_{1},\ldots.i_{n}\in I$ und für alle $n\leq \abs{I}$.
+\end{definition}
+Seien $A,B\in \mathcal{F}$, sodass $\mathbb{P}(A) \neq  0, \mathbb{P}(B) \neq 0$. Dann sind $A$ und  $B$ unabhängig gwd
+ \[
+     \mathbb{P}(A\mid B) = \mathbb{P}(A) \iff  \mathbb{P}(B\mid A) = \mathbb{P}(B)
+.\]
+\begin{warning}
+    Falls $\mathbb{P}(A_i \cap  A_j) = \mathbb{P}(A_i) \cdot \mathbb{P}(A_j)$ für $i\neq j \in I$, so folgt noch nicht, dass $\left \{A_i\right\} _{i \in I}$ unabhängig ist!
+\end{warning}
+\begin{example}
+    Betrachte 3 faire Münzen, also
+    \[
+        \Omega = \left \{0,1\right\} ^3 f \left \{(\omega_1,\omega_2,\omega_3) \mid  \omega_i \in  \left \{0,1\right\} \text{ für } i=1,2,3,\right\} 
+    .\] 
+    wobei 
+    \[
+    \omega_i = \begin{cases}
+        0 & \text{Münze $i$ ist Kopf} \\
+        1 & \text{Münze $i$ ist Zahl}
+    \end{cases}
+    .\] 
+    Wir setzen $\mathcal{F} = \mathcal{P}(\Omega)$ und $\mathbb{P}$ als die Gleichverteilung und betrachten die Ereignisse
+    \[
+    A_1 = \left \{\omega_1 = \omega_2\right\} \qquad A_2 = \left \{\omega_2 = \omega_3\right\}  \qquad A_3 = \left \{\omega_3 = \omega_1\right\} 
+    .\] 
+    und erhalten unmittelbar
+     \[
+         \mathbb{P}(A_i) = \frac{4}{8}=\frac{1}{2} \qquad \mathbb{P}(A_i \cap A_j) = \frac{2}{8} = \frac{1}{4} = \mathbb{P}(A_i)\cdot \mathbb{P}(A_j) \; \forall i\neq j
+    .\] 
+    allerdings ist auch
+    \[
+        \mathbb{P}(A_1\cap A_2\cap A_3) = \frac{2}{8} \neq  \mathbb{P}(A_1) \mathbb{P}(A_2) \mathbb{P}(A_3)
+    .\] 
+    also sind die Ereignisse nicht unabhängig, allerdings paarweise unabhängig. Dies liegt daran, dass $A_1 \land A_2 \implies A_3$ etc.
+\end{example}
+\subsubsection{Unabhängige Zufallsvariablen}
+
+\begin{definition}[Gemeinsame Verteilung]\label{def:gemeinsame-verteilung}
+    Seien $X_k : \Omega\to \mathcal{S}_k$ für $1\neq k\leq n$ diskeret Zufallsvariablen auf $(\Omega,\mathcal{F},\mathbb{P})$. Die Verteilung $\mu_{X_1,\ldots,X_n}$ der Zufallsvektoren $(X_1,\ldots,X_n)$ mit Massenfunktion
+    \[
+        p_{X_1,\ldots,X_n}(a_1,\ldots,a_n) := \mathbb{P}(X_1 = a_1, \ldots, X_n = a_n)
+    .\] 
+    heißt die \vocab{gemeinsame Verteilung} von $X_1,\ldots,X_n$. 
+\end{definition}
+
+\begin{definition}[Unabhängigkeit]\label{def:unabhängigkeit}
+    Die diskreten Zufallsvariablen $X_1,\ldots,X_n$ heißen \vocab{unabhängig}, falls
+    \[
+        \mathbb{P}(X_1=a_1,\ldots,X_n = a_n) = \prod_{k=1}^n \mathbb{P}(X_k = a_k)
+    .\]
+    für alle $a_1\in \mathcal{S}_1\ldots,a_n \in \mathcal{S}_n$.
+\end{definition}
