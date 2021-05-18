@@ -50,8 +50,9 @@ Wähle hierzu eine Abzählung $p_1,p_2,\ldots$ von $\Q\cap [0,1]$, sodass $p_1 =
                 $p_1$ & $p_2$ & $p_3$ & $p_4$ & $p_4$ \\
                 1 & 0 & $\frac{1}{2}$ & $\frac{8}{9}$ & $\frac{3}{5}$
             \end{tabular} 
-            Dann ist die Menge als $\left \{0,\frac{1}{2},\frac{3}{5},\frac{8}{9},1\right\} $ geordnet, und wir sehen $p_n = $.
+            Dann ist die Menge als $\left \{0,\frac{1}{2},\frac{3}{5},\frac{8}{9},1\right\} $ geordnet, und wir sehen mit $p_n = $?, dass ?.
         \end{recap}
+        \todo{Werte einfügen}
         Verwende nun \autoref{trennung-von-mengen-in-normalem-raum-für-urysohn-lemma} mit $A = \overline{V_{p_i}}$ und $U = V_{p_j}$, (hier ist wichtig, dass wegen $p_i < p_j$ beretis  $\overline{V_{p_i}}\subset V_{p_j}$ gilt, sonst können wir das Lemma nicht anwenden.) \\
         Also finden wir $V$ mit  $\overline{V_{p_i}} \subset V \subset \overline{V} \subset V_{p_j}$. Man prüft leicht, dass wir so auch die Invariante der Induktion erhalten haben.
 \end{itemize}
@@ -74,7 +75,7 @@ Also haben wir wie gewünscht die $V_i$ gefunden, und somit unsere Funktion.
 
 \section{Der Erweiterungssatz von Tietze}
 Wir sehen jetzt das \nameref{thm:urysohn} in Action:
-\begin{theorem}[Erweiterungssatz von Tietze]\label{thm:thiele}
+\begin{theorem}[Erweiterungssatz von Tietze]\label{thm:tietze}
     Sei $X$ ein normaler Raum und  $A\subset X$ abgeschlossen. Jede stetige Funktion $f: A \to  [-1,1]$ lässt sich fortsetzen zu einer stetigen Funktion $\overline{f}: X \to  [-1,1]$, d.h. $\overline{f}\mid _{A} \equiv f$.
 \end{theorem}
 
@@ -96,6 +97,7 @@ Wir sehen jetzt das \nameref{thm:urysohn} in Action:
 \end{remark}
 
 \begin{proof}[Beweis von \autoref{thm:thiele} (\nameref{thm:thiele}]
+    \label{proof:thiele1}
     \begin{strategy}
         Wir konstruieren eine Folge stetiger Funktionen \\
         $\left \{s_n : X \to  [-1,1]\right\}_{n\geq 1}$, sodass
@@ -148,3 +150,121 @@ Wir sehen jetzt das \nameref{thm:urysohn} in Action:
     In der Vorlesung kam die Frage auf, ob wir manche der gerade bewiesenen Resultate auch auf die Analysis übertragen können, indem wir z.B. den Fixpunktsatz von Banach anwenden.
 \end{remark*}
 \todo{darüber nachdenken}
+
+\begin{proof}[Fortsetzung des Beweises des \nameref{thm:thiele}]
+    Definiere die Folgen $s_n$ induktiv. Dazu \\
+    \underline{Schritt 1}: Verwende \autoref{lm:kompression-von-funktionen-auf-abgeschlossenen-mengen-in-normalem-raum} mit $α = f$ und  $r = 1$, also erhalten wir
+    \[
+    g_1 : X \to  \left[ -\frac{1}{3}r, \frac{1}{3}r \right] 
+    .\] 
+    settig mit $\abs{f(a) - g(a)} \leq \frac{2}{3}$ für jedes $a\in A$. Setze $s_1 = g_1$. \\
+    \underline{Induktionsschritt} Angenommen, wir haben schon stetige Funktion $g_1,\ldots,g_n$ auf $X$ mit
+    \[
+        g_i : X \to  \left[ -\left( \frac{2}{3} \right) ^{i-1}\cdot \frac{1}{3}, \left( \frac{2}{3} \right) ^{i-1}\cdot \frac{1}{3} \right] 
+    .\]
+    und 
+    \[
+        \abs{f(a) - \sum_{i=1}^n g_i(a)} \leq  \left( \frac{2}{3} \right) ^n \qquad \forall a\in A 
+    .\] 
+    Verwende nun wieder \autoref{lm:kompression-von-funktionen-auf-abgeschlossenen-mengen-in-normalem-raum} mit $α = f- \sum_{i=1}^n g_i\mid _{A}$ und $r = \left( \frac{2}{3} \right) ^n$. \\
+    Es gibt also
+    \[
+        g_{n+1} \colon X \to  \left[ -\frac{1}{3}\cdot \left( \frac{2}{3} \right) ^{n}, \frac{1}{3}\cdot \left( \frac{2}{3} \right) ^n \right] 
+    .\] 
+    Wir erhalten nun
+    \begin{IEEEeqnarray*}{rCl}
+        \abs{f(a) - \sum_{i=1}^n g_i(a) - g_{n+1}(a)} & = &  \abs{f(a) - \sum_{i=1}^{n+1} g_i(a)}   \\
+                                                      & \leq  & \frac{2}{3}\cdot \left( \frac{2}{3} \right) ^n = \left( \frac{2}{3} \right) ^{n+1}
+    \end{IEEEeqnarray*}
+    Nun definiere
+    \[
+    s_{n+1} \coloneqq \sum_{i=1}^{n+1} g_i : X \to \R
+    .\] 
+    \begin{claim}
+        $s_n$ hat Bild in $[-1,1]$ für jedes  $n\in \N$.
+    \end{claim}
+    \begin{subproof}
+        \begin{IEEEeqnarray*}{rCl}
+            \abs{s_n(x)} & =&   \abs{\sum_{i=1}^n g_i(x)} \leq  \sum_{i=1}^n  \abs{g_i(x)} \\
+                         & \leq& \sum_{i=1}^n \left( \frac{2}{3} \right) ^{i-1}\cdot \frac{1}{3}  \\
+                         & \leq  & \sum_{i=1}^{\infty} \left( \frac{2}{3} \right) ^{i-1}\cdot \frac{1}{3}  \\
+                         & = & \frac{\frac{1}{3}}{1-\frac{2}{3}} = 1
+        \end{IEEEeqnarray*}
+        Die andere Schranke zeigt man völlig analog.
+    \end{subproof}
+    \begin{claim}
+        Die Folge $\left \{s_n\right\} _{n\in \N}$ konvergiert gleichmäßig gegen $s$.
+    \end{claim}
+    \begin{subproof}
+        Für $k>n$ ist 
+         \begin{IEEEeqnarray*}{rCl}
+             \abs{s_k(x) - s_n(x)} & = & \abs{ \sum_{i=n+1}^k g_i(x) } \\
+                                   & \leq  & \sum_{i=1}^{n+1} \frac{1}{3}\cdot \left( \frac{2}{3} \right) ^{i-1} \\
+                                   & = &  \sum_{i=n+1}^{\infty} \frac{1}{3}\cdot \left( \frac{2}{3} \right) ^{i-1} \\
+                                   & = & \frac{1}{3}\cdot \frac{\left( \frac{2}{3} \right) ^n}{1-\frac{2}{3}} \\
+                                   & = &\left( \frac{2}{3} \right) ^n
+        \end{IEEEeqnarray*}
+        \begin{enumerate}[(i)]
+            \item Für jedes $x\in X$ ist $\left \{s_n(x)\right\}_{n\geq 1} $ eine Cauchy-Folge, also konvergiert sie zu einem Punkt $s(x) \in [-1,1]$.
+            \item Intuitiv reicht es für gleichmäßige Stetigkeit schon zu sehen, dass in obiger Abschätzung kein $x$ vorkommt. Genauer: \\
+                Sei  $ε>0$, so  $\exists  N \in \N$ mit $\forall n > N \implies \left( \frac{2}{3} \right) ^n < ε$. Dann ist
+                \begin{IEEEeqnarray*}{rCl}
+                    \abs{s(x) - s_n(x)} & = & \abs{\lim_{k \to \infty} s_k(x) - s_n(x)} \\
+                                        & = & \lim_{k \to \infty} \abs{s_k(x) - s_n(x)} \\
+                                        & \leq  & \left( \frac{2}{3} \right) ^n \\
+                                        & < &ε
+                \end{IEEEeqnarray*}
+                also ist die Konvergenz gleichmäßig, und $s$ ist stetig.
+        \end{enumerate}
+    \end{subproof}
+    Setze nun $\overline{f} \coloneqq s$, dann überprüfen wir
+    \begin{claim}
+        $\overline{f}$ ist eine Fortsetzung von $f$, d.h.  $\overline{f}\mid _{A} = f$.
+    \end{claim}
+    \begin{subproof}
+        Es ist 
+        \begin{IEEEeqnarray*}{rCl}
+            \abs{f(a) - s_n(a)} = \abs{f(a) - \sum_{i=1}^n g_i(a)} \leq  \left( \frac{2}{3} \right) ^n  
+        \end{IEEEeqnarray*}
+        also 
+        \begin{IEEEeqnarray*}{rCl}
+            \lim_{n \to \infty} \abs{f(a) - s_n(a)} \leq  \lim_{n \to \infty}  \left( \frac{2}{3} \right) ^n = 0
+        \end{IEEEeqnarray*}
+        Also ist 
+        \[
+            s(a) \coloneqq  \lim_{n \to \infty} s_n(a) = f(a)
+        .\] 
+        für jedes $a\in A$.
+    \end{subproof}
+    Wir haben also eine Fortsetzung gefunden, und sind damit fertig.
+\end{proof}
+\todo{Schranken des Beweises nochmal checken}
+\todo{Beweis-aufschrieb umstrukturieren}
+
+\begin{corollary}[Version des Satzes von Tietze]\label{cor:tietze-2}
+    Sei $X$ ein normaler Raum und  $A\subset X$ abgeschlossen. Dann gilt folgendes:
+    \begin{enumerate}[1.]
+        \item Jede stetige Funktion $f: A \to  [a,b]$ lässt sich zu einer Funktion $\overline{f} : X \to  [a,b]$ fortsetzen.
+        \item Jede stetige Funktion $f: A \to  \R$ lässt sich fortsetzen zu einer Funktion $\overline{f}\colon X \to \R$.
+    \end{enumerate}
+\end{corollary}
+\begin{proof}
+    Übung.
+\end{proof}
+
+
+\section{?}
+\begin{theorem}[Metrisierungssatz von Urysohn]\label{metrisierungsssatz-von-urysohn}
+    Jeder normale Raum mit abzählbarer Basis der Topologie ist metrisierbar.
+\end{theorem}
+\begin{proof}
+    \begin{strategy}
+        \underline{Schritt 1}: Betrachte $\prod_{\N} [0,1]$ in der Produkttopologie und zeige, dass der Raum emtrisierbar ist. Dieser Raum heißt \vocab{Hilbert-Würfel}.  \\
+        \underline{Schritt 2}: Sei $X$ normal mit abzählbarer Basis, wir zeigen, dass wir eine Einbettung  $F : X \to  \prod_{\N} [0,1]$ finden.
+        Dann sind wir fertig, da 
+        \[
+            X \cong F(X) \subset \prod_{\N}[0,1]
+        .\] 
+        ein Unterraum eines metrischen Raumes ist.
+    \end{strategy}
+\end{proof}
