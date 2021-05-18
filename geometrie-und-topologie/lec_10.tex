@@ -1,0 +1,150 @@
+\lecture[]{Di 18 Mai 2021 12:20}{}
+Wir erinnern uns daran, dass wir gerade dabei waren, \autoref{thm:urysohn} zu beweisen.
+\begin{lemma}\label{trennung-von-mengen-in-normalem-raum-für-urysohn-lemma}
+    Sei $X$ ein normaler Raum,  $A\subset X$ abgeschlossen und $U\subset X$ offen mit  $A\subset U$. Dann existiert $V\subset X$ offen mit
+    \[
+    A\subset V\subset \overline{V}\subset U
+    .\] 
+\end{lemma}
+\begin{figure}[ht]
+    \centering
+    \incfig{trennung-von-abgeschlossenen-mengen-durch-offene-in-normalem-raum}
+    \caption{trennung von abgeschlossenen mengen durch offene in normalem Raum}
+    \label{fig:trennung-von-abgeschlossenen-mengen-durch-offene-in-normalem-raum}
+\end{figure}
+\begin{proof}
+    Wegen $U$ offen ist  $X\setminus U$ abgeschlossen. Wegen $X$ normal gibt es  $V,V'$ offen mit  $A\subset V$ und $(X\setminus U)\subset V'$ mit $V\cap V'=\emptyset$. Nun ist
+    \[
+    A\subset V\subset X\setminus V' \subset U
+    .\] 
+    nach Definition des Abschlusses ist nun $A\subset V\subset \overline{V} \subset X\setminus V' \subset U$.
+\end{proof}
+\todo{bessere abbildung}
+
+\begin{proof}[Beweis von \autoref{thm:urysohn} (\nameref{thm:urysohn})]
+    \begin{goal}
+        $\forall r\in \Q\cap [0,1]$ konstruiere $V_r \subset X$ offen, sodass
+         \begin{enumerate}[1.]
+            \item $A\subset V_0$
+            \item $B\subset X\setminus V_1$
+            \item  $r<r' \implies \overline{V_r}\subset V_{r'}$
+        \end{enumerate}
+    \end{goal}
+Dies genügt, denn dann wissen wir mit \autoref{lm:stetige-abbildung-durch-familie-von-rationalen-offenen-mengen}, dass 
+\begin{IEEEeqnarray*}{rCl}
+    \exists f: X &\to & [0,1] \text{ stetig} \\
+        f(x) & = & 0 \quad \forall x\in V_0 \supset A
+        \\ f(x) & = & 1 \quad \forall x \in  X \setminus V_1\supset B
+\end{IEEEeqnarray*}
+Wähle hierzu eine Abzählung $p_1,p_2,\ldots$ von $\Q\cap [0,1]$, sodass $p_1 = 1$ und $p_2 = 0$. Definiere nun $\left \{V_r\right\} $ rekursiv, wobei wir auch induktiv die Invariante erhalten wollen, dass $r<r' \implies \overline{V_r} \subset V_{r'}$.
+\begin{itemize}
+    \item $p_1 = 1$. Setze $V_1 \coloneqq X\setminus B$ (offen, weil $B$ abgeschlossen ist)
+    \item  $p_2 = 0$. Nach \autoref{trennung-von-mengen-in-normalem-raum-für-urysohn-lemma} mit $A = A$ und  $U = X\setminus B$ finden wir $V_0$ offen mit 
+        \[
+        A\subset V_0 \subset \overline{V}_0 \subset X\setminus B =: V_1
+        .\] 
+    \item Sei $n\geq 3$, dann sind also $V_{p_1},V_{p_2},\ldots,V_{p_{n-1}}$ schon definiert. Es ist $\left \{p_1,p_2,\ldots,p_n\right\} $ wohlgeordnet, weil es sich um eine endliche Menge handelt, also gibt es unter ihnen einen direkten Vorgänger $p_i$ von  $p_n$, und einen direkten Nachfolger  $p_j$ von  $p_n$.
+         \begin{recap}
+            Es könnte z.B.  $n=5$ sein mit \\
+            \begin{tabular}{c | c | c | c | c}
+                $p_1$ & $p_2$ & $p_3$ & $p_4$ & $p_4$ \\
+                1 & 0 & $\frac{1}{2}$ & $\frac{8}{9}$ & $\frac{3}{5}$
+            \end{tabular} 
+            Dann ist die Menge als $\left \{0,\frac{1}{2},\frac{3}{5},\frac{8}{9},1\right\} $ geordnet, und wir sehen $p_n = $.
+        \end{recap}
+        Verwende nun \autoref{trennung-von-mengen-in-normalem-raum-für-urysohn-lemma} mit $A = \overline{V_{p_i}}$ und $U = V_{p_j}$, (hier ist wichtig, dass wegen $p_i < p_j$ beretis  $\overline{V_{p_i}}\subset V_{p_j}$ gilt, sonst können wir das Lemma nicht anwenden.) \\
+        Also finden wir $V$ mit  $\overline{V_{p_i}} \subset V \subset \overline{V} \subset V_{p_j}$. Man prüft leicht, dass wir so auch die Invariante der Induktion erhalten haben.
+\end{itemize}
+Also haben wir wie gewünscht die $V_i$ gefunden, und somit unsere Funktion.
+\end{proof}
+
+\begin{corollary}[Urysohn mit beliebigem Intervall]\label{cor:urysohn-mit-beliebigem-intervall}
+    Sei $X$ ein normaler Raum und seien  $A,B\subset X$ disjunkt und abgeschlossen, sowie $a\leq b\in \R$ beliebig. Dann 
+    \begin{IEEEeqnarray*}{rCl}
+        \exists f: X & \to  & [a,b] \\
+        f(A) & = &\left \{a\right\}  \\
+        f(B) & = & \left \{b\right\} 
+    \end{IEEEeqnarray*}
+\end{corollary}
+
+\begin{proof}
+    Verwende einen Homöomorphismus $[0,1] \to  [a,b]$ und \autoref{thm:urysohn}.
+\end{proof}
+\todo{Beweis ergänzen}
+
+\section{Der Erweiterungssatz von Tietze}
+Wir sehen jetzt das \nameref{thm:urysohn} in Action:
+\begin{theorem}[Erweiterungssatz von Tietze]\label{thm:thiele}
+    Sei $X$ ein normaler Raum und  $A\subset X$ abgeschlossen. Jede stetige Funktion $f: A \to  [-1,1]$ lässt sich fortsetzen zu einer stetigen Funktion $\overline{f}: X \to  [-1,1]$, d.h. $\overline{f}\mid _{A} \equiv f$.
+\end{theorem}
+
+\begin{remark}
+    Das Urysohn'sche Lemma ist ein Spezialfall des \nameref{thm:thiele}: \\
+    Sei $X$ normal und  $B,C\subset X$ abgeschlossen, disjunkt. Dann betrachte die Funktion
+        \begin{equation*}
+        f: \left| \begin{array}{c c l} 
+            B\cup C & \longrightarrow & [-1,1] \\
+        B & \longmapsto &  -1 \\
+        C & \longmapsto & 1
+        \end{array} \right.
+    \end{equation*}
+    \begin{question}
+        Gibt es eine Fortsetzung $\overline{f}: X \to  [-1,1]$?
+    \end{question}
+    Für jede solche Fortsetzung muss auch  $\overline{f}\mid _{B} = f$, also $\overline{f}(B) = -1$ und $\overline{f}(C) =1$ gelten, also genau das, was wir von Urysohn fordern. \\
+    Allerdings sagt uns der \nameref{thm:thiele} genau, dass wir solche eine Fortsetzung finden.
+\end{remark}
+
+\begin{proof}[Beweis von \autoref{thm:thiele} (\nameref{thm:thiele}]
+    \begin{strategy}
+        Wir konstruieren eine Folge stetiger Funktionen \\
+        $\left \{s_n : X \to  [-1,1]\right\}_{n\geq 1}$, sodass
+        \begin{enumerate}[(i)]
+            \item $\left \{s_n\right\} $ konvergiert \vocab{gleichmäßig} gegen eine Funktion $s: X \to  [-1,1]$, d.h. für jedes $ε>0$ existiert  $N\in \N$, sodass 
+                \[
+                \emphasize{\forall } \in X,n\geq N \colon\qquad    d(s_n(x), s(x))<ε
+                .\] 
+                Weil $\left \{s_n\right\} $ gleichmäßig konvergiert, ist $s$ stetig (Übungsblatt 5, Aufgabe 3 (iv)).
+            \item  $s\mid _{A} = f$
+        \end{enumerate}
+    \end{strategy}
+    Dazu benötigen wir erstmal einige Lemmata, die wir im folgenden erarbeiten.
+\end{proof}
+
+\begin{lemma}\label{lm:kompression-von-funktionen-auf-abgeschlossenen-mengen-in-normalem-raum}
+    Sei $X$ normal und  $A\subset X$ abgeschlossen. Sei $\alpha : A \to  [-r,r]$ für $r\in \R_{\geq 0}$ stetig. Dann existiert $g: X \to  \left[ -\frac{1}{3}r, \frac{1}{3}r \right]$ stetig mit $\abs{α(a) - g(a)} \leq  \frac{2}{3}r $ für $a\in A$.
+\end{lemma}
+\begin{proof}
+    Setze $B \coloneqq α^{-1}\left(\left[ -r,-\frac{1}{3}r \right]\right)$ und $C\coloneqq α^{-1}\left(\left[ \frac{1}{3}r,r \right]\right)$. Wegen $α$ stetig sind  $B,C$ abgeschlossen, und sie sind auch disjunkt, weil die Intervalle disjunkt sind. Nach \nameref{cor:urysohn-mit-beliebigem-intervall} finden wir also eine stetige Funktion
+    \begin{IEEEeqnarray*}{rCl}
+        g: X & \to  & \left[ -\frac{1}{3}r, \frac{1}{3}r \right] \\
+        g(B) & = & \left \{-\frac{1}{3}r\right\} \\ 
+        g(C) & = & \left \{\frac{1}{3}r\right\} 
+    \end{IEEEeqnarray*}
+    \begin{tikzpicture}
+        \draw (0,-0.2) -- (5,-0.2) node[anchor = west] {$X$};
+        \draw (0,0) -- (3,0);
+        \foreach \x in {0,1,2,3} {
+            \draw[red,thin] (0,\x) -- (5,\x);
+        }
+        \draw (0,0) node[anchor=east] {$-\frac{1}{3}r$};
+    \end{tikzpicture}
+    \todo{Bild fertig}
+    \begin{claim}
+        $g$ erfüllt die Bedingungen unseres Lemmas, d.h.  
+        \[
+        \abs{α(a) - g(a) } \leq \frac{2}{3}r \qquad \forall a\in A
+        .\] 
+    \end{claim}
+    \begin{subproof}
+        \begin{itemize}
+            \item Sei $a\in B$, Dann ist $α(a) \in \left[ -r, -\frac{1}{3}r \right]$ und $g(a) = -\frac{1}{3}r$, also gilt die Ungleichung.
+            \item Sei $a\in C$. Dann ist $α(a) \in \left[ \frac{1}{3}r,r \right]$ und $g(a) = \frac{1}{3}r$, also, also gilt die Ungleichung.
+            \item Sei $a\in A \setminus (B\cup C)$. Dann ist $α(a),g(a) \in \left[ -\frac{1}{3}r,\frac{1}{3}r \right] $, und damit ist der Abstand auch höchstens $\frac{2}{3}r$.
+        \end{itemize}
+    \end{subproof}
+\end{proof}
+\begin{remark*}
+    In der Vorlesung kam die Frage auf, ob wir manche der gerade bewiesenen Resultate auch auf die Analysis übertragen können, indem wir z.B. den Fixpunktsatz von Banach anwenden.
+\end{remark*}
+\todo{darüber nachdenken}
