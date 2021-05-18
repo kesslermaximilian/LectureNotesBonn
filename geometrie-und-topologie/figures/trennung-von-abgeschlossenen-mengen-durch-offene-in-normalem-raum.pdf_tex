@@ -54,5 +54,14 @@
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{trennung-von-abgeschlossenen-mengen-durch-offene-in-normalem-raum.pdf}}%
+    \put(0.45528043,0.25872707){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$A$\end{tabular}}}}%
+    \put(0.71602955,0.27792613){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U$\end{tabular}}}}%
+    \put(0.54022471,0.26883284){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V$\end{tabular}}}}%
+    \put(0.66311792,0.35655727){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V'$\end{tabular}}}}%
+    \put(0.56777802,0.34512227){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\overline{V}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{trennung-von-abgeschlossenen-mengen-durch-offene-in-normalem-raum.pdf}}%
+    \put(0.75530109,0.37454376){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\color{blue} X\setminus U$\end{tabular}}}}%
+    \put(0.32034779,0.40411765){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{trennung-von-abgeschlossenen-mengen-durch-offene-in-normalem-raum.pdf}}%
   \end{picture}%
 \endgroup%
