@@ -3,9 +3,9 @@ These are (inofficial) lecture notes of my courses taken at the University of Bo
 ## Contents
 | Semester | Course | Lecturer | |
 | --- | --- | --- | --- |
-| SS 2021 | Algorithmische Mathematik II | Prof. Dr. Patrik Ferrari | [Skript](kesslermaximilian.github.io/LectureNotesBonn/2021_AlgorithmischeMathematikII.pdf) |
-| SS 2021 | Einführung in die Geometrie und Topologie | Dr. Daniel Kasprowski | [Skript](kesslermaximilian.github.io/LectureNotesBonn/2021_Topologie.pdf)|
-| WS 20/21 | Einführung in die diskrete Mathematik | Prof. Dr. Jens Vygen | [Skript (incomplete)](kesslermaximilian.github.io/LectureNotesBonn/2020_EDM_incomplete.pdf), [Summary](kesslermaximilian.github.io/LectureNotesBonn/2020_EDM_summary.pdf)|
+| SS 2021 | Algorithmische Mathematik II | Prof. Dr. Patrik Ferrari | [Skript](https://kesslermaximilian.github.io/LectureNotesBonn/2021_AlgorithmischeMathematikII.pdf) |
+| SS 2021 | Einführung in die Geometrie und Topologie | Dr. Daniel Kasprowski | [Skript](https://kesslermaximilian.github.io/LectureNotesBonn/2021_Topologie.pdf)|
+| WS 20/21 | Einführung in die diskrete Mathematik | Prof. Dr. Jens Vygen | [Skript (incomplete)](https://kesslermaximilian.github.io/LectureNotesBonn/2020_EDM_incomplete.pdf), [Summary](https://kesslermaximilian.github.io/LectureNotesBonn/2020_EDM_summary.pdf)|
 
 ## License
 The preamble of these documents is (mainly) taken from https://github.com/gillescastel/university-setup and published under the MIT-License. The corresponding part of the preamble is marked and the license is included.
