@@ -93,7 +93,7 @@ Der Aufbau ist wie folgt:
             1 & \text{sonst}
         \end{cases}
     .\] 
-    eine Metrik auf $X$, genannt die \vocab[Diskrete Metrik]{diskrete Metrik}.
+    eine Metrik auf $X$, genannt die \vocab[Metrik!diskrete]{diskrete Metrik}.
     \end{itemize}
 \end{example}
 \begin{notation}
@@ -123,11 +123,10 @@ Der Aufbau ist wie folgt:
 \end{proof}
 
 \begin{definition}[Offene Mengen]\label{def:offene-menge-metrischer-raum} 
-    Sei $X$ ein metrischer Raum. Eine Teilmenge  $U\subset X$ heißt \vocab[Menge!offen]{offen}, falls sie Umgebung all ihrer Punkte ist, d.h. $\forall x\in U \;\exists ε>0$ mit $U(x,ε)\subset U$.
+    Sei $X$ ein metrischer Raum. Eine Teilmenge  $U\subset X$ heißt \vocab[Metrischer Raum!offene Menge]{offen}, falls sie Umgebung all ihrer Punkte ist, d.h. $\forall x\in U \;\exists ε>0$ mit $U(x,ε)\subset U$.
 \end{definition}
 \begin{remark}
     $U(x,ε)$ ist offen.
-\end{remark}
 \begin{proof}
     Für alle $y\in U(x,ε)$ ist
     \[
@@ -135,6 +134,7 @@ Der Aufbau ist wie folgt:
     .\] 
     nach der Dreiecksungleichung.
 \end{proof}
+\end{remark}
 
 \begin{theorem}[Urbilder offener Mengen sind offen]\label{thm:urbild-offener-menge-ist-offen}
     Eine Abbildung $f:X\to Y$ zwischen metrischen Räumen ist stetig genau dann, wenn $\forall U \subset Y \text{  offen}$ auch das Urbild $f^{-1}(U)$ offen in $X$ ist.
@@ -182,7 +182,7 @@ Der Aufbau ist wie folgt:
         \item Für $U_1,\ldots,U_n \in \mathcal{O}$ ist auch $\bigcap_{i=1}^n U_i \in  \mathcal{O}$
         \item Für jede Familie $\left \{U_i\right\} _{i\in I}$ mit $U_i \in \mathcal{O}$ ist auch $\bigcup_{i\in I} U_i \in  \mathcal{O}$
     \end{enumerate}
-    Die Mengen in $\mathcal{O}$ heißen \vocab[Offene Menge]{offene Mengen}. \\
+    Die Mengen in $\mathcal{O}$ heißen \vocab[Menge!offen]{offene Mengen}. \\
     Ein \vocab[Topologischer Raum]{topologischer Raum} ist ein Paar  $(X,\mathcal{O})$ aus einer Menge  $X$ und einer Topologie  $\mathcal{O}$ auf  $X$.
 \end{definition}
 
@@ -200,11 +200,11 @@ Der Aufbau ist wie folgt:
 \end{example}
 
 \begin{definition}[Metrisierbarkeit]\label{def:metrisierbar}
-    Ein topologischer Raum heißt \vocab[Metrisierbar]{metrisierbar}, falls die Topologie von einer Metrik induziert ist.
+    Ein topologischer Raum heißt \vocab[Topologischer Raum!metrisierbar]{metrisierbar}, falls die Topologie von einer Metrik induziert ist.
 \end{definition}
 
 \begin{example}
-    Sei $X$ eine Menge. Die \vocab[Diskrete Topologie]{diskrete Topologie} auf $X$ ist die Menge aller Teilmengen, d.h.  $\mathcal{O} := \mathcal{P}(X)$. Diese ist von der diskreten Metrik
+    Sei $X$ eine Menge. Die \vocab[Topologie!diskrete]{diskrete Topologie} auf $X$ ist die Menge aller Teilmengen, d.h.  $\mathcal{O} := \mathcal{P}(X)$. Diese ist von der diskreten Metrik
     \[
         d(x,y) = \begin{cases}
             0 & \text{falls }x=y \\
