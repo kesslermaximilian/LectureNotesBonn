@@ -1,1 +1,94 @@
 \lecture[Beweis des Metrisierungssatzes von Urysohn.]{Do 20 Mai 2021 10:07}{}
+
+\begin{lemma}[Hilbert-Raum ist metrisierbar]\label{lm:hilbert-raum-ist-metrisierbar}
+    Der Raum $\prod_{i=1}^{\infty}[0,1]$ ist metrisierbar (in der Produkttopologie).
+\end{lemma}
+
+\begin{proof}
+    Übung. Die Metrik ist hierbei gegeben durch:
+    \[
+        D((x_n)_{n\in \N}, (y_n)_{n\in \N}) = \sup \left \{\frac{\abs{x_n-y_n}}{n}\mid n\in \N \right\} 
+    .\] 
+\end{proof}
+
+\begin{lemma}\label{lm:abzählbare-trennungsfamilie-in-normalem-raum-mit-abzählbarer-basis}
+   Sei $X$ ein normaler Raum mit abzählbarer Basis
+   \[
+   \mathcal{B} = \left \{B_1,B_2,\ldots\right\} 
+   .\] 
+   Dann gibt es eine abzählbare Familie
+   \[
+       \left \{f_i \colon X \to  [0,1] \mid  f_i \text{ stetig}\right\} 
+   .\] 
+   sodass für jedes $x\in X$ und jede offene Umgebung $x\in U$ ein $i\in \N$ existiert, sodass $f_i(x) = 1$ und  $f_i(y) = 0$ für  $y\not\in U$.
+\end{lemma}
+
+\begin{remark}
+    Wir wissen schon, dass $X$ normal  $\implies$ $X$ vollständig regulär, dass wir also solche Funktionen finden, ist bereits klar. Das wichtige am Beweis ist, dass wir abzählbar viele Funktionen finden können, die das schon für alle (!) Punkte tun.
+\end{remark}
+
+\begin{proof}[Beweis von \autoref{lm:abzählbare-trennungsfamilie-in-normalem-raum-mit-abzählbarer-basis}]
+    Für jedes $n,m$ mit  $\abs{B_n} \subset B_m$ wenden wir das \nameref{thm:urysohn}.
+    an, also gibt es Funktionen
+    \begin{IEEEeqnarray*}{rCl}
+        g_{n,m}\colon X & \to  & [0,1] \\
+        g_{n,m} (\overline{B_n}) &=& \left \{1\right\}  \\
+        g_{n,m}(X \setminus B_m) & = & \left \{0\right\} 
+    \end{IEEEeqnarray*}
+    Wir stellen zudem fest, dass diese Familie von Funktionen abzählbar ist, wegen $\N\times \N \cong \N$.
+    \begin{claim}
+        Die $(g_{n,m})_{n,m\in \N}$ erfüllen bereits die gewünschte Bedingung.
+    \end{claim}
+    \begin{subproof}
+        Sei $x\in X$ mit einer Umgebung $x\in U$ gegeben. Da $\mathcal{B}$ eine Basis ist, finden wir $m\in \N$ mit $x\in B_m\subset U$, da $U$ offen ist. Da $X$ normal ist, finden wir zudem eine offene Menge  $V$ mit  $x\in V \subset \overline{V} \subset B_m$ (\autoref{trennung-von-mengen-in-normalem-raum-für-urysohn-lemma}, wir erinnern uns, dass Punkte in normalen Räumen abgeschlossen sind nach \autoref{thm:hausdorff-impliziert-t1}). Analog finden wir nun $B_n\in \mathcal{B}$ mit $x\in B_n \subset V$, erneut, weil $\mathcal{B}$ eine Basis ist. \\
+        Dann ist $\overline{B_n}\subset \overline{V}\subset B_m$, und $g_{n,m}(x) =1$ wegen $x\in B_n \subset \overline{B_n}$ und $g_{n,m}(y) = 0$ für $y\not\in U$, da dann $y\not\in B_m$.
+    \end{subproof}
+\end{proof}
+
+\begin{remark*}
+    Für den Beweis von \autoref{thm:metrisierungsssatz-von-urysohn} brauchen wir nicht wirklich, dass wir eine abzählbare Basis finden, sondern es genügt die Eigenschaft ebigen Lemmas. Die abzählbare ist jedoch die einfachste Eigenschaft das zu garantieren.
+\end{remark*}
+\todo{Referenz}
+\begin{proof}[Beweis des \nameref{thm:metrisierungsssatz-von-urysohn}]
+    Seien $(f_i \colon X \to  [0,1])_{i\in \N}$ wie in \autoref{lm:abzählbare-trennungsfamilie-in-normalem-raum-mit-abzählbarer-basis}. Definiere
+        \begin{equation*}
+        F: \left| \begin{array}{c c l} 
+            X & \longrightarrow & \prod_{i=1}^{\infty}[0,1] \\
+            x & \longmapsto &  (f_i(x))_{i\in \N}
+        \end{array} \right.
+    \end{equation*}
+    Nach der universellen Eigenschaft der Produkttopologie ist $f$ stetig.
+     \begin{claim}
+         $F$ ist eine Einbettung (d.h. ein Homöomorphismus mit dem Bild, siehe \autoref{def:einbettung}).
+    \end{claim}
+    \begin{subproof}
+        Wir zeigen, dass $F$ injektiv und $F\colon X\to F(X)$ offen ist, dann ist  $F$ eine Einbettung.
+        \begin{itemize}
+            \item Seien $x\neq y\in X$. Da $X$ normal ist, finden wir eine offene Menge $x\in U$, $y\not\in U$ (erneut, indem wir uns erinnern, dass normale Räume Hausdorff sind, und dann \autoref{thm:hausdorff-impliziert-t1} anwenden). Wegen \autoref{lm:abzählbare-trennungsfamilie-in-normalem-raum-mit-abzählbarer-basis} gibt es also $n\in \N$ mit $f_n(x) \subset f_n(U) = 1$ und  $f_n(X\setminus U) = 0$, also 
+                \[
+                    f_n(x) = 1 \neq  f_n(y) \implies F(x) \neq  F(y)
+                .\] 
+                Also ist $F$ injektiv.
+            \item Sei $U\subset X$ offen. Wir zeigen: $F(U)\subset \prod_{\N}$ ist offen. Sei $z\in F(U)$ mit (eindeutigem) Urbild $x\in U$. Wir konstruieren eine Menge $V\subset \prod_{\N}[0,1]$ offen, sodass $z\in V \cap F(X)\subset F(U)$, dann ist $F(U)$ offen in  $F(X)$. \\
+                Erneut nach \autoref{lm:abzählbare-trennungsfamilie-in-normalem-raum-mit-abzählbarer-basis} erhalten wir ein $n$ mit $f_n(x) = 1$ und  $f_n (X\setminus U) = 0$. Setze nun
+                \[
+                    V = [0,1] \times  \ldots \times  (0,1] \times [0,1] \times \ldots
+                .\] 
+                als offene Teilmenge von $\prod_{\N}[0,1]$, wobei $(0,1]$ im  $n$-ten Faktor stehe.
+                \begin{claim}
+                    $V\cap F(X) \subset F(U)$
+                \end{claim}
+                \begin{subproof}
+                    Sei $z' = F(x')\in V\cap F(X)$. Es ist $z'\in V$, also $z_n' \coloneqq  f_n(x') \neq 0$, allerdings wissen wir auch $f_n(X\setminus U) = 0$, d.h. $x' \not\in X\setminus U$, also folgt $x'\in U$ und somit $z' = F(x') \in F(U)$.
+                \end{subproof}
+                Also ist $F(U)$ offen in  $F(X)$ und somit  $F\colon X \to  F(X)$ offen.
+        \end{itemize}
+        Also ist $F\colon X \to  F(X)$ offen und injektiv, und somit eine Einbettung.
+    \end{subproof}
+    Nun stellen wir also fest, dass $X \cong F(X)$ (wegen der Einbettung), aber  $F(X) \subset  \prod_{\N}[0,1]$ ist metrisierbar als Teilraum eines metrisierbaren Raums, also ist $X$ metrisierbar.
+\end{proof}
+
+Noch erwähnen, dass $f_n(x) \in V$ wegen halboffenem Intervall an der Stelle im Beweis \todo{}.
+\begin{dremark}
+    Wo haben wir jetzt wirklich benutzt, dass das Produkt abzählbar war?. Man überlegt sich, dass wir den exakt gleichen Beweis für jede Kardinalität einer Basis hätten durchführen können, um nach $\prod_{\aleph} [0,1]$ einzubetten. Das wirkliche Problem ergibt sich dann erst, wenn wir zeigen (in der Übung), dass $\prod_{\N}[0,1]$ metrisierbar ist. Es stellt sich heraus, dass das nur für $\aleph\leq \omega $, dh. für abzählbare Indexmengen der Fall ist.
+\end{dremark}
