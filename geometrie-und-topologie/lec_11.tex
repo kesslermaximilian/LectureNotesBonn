@@ -90,6 +90,168 @@
 Noch erwähnen, dass $f_n(x) \in V$ wegen halboffenem Intervall an der Stelle im Beweis \todo{}.
 \begin{dremark}
     Wo haben wir jetzt wirklich benutzt, dass das Produkt abzählbar war?. Man überlegt sich, dass wir den exakt gleichen Beweis für jede Kardinalität einer Basis hätten durchführen können, um nach $\prod_{\aleph} [0,1]$ einzubetten. Das wirkliche Problem ergibt sich dann erst, wenn wir zeigen (in der Übung), dass $\prod_{\N}[0,1]$ metrisierbar ist. Es stellt sich heraus, dass das nur für $\aleph\leq \omega $, dh. für abzählbare Indexmengen der Fall ist.
-
-    test
 \end{dremark}
+
+\section*{Motivation für den 2. Teil der Vorlesung}
+Bisher haben wir Topologische Räume und ihre Eigenschaften wie Hausdorff, normal, Kompakt oder zsuammenhängend gesehen, um diese zu unterscheiden. \\
+\underline{2. Teil}: Wir kümmern uns um weitere Invarianten der topologischen Räume.
+\begin{example}
+    $\pi_0(X) =$ Menge der Wegkomponenten von  $X$, d.h.  $\pi_0(X) \subset \mathcal{P}(X)$ und $U\in \pi_0(X)$ genau dann, wenn $U$ wegzusammenhängend, $\not\exists V$ mit $U\subsetneq V$ und  $V$ wegzusammenhängend.
+\end{example}
+\begin{example}
+    \begin{itemize}
+        \item $\pi_0(\R) = \left \{\R\right\} , \pi_0(\N) = \left \{\left \{n\right\} \mid n\in \N\right\} $
+        \item $\pi_0(S) = \left \{\mid , S\right\} $
+    \end{itemize}
+\end{example}
+\begin{example}
+    es gibt aber auch die Invariante für $x_0\in X$, gegeben durch:
+    \[
+        \pi_1(X,x_0) = \left \{\text{Abbildungen } f\colon S^1 \to  X, 1 \mapsto x_0\right\} / \text{'Verschieben'}
+    .\] 
+\end{example}
+Ist $f: X \to Y$ stetig, so induziert $f$ Abbildungen
+ \begin{IEEEeqnarray*}{rCl}
+     f_*: \pi_0(X) &\to&  \pi_0(Y) \\
+     f_*: p_1(X,x_0) & \to  & \pi_1(Y,f(x_0))
+\end{IEEEeqnarray*}
+Formal sind $\pi_0, \pi_1$ sogenannte \vocab{Funktoren}, deswegen wollen wir uns im Folgenden etwas genauer die sogenannte \vocab{Kategorientheorie} ansehen. 
+
+
+
+\section{Kategorien}
+\subsection{Einschub: Mengentheorie}
+\underline{Mengentheorie}: Wir fordern neben den üblichen Axiomen von \textbf{ZFC} (hierbei steht \textbf{C} für das sogenannte \vocab{Auswahaxiom}), noch die Existenz mehrerer unerreichbarer Kardinalzahlen (d.h. welche außer $\aleph_0 \coloneqq  \card(\N)$, die wir $\aleph_0<κ<κ'$ nennen)
+
+\begin{ddefinition}[unerreichbare Kardinalzahl]\label{def:unerreichbare-kardinalzahl}
+    $κ$ ist eine \vocab{unerreichbare Kardinalzahl}, falls 
+     \begin{itemize}
+         \item $\card\left( \bigcup_{i \in  I} X_i \right) <κ$ für alle $I,X_i$ mit  $\card(I), \card(X_i) < κ$.
+         \item  $\card \left \{f\colon X \to Y \mid  f \text{ Abbildung}\right\} <κ$ für alle Mengen $X,Y$ mit  $\card(X), \card(Y) < κ$.
+    \end{itemize}
+\end{ddefinition}
+
+\begin{definition}[Menge,Klasse]\label{def:menge-klasse}
+    \begin{itemize}
+        \item 
+   Der Begriff \vocab{Mengen} heißt für uns ab nun 'alle Mengen mit Kardinalität $<κ$', d.h. alles 'Interessante'. 
+   \item Der Begriff \vocab{Klasse} steht für alle Mengen mit Kardinalität $<κ'$. 
+    \end{itemize}
+\end{definition}
+
+
+\subsection{Kategorien}
+\begin{definition}[Kategorie]\label{def:kategorie}
+    Eine \vocab{Kategorie} $\cat{C}$ besteht aus
+    \begin{itemize}
+        \item Einer Klasse von \vocab[Kategorie!Objekt]{Objekten}, notiert $\Ob(\cat{C})$.
+        \item $\forall X,Y \in \Ob(\cat{C})$ eine Menge $\Mor_{\cat{C}}(X,Y)$ von \vocab[Kategorie!Morphismus]{Morphismen}
+        \item Verknüpfungsabbildungen
+            \[
+                \Mor_{\cat{C}}(X,Y) \times \Mor_{\cat{C}}(Y,Z) \to  \Mor_{\cat{C}}(X,Z)
+            .\] 
+            mit $(f,g) \mapsto g\circ f$, die assoziativ sind.
+        \item Jede Menge $\Mor_{\cat{C}}(X,X)$ enthält eine Identität $\id_{X}$ mit
+            \[
+            \id_X \circ  f = f, g \circ  \id_X = g
+            .\] 
+    \end{itemize}
+\end{definition}
+
+\begin{remark}
+    \begin{itemize}
+        \item Ist $\Ob(\mathcal{C})$ eine Menge, so heißt $\cat{C}$ klein.
+        \item Da $\Mor_{\cat{C}}(X,Y)$ Mengen sind, heißt $\cat{C}$ manchmal lokal klein.
+    \end{itemize}
+\end{remark}
+
+\begin{example}
+    \begin{itemize}
+        \item $\Set$ ist die Kategorie der Mengen und all ihrer Abbildungen dazwischen.
+        \item $\Top$ ist die Kategorie der topologischen Räume und ihren stetigen Abbildungen.
+        \item $\Grp$ ist die Kategorie der Gruppen und ihren Gruppenhomomorphismen
+        \item  $\Vect_{\R}$ ist die Kategorie der $\R$-Vektorräume und den linearen Abbildungen dazwischen.
+        \item $\Top_{\star}$ ist die Kategorie der punktierten topologischen Räume. Wir setzen $\Ob(\Top_{\star }))$ als Klasse aller Topologischen Räume, schränken uns aber bei den Morphismen ein, d.h.
+            \[
+                \Mor_{\Top_{\star }}((X,x_0),(Y,y_0)) = \left \{\text{stetige Abbildungen } f\colon X \to  Y \mid  f(x_0) = y_0\right\} 
+            .\] 
+    \end{itemize}
+\end{example}
+
+\begin{dremark}
+    Die Kategorientheorie bildet zunächst eine Sprache, mit der wir sehr vieles präziser ausdrücken können. Wir sollten auch so über sie nachdenken, d.h. die Kategorientheorie hilft uns, Dinge aus vielen verschiedenen Teildisziplinen (siehe Liste der Beispiele oben) elegant und knapp zusammenzufassen und Beweise, die gleich geführt werden, zu vereinheitlichen.
+\end{dremark}
+\begin{definition}[Unterkategorie]\label{def:unterkategorie}
+    \begin{itemize}
+        \item $\cat{U}$ ist eine \vocab[Kategorie!Unter-]{Unterkategorie} von $\cat{C}$, falls $\cat{U}$ eine Kategorie ist mit $\Ob(\cat{U}) \subset \Ob(\cat{C})$, und $\forall X,Y\in \Ob(\cat{U})$ ist
+    \[
+        \Mor_{\cat{U}}(X,Y) \subset \Mor_{\cat{C}}(X,Y)
+    .\] 
+\item Ist zudem $\forall X,Y \in \Ob(\cat{U})$ obige Inklusion sogar eine Gleichheit, so heißt $\cat{U}$ \vocab[Kategorie!Unter-!volle]{volle} Unterkategorie. 
+    \end{itemize}
+\end{definition}
+
+\begin{example}
+    \begin{itemize}
+        \item $\Fin \subset \Set$ ist die Unterkategorie der endlichen Mengen.
+        \item $\CHaus \subset \Top$ ist die Unterkategorie der kompakten Hausdorffräume.
+        \item $\Ab\subset \Grp$ ist die Unterkategorie der abelschen Gruppen.
+    \end{itemize}
+    Alle 3 Beispiele sind volle Unterkategorien.
+\end{example}
+
+\begin{definition}[Isomorphismus]\label{def:isomorphismus}
+    $f\in \Mor_{\cat{C}}(X,Y)$ ist ein \vocab[Kategorie!Isomorphismus]{Isomorphismus}, wenn es ein $g\in \Mor_{\cat{C}}(Y,X)$ gibt mit $f \circ  g = \id_Y$ und $g \circ f = \id_X$ (d.h. eine Umkehrabbildung).
+\end{definition}
+
+\begin{recap}
+    Ein Isomorphismus hat immer ein eindeutiges Inverses. Sind $g,g'$ beides Inverse von  $f$, so ist
+    \[
+   x 
+    .\] 
+\end{recap}
+\todo{}
+
+
+\begin{example}
+    $f\in  \Top$ ist ein Isomorphismus, wenn $f$ ein Homöomorphismus ist.
+\end{example}
+
+\begin{definition}[Funktor]\label{def:funktor}
+    Seien $\cat{C},\cat{D}$ Kategorien. Ein (kovarianter) \vocab[Kategorie!Funktor]{Funktor} $\mathcal{F} \colon \cat{C} \to  \cat{D}$ besteht aus:
+    \begin{itemize}
+        \item einer Abbildung $\mathcal{F} \colon \Ob(\cat{C}) \to  \Ob(\cat{D})$.
+        \item Abbildungen $\mathcal{F}\colon \Mor_{\cat{C}}(X,Y) \to  \Mor_{\cat{D}}(\mathcal{F}(X),\mathcal{F}(Y))$ für alle Objekte $X,Y\in \Ob(\cat{C})$.
+    \end{itemize}
+    sodass
+    \begin{itemize}
+        \item $\mathcal{F}(f \circ  g) = \mathcal{F}(f) \circ \mathcal{F}(g)$ 
+        \item $\mathcal{F}(\id_X) = \id_{\mathcal{F}(X)}$
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[Isomorphismus von Kategorien]\label{def:funktor-isomorphismus}
+    Ein Funktor $\mathcal{F} \colon \cat{C} \to  \cat{D}$ ist ein \vocab{Isomorphismus}, falls es einen Funktor $\mathcal{G} \colon \cat{D} \to  \cat{C}$ gibt, sodass $\mathcal{G} \circ  \mathcal{F}$ und $\mathcal{F} \circ  \mathcal{G}$ die Identitäten sind. Ein Funktor ist hierbei die Identität ('der Identitätsfunktor'), wenn er sowohl Objekte als auch Abbildungen auf sich selbst schickt.
+\end{definition}
+
+\begin{remark*}
+    Zeug zu Isomorphismus vs. Äquivalenz schreiben.
+\end{remark*}
+\todo{}
+
+\begin{example}
+    \begin{itemize}
+        \item Der Funktor $\Top \to  \Set$, der jeden topologischen Raum auf seine zugrunde liegende Menge schickt, nennt sich auch \vocab{vergesslicher Funktor}.  
+        \item $\Ab \to  \Grp$ lässt sich als Inklusionsfunktior auffasen.
+        \item Betrachte
+                \begin{equation*}
+                \mathcal{F}: \left| \begin{array}{c c l} 
+                \Set & \longrightarrow & \Ab \\
+                X & \longmapsto &  \Z[X] \\
+                f & \longmapsto & \left( \sum_{i=1}^k n_i x_i \mapsto \sum_{i=1}^k n_i f(x_i) \right) 
+                \end{array} \right.
+            \end{equation*}
+    \end{itemize}
+\end{example}
+
+\todo{Mehr Referenzen einfügen}
