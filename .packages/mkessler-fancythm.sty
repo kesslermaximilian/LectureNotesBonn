@@ -4,30 +4,45 @@
 %Provides fancy theorem-like-environments usedd in the write-ups of my lecture nots
 
 \newif\ifenglish\englishtrue
+\newif\iflecturenumbers\lecturenumberstrue
+\newif\ifnumberall\numberallfalse
+\newif\ifshowstars\showstarstrue
+\newif\ifshowdaggers\showdaggerstrue
+\newif\ifincludestars\includestarstrue
+\newif\ifincludeoral\includeoraltrue
+\newif\ifmarkoral\markoraltrue
+\newcommand{\fancythmlinewidth}{2pt}
+\newcommand{\fancythmskipabove}{8pt}
+
+
 \DeclareOption{english}{\englishtrue}
 \DeclareOption{german}{\englishfalse}
-
-
-%Sometimes lecturers don't number environments for no particular reason. For compatibility reasons, i also don't number these environments so that the numbers are the same as in the lecture to make them better referencable, but if you want to number all (theorem, lemma, corollary, definition), then use the 'truenumber' option (true because in my opinion they really should be numbered)
-\newif\iflecturenumbers\lecturenumberstrue
 \DeclareOption{lecturenumbers}{\lecturenumberstrue}
 \DeclareOption{truenumbers}{\lecturenumbersfalse}
+\DeclareOption{numberall}{\numberalltrue\lecturenumbersfalse}
+\DeclareOption{nostars}{\showstarsfalse}
+\DeclareOption{nodaggers}{\showdaggersfalse}
+\DeclareOption{excludestars}{\includestarsfalse}
+\DeclareOption{excludeoral}{\includeoralfalse}
+
+%Sometimes lecturers don't number environments for no particular reason. For compatibility reasons, i also don't number these environments so that the numbers are the same as in the lecture to make them better referencable, but if you want to number all (theorem, lemma, corollary, definition), then use the 'truenumber' option (true because in my opinion they really should be numbered)
 
 %Option to number ALL environments. This numbers examples, remarks, etc as well. I usually don't do that, but if you prefer it that way, use option 'numberall'
 %Note also that if you put this option on, it does not matter wheter option 'lecturenumbers' ore 'truenumbers' was chosen, as anyway everything will be numbered. (ALL only applys to the environments that have colored boxes)
-\newif\ifnumberall\numberallfalse
-\DeclareOption{numberall}{\numberalltrue\lecturenumbersfalse}
 
 \DeclareOption*{\PackageWarning{mkessler-fancythm}{Unknown '\CurrentOption'}}
 \ProcessOptions\relax
 
 \RequirePackage{xkeyval}
-\newcommand{\fancythmlinewidth}{2pt}
-\newcommand{\fancythmskipabove}{8pt}
 
 %%These are two options to adjust the skipabove and the width of the left margin of theorem-like environments. Default values are 2pt and 8pt, but feel free to change them as you like.
 \DeclareOptionX{linewidth}{\renewcommand\fancythmlinewidth{#1}}
-\DeclareOption{\fancythmskipabove}{\renewcommand{\fancythmskipabove}{#1}}
+\DeclareOptionX{fancythmskipabove}{\renewcommand{\fancythmskipabove}{#1}}
+\DeclareOptionX{numbering}{
+    \ifthenelse{\equal{#1}{as in lecture}}{\lecturenumberstrue}{}
+    \ifthenelse{\equal{#1}{default}}{\lecturenumbersfalse}{}
+}
+
 
 \DeclareOptionX*{\PackageWarning{mkessler-fancythm}{Unknown `\CurrentOption'}}% For unknown options
 \ProcessOptionsX*\relax
@@ -211,155 +226,84 @@
 % - two asterisks, for marking them as self-added, so they will not be numbered, but will receive a visual asterisk. -> They will be numbered if 'truenumbers' option is set
 
 %Theorem
-\declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem\else Satz\fi,numberwithin=section, refname = {Satz,Sätze}, Refname = {Satz,Sätze}]{theorem}
 
-\iflecturenumbers
-\declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem\else Satz\fi,numbered=no]{theorem*}
-\declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem*\else Satz*\fi,numbered=no]{theorem**}
-\declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem$^{\dagger}$\else Satz$^{\dagger}$\fi,numbered=no]{dtheorem}
-\else
-\declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem\else Satz\fi,numberwithin=section]{theorem*}
-\declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem*\else Satz*\fi,numberwithin=section]{theorem**}
-\declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem$^{\dagger}$\else Satz$^{\dagger}$\fi,numberwithin=section]{dtheorem}
-\fi
+\RequirePackage{mfirstuc}
+\RequirePackage{xifthen}
 
+
+%%\makenumberedtheorem[german Name]{style}{Name}
+\RequirePackage{xparse}
+
+\NewDocumentCommand{\declaredefaultnumberedtheorem}{O{} O{} m m O{}}{
+    \ifenglish
+        \ifthenelse{\isempty{#2}}{\def\theoremname{#4}}{\def\theoremname{#2}}
+    \else
+        \ifthenelse{\isempty{#1}}{\def\theoremname{#4}}{\def\theoremname{#1}}
+    \fi
+    \ifthenelse{\isempty{#5}}{\declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}, sibling = theorem]{#4}}{}
+    \iflecturenumbers
+        \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}, numbered=no]{#4*}
+        \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, numbered = no]{#4**}
+        \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, numbered = no]{d#4}
+    \else
+        \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}, sibling=theorem]{#4*}
+        \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, sibling=theorem]{#4**}
+        \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, sibling=theorem]{d#4}
+    \fi
+    \ifincludestars\else\renewenvironment{#4**}{\comment}{\endcomment}\fi
+}
+
+\NewDocumentCommand{\declaredefaultnotnumberedtheorem}{O{} O{} m m}{
+    \ifenglish
+        \ifthenelse{\isempty{#2}}{\def\theoremname{#4}}{\def\theoremname{#2}}
+    \else
+        \ifthenelse{\isempty{#1}}{\def\theoremname{#4}}{\def\theoremname{#1}}
+    \fi
+    \ifnumberall
+    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}, sibling=theorem]{#4}
+    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, sibling=theorem]{#4*}
+    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, sibling=theorem]{d#4}
+    \else
+    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}, numbered = no]{#4}
+    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, numbered = no]{#4*}
+    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, numbered = no]{d#4}
+    \fi
+}
+
+
+
+%Theorem
+\declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem\else Satz\fi,numberwithin=section, refname = {Satz,Sätze},Refname = {Satz,Sätze}]{theorem}
 \AtBeginDocument{\def\theoremautorefname{\ifenglish Theorem \else Satz\fi}} %Make referencing of theorems work properly (in german) with \autoref
-
-
-%Proposition
-\declaretheorem[style=thmredmarginandfill,name=Proposition,sibling=theorem]{proposition}
-
-\iflecturenumbers
-\declaretheorem[style=thmredmarginandfill,name=Proposition,numbered=no]{proposition*}
-\declaretheorem[style=thmredmarginandfill,name=Proposition*,numbered=no]{proposition**}
-\declaretheorem[style=thmredmarginandfill,name=Proposition$^{\dagger}$,numbered=no]{dproposition}
-\else
-\declaretheorem[style=thmredmarginandfill,name=Proposition,sibling=theorem]{proposition*}
-\declaretheorem[style=thmredmarginandfill,name=Proposition,sibling=theorem]{proposition**}
-\declaretheorem[style=thmredmarginandfill,name=Proposition$^{\dagger}$,sibling=theorem]{dproposition}
-\fi
-
-%Corollary
-\declaretheorem[style=thmredmarginandfill,name=\ifenglish Corollary\else Korollar\fi,sibling=theorem]{corollary}
-
-%Unnumbered Corollary
-\iflecturenumbers
-\declaretheorem[style=thmredmarginandfill,name=\ifenglish Corollary\else Korollar\fi, numbered = no]{corollary*}
-\declaretheorem[style=thmredmarginandfill,name=\ifenglish Corollary*\else Korollar*\fi, numbered = no]{corollary**}
-\declaretheorem[style=thmredmarginandfill,name=\ifenglish Corollary$^{\dagger}$\else Korollar$^{\dagger}$\fi, numbered = no]{dcorollary}
-\else
-\declaretheorem[style=thmredmarginandfill,name=\ifenglish Corollary\else Korollar\fi, sibling=theorem]{corollary*}
-\declaretheorem[style=thmredmarginandfill,name=\ifenglish Corollary*\else Korollar*\fi, sibling=theorem]{corollary**}
-\declaretheorem[style=thmredmarginandfill,name=\ifenglish Corollary$^{\dagger}$\else Korollar$^{\dagger}$\fi, sibling=theorem]{dcorollary}
-\fi
-
-%Lemma
-\declaretheorem[style=thmorangemarginandfill,name=Lemma,sibling=theorem]{lemma}
-
-\iflecturenumbers
-\declaretheorem[style=thmorangemarginandfill,name=Lemma, numbered=no]{lemma*}
-\declaretheorem[style=thmorangemarginandfill,name=Lemma*, numbered=no]{lemma**}
-\declaretheorem[style=thmorangemarginandfill,name=Lemma$^{\dagger}$, numbered=no]{dlemma}
-\else
-\declaretheorem[style=thmorangemarginandfill,name=Lemma, sibling = theorem]{lemma*}
-\declaretheorem[style=thmorangemarginandfill,name=Lemma*, sibling = theorem]{lemma**}
-\declaretheorem[style=thmorangemarginandfill,name=Lemma$^{\dagger}$, sibling = theorem]{dlemma}
-\fi
-
-%Definition
-\declaretheorem[style=thmbluemarginandfill,name=Definition,sibling=theorem]{definition}
-
-\iflecturenumbers
-\declaretheorem[style=thmbluemarginandfill,name=Definition,numbered=no]{definition*}
-\declaretheorem[style=thmbluemarginandfill,name=Definition*,numbered=no]{definition**}
-\declaretheorem[style=thmbluemarginandfill,name=Definition$^{\dagger}$,numbered=no]{ddefinition}
-\else
-\declaretheorem[style=thmbluemarginandfill,name=Definition, sibling=theorem]{definition*}
-\declaretheorem[style=thmbluemarginandfill,name=Definition*,sibling=theorem]{definition**}
-\declaretheorem[style=thmbluemarginandfill,name=Definition$^{\dagger}$,sibling=theorem]{definition**}
-\fi
-
-%Theorem + Definition
-\declaretheorem[style=thmredmarginbluefill,name=\ifenglish Theorem and Definition\else Satz und Definition\fi,sibling=theorem]{theoremdef}
-
-\iflecturenumbers
-\declaretheorem[style=thmredmarginbluefill,name=\ifenglish Theorem and Definition\else Satz und Definition\fi,numbered=no]{theoremdef*}
-\declaretheorem[style=thmredmarginbluefill,name=\ifenglish Theorem and Definition*\else Satz und Definition*\fi,numbered=no]{theoremdef**}
-\declaretheorem[style=thmredmarginbluefill,name=\ifenglish Theorem and Definition$^{\dagger}$\else Satz und Definition$^{\dagger}$\fi,numbered=no]{dtheoremdef}
-\else
-\declaretheorem[style=thmredmarginbluefill,name=\ifenglish Theorem and Definition*\else Satz und Definition\fi,sibling=theorem]{theoremdef*}
-\declaretheorem[style=thmredmarginbluefill,name=\ifenglish Theorem and Definition*\else Satz und Definition*\fi,sibling=theorem]{theoremdef**}
-\declaretheorem[style=thmredmarginbluefill,name=\ifenglish Theorem and Definition$^{\dagger}$\else Satz und Definition$^{\dagger}$\fi,sibling=theorem]{dtheoremdef}
-\fi
-
+\declaredefaultnumberedtheorem[Satz][Theorem]{thmredmarginandfill}{theorem}[nomain]
+%Other
+\declaredefaultnumberedtheorem{thmredmarginandfill}{proposition}
+\declaredefaultnumberedtheorem[Korollar]{thmredmarginandfill}{corollary}
+\declaredefaultnumberedtheorem{thmorangemarginandfill}{lemma}
+\declaredefaultnumberedtheorem{thmbluemarginandfill}{definition}
+\declaredefaultnumberedtheorem[Satz und Definition][Theorem and Definition]{thmredmarginbluefill}{theoremdef}
 
 %%%Environments that are not numbered by default (notation, question, example, remark etc) have two forms:
 % - normal form: won't be numbered unless 'numberall' is set
 % - having an asterisk: will be displayed with an asterisk, will be numbered if 'numberall' is set
 %Notation
 
-\ifnumberall
-\declaretheorem[style=thmvioletmarginandfill,name=Notation,sibling=theorem]{notation}
-\declaretheorem[style=thmvioletmarginandfill,name=Notation*,sibling=theorem]{notation*}
-\declaretheorem[style=thmvioletmarginandfill,name=Notation$^{\dagger}$,sibling=theorem]{dnotation}
-\else
-\declaretheorem[style=thmvioletmarginandfill,name=Notation,numbered = no]{notation}
-\declaretheorem[style=thmvioletmarginandfill,name=Notation*,numbered = no]{notation*}
-\declaretheorem[style=thmvioletmarginandfill,name=Notation$^{\dagger}$,numbered = no]{dnotation}
+\declaredefaultnotnumberedtheorem{thmvioletmarginandfill}{notation}
+\declaredefaultnotnumberedtheorem[Notationsmissbrauch][Abuse of Notation]{thmvioletmargin}{abuse}
+\declaredefaultnotnumberedtheorem[Beispiel]{thmgreenmargin}{example}
+\declaredefaultnotnumberedtheorem[Bemerkung]{thmyellowmargin}{remark}
+\declaredefaultnotnumberedtheorem[Trivial Nonsense][Trivial Nonsense]{thmyellowmargin}{trivial}
+\declaredefaultnotnumberedtheorem[Frage]{thmblackmarginandfill}{question}
+
+%Oral remarks receive their own environment
+\declaredefaultnotnumberedtheorem[Mündliche Anmerkung][Oral remark]{thmyellowmargin}{oral}
+
+\ifincludeoral\else
+    \renewenvironment{oral}{\comment}{\endcomment}
+    \renewenvironment{oral*}{\comment}{\endcomment}
+    \renewenvironment{doral}{\comment}{\endcomment}
 \fi
 
-%%Abuse of notation
-\ifnumberall
-\declaretheorem[style=thmvioletmargin,name=\ifenglish Abuse of notation\else Notationsmissbrauch\fi,sibling=theorem]{abuse}
-\declaretheorem[style=thmvioletmargin,name=\ifenglish Abuse of notation*\else Notationsmissbrauch*\fi,sibling=theorem]{abuse*}
-\declaretheorem[style=thmvioletmargin,name=\ifenglish Abuse of notation$^{\dagger}$\else Notationsmissbrauch$^{\dagger}$\fi,sibling=theorem]{dabuse}
-\else
-\declaretheorem[style=thmvioletmargin,name=\ifenglish Abuse of notation\else Notationsmissbrauch\fi,numbered = no]{abuse}
-\declaretheorem[style=thmvioletmargin,name=\ifenglish Abuse of notation*\else Notationsmissbrauch*\fi,numbered = no]{abuse*}
-\declaretheorem[style=thmvioletmargin,name=\ifenglish Abuse of notation$^{\dagger}$\else Notationsmissbrauch$^{\dagger}$\fi,numbered = no]{dabuse}
-\fi
-
-%Example
-\ifnumberall
-\declaretheorem[style=thmgreenmargin,name=\ifenglish Example\else Beispiel\fi,sibling=theorem]{example}
-\declaretheorem[style=thmgreenmargin,name=\ifenglish Example*\else Beispiel*\fi,sibling=theorem]{example*}
-\declaretheorem[style=thmgreenmargin,name=\ifenglish Example$^{\dagger}$\else Beispiel$^{\dagger}$\fi,sibling=theorem]{dexample}
-\else
-\declaretheorem[style=thmgreenmargin,name=\ifenglish Example\else Beispiel\fi,numbered=no]{example}
-\declaretheorem[style=thmgreenmargin,name=\ifenglish Example\else Beispiel\fi,numbered=no]{example*}
-\declaretheorem[style=thmgreenmargin,name=\ifenglish Example$^{\dagger}$\else Beispiel$^{\dagger}$\fi,numbered=no]{dexample}
-\fi
-
-%Remark
-\ifnumberall
-\declaretheorem[style=thmyellowmargin,name=\ifenglish Remark\else Bemerkung\fi,sibling=theorem]{remark}
-\declaretheorem[style=thmyellowmargin,name=\ifenglish Remark*\else Bemerkung*\fi,sibling=theorem]{remark*}
-\declaretheorem[style=thmyellowmargin,name=\ifenglish Remark$^{\dagger}$\else Bemerkung$^{\dagger}$\fi,sibling=theorem]{dremark}
-\else
-\declaretheorem[style=thmyellowmargin,name=\ifenglish Remark\else Bemerkung\fi,numbered=no]{remark}
-\declaretheorem[style=thmyellowmargin,name=\ifenglish Remark*\else Bemerkung*\fi,numbered=no]{remark*}
-\declaretheorem[style=thmyellowmargin,name=\ifenglish Remark$^{\dagger}$\else Bemerkung$^{\dagger}$\fi,numbered=no]{dremark}
-\fi
-
-%Trivial nonsense
-\ifnumberall
-\declaretheorem[style=thmyellowmargin,name=Trivial Nonsense,sibling=theorem]{trivial}
-\declaretheorem[style=thmyellowmargin,name=Trivial Nonsense*,sibling=theorem]{trivial*}
-\declaretheorem[style=thmyellowmargin,name=Trivial Nonsense$^{\dagger}$,sibling=theorem]{dtrivial}
-\else
-\declaretheorem[style=thmyellowmargin,name=Trivial Nonsense,numbered=no]{trivial}
-\declaretheorem[style=thmyellowmargin,name=Trivial Nonsense*,numbered=no]{trivial*}
-\declaretheorem[style=thmyellowmargin,name=Trivial Nonsense$^{\dagger}$,numbered=no]{dtrivial}
-\fi
-
-%Question
-\ifnumberall
-\declaretheorem[style = thmblackmarginandfill, name=\ifenglish Question\else Frage\fi,sibling=theorem]{question}
-\declaretheorem[style = thmblackmarginandfill, name=\ifenglish Question*\else Frage*\fi,sibling=theorem]{question*}
-\else
-\declaretheorem[style = thmblackmarginandfill, name=\ifenglish Question\else Frage\fi,numbered=no]{question}
-\declaretheorem[style = thmblackmarginandfill, name=\ifenglish Question*\else Frage*\fi,numbered=no]{question*}
-\fi
 
 %Proof (with asterisk)
 \newenvironment{proof*}[1][\ifenglish Proof\else Beweis\fi]{\begin{proof}[#1\emph{*}]}{\end{proof}}
@@ -399,7 +343,6 @@
 \newtheorem*{recall}{\ifenglish Recall\else Erinnerung\fi}
 \newtheorem*{idea}{\ifenglish Idea\else Idee\fi}
 \newtheorem{exercise}{\ifenglish Exercise\else Aufgabe\fi}
-
 
 %%subproof environment - essentially copied proof environment from amsthm and modified its name + symbol
 \makeatletter
