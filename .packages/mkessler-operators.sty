@@ -12,8 +12,6 @@
 %Packages
 \RequirePackage{amsmath}
 
-\newcommand*{\One}{\ensuremath{\mathbbm{1}}}
-
 %%%%%%%%%%% Operators
 %Basic commands
 \renewcommand\subset\subseteq
@@ -24,6 +22,7 @@
 \let\ggT\relax\DeclareMathOperator{\ggT}{\ifenglish gcd \else ggT\fi}
 \let\kgV\relax\DeclareMathOperator{\kgV}{\ifenglish lcm \elese kgV\fi}
 \DeclareMathOperator{\rhs}{RHS} %Right hand side
+\DeclareMathOperator{\lhs}{LHS} %Left hand side
 
 %Complex numbers
 \DeclareMathOperator{\Impart}{Im}
@@ -52,15 +51,6 @@
 \DeclareMathOperator{\Fun}{Fun}
 \newcommand{\tensor}{\otimes}
 
-%Category Theory
-\DeclareMathOperator{\Ob}{Ob}
-\newcommand{\cat}[1]{ \mathscr{#1} }
-\DeclareMathOperator{\Hom}{Hom}
-\DeclareMathOperator{\Mor}{Mor}
-\DeclareMathOperator{\End}{End}
-\DeclareMathOperator{\opposite}{opp}
-\newcommand\opp{^{\opposite}}
-
 %Analysis
 \DeclareMathOperator{\dx}{dx}
 \DeclareMathOperator{\dy}{dy}
@@ -73,30 +63,51 @@
 \DeclareMathOperator{\diam}{diam}
 
 %%Stochastic (Algorithmische Mathematik II)
-\DeclareMathOperator\Bin{Bin}
-\DeclareMathOperator\Ber{Ber}
-\DeclareMathOperator\Geo{Geo}
-\DeclareMathOperator\Poi{Poi}
+\newcommand\distribution[1]{\operatorname{#1}}
+\newcommand\DeclareDistribution[1]{\expandafter\def\csname #1\endcsname{\distribution{#1}}}
+\DeclareDistribution{Bin}
+\DeclareDistribution{Ber}
+\DeclareDistribution{Geo}
+\DeclareDistribution{Poi}
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\Cov}{Cov}
 
 %Topology
 \DeclareMathOperator\pr{pr}
-\DeclareMathOperator\Set{{\textbf{Set}}}
-\DeclareMathOperator\Top{{\textbf{Top}}}
-\DeclareMathOperator\CHaus{{\textbf{CHaus}}}
-\DeclareMathOperator\Grp{{\textbf{Grp}}}
-\DeclareMathOperator\Vect{{\textbf{Vect}}}
-\DeclareMathOperator\Fin{{\textbf{Fin}}}
-\DeclareMathOperator\Ab{{\textbf{Ab}}}
-\def\op{^{\textbf{op}}}
 \def\twedge{\vee}
 \def\tsmash{\wedge}
+
+%Category Theory
+\DeclareMathOperator{\Ob}{Ob}
+\newcommand{\cat}[1]{ \mathscr{#1} }
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Mor}{Mor}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\opposite}{\textbf{opp}}
+\newcommand\opp{^{\opposite}}
+\newcommand\op{^{\opposite}}
+
+%Categories
+\newcommand\category[1]{\operatorname{\textbf{#1}}}
+\newcommand\DeclareCategory[1]{\expandafter\def\csname #1\endcsname{\category{#1}}}
+\DeclareCategory{Top}
+\DeclareCategory{Set}
+\DeclareCategory{CHaus}
+\DeclareCategory{Grp}
+\DeclareCategory{Ab}
+\DeclareCategory{Vect}
+\DeclareCategory{Fin}
+\DeclareCategory{Ab}
 
 
 % Characteristic function
 \newcommand*{\cfun}{\ensuremath{\mathbbm{1}}}
+\newcommand*{\One}{\ensuremath{\mathbbm{1}}}
 
 
 %Set theory
 \DeclareMathOperator\card{card}
+\DeclareMathOperator\Cd{Cd}
+\DeclareMathOperator\Ord{Ord}
+\DeclareMathOperator\otp{otp}
+\DeclareMathOperator\Card{Card}
