@@ -5,7 +5,7 @@ The main ```.tex``` Files are ```master.tex``` and ```Topologie.tex```. They bot
 - All the ```lec_01.tex`` files (which include the lectures)
 - The exercises at the back of the document, which are found in the ```exercises``` subfolder
 
-# Why two files?
+## Why two files?
 - I use the ```master.tex``` file for writing up the lecture, here several things are excluded, usually only 2 lectures are compiled and notes are also shown.
   This is to improve compiling speed, as i often save + compile the file while writing it
 - Contrarily, in ```Topology.tex``` 'everything' is included, which means proper Bibliography, Indexing, Table of Contents and Appendices. Notes are not compiled to not disturb.
