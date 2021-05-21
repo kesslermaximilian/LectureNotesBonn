@@ -1,6 +1,6 @@
 \documentclass[a4paper,german]{article}
 \input{../preamble.tex}
-
+\input{exercises/preambleBlatt.tex}
 \title{{Einführung in die} \\ Geometrie und Topologie}
 \author{{\normalfont Dozent}\\{\sc Daniel Kasprowski} \vspace{1em}\\ {\normalfont Assistentin} \\ {\sc Arunima Ray}}
 
@@ -30,9 +30,17 @@
     \input{lec_10.tex}
     \input{lec_11.tex}
     % end lectures
+    \newpage
+    \appendix
+    \part{Anhang}
+    \input{exercises/exercises.tex}
+    \newpage
+    \input{environments.tex}
+    \newpage
     \printindex
     \newpage
+    \setcounter{section}{2}
     \thispagestyle{plain}
+    \section{Literaturverzeichnis}
     \printbibliography
-    \addcontentsline{toc}{section}{Literatur}
 \end{document}

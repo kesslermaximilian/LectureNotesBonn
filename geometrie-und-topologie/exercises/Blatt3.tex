@@ -1,0 +1,227 @@
+\documentclass{article}
+
+%\usepackage{fullpage}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{comment}
+\usepackage{epsfig}
+%\usepackage{psfrag}
+%\usepackage{sseq} (if you need to draw spectral sequences, please use this package, available at http://wwwmath.uni-muenster.de/u/tbauer/)
+\usepackage{mathrsfs}
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{rotating}
+\usepackage{lscape}
+\usepackage{amsbsy}
+\usepackage{verbatim}
+\usepackage{moreverb}
+\usepackage{fullpage}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{cor}[theorem]{Corollary}
+\newtheorem{conj}[theorem]{Conjecture}
+
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{summary}{Summary}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{notation}{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{exercise}{Exercise}
+\newtheorem{hw}{Homework}
+\newtheorem{exercise*}[exercise]{$\star$ Exercise}
+\newtheorem{aufgabe}{Aufgabe}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{observe}[theorem]{Observation}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{aside}[theorem]{Aside}
+
+%\def\example{\medskip\noindent\textbf{Example.\nopagebreak}}
+%\def\endexample{\hfill $\diamondsuit$ \medskip}
+%\def\endremark{\hfill $\diamondsuit$ \medskip}
+%\def\enddefinition{\hfill $\diamondsuit$ \medskip}
+%\def\endnotation{\hfill $\diamondsuit$ \medskip}
+
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Rep}{Rep}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Out}{Out}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\coeq}{coeq}
+\DeclareMathOperator*{\colim}{colim}
+\DeclareMathOperator{\cone}{cone}
+\DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator*{\hocolim}{hocolim}
+\DeclareMathOperator*{\holim}{holim}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Iso}{Iso}
+\DeclareMathOperator{\Inj}{Inj}
+\DeclareMathOperator{\Map}{Map}
+\DeclareMathOperator{\Tot}{Tot}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Spec}{Spec}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\TMF}{\mathit{TMF}}
+\newcommand{\tmf}{\mathit{tmf}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Ob}{\mathrm{Ob}}
+\newcommand{\Mell}{\mathcal M_{\mathit{ell}}}
+\newcommand{\Mord}{\mathcal M_{\mathit{ell}}^{\mathit{ord}}}
+\newcommand{\Mss}{\mathcal M_{\mathit{ell}}^{\mathit{ss}}}
+\newcommand{\Mbar}{\overline{\mathcal M}_{\mathit{ell}}}
+\newcommand{\Mfg}{\mathcal M_{\mathit{FG}}}
+\newcommand{\MU}{\mathit{MU}}
+\newcommand{\MP}{\mathit{MP}}
+\newcommand{\Lk}{L_{K(n)}}
+\newcommand{\Lone}{L_{K(1)}}
+\newcommand{\Ltwo}{L_{K(2)}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\Eoo}{E_\infty}
+\newcommand{\Aoo}{A_\infty}
+\newcommand{\CP}{\mathbb{CP}^\infty}
+\newcommand{\Mor}{\mathrm{Mor}}
+\newcommand{\iso}{\mathrm{iso}}
+
+\newcommand{\GL}{\mathit{GL}}
+\newcommand{\gl}{\mathit{gl}}
+
+\newcommand{\nn}{\nonumber}
+\newcommand{\nid}{\noindent}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\xla}{\xleftarrow}
+\newcommand{\tto}{\longrightarrow}
+
+\newcommand{\weq}{\xrightarrow{\sim}}
+\newcommand{\cofib}{\rightarrowtail}
+\newcommand{\fib}{\twoheadrightarrow}
+
+\newcommand{\IRep}{\mathrm{IRep}}
+\newcommand{\IHom}{\mathrm{IHom}}
+
+\def\llarrow{   \hspace{.05cm}\mbox{\,\put(0,-2){$\leftarrow$}\put(0,2){$\leftarrow$}\hspace{.45cm}}}
+\def\rrarrow{   \hspace{.05cm}\mbox{\,\put(0,-2){$\rightarrow$}\put(0,2){$\rightarrow$}\hspace{.45cm}}}
+\def\lllarrow{  \hspace{.05cm}\mbox{\,\put(0,-3){$\leftarrow$}\put(0,1){$\leftarrow$}\put(0,5){$\leftarrow$}\hspace{.45cm}}}
+\def\rrrarrow{  \hspace{.05cm}\mbox{\,\put(0,-3){$\rightarrow$}\put(0,1){$\rightarrow$}\put(0,5){$\rightarrow$}\hspace{.45cm}}}
+
+\def\cA{\mathcal A}\def\cB{\mathcal B}\def\cC{\mathcal C}\def\cD{\mathcal D}
+\def\cE{\mathcal E}\def\cF{\mathcal F}\def\cG{\mathcal G}\def\cH{\mathcal H}
+\def\cI{\mathcal I}\def\cJ{\mathcal J}\def\cK{\mathcal K}\def\cL{\mathcal L}
+\def\cM{\mathcal M}\def\cN{\mathcal N}\def\cO{\mathcal O}\def\cP{\mathcal P}
+\def\cQ{\mathcal Q}\def\cR{\mathcal R}\def\cS{\mathcal S}\def\cT{\mathcal T}
+\def\cU{\mathcal U}\def\cV{\mathcal V}\def\cW{\mathcal W}\def\cX{\mathcal X}
+\def\cY{\mathcal Y}\def\cZ{\mathcal Z}
+
+\def\sA{\mathscr A}\def\cB{\mathcal B}\def\cC{\mathcal C}\def\cD{\mathcal D}
+\def\cE{\mathcal E}\def\cF{\mathcal F}\def\sG{\mathscr G}\def\cH{\mathcal H}
+\def\cI{\mathcal I}\def\cJ{\mathcal J}\def\cK{\mathcal K}\def\cL{\mathcal L}
+\def\cM{\mathcal M}\def\cN{\mathcal N}\def\cO{\mathcal O}\def\cP{\mathcal P}
+\def\cQ{\mathcal Q}\def\cR{\mathcal R}\def\cS{\mathcal S}\def\cT{\mathcal T}
+\def\cU{\mathcal U}\def\cV{\mathcal V}\def\cW{\mathcal W}\def\cX{\mathcal X}
+\def\cY{\mathcal Y}\def\cZ{\mathcal Z}
+
+\def\fG{\mathfrak G}\def\fH{\mathfrak H}
+\def\fS{\mathfrak S}\def\fN{\mathfrak N}\def\fX{\mathfrak X}\def\fY{\mathfrak Y}
+
+\def\op{\textrm{op}}\def\ob{\textrm{ob}}
+
+%\def\Iso{\mathcal Iso}\def\cInn{\mathcal Inn}
+
+\def\fg{\mathfrak g}\def\fh{\mathfrak h}\def\fri{\mathfrak i}\def\fp{\mathfrak p}
+\def\fA{\mathfrak A}\def\fU{\mathfrak U}
+
+\newcommand{\R}{\mathbb{R}}
+
+\def\AA{\mathbb A}\def\BB{\mathbb B}\def\CC{\mathbb C}\def\DD{\mathbb D}
+\def\EE{\mathbb E}\def\FF{\mathbb F}\def\GG{\mathbb G}\def\HH{\mathbb H}
+\def\II{\mathbb I}\def\JJ{\mathbb J}\def\KK{\mathbb K}\def\LL{\mathbb L}
+\def\MM{\mathbb M}\def\NN{\mathbb N}\def\OO{\mathbb O}\def\PP{\mathbb P}
+\def\QQ{\mathbb Q}\def\RR{\mathbb R}\def\SS{\mathbb S}\def\TT{\mathbb T}
+\def\UU{\mathbb U}\def\VV{\mathbb V}\def\WW{\mathbb W}\def\XX{\mathbb X}
+\def\YY{\mathbb Y}\def\ZZ{\mathbb Z}
+
+\def\TOP{\mathcal{TOP}}\def\GRP{\mathcal{GRP}}\def\GRPD{\mathcal{GRPD}} \def\CAT{\mathcal{CAT}} \def\SET{\mathcal{SET}}
+
+\def\id{\mathrm{id}}\def\Id{\mathrm{Id}}
+\def\inverse{^{-1}}
+
+\title{Einführung in die Geometrie und Topologie - SS 2021\\
+Blatt 3}
+\date{}
+%\author{Matthew Gelvin}
+
+%\numberwithin{theorem}{subsection}
+
+\begin{document}
+
+%\noindent{\bf Topology 2018/19, Set 1}
+\maketitle
+%\noindent\today\\ 
+\thispagestyle{fancy}
+\rfoot{Abgabe: 10.05.2021 -- 10 Uhr (ab jetzt Abgabe in Dreiergruppen möglich)}
+\cfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+Wenn nicht anderes vermerkt gibt jede Aufgabe 10 Punkte. Dies gilt auch für alle weiteren Zettel.
+
+\begin{aufgabe}Es sei $X$ ein normaler topologischer Raum und $A\subset X$ ein Unterraum.
+\begin{enumerate}[i)]
+	\item Ist $A$ abgeschlossen, so ist $A$ normal.
+	\item Gib ein Beispiel für $X$ und $A$, so dass $A$ nicht normal ist.\\
+	\textbf{Hinweis:} Für diese Teilaufgabe heißt normal nur folgendes: Für disjunkte abgeschlossene Teilmengen $B_1,B_2$ gibt es disjunkte offene Umgebungen. D.h. es genügt ein Beispiel in dem $X$ nicht notwendig Hausdorffsch ist. Beispiele mit $X$ Hausdorffsch gibt es auch, sind aber deutlich schwieriger zu finden.
+	\item Es sei $f\colon X\to Y$ eine stetige, surjektive und abgeschlossene Abbildung. Dann ist auch $Y$ normal.
+\end{enumerate}
+\emph{Hinweis:} Schritte im Beweis von iii), die genau analog sind zu solchen im Beweis von Satz 5.11, müssen nicht neu bewiesen werden. Ein Verweis genügt.
+\end{aufgabe}
+\begin{aufgabe}
+	\begin{enumerate}[i)]
+		\item Es sei $X$ eine Menge und $\cS$ eine Menge von Teilmengen von
+		$X$. Sei
+		\[ \mathcal T(\cS) := \left\{ \bigcup_{i\in I} \bigcap_{k=1}^{n_i} S_{i,k}\mid S_{i,k}\in \cS, n_i\geq 0 \right\}. \]
+		\emph{Hinweis: $X$ ist als leerer Schnitt (d.h. $n_i=0$ für ein $i\in I$) in $\cT(\cS)$ enthalten.}
+		\begin{enumerate}[a)]
+			\item ${\mathcal T}(\cS)$ ist eine Topologie auf $X$.
+			\item Ist $\cO$ eine Topologie auf $X$ mit $S\in \cO$ für alle $S\in\cS$, so gilt $\cT(\cS)\subseteq\cO$.
+		\end{enumerate}
+		\item Es sei $X$ ein metrischer Raum, $t>0$. Welche der folgenden Mengen von Teilmengen von $X$ bilden eine Basis der induzierten Topologie auf $X$?
+		\begin{enumerate}[a)]
+			\item $\mathcal U_t :=\{ U(x, \varepsilon)\mid x\in X, \varepsilon < t\} $.
+			\item $\mathcal U'_t :=\{ U(x, \varepsilon)\mid x\in X, \varepsilon > t\} $.
+			\item $\mathcal U'' :=\{ U(x,\tfrac{1}{n})\mid x\in X, n\in\N_{>0}\} $.
+		\end{enumerate}
+	\end{enumerate}
+\end{aufgabe}
+\begin{aufgabe}
+	Zeige, dass $\cS:=\{(-\infty,a)\mid a\in\R\}\cup\{(a,\infty)\mid a\in\R\}$ eine Subbasis der euklidischen Topologie auf $\R$ ist. Benutze diese um nochmal zu zeigen, dass das Einheitsintervall $[0,1]$ kompakt ist.
+\end{aufgabe}
+\begin{aufgabe}
+	Für eine Abbildung $f\colon X \rightarrow Y$ zwischen topologischen
+	Räumen bezeichne
+	\[\Gamma(f) = \{ \ (x,f(x)) \mid x \in X\} \ \subset\ X \times Y\]
+	den {\it Graph} von $f$, versehen mit der Unterraumtopologie der
+	Produkttopologie auf $X \times Y$.
+	\begin{enumerate}[i)]
+		\item Die Abbildung \[p_X|_{\Gamma(f)}\colon\Gamma(f) \rightarrow X\ ;\quad (x,y) \mapsto x \]
+		ist eine stetige Bijektion.
+		\item $p_X|_{\Gamma(f)}$ ist genau dann offen (also ein Homöomorphismus), wenn $f$ stetig ist.
+	\end{enumerate}
+\end{aufgabe}
+\end{document}
