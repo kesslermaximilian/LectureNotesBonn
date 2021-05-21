@@ -314,10 +314,12 @@
 \declaredefaultnotnumberedtheorem[Organisatorisches][Organisational stuff]{thmblackmargin}{orga}
 \newcounter{blatt}
 
-%%Aufgaben environment
+%%Aufgaben environment to include exercises at the end of the documnt
+%%%This is really a UGLY hack, since autoref actlly does not work properly, so we overwrite the autoref-name of itmes (!)
 \declaretheorem[style = thmgreenmargin, numberwithin = blatt, name =Aufgabe]{aufgabe}
 \newcommand\blatt{\refstepcounter{blatt}\subsection*{\theblatt. Übungsblatt}\addcontentsline{toc}{subsection}{\theblatt. Übungsblatt}}
 \AtEndEnvironment{aufgabe}{\label{aufgabe-\theaufgabe}}
+\AtBeginDocument{\def\itemautorefname{Aufgabe}}
 
 
 %Oral remarks receive their own environment
