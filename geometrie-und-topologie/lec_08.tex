@@ -6,6 +6,7 @@
         \coprod_{i\in I} X_i := \left \{(i,x) \mid i\in I, x\in X_i\right\} 
     .\] 
 \end{definition}
+
 \begin{dlemma}
 Für jedes $j\in I$ ist die Abbildung
     \begin{equation*}
@@ -98,6 +99,7 @@ Damit ist insbesondere
 \begin{example}
     \begin{enumerate}[1.]
         \item Betrachte einen Kreis und einen Torus, die getrennt in $\R^3$ liegen. Die Unterraumtopologie auf dieser Menge ist die gleiche wie die Topologie der disjunkten Vereinigung.
+            \missingfigure{Disjunkte Vereinigung von Kreis und Torus in $\R^3$}
         \item Auch wenn $[0,1]\cup [\frac{1}{2},1] = [0,1]$ ist die Koprodukttopologie auf $[0,1] \sqcup [\frac{1}{2},1]$ nicht die Unterraumtopologie auf $[0,1]$. (die beiden Räume sind schon als Mengen nicht gleich).
     \end{enumerate}
 \end{example}
@@ -140,7 +142,8 @@ Sei $X$ ein topologischer Raum und $X_1,X_2\subset X$ Unterräume sowie $X_1\cup
 \end{example}
 
 \begin{example}
-    Sei $X = [0,1], X_1 = [0,\frac{1}{2}]$ und $X_2 = (\frac{1}{2},1]$, also $X = X_1 \sqcup X_2$. Allerdings ist $X_1 \coprod X_2 \neq X$, weil die Menge $[0,\frac{1}{2}]$ offen in $X_1\coprod X_2$ ist, allerdings nicht in $[0,1]$.
+    Sei $X = [0,1], X_1 = [0,\frac{1}{2}]$ und $X_2 = (\frac{1}{2},1]$, also $X = X_1 \sqcup X_2$. Allerdings ist $X_1 \coprod X_2 \neq X$, weil die Menge $[0,\frac{1}{2}]$ offen in $X_1\coprod X_2$ ist, allerdings nicht in $[0,1]$. 
+    \missingfigure{Intervalle skizzieren}
 \end{example}
 
 \begin{remark*}
@@ -153,6 +156,7 @@ Eine teilweise Antwort auf obige Frage gibt folgende Konstruktion:
     X_1 \coprod X_2 / \sim 
     .\] 
     wobei $\sim $ erzeugt wird durch $f_1(x) \sim f_2(x)$ für alle $x\in X_0$.
+    \missingfigure{Definition skizzieren}
 \end{definition}
 \begin{example}
     Betrachte zwei Kopien von $D^2$. Wir können $S^1$ jeweils kanonisch als Rand einbetten, dann erhalten wir
@@ -160,8 +164,8 @@ Eine teilweise Antwort auf obige Frage gibt folgende Konstruktion:
     D^2 \bigcup_{S^1}D^2 \cong S^2 
     .\] 
     (Das ist noch kein Beweis, aber die Intuition ist klar - mehr dazu später).
+    \missingfigure{Abbildung skizzieren}
 \end{example}
-\todo{Grafik}
 \begin{warning}
     Der Raum $X_1\bigcup\limits_{X_0} X_2$ hängt von den Abbildungen $f_1,f_2$ ab. Dazu folgendes:
 \end{warning}
@@ -290,6 +294,8 @@ Es ist z.B. $S^1\tsmash S^1 \cong S^2$ und sogar allgemein $S^n \tsmash S^n \con
         (X,x) \tsmash (Y,y) = X\times Y / (X\times \left \{y\right\} \cup \left \{x\right\} \times Y)
     .\] 
 \end{definition*}
+\missingfigure{Torus als Smash-Produkt $S^1 \tsmash S^1$}
+\todo{Bruch-nummer hinzufügen}
 %%%%%Für die Latex-Nutzer: Ich verwende die Befehle \twedge und \tsmash, um die topologischen wedge und smash- symbole zu erzeugen. Ich bin ein Fan von semantischen Commands, das ermöglich a) sich nicht verwirren zu lassen, wenn man TeXt, wenn man den Code wieder liest etc und vermeidet Konflikte mit anderen Definitionen bzw. Dateien (und verwirrt mich weniger). Außerdem hat es den Vorteil, dass ich jederzeit \twedge und \tsmash neu definieren kann, sollte es nötig sein. Die No tation ist etwas analog zu \land und \lor für 'logic and" und 'logic ar' etc.
 \begin{remark*}
     In der Pause stellte sich die Frage, ob es ein Beispiel für einen nicht-normalen Hausdorff-Raum gibt. Siehe hierzu \cite[][Gegenbeispiel 86]{counterexamples}.
@@ -363,8 +369,9 @@ Ist $f_1$ injektiv so ist $j_2$ injektiv. Ist  $f_2$ injektiv, so ist $j_1$ inje
         x = f_2(x_1) = f_2(x_2) = p_3 = = f_2(x_3) = f_2(x_4) = p_5 = \ldots = y
     .\] 
     und damit haben wir $x=y$ gezeigt und  $j_2$ ist wie gewünscht injektiv.
+    \missingfigure{Beweisskizze}
 \end{proof}
-\todo{Skizze}
+
 Wir kehren nun zu unserer Ausgangssituation bzw. Ausgangsfrage zurück: \\
 Sei $X$ ein topologischer Raum und seien  $X_1,X_2\subset X$ Unterräume, sodass $X_1 \cup X_2 = X$. Setze $X_0 := X_1 \cap  X_2$. \\
 Betrachte
@@ -429,7 +436,12 @@ Wir zeigen die Aussage nur unter Verwendung von 2., der Fall 1. geht analog. Es 
     S^n \cong D^n \bigcup_{S^{n-1}} D^n
     .\] 
     gezeigt.
+    \missingfigure{Kugel skizzieren}
     \begin{warning}
         Auch hier ist wieder wichtig, dass wir $S^{n-1}\hookrightarrow D^n$ jeweils kanonisch einbetten, für andere Abbildungen haben wir bereits gesehen, dass wir andere Räume erhalten können.
     \end{warning}
 \end{example}
+
+
+
+

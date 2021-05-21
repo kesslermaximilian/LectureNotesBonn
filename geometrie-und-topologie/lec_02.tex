@@ -94,7 +94,7 @@ und somit ist $U$ auch offen bezüglich  $d_1$.
 \begin{recap}
     Wenn wir von einer Familie von Mengen $\left \{A_i\right\} _{\in I}$ sprechen, meinen wir, dass $I$ eine Menge ist, und für jedes $\in I$ ist $A_i$ eine Teilmenge von  $X$. Formal können wir dies als eine Funktion  $I \to  \mathcal{P}(X)$ darstellen.
 \end{recap}
-\begin{proof}
+\begin{proof}[Beweis von \autoref{offen-abgeschlossen-ist-dual}]
     \begin{enumerate}[i)]
         \item $X \setminus \emptyset = X$, $X\setminus X = \emptyset$ sind abgeschlossen.
         \item  \[
@@ -247,7 +247,7 @@ ist eine Bijektion, wir erhalten also eine Korrespondenz zwischen Äquivalenzrel
 \begin{theoremdef}[Quotiententopologie]\label{def:quotiententopologie}
     Sei $X$ ein topologischer Raum und  $\sim $ eine Äquivalenzrelation auf $X$. Sei  $q: X \to  X / \sim $ die kanonische Projektion. Dann definiert
     \[
-        \mathcal{S}_{X / \sim } := \left \{U\subset X / \sim \mid  q^{-1}(U) \subset X \text{ offen}\right\} 
+        \mathcal{O}_{X / \sim } := \left \{U\subset X / \sim \mid  q^{-1}(U) \subset X \text{ offen}\right\} 
     .\] 
     eine Topologie auf $X / \sim $, genannt die \vocab[Topologie!Quotienten-]{Quotiententopologie}. 
 \end{theoremdef}
@@ -293,16 +293,16 @@ ist eine Bijektion, wir erhalten also eine Korrespondenz zwischen Äquivalenzrel
     Das ist eine universelle Eigenschaft im Sinne der Kategorientheorie, d.h. für einen Raum $X$ und eine Äquivalenzrelation existiert bis auf eindeutigen Isomorphismus stets genau ein topologischer Raum $(X / \sim  , \mathcal{S})$ zusammen mit einer stetigen Abbildung $q : X \to  X / \sim $, sodass $x\sim x' \implies q(x) = q(x')$, sodass das Tripel $(X, X / \sim , q)$ obige Eigenschaft hat. Wir können also obige Eigenschaft auch als Definition der Quotiententopologie verwenden, und aus dieser folgt auch die Eindeutigkeit. Existenz haben wir mit unserer vorherigen Definition gezeigt.
 \end{trivial*}
 
-\begin{proof}
+\begin{proof}[Beweis von \autoref{aufgabe-3.2}]
     Sei $U\subset Y$ offen. Dann ist
     \[
         q^{-1}(g^{-1}(U)) \stackrel{f = g \circ  q}{=} f^{-1}(U)
     .\] 
     offen, weil $f$ stetig ist. Also ist  $g^{-1}(U)$ offen per Definition ($g^{-1}(U)$ ist nach Definition genau dann offen in $X / \sim $, wenn $q^{-1}(g^{-1}(U))$ offen in $X$ ist) und somit ist $g$ stetig. 
 \end{proof}
-\begin{example}
+\begin{dexample}
 Sei $X = [0,1]\subset \R$ das \vocab{Einheitsintervall} (mit der Unterraumtopologie bezüglich $\R$) mit der Äquivalenzrelation erzeugt von $0\sim 1$. Wir 'identifizieren' also die Punkte $\left \{0\right\} ,\left \{1\right\} $ miteinander.
-\end{example}
+\end{dexample}
 \begin{theorem}[Kreishomöomorphie]\label{thm:kreis-ist-quotientenraum-von-einheitsintervall}
     Der Quotientenraum $[0,1] / (0\sim 1)$ ist homöomorph zu $S_1$.
 \end{theorem}

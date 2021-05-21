@@ -171,9 +171,10 @@ Ist     $\Base$ eine Basis, so ist $\Base$ eine Subbasis.
 \begin{proof}
     Übung als \autoref{aufgabe-3.2}.
 \end{proof}
-\begin{notation}
+\begin{dnotation}
     Wir nennen $\mathcal{O}$ die \vocab[Topologie!von $\Base$ erzeugte]{von $\Base$ erzeugte Topologie}.
-\end{notation}
+\end{dnotation}
+
 \begin{lemma}[Stetigkeit auf Subbasiselementen]\label{lm:stetigkeit-auf-subbasis}
     Sei $f: X \to  Y$ eine Abbildung zwischen topologischen Räumen, $\Base$ eine Subbasis von $Y$. Dann sind äquivalent:
     \begin{enumerate}[1)]
@@ -181,6 +182,7 @@ Ist     $\Base$ eine Basis, so ist $\Base$ eine Subbasis.
         \item  $f^{-1}(S)$ ist offen für alle $S\in \Base$
     \end{enumerate}
 \end{lemma}
+
 \begin{proof}
     '$1) \implies 2)$' ist klar, da Subbasiselemente offen sind. \\
     '$2) \implies 1)$'. Sei $U \subset Y$ offen, dann $\exists K_i$ endlich und $S_k \in \Base$ mit
@@ -200,6 +202,8 @@ Ist     $\Base$ eine Basis, so ist $\Base$ eine Subbasis.
     \forall S_1, S_2 \in \Base \;\exists S_i \in \Base \colon S_1 \cap S_2 = \bigcup_{i \in I} S_i
     .\] 
 \end{theorem}
+
+
 \begin{proof}
 '$\implies$'    Da $S_1,S_2 \in \Base$ sind diese offen. Dann ist auch $S_1\cap S_2$ offen. Ist $\Base$ Basis, dann gibt es also  $S_i \in  \Base$ mit 
 \[

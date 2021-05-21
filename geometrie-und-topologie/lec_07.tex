@@ -28,22 +28,23 @@
 \begin{remark*}
     Insbesondere sollte man sich merken, dass die kanonischen Projektionen $\pr_i$ wichtiger Teil der Information eines Produktes sind. Bei unsere expliziten Konstruktion 'kanonisch', denkbar ist jedoch auch, eine völlig andere Trägermenge des Produkts zu wählen, dann ist die Angabe der Projektionen essentiell.
 \end{remark*}
-\begin{proof}
-    '$\implies$' Sei $j\in I$, setze
+\begin{dlemmadef}
+    Sei $j\in I$, setze
         \begin{equation*}
         pr_j: \left| \begin{array}{c c l} 
         \prod_{i\in I}  & \longrightarrow & X_j \\
         (x_i)_{i \in I} & \longmapsto &  x_j
         \end{array} \right.
     \end{equation*}
-    als Projektion auf die $j$-te Komponente.
-     \begin{claim}
-        $\pr_j$ ist stetig
-    \end{claim}
-    \begin{subproof}
+    als \vocab{Projektion} auf die $j$-te Komponente. Dann ist $\pr_j$ stetig.
+\end{dlemmadef}
+
+    \begin{proof}
         Ist $U\subset X_j$ offen, dann ist $pr_j^{-1}(U) = U\times \prod_{i\neq j} X_i\in \mathcal{S}$ ein Element der Subbasis der Produkttopologie, also offen. Also ist $pr_j$ stetig.
-    \end{subproof}
-    Nun ist $f_j = pr_j \circ  f$ stetig als Verknüpfung stetiger Funktionen.
+    \end{proof}
+
+    \begin{proof}[Beweis von \autoref{thm:universelle-eigenschaft-des-produkts}]
+'$\implies$' $f_j = pr_j \circ  f$ ist stetig als Verknüpfung stetiger Funktionen.
     \begin{recap}
         \emphasize{Verknüpfungen stetiger Funktionen sind stetig:}\\
         Seien $f:X\to Y$ und $g:Y\to Z$ stetig, dann ist $g\circ  f : X \to  Z$ stetig.
@@ -125,9 +126,9 @@
     zwei disjunkte, offene Umgebungen von $(x_i)_{i \in I}$ und $(y_i)_{i \in I}$.
 \end{proof}
 
-\begin{goal*}
+\begin{goal}[mündlich]
     Wir wollen uns im Folgenden Fragen, wann wir Räume in 'schöne' Räume einbetten können, wobei 'schön' für uns Kompakt + Hausdorff heißen soll.
-\end{goal*}
+\end{goal}
 
 \begin{definition}[Abschluss, Dichtheit] \label{def:abschluss-dichtheit}
     Sei $X$ ein topologischer Raum und $Y\subset X$ eine Teilmenge.
@@ -199,7 +200,7 @@ $β(X)$ ist kompakt und Hausdorffsch als abgeschlossener Teilraum eines kompakte
     Für einen topologischen Raum $X$ heißt der eben konstruierte Raum $βX = β(X)$ \vocab{Stone-Čech-Kompaktifizierung} von $X$. $\beta X$ ist ein kompakter Hausdorffraum.
 \end{dtheoremdef}
 \begin{proof*}
-    Klar nach eben gesagtem, wir verwenden \nameref{thm:tychonoff} und \autoref{thm:produkte-von-Hausdorff-Räumen-sind-Hausdorff}.
+    Klar nach eben gesagtem, wir verwenden den \nameref{thm:tychonoff} und \autoref{thm:produkte-von-Hausdorff-Räumen-sind-Hausdorff}.
 \end{proof*}
 \begin{warning}
 Diese ist jedoch nur eine Kompaktifizierung im Sinne von \autoref{def:kompaktifizierung} falls $X$ vollständig regulär ist.
@@ -239,15 +240,17 @@ Diese ist jedoch nur eine Kompaktifizierung im Sinne von \autoref{def:kompaktifi
        \item Ist $U\subset X$ dicht, $g: X\to Y$ auch stetig und $f\mid _ U = g\mid _U$ sowie $Y$ Hausdorffsch, so ist beretis  $f=g$
    \end{enumerate}
 \end{lemma}
-\begin{proof*}
-    \begin{enumerate}[1)]
-        \item Sei $y\in f(\overline{U})$, also gibt es $x\in \overline{U}$ mit $f(x) = y$. Sei  $y\in V\subset X$ eine beliebige offene Umgebung von $y$. Dann ist $f^{-1}(V)$ eine offene Umgebung von $x$ nach Stetigkeit von  $f$. Da  $x\in \overline{U}$ ist $f^{-1}(V)\cap U \neq \emptyset$ und wir wählen $x_0\in f^{-1}(V)\cap U$. Dann ist $f(x_0) \in V \cap f(U)$ und somit $V \cap f(U) \neq  \emptyset$. Da $V$ beliebig war, ist nach Definition  $y\in \overline{f(U)}$.
-        \item Nimm an, dass $f\neq g$, dann gibt es $x\in X$ mit $f(x) != g(x)$. Da  $Y$ Hausdorffsch, können wir die beiden Punkte durch offene Mengen trennen, also finden wir  $f(x)\in U_f, g(x)\in U_g$ mit $U_f\cap U_g=\emptyset$ und $U_f,U_g$ offen. Dann sind auch $f^{-1}(U_f),g^{-1}(U_g)$ offene Mengen nach Stetigkeit von $f,g$, also ist auch  $f^{-1}(U_f)\cap g^{-1}(U_g)$ offen. Zudem $x\in f^{-1}(U_f)\cap g^{-1}(U_g)$, da $f(x)\in U_f,g(x)\in U_g$ nach Voraussetzung. Da $U\subset X$ dicht ist, ist $U\cap (f^{-1}(U_f)\cap g^{-1}(U_g))\neq \emptyset$ und wir finden $x_0\in U \cap  f^{-1}(U_f) \cap g^{-1}(U_g)$. Dann ist wegen $f\mid _{U}\equiv g\mid _{U}$ $f(x_0) = g(x_0)$, aber auch $f(x_0)\in U_f, g(x_0)\in U_g$, also $f(x_0) = g(x_0) \in U_f \in  U_g$. Aber nach Voraussetzung ist $U_f \cap  U_g = \emptyset$, \contra. Also $f\equiv g$.
-\end{enumerate}
-\end{proof*}
+
 \begin{remark*}
     Der Beweis von \autoref{lm:fortsetzung-stetiger-funktionen-in-dichten-hausdorff-räumen-sind-eindeutig} ist genau \autoref{aufgabe-4.1}.
 \end{remark*}
+
+\begin{proof*}[Beweis von \autoref{lm:fortsetzung-stetiger-funktionen-in-dichten-hausdorff-räumen-sind-eindeutig}]
+    \begin{enumerate}[1)]
+        \item Sei $y\in f(\overline{U})$, also gibt es $x\in \overline{U}$ mit $f(x) = y$. Sei  $y\in V\subset X$ eine beliebige offene Umgebung von $y$. Dann ist $f^{-1}(V)$ eine offene Umgebung von $x$ nach Stetigkeit von  $f$. Da  $x\in \overline{U}$ ist $f^{-1}(V)\cap U \neq \emptyset$ und wir wählen $x_0\in f^{-1}(V)\cap U$. Dann ist $f(x_0) \in V \cap f(U)$ und somit $V \cap f(U) \neq  \emptyset$. Da $V$ beliebig war, ist nach Definition  $y\in \overline{f(U)}$.
+        \item Nimm an, dass $f\neq g$, dann gibt es $x\in X$ mit $f(x) \neq  g(x)$. Da  $Y$ Hausdorffsch, können wir die beiden Punkte durch offene Mengen trennen, also finden wir  $f(x)\in U_f, g(x)\in U_g$ mit $U_f\cap U_g=\emptyset$ und $U_f,U_g$ offen. Dann sind auch $f^{-1}(U_f),g^{-1}(U_g)$ offene Mengen nach Stetigkeit von $f,g$, also ist auch  $f^{-1}(U_f)\cap g^{-1}(U_g)$ offen. Zudem $x\in f^{-1}(U_f)\cap g^{-1}(U_g)$, da $f(x)\in U_f,g(x)\in U_g$ nach Voraussetzung. Da $U\subset X$ dicht ist, ist $U\cap (f^{-1}(U_f)\cap g^{-1}(U_g))\neq \emptyset$ und wir finden $x_0\in U \cap  f^{-1}(U_f) \cap g^{-1}(U_g)$. Dann ist wegen $f\mid _{U}\equiv g\mid _{U}$ $f(x_0) = g(x_0)$, aber auch $f(x_0)\in U_f, g(x_0)\in U_g$, also $f(x_0) = g(x_0) \in U_f \in  U_g$. Aber nach Voraussetzung ist $U_f \cap  U_g = \emptyset$, \contra. Also $f\equiv g$.
+\end{enumerate}
+\end{proof*}
 \begin{theorem}[Universelle Eigenschaft von $β$]\label{thm:universelle-eigenschaft-der-stone-cech-kompaktifizierung}
     Sei $f: X \to  K$ stetig, $K$ kompakt und Hausdorffsch. Dann existiert eine eindeutige Fortsetzung $\hat{f}: β(X) \to  K$, so dass
     \[

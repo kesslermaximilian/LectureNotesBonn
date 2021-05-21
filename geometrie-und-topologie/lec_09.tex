@@ -47,6 +47,7 @@
 
 \begin{ddefinition}[Weg]\label{def:weg}
     Sei $X$ ein topologischer Raum und $x,y\in X$. Ein  \vocab{Weg} von $x$ nach $y$ ist eine stetige Funktion $w: [0,1] \to  X$, sodass $w(0) =x$ und  $w(1) = y$.
+    \missingfigure{Weg skizzieren}
 \end{ddefinition}
 
 \begin{definition}[Wegzusammenhang]\label{def:wegzusammenhang}
@@ -55,7 +56,7 @@
 
 \begin{example}
     \begin{enumerate}[1)]
-        \item     Die Mengen $(a,b), [a,b), (a,b]$ und $\R$ sind alle wegzusammenhängend. Definiere hierzu
+        \item  Die Mengen $(a,b), [a,b), (a,b]$ und $\R$ sind alle wegzusammenhängend. Definiere hierzu
         \begin{equation*}
         w: \left| \begin{array}{c c l} 
             [0,1] & \longrightarrow & \R \\
@@ -63,6 +64,7 @@
         \end{array} \right.
     \end{equation*}
    Als Verknüpfung stetiger Funktionen ist $t$ stetig, und wir sehen leicht, dass  $0 \mapsto x, 1 \mapsto y$. 
+   \missingfigure{Intervalle skizzieren}
    \item $\R^n, n\geq 0$ ist wegzusammenhängend. Dazu betrachte vorherige Abbildung auf den einzelnen Komponenten
    \item $\R^n \setminus \left \{0\right\} , n\geq 2$ ist wegzusammenhängend. Seien hierzu $x,y\in \R^n \setminus \left \{0\right\}$.
        \begin{description}
@@ -70,6 +72,7 @@
            \item[Fall 2:] Die Strecke trifft die $0$. Wähle dann einen dritten Punkt $z$, der nicht auf der Geraden durch $x,y$ liegt. Dann gibt es einen Weg von $x$ nach  $z$ und einen von  $z$ nach  $x$, und die Vereinigung der beiden Wege ist dann ein Weg von  $x$ nach  $y$.
        \end{description}
     \end{enumerate}
+    \missingfigure{Strecken in $\R^n$ skizzieren}
 \end{example}
 
 \begin{remark*}
@@ -135,6 +138,7 @@
 \end{answer}
 
 Ein Versuch für einen ähnlichen Beweis wie $\R \not \cong \R^2$ scheitert, weil $\R^2 \setminus \left \{0\right\}$ und $\R^3 \setminus \left \{f(0)\right\} $ beide (weg)zusammenhängend sind. Man könnte nun Versuchen, eine Gerade oder einen Kreis von $\R^2$ zu entfernen, der entsprechende Raum ist dann unzusammenhängend. Es erscheint auch klar, dass $\R^3 \setminus f(\text{Kreis / Gerade})$, allerdings ist ein entsprechender Beweis verhältnismäßig schwer. Die algebraische Topologie wird es uns ermöglichen, das wesentlich einfacher einzusehen.
+\missingfigure{Versuch / Jordankurve skizzieren}
 
 \begin{remark*}
     Die Frage, ob eine Schleife in $\R^2$ (ein stetiges, injektives Bild von $\mathcal{S}^1$ in $\R^2$) den Raum in zwei Teile zerteilt, ist auch schwerer als man denkt, hierzu vergleiche den
@@ -208,6 +212,7 @@ und wir wissen schon, dass $\R^n \setminus \left \{0\right\}$ wegzusammenhängen
     .\] 
     Die erste Implikation ist trivial, wähle $x_0\in X$ beliebig, für die zweite bilden wir $[0,1]$ einfach auf die Verbindungsstrecke von  $x_0$ nach $y$ ab, dann sind alle Punkte mit  $x_0$ verbunden, und deren Hintereinanderschalten ergibt Wege von $x$ nach  $y$ für  $x,y$ beliebig. \\
     Im Wesentlichen ist das das gleiche Argument, dass wir auch schon für die Intervalle in $\R$ benutzt haben.
+    \missingfigure{Sternförmige Menge skizzieren}
 \end{dexample}
 
 \section{Lemma von Urysohn}
@@ -235,6 +240,7 @@ und wir wissen schon, dass $\R^n \setminus \left \{0\right\}$ wegzusammenhängen
 
 \begin{lemma}\label{lm:stetige-abbildung-durch-familie-von-rationalen-offenen-mengen}
     Sei $X$ ein topologischer Raum, sodass für jedes $r\in [0,1]\cap \Q$ offene $V_r \subset X$, sodass $r < r' \implies \overline{V_r} \subset V_{r'}$. Dann existiert eine stetige Abbildung $f: X \to  [0,1]$, sodass $f(x) = 0$ für  $x\in V_0$ und $f(x) = 1$ für  $x\not\in V_1$.
+    \missingfigure{Funktion skizzieren}
 \end{lemma}
 \begin{proof}
     Definiere

@@ -1,5 +1,5 @@
 \lecture[Eigenschaften kompakter Hausdorffräume. Gerade mit zwei Ursprüngen. Heine-Borel. Homöomorphismen.]{Do 22 Apr 2021 10:15}{Mehr zu Kompaktheit, Hausdorffräumen und Homöomorphismen}
-\begin{example}
+\begin{dexample}[mündlich vor der Vorlesung]
     Zur Frage von letzter Woche (wenn wir einen Hausdorff-Raum haben und eine Äquivalenzrelation, deren Klassen abgeschlossen sind, ist dann der Quotient wieder  Hausdorff?): Wähle auf $[0,1]$ die Relation erzeugt von
      \[
     \frac{1}{n} \sim  1 - \frac{1}{n}
@@ -9,7 +9,7 @@
         [0,1] \twoheadrightarrow [0,1] / \sim 
     .\] 
     Punkturbilder sind endlich, also abgeschlossen. Aber der Raum $[0,1] / \sim $ ist nicht hausdorffsch, denn wri können die Punkte $0,1$ nicht trennen.
-\end{example}
+\end{dexample}
 \begin{theorem}\label{thm:abgeschlossene-menge-in-kompaktem-raum-ist-kompakt}
     Sei $X$ ein kompakter Raum und  $Y\subset X$ abgeschlossen. Dann ist $Y$ kompakt.
 \end{theorem}
@@ -100,9 +100,9 @@
     Wir können uns $G$ vorstellen als  $\R$, in dem der Ursprung durch zwei gleichberechtigte Ursprünge ersetzt worden ist, die beide (bis auf sich selbst) die gleichen Umgebungen besitzen, die aber nicht zwingend gegenseitig in ihren Umgebungen liegen, d.h. nicht 'nah' beieinander sind. \\
     Dann ist $[-1,1]\subset \R\subset G$ kompakt (\autoref{aufgabe-2.3}), wir behaupten, dass $[-1,1]$ jedoch nicht abgeschlossen ist in  $G$. Sonst wäre in der Tat  $G \setminus [-1,1]$ offen, und es ist $0' \in G\setminus [-1,1]$, aber es handelt sich nicht um eine Umgebung von $0'$, weil für kein  $ε$ die Intervalle  $(-ε,0)$ und  $(0,ε)$ in  $G\setminus [-1,1]$ liegen. \\
 \end{example}
-\begin{remark*}
+\begin{dremark}
     Das Beispiel zeigt also, dass wir die Hausdorff-Bedingung in \autoref{thm:kompakte-menge-in-hausdorff-raum-ist-abgeschlossen} nicht fallen lassen können, d.h. es gibt nicht abgeschlossene, kompakte Mengen.
-\end{remark*}
+\end{dremark}
 
 \begin{remark*}[Mehr zur Gerade mit 2 Ursprüngen]
     Wir geben zwei weitere (äquivalente) Definitionen der Gerade mit 2 Ursprüngen, um so hoffentlich eine bessere Vorstellung zu ermöglichen:
@@ -249,7 +249,7 @@ Nun sind wir gewappnet für den
     abgeschlossen ist, also ist $U\subset Y$ offen.
 \end{proof}
 Kommen wir nun zum
-\begin{proof}[Beweis von \autoref{thm:kreis-ist-quotientenraum-von-einheitsintervall}]
+\begin{proof}[Beweis von \autoref{thm:kreis-ist-quotientenraum-von-einheitsintervall} (Fortsetzung)]
     Schon gezeigt:
         \begin{equation*}
         \begin{array}{c c l} 
@@ -305,7 +305,9 @@ U_A \cap U_B = \emptyset
         \left \{z\right\}  = q(\left \{x\right\} )
     .\] 
     abgeschlossen ist. \\
-    Wir nennen Teilmenge $W\subset X$ heißt \vocab[Menge!saturiert]{saturiert}, falls $W = q^{-1}(q(W))$ (insbesondere sind alle Urbilder saturiert, und $\iff  \forall x\in X \setminus W : g(x) \in Z \setminus g(W)$). \\
+    \begin{ddefinition}[saturierte Menge]\label{def:saturierte-menge}
+    Wir nennen Teilmenge $W\subset X$ heißt \vocab[Menge!saturiert]{saturiert}, falls $W = q^{-1}(q(W))$ (insbesondere sind alle Urbilder saturiert, und $\iff  \forall x\in X \setminus W : g(x) \in Z \setminus g(W)$).
+    \end{ddefinition}
 \begin{remark}
     Sei $U\subset X$ offen und saturiert, dann ist $q(U)$ offen. Hierzu schreibe
     \[
