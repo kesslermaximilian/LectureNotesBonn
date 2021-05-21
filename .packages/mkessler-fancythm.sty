@@ -152,6 +152,18 @@
     bottomline=false
 }
 
+\mdfdefinestyle{mdorangemarginbluefill}{%
+    skipabove =\fancythmskipabove,
+    linecolor=orange,
+    linewidth = \fancythmlinewidth,
+    leftmargin = 0cm,
+    rightmargin=0cm,
+    backgroundcolor=blue!7,
+    rightline=false,
+    topline=false,
+    bottomline=false
+}
+
 \mdfdefinestyle{mdblackmarginandfill}{%
 	skipabove=\fancythmskipabove,
 	linecolor=black,
@@ -180,6 +192,12 @@
 	postheadspace={0.3em},
     notefont=\mdseries
 ]{thmredmarginandfill}
+
+\declaretheoremstyle[
+	mdframed={style=mdorangemarginbluefill},
+	postheadspace={0.3em},
+    notefont=\mdseries
+]{thmorangemarginbluefill}
 
 \declaretheoremstyle[
 	mdframed={style=mdorangemarginandfill},
@@ -297,6 +315,7 @@
 \declaredefaultnumberedtheorem{thmredmarginandfill}{proposition}
 \declaredefaultnumberedtheorem[Korollar]{thmredmarginandfill}{corollary}
 \declaredefaultnumberedtheorem{thmorangemarginandfill}{lemma}
+\declaredefaultnumberedtheorem[Lemma und Definition][Lemma and Definition]{thmorangemarginbluefill}{lemmadef}
 \declaredefaultnumberedtheorem{thmbluemarginandfill}{definition}
 \declaredefaultnumberedtheorem[Satz und Definition][Theorem and Definition]{thmredmarginbluefill}{theoremdef}
 
