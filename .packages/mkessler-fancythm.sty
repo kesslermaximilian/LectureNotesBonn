@@ -164,6 +164,17 @@
     bottomline=false
 }
 
+\mdfdefinestyle{mdblackmargin}{%
+	skipabove=\fancythmskipabove,
+	linecolor=black,
+	linewidth=\fancythmlinewidth,
+    leftmargin = 0cm,
+    rightmargin=0cm,
+    rightline=false,
+    topline=false,
+    bottomline=false
+}
+
 \declaretheoremstyle[
 	mdframed={style=mdredmarginandfill},
 	postheadspace={0.3em},
@@ -219,6 +230,11 @@
     notefont=\mdseries
 ]{thmblackmarginandfill}
 
+\declaretheoremstyle[
+	mdframed={style=mdblackmargin},
+	postheadspace={0.3em},
+    notefont=\mdseries
+]{thmblackmargin}
 
 %%Environments that are numbered by default have 3 versions:
 % - the standard one, for numbering
@@ -268,6 +284,7 @@
     \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, numbered = no]{#4*}
     \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, numbered = no]{d#4}
     \fi
+    \ifincludestars\else\renewenvironment{#4*}{\comment}{\endcomment}\fi
 }
 
 
@@ -294,6 +311,7 @@
 \declaredefaultnotnumberedtheorem[Bemerkung]{thmyellowmargin}{remark}
 \declaredefaultnotnumberedtheorem[Trivial Nonsense][Trivial Nonsense]{thmyellowmargin}{trivial}
 \declaredefaultnotnumberedtheorem[Frage]{thmblackmarginandfill}{question}
+\declaredefaultnotnumberedtheorem[Organisatorisches][Organisational stuff]{thmblackmargin}{orga}
 
 %Oral remarks receive their own environment
 \declaredefaultnotnumberedtheorem[Mündliche Anmerkung][Oral remark]{thmyellowmargin}{oral}
