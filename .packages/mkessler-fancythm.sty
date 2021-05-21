@@ -312,6 +312,10 @@
 \declaredefaultnotnumberedtheorem[Trivial Nonsense][Trivial Nonsense]{thmyellowmargin}{trivial}
 \declaredefaultnotnumberedtheorem[Frage]{thmblackmarginandfill}{question}
 \declaredefaultnotnumberedtheorem[Organisatorisches][Organisational stuff]{thmblackmargin}{orga}
+\newcounter{blatt}
+\declaretheorem[style = thmgreenmargin, numberwithin = blatt, name =Aufgabe]{aufgabe}
+
+\newcommand\blatt{\refstepcounter{blatt}\subsection*{\theblatt. Übungsblatt}\addcontentsline{toc}{subsection}{\theblatt. Übungsblatt}}
 
 %Oral remarks receive their own environment
 \declaredefaultnotnumberedtheorem[Mündliche Anmerkung][Oral remark]{thmyellowmargin}{oral}
