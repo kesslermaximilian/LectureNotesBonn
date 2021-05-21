@@ -1,4 +1,4 @@
-\lecture[Beweis des Metrisierungssatzes von Urysohn.]{Do 20 Mai 2021 10:07}{}
+\lecture[Metrisierbarkeit des Hilbertraums. Beweis des Metrisierungssatzes von Urysohn. Motivation für die Einführung von Algebraischer Topologie sowie Kategiorientheorie. Mengen und Klassen. Anfänge der Kategorientheorie: Kategorien, Unterkategorien, Isomorphismen, Funktoren.]{Do 20 Mai 2021 10:07}{Kategorientheorie}
 
 \begin{lemma}[Hilbert-Raum ist metrisierbar]\label{lm:hilbert-raum-ist-metrisierbar}
     Der Raum $\prod_{i=1}^{\infty}[0,1]$ ist metrisierbar (in der Produkttopologie).
@@ -247,13 +247,13 @@ Wir fordern neben den üblichen Axiomen von \textbf{ZFC} (hierbei steht \textbf{
 
 \begin{example}
     \begin{itemize}
-        \item $\Set$ ist die Kategorie der Mengen und all ihrer Abbildungen dazwischen.
-        \item $\Top$ ist die Kategorie der topologischen Räume und ihren stetigen Abbildungen.
+        \item $\category{Set}$ ist die Kategorie der Mengen und all ihrer Abbildungen dazwischen.
+        \item $\Top X$ ist die Kategorie der topologischen Räume und ihren stetigen Abbildungen.
         \item $\Grp$ ist die Kategorie der Gruppen und ihren Gruppenhomomorphismen
         \item  $\Vect_{\R}$ ist die Kategorie der $\R$-Vektorräume und den linearen Abbildungen dazwischen.
         \item $\Top_{\star}$ ist die Kategorie der punktierten topologischen Räume. Wir setzen $\Ob(\Top_{\star })$ als Klasse aller Topologischen Räume, schränken uns aber bei den Morphismen ein, d.h.
             \[
-                \Mor_{\Top_{\star }}((X,x_0),(Y,y_0)) \coloneqq  \left \{\colon X \to  Y \text{ stetig}\mid  f(x_0) = y_0\right\} 
+                \Mor_{\Top_{\star }}((X,x_0),(Y,y_0)) \coloneqq  \left \{f \colon X \to  Y \text{ stetig}\mid  f(x_0) = y_0\right\} 
             .\] 
     \end{itemize}
 \end{example}
