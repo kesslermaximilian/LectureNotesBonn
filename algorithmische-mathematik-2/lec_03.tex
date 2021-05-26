@@ -1,5 +1,5 @@
 \lecture[Diskrete Verteilungen. Gleichverteilung. Fixpunkte von Permutationen. Empirische Verteilung.]{Mo 19 Apr 2021 10:23}{Gleichverteilung, empirische Verteilung}
-Wir stellen fest, dass es im letzten Beispiel auch genügt hätte, $\mathbb{P}(\left \{k\right\} )$ für $k=1,\ldots,10$ anzugeben, das motiviert Folgendes:
+Wir stellen fest, dass es im letzten Beispiel auch genügt hätte, $\mathbb{P}(\left \{k\right\} )$ für $k=1,\ldots,10$ anzugeben. Daraus ergibt sich:
 \begin{theorem}\label{thm:wahrscheinlichkeitsverteilungen-auf-abzaehlbaren-raeumen}
     \begin{enumerate}[label=\protect\circled{\alph*}]
         Sei $\Omega$ abzählbar.
@@ -15,12 +15,12 @@ Wir stellen fest, dass es im letzten Beispiel auch genügt hätte, $\mathbb{P}(\
                 \end{array} \right.
             \end{equation*}
             eine Wahrscheinlichkeitsverteilung auf $(\Omega,\mathcal{P}(\emptyset))$. 
-        \item Jede Wahrscheinlichkeitverteilung $\mathbb{P}$ auf $(\Omega,\mathcal{P}(\Omega))$ hat obige Form, wobei $p(\omega) = \mathbb{P}(\left \{\omega\right\} )$.
+        \item Jede Wahrscheinlichkeitsverteilung $\mathbb{P}$ auf $(\Omega,\mathcal{P}(\Omega))$ hat obige Form, wobei $p(\omega) = \mathbb{P}(\left \{\omega\right\} )$.
     \end{enumerate}
 \end{theorem}
 
 \begin{remark}
-    $p:\emptyset\to [0,1]$ heißt Massenfunktion der Wahrscheinlichkeitverteilung $\mathbb{P}$. \\
+    $p:\emptyset\to [0,1]$ heißt Massenfunktion der Wahrscheinlichkeitsverteilung $\mathbb{P}$. \\
     \warning Der Satz gilt nicht für $\Omega$ überabzählbar.
 \end{remark}
 
@@ -30,7 +30,7 @@ Wir stellen fest, dass es im letzten Beispiel auch genügt hätte, $\mathbb{P}(\
     \[
         \sum_{\omega\in A} p(\omega) := \sum_{k\geq 1} p(\omega_k)
     .\] 
-    mit einer beliebigen Abzählung $\omega_1,\omega_2, \ldots, \omega_k$ von $A$ eine wohldefinierte Summe der  $p(\omega)$. Es ist wichtig, dass hier $p(\omega) \geq 0$, sonst ist obiges nicht wohldefiniert.
+    mit einer beliebigen Abzählung $\omega_1,\omega_2, \ldots, \omega_k$ von $A$ eine wohldefinierte Summe der  $p(\omega)$. Es ist wichtig, dass hier $p(\omega) \geq 0$, sonst wäre obiges nicht wohldefiniert.
 \end{remark}
 
 \begin{lemma}\label{lm:approximation-von-massen-durch-endliche-teilmengen}
@@ -70,7 +70,7 @@ Wir stellen fest, dass es im letzten Beispiel auch genügt hätte, $\mathbb{P}(\
             \[
                 P(A) := \sum_{k=1}^{\infty} p(\omega_k) \stackrel{!}{=} \sup_{\substack{F\subset A \\ \abs{F} <\infty} }P(F)
             .\] 
-            Die Ungleichung '$\leq $' folgt sofort, da wir mit $F_n := \left \{\omega_1, \ldots, \omega_k\right\} $ feststellen, dass
+            Die Ungleichung '$\leq $' folgt sofort, da mit $F_n := \left \{\omega_1, \ldots, \omega_k\right\} $ folgt
             \[
                 \sum_{k=1}^n p(\omega_k) = \sum_{\omega\in F_n} p(\omega) = P(F_n) \leq  \sup_{\substack{F\subset A \\ \abs{F} <\infty} } P(F)
             .\] 
@@ -78,18 +78,18 @@ Wir stellen fest, dass es im letzten Beispiel auch genügt hätte, $\mathbb{P}(\
             \[
                 P(A) = \lim_{n\to \infty} \sum_{k=1}^n p(\omega_k) \leq  \lim_{n\to \infty} \sup_{\substack{F\subset A\\ \abs{F} <\infty} }P(F) = \sup_{\substack{F\subset A\\ \abs{F} <\infty} }P(F)
             .\] 
-            Für '$\geq $' stellen wir fest, dass es für jedes $F\subset A$ endlich ein $n\in \N$ gibt, sodass $F\subset \left \{\omega_1,\ldots,\omega_n\right\} $, und somit ist
+            Für '$\geq $' stellen wir fest, dass es für jedes $F\subset A$ endlich ein $n\in \N$ gibt, sodass $F\subset \left \{\omega_1,\ldots,\omega_n\right\} $ und somit gilt
             \[
                 P(F) = \sum_{\omega\in F} P(\omega) \leq  \sum_{k=1}^n p(\omega_k) \leq  \sum_{k=1}^{\infty} p(\omega_k) = P(A)
             .\] 
-            und somit ist das Supremum der $P(F)$ für $F\subset A, \abs{F} <\infty$ durch $P(A)$ beschränkt. \\
+            Damit ist das Supremum der $P(F)$ für $F\subset A, \abs{F} <\infty$ durch $P(A)$ beschränkt. \\
             Für die letzte Behauptung sehen wir mit $A\subset B$ leicht, dass
             \[
                 P(A) = \sup_{\substack{F\subset A \\ \abs{F} <\infty} } P(F) \leq  \sup_{\substack{ F\subset B \\ \abs{F} <\infty}} = P(B)
             .\] 
-        \item ($\sigma$-Additivität) Wir unterscheiden zwei Fälle:
+        \item ($\sigma$-Additivität) Wir unterscheiden zwischen zwei Fälle:
             \begin{enumerate}[1)]
-                \item Falls $\abs{A} <\infty$, so ist $A = \bigsqcup_{k=1}^n A_k$ für ein $n$, und somit ist
+                \item Falls $\abs{A} <\infty$, so ist $A = \bigsqcup_{k=1}^n A_k$ für ein $n$, und somit gilt
                     \begin{equation}
                         \begin{split}
                             P(A) &= \sum_{l=1}^{\abs{A} }p(\omega_l) = \sum_{l=1}^{\abs{A} } \sum_{k=1}^{n} p(\omega_l) \mathbb{1}_{A_k}(\omega_l)  \\
@@ -104,23 +104,23 @@ Wir stellen fest, dass es im letzten Beispiel auch genügt hätte, $\mathbb{P}(\
                      \[
                          P(F) = \sum_{k=1}^{\infty} P(F \cap A_k) \leq  \sum_{k=1}^{\infty} P(A_k)
                     .\] 
-                    und somit liefert das Supremum über beide Seiten, dass
+                    Somit liefert das Supremum über beide Seiten, dass
                     \[
                         P(A) = \sup_{\substack{F\subset A \\ \abs{F}<\infty } } P(F) \leq  \sum_{k=1}^{\infty} P(A_k)
                     .\] 
-                    Wir zeigen nun '$\geq $'.
+                    gilt. Wir zeigen nun '$\geq $'.
                     \begin{idea}
                         Wir können $P(A_k) = \sup_{\substack{ F_k \subset A_k \\ \abs{F_k}]\infty} } P(F_k)$ schreiben und 'optimieren' nun jedes einzelne $F_k$.
                     \end{idea}
-                    Seien also $F_k \subset A_k$ jeweils endlich. Dann ist $F_k \cap F_l \subset  A_k \cap A_l = \emptyset$, also sind auch die $F_k$ paarweise disjunkt, und wir lernen
+                    Seien also $F_k \subset A_k$ jeweils endlich. Dann ist $F_k \cap F_l \subset  A_k \cap A_l = \emptyset$, also sind auch die $F_k$ paarweise disjunkt, und wir damit
                     \begin{equation}
                          \sum_{k=1}^n P(A_k) = \sum_{k=1}^n \sup_{\substack{F_k \subset A_k \\ \abs{F_k} <\infty} } P(F_k) = \sup_{\substack{F_1\subset A_1\\abs{F_1<\infty} } } \ldots \sup_{\substack{ F_k \subset A_k \\ \abs{F_k} <\infty}} \sum_{k=1}^n P(F_k)
                     \end{equation}
-                    Also ist
+                    Damit ist
                     \[
                         \sum_{k=1}^n P(F_k) = P\left( \bigcup_{k=1}^n F_k \right) \leq P\left( \bigcup_{k=1}^{\infty}F_k \right) \leq P\left( \bigcup_{k=1}^{\infty}A_k \right)  \stackrel{\text{def}}{=} P(A)
                     .\] 
-                    setzen wir dies nun in die rechte Seite von (1) ein, so ergibt sich
+                    Setzen wir dies nun in die rechte Seite von (1) ein, so ergibt sich
                     \[
                         \sum_{k=1}^n P(A_k) \leq  P(A) \qquad \implies \qquad \sum_{k=1}^{\infty} P(A_k) \leq  P(A)
                     .\] 
@@ -145,7 +145,7 @@ Wir stellen fest, dass es im letzten Beispiel auch genügt hätte, $\mathbb{P}(\
 
 \subsection{Die Gleichverteilung}
 Sei $\Omega$ endlich $(\neq \emptyset)$ und betrachte $\sigma$-Algebra $\mathcal{F} = \mathcal{P}(\Omega)$. \\
-Die \vocab{Gleichverteilung} ist die Wahrscheinlichkeitverteilung, die ein unifromes "Gewicht" (Massenfunktion) auf die Elementarereignisse verteilt:
+Die \vocab{Gleichverteilung} ist die Wahrscheinlichkeitverteilung, die ein uniformes "Gewicht" (Massenfunktion) auf die Elementarereignisse verteilt:
 \[
     \forall \omega\in \Omega : p(w) = \mathbb{P}\left( \left \{\omega\right\}  \right) = \frac{1}{\abs{\Omega} }
 .\] 
@@ -165,11 +165,12 @@ Aus \autoref{thm:wahrscheinlichkeitsverteilungen-auf-abzaehlbaren-raeumen} folgt
                      \[
                          \sigma = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4 & 3 & 1 & 2 \end{pmatrix} 
                     .\] 
-                    und meinen damit $\sigma(1) = 4$,  $\sigma(2) = 3$,  $\sigma(3) = 1$,  $\sigma(4)=2$. Manschmal schreiben wir dann auch
+                    und meinen damit $\sigma(1) = 4$,  $\sigma(2) = 3$,  $\sigma(3) = 1$,  $\sigma(4)=2$. Manschmal wird auch
                      \[
                          \sigma = (4,3,1,2) = (\sigma_1, \sigma_2, \sigma_3,\sigma_4)
                     .\] 
-                \item Sei $\Omega = \mathfrak{S}_n$ die Menge aller Permutation von $\left \{1,\ldots,n\right\} $. Dann ergibt sich
+                    geschrieben.
+                \item Sei $\Omega = \mathfrak{S}_n$ die Menge aller Permutationen von $\left \{1,\ldots,n\right\} $. Dann ergibt sich
                     \[
                     \abs{\mathfrak{S}_n} =n!
                     .\] 
@@ -183,7 +184,7 @@ Aus \autoref{thm:wahrscheinlichkeitsverteilungen-auf-abzaehlbaren-raeumen} folgt
 \begin{example}
     Sei $N$ die Anzahl von Karten eines Kartenspiels, die  \underline{gut gemischt} sind, d.h. jede Reihenfolge ist gleich wahrscheinlich. 
     \begin{enumerate}[(1)]
-        \item Was ist die Wahrscheinlichkeit, dass die $k$-te Karte auf der $l$. Stelle ist? D.h, was ist:
+        \item Was ist die Wahrscheinlichkeit, dass die $k$-te Karte an der $l$. Stelle ist? D.h, was ist:
              \[
                  \mathbb{P}(\left \{\omega\in \mathfrak{S}_n \mid  \omega(k) = l\right\} )
             .\]
@@ -194,7 +195,7 @@ Aus \autoref{thm:wahrscheinlichkeitsverteilungen-auf-abzaehlbaren-raeumen} folgt
                 \mathbb{P}(\left \{\omega\in \mathfrak{S}_n \mid  \omega(k) = l\right\} ) = \frac{\abs{\left \{\omega\in \mathfrak{S}_n \mid  \omega(k) = l\right\} } }{\abs{\Omega} } = \frac{(n-1)!}{n!} = \frac{1}{n}
             .\] 
             \end{solution}
-        \item Was ist die Wahrscheinlichkeit, dass eine Karte 'auf ihrer Stelle' ist, dh.
+        \item Was ist die Wahrscheinlichkeit, dass eine Karte 'auf ihrer Stelle' ist? D.h., was ist?
             \[
                 \mathbb{P}(\left \{\omega \mid  \exists k \colon \omega(k) = k\right\} )
             .\] 
@@ -220,7 +221,7 @@ Aus \autoref{thm:wahrscheinlichkeitsverteilungen-auf-abzaehlbaren-raeumen} folgt
     \[
 e^x := \exp (x) := \sum_{k=0}^{\infty} \frac{x^k}{k!}
     .\] 
-    konvergiert absolut und auf ganz $\R$, insbesondere für $x=-1$ gegen  $\frac{1}{e}$
+   Diese konvergiert absolut und auf ganz $\R$, insbesondere für $x=-1$ gegen  $\frac{1}{e}$
 \end{remark*}
 \subsection{Die empirische Verteilung}
 Diese wird aus den Beobachtungen definiert.
@@ -229,7 +230,7 @@ Seien $x_1,x_2,\ldots,x_n \in \Omega$ $n$ Beobachtungen. Setze
  \[
      N(A) := \abs{\left \{k\in \left \{1,\ldots,n\right\} \mid  x_k \in A\right\} } 
 .\] 
-Denn definiert
+Dann definiert
 \[
     \mathbb{P}(A) = \frac{N(A)}{n}
 .\] 
@@ -241,6 +242,6 @@ die \vocab{relative Häufigkeit} von $\omega\in \Omega$.
 \end{definition*}
 
 \begin{example}
-    Die empirische Verteilung von $n$ Zufallswürfeln eines Würfels wird gegeben durch $x_1,\ldots,x_n \in \left \{1,\ldots,6\right\} $. Die Plots für $p_k := \frac{N(k)}{n}$ für verschieden $n$ sehen wie folgt aus:
+    Die empirische Verteilung von $n$ Zufallswürfeln eines Würfels wird gegeben durch $x_1,\ldots,x_n \in \left \{1,\ldots,6\right\} $. Die Plots für $p_k := \frac{N(k)}{n}$ für verschiede $n$ sehen wie folgt aus:
 \end{example}
     \todo{Plots einfügen}
