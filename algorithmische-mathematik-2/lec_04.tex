@@ -1,6 +1,6 @@
 \lecture[Diskrete Zufallsvariablen. Massefunktion. Bernoulli - Binomialverteilung. Unabhängigkeit von Ereignissen. Poissonverteilung.]{Mi 21 Apr 2021 10:15}{Zufallsvariablen, Wahrscheinlichkeitsverteilungen}
 \subsection{Zufallsvariablen}
-Wir werden Funktionen der Ergenisse betrachten:
+Wir werden Funktionen der Ergebnisse betrachten:
 \begin{definition}[Diskeret Zufallsvariable]\label{def:diskrete-zufallsvariable}
     Sei $(\Omega, \mathcal{F}, \mathbb{P})$ ein Wahrscheinlichkeitsraum. Eine \vocab{diskrete Zufallsvariable} ist eine \underline{messbare} Abbildung
     \[
@@ -26,7 +26,7 @@ Wir werden Funktionen der Ergenisse betrachten:
     \label{fig:diskrete-zufallsvariable}
 \end{figure}
 \begin{definition}
-    Sei $(\Omega, \mathcal{F}, \mathbb{P})$ ein Wahrscheinlichkeitsraum.  und $X : \Omega\to \mathcal{S}$ eine diskrete Zufallsvariable. \\
+    Sei $(\Omega, \mathcal{F}, \mathbb{P})$ ein Wahrscheinlichkeitsraum  und $X : \Omega\to \mathcal{S}$ eine diskrete Zufallsvariable. \\
     Die \vocab{Verteilung von $X$} ist die Wahrscheinlichkeitverteilung $\mu_X$ auf  $\mathcal{S}, \mathcal{P}(\mathcal{S}) = \tilde{F}$, s.d. $\forall B\in \tilde{F}: \mu_X(B) := \mathbb{P}(X^{-1}(B))$. \\
     $\mu_X$ hat eine \vocab{Massenfunktion}
      \[
@@ -36,7 +36,7 @@ Wir werden Funktionen der Ergenisse betrachten:
 \begin{example}[Werfen von $n$ Münzen]
     Betrachte folgende Situation:
     \begin{itemize}
-        \item Sei $\Omega = \left \{\omega = (\omega_1,\ldots,\omega_n \mid \omega_i \in \left \{0,1\right\} \text{ für } 1\leq i\leq n\right\}$ wobei
+        \item Sei $\Omega = \left \{\omega = (\omega_1,\ldots,\omega_n \mid \omega_i \in \left \{0,1\right\} \text{ für } 1\leq i\leq n\right\}$, wobei
 \[
 \omega_k = \begin{cases}
     0 & \text{falls $k$-ter Wurf ist Zahl} \\
@@ -44,7 +44,7 @@ Wir werden Funktionen der Ergenisse betrachten:
 \end{cases}
 .\] 
 
-\item $\mathcal{F} = \mathcal{P}(\Omega)$ und $\mathbb{P}$ die Gleichverteilung
+\item Und sei $\mathcal{F} = \mathcal{P}(\Omega)$ und $\mathbb{P}$ die Gleichverteilung.
     \end{itemize}
     \begin{enumerate}[(1)]
         \item Setze
@@ -94,13 +94,13 @@ Wir werden Funktionen der Ergenisse betrachten:
 \end{tikzpicture}
 \captionof{figure}{Massenfunktion $p_Y(k)$}
     \end{minipage} \\
-    Diese sind Sonderfälle der Bernoulliverteilung und der Binomialverteilung
+    Diese sind Sonderfälle der Bernoulliverteilung und der Binomialverteilung.
     \end{enumerate}
 \end{example}
 
 \subsubsection{Die Bernoulli-Verteilung}
 \begin{definition}[Bernoulli-Verteilung]\label{def:bernoulli-verteilung}
-    Sei $p\in [0,1]$ gegeben. Die Wahrscheinlichkeitverteilung auf $\left \{0,1\right\} $ mit Massenfunktion
+    Sei $p\in [0,1]$ gegeben. Die Wahrscheinlichkeitsverteilung auf $\left \{0,1\right\} $ mit Massenfunktion
     \[
         p(k) = \begin{cases}
             p & k = 1 \\
@@ -110,11 +110,11 @@ Wir werden Funktionen der Ergenisse betrachten:
         heißt \vocab{Bernoulli-Verteilung mit Parameter $p$}. 
 \end{definition}
 \begin{notation}
-    Wir notieren auch $\operatorname{Ber} (p)$ für die Bernoulli-Verteilung mit Parameter $p$.
+    Wir notieren $\operatorname{Ber} (p)$ für die Bernoulli-Verteilung mit Parameter $p$.
 \end{notation}
 \begin{example}
     \begin{enumerate}[label=\protect\circled{\alph*}]
-        \item Eine Münze, die mit Wahrscheinlichkeit $p$ Kopf zeigt. Hier ist
+        \item Sei eine Münze gegeben, die mit Wahrscheinlichkeit $p$ Kopf zeigt. Hier ist
              \[
                  \Omega = \left \{\text{Zahl}, \text{Kopf}\right\} \qquad \mathbb{P}(\text{Kopf}) = p = 1-\mathbb{P}(\text{Zahl})
             .\] 
@@ -144,13 +144,13 @@ Diese hat also die Verteilung
 \[
     \mathbb{P}(X = 1) = \frac{\binom{m+n-1}{n-1}}{\binom{m+n}{n}} = \frac{(m+n-1)!}{(n-1)! m!} \frac{n! m!}{(m+n)!} = \frac{n}{m+n}
 .\] 
-Also ist $X \sim \Ber\left( \frac{n}{n+m} \right) $
+Also ist $X \sim \Ber\left( \frac{n}{n+m} \right) $.
     \end{enumerate}
 \end{example}
 
 \subsubsection{Die Binomial-Verteilung}
 \begin{definition}[Binomial-Verteilung]\label{def:binomial-verteilung}
-    Seien $n\in \N$ und $p\in [0,1]$ gegeben. Die Wahrscheinlichkeitverteilung auf $\left \{0,1,\ldots,n\right\} $ mit Massenfunktion
+    Seien $n\in \N$ und $p\in [0,1]$ gegeben. Die Wahrscheinlichkeitsverteilung auf $\left \{0,1,\ldots,n\right\} $ mit Massenfunktion
     \[
         p(k) = \binom{n}{k}p^k(1-p)^{n-k}
     .\] 
@@ -162,10 +162,10 @@ Also ist $X \sim \Ber\left( \frac{n}{n+m} \right) $
 
 \begin{example}[Ziehen mit Zurücklegen]
     \begin{itemize}
-        \item Seien $m$ kugeln in einer Urne, davon  $p\cdot m\in \N$ weiße Kugeln und $(1-p)m$ schwarze Kugeln.
+        \item Seien $m$ Kugeln in einer Urne, davon  $p\cdot m\in \N$ weiße Kugeln und $(1-p)m$ schwarze Kugeln.
         \item Wir ziehen eine Kugel, notieren uns die Farbe und legen sie wieder zurück.
-        \item Wir mischen die übrigen Kugeln wideer gut
-        \item Wir wiederholne die vorherigen Schritte, bis wir $n$ Ziehungen durchgeführt haben.
+        \item Wir mischen die übrigen Kugeln wider gut.
+        \item Wir wiederholen die vorherigen Schritte, bis wir $n$ Ziehungen durchgeführt haben.
         \item Dies modellieren wir durch
             \[
             \Omega = \left \{0,1\right\} ^n
@@ -177,9 +177,9 @@ Also ist $X \sim \Ber\left( \frac{n}{n+m} \right) $
                 0 &\text{sonst}
             \end{cases}
             .\] 
-        \item Sei nun $X(\omega) = \sum_{k=1}^n \omega_k = \# \left \{\text{weiße Kugeln} \right\} $
+        \item Sei nun $X(\omega) = \sum_{k=1}^n \omega_k = \# \left \{\text{weiße Kugeln} \right\} $.
     \end{itemize}
-    Dann behaputen wir, dass $X \sim  \Bin(n,p)$. In der Tat:
+    Dann behaputen wir, dass $X \sim  \Bin(n,p)$. In der Tat gilt:
     \begin{equation}
         \begin{split}
             \frac{\abs{\omega\in \Omega \mid  X(\omega) = l}}{\abs{\Omega} } &= \frac{\binom{n}{l} \cdot  (pm)^{l}\left( (1-p)m \right)  ^{n-l}}{m^n} \\
@@ -209,10 +209,10 @@ Wir haben hier den Begriff der \vocab{Unabhängigkeit} genutzt, den wir nun gena
     \[
         \mathbb{P}(\omega_1 = 3 \cap \omega_2 \geq  4 ) = \frac{3}{36} = \frac{1}{6}\cdot \frac{3}{6} = \mathbb{P}(\omega_1 = 3) \cdot \mathbb{P}(\omega_2 \geq  4)
     .\] 
-    also sind die beiden Ereignisse unabhängig voneinander. Das macht auch semantisch Sinn, weil wir durch das Ergebnis des einen Würfelwurfs keine Informationen über das Ergebnis des zweiten Würfelwurfs erhalten.
+    also sind die beiden Ereignisse unabhängig voneinander. Das macht auch semantisch Sinn, weil wir durch das Ergebnis des ersten Würfelwurfs keine Informationen über das Ergebnis des zweiten Würfelwurfs erhalten.
 \item
 
-Falls $E_1,E_2,\ldots,E_n$ unabhängige Ereignisse sind, mit $\mathbb{P}(E_i) = p$ für $1\leq i\leq n$, dann ist
+Falls $E_1,E_2,\ldots,E_n$ unabhängige Ereignisse sind mit $\mathbb{P}(E_i) = p$ für $1\leq i\leq n$, dann gilt
 \[
     \mathbb{P}(\text{genau $k$ der Ereignisse treten ein}) = \binom{n}{k} p^k (1-p)^{n-k}
 .\] 
@@ -236,7 +236,7 @@ eine disjunkte Vereinigung, also erhalten wir
     \end{itemize}
 \end{example}
 \begin{remark}
-    Strenggenommen haben wir in der letzten Rechnung verwendet, dass mit $E_1,\ldots,E_n$ unabhängig auch $F_1,\ldots,F_n$ für $F_i = E_i $ oder  $F_i = E_i ^{c}$ unabhängig voneinander sind. Dies müssten wir noch einmal nachrechnen, dazu für den Fall $n=2$ ist z.B:
+    Streng genommen haben wir in der letzten Rechnung verwendet, dass mit $E_1,\ldots,E_n$ unabhängig auch $F_1,\ldots,F_n$ für $F_i = E_i $ oder  $F_i = E_i ^{c}$ unabhängig voneinander sind. Dies müssten wir noch einmal nachrechnen. Für den Fall $n=2$ ist z.B:
      \[
          \mathbb{P}(E_1 \cap E_2^{c}) + \mathbb{P}(E_1 \cap E_2) = \mathbb{P}(E_1 \cap (E_2 \cup E_2^{c}) = \mathbb{P}(E_1)
     .\] 
@@ -247,7 +247,7 @@ eine disjunkte Vereinigung, also erhalten wir
     wie zu zeigen war.
 \end{remark}
 \subsubsection{Die Poisson-Verteilung}
-Betrachte Ereignisse $E_1,\ldots,E_n$, die unabhängig voneinander sind und jeweils Wahrscheinlichkeit $p$ haben, einzutreten. Wir skizzieren dies mit \tikz \fill[blue] circle (2pt); für ein eingetretenes Ereignis und \tikz \fill[red] circle (2pt); für das Nicht-Eintreten des entsprechenden Ereignisses \\
+Betrachte Ereignisse $E_1,\ldots,E_n$, die unabhängig voneinander sind und jeweils Wahrscheinlichkeit $p$ haben. Wir skizzieren dies mit \tikz \fill[blue] circle (2pt); für ein eingetretenes Ereignis und \tikz \fill[red] circle (2pt); für das Nicht-Eintreten des entsprechenden Ereignisses \\
 \begin{tikzpicture}
     \draw[->] (0,0) -- (8,0) node[anchor=west] {$k$ (Zeit)};
     \foreach \x in {1,2,3,5,6} {
@@ -258,13 +258,13 @@ Betrachte Ereignisse $E_1,\ldots,E_n$, die unabhängig voneinander sind und jewe
     }
 \end{tikzpicture}
 \begin{question}
-    Was passiert wenn $n\gg 1$, d.h. wie viele Erfolge werden wir (ca.) unter diesen $n$ Ereignissen haben?
+    Was passiert, wenn $n\gg 1$, d.h. wie viele Erfolge werden wir (ca.) unter diesen $n$ Ereignissen haben?
 \end{question}
 Typischerweise haben wir dann $\mathcal{O}(pn)$ Erfolge in $E_1,\ldots,E_n$. Die Erfolgswahrscheinlichkeit $p$ hänge nun von  $n$ ab, d.h.  $p = p(n)$. Wir wollen den Erwartungswert  $p\cdot n$ festhalten und $n$ groß werden lassen, d.h. sei  $λ\in (0,\infty)$ so, dass 
 \[
     \lim_{n \to \infty} p(n)\cdot n = λ
 .\] 
-Wir können uns das ganze so vorstellen, dass wir in einem Zeitintervall von $1$ erwarten, dass $λ$ Ereignisse eintreten, und wir nun mit einem kleinen Zeitintervall $\delta = \frac{1}{n}$ für große $n$ das kontinuierliche Zeitintervall durch  $n$ unabhängige Ereignisse ersetzen, die jeweils mit Wahrscheinlichkeit  $\frac{λ}{n}$ eintreten, und uns nun fragen, wie wahrscheinliche es also ist, dass wir eine gewisse Anzahl an Ereignissen im Zeitintervall beobachten. \\
+Wir können uns das Ganze so vorstellen, dass wir in einem Zeitintervall von $1$ erwarten, dass $λ$ Ereignisse eintreten und wir nun mit einem kleinen Zeitintervall $\delta = \frac{1}{n}$ für große $n$ das kontinuierliche Zeitintervall durch  $n$ unabhängige Ereignisse ersetzen, die jeweils mit Wahrscheinlichkeit  $\frac{λ}{n}$ eintreten und uns nun fragen, wie wahrscheinlich es also ist, dass wir eine gewisse Anzahl an Ereignissen im Zeitintervall beobachten. \\
 \noindent\begin{tikzpicture}
     \draw[->] (0,1) --(8.5,1) node[anchor=west] {$k$ (Zeit)};
     \foreach \x in {1,...,8} {
@@ -307,10 +307,10 @@ Es stellt sich also
     ?
 \end{question}
 \begin{itemize}
-    \item Sei $p=p(n)$ sodass  $\lim_{n \to \infty} pn = λ \in (0,\infty)$
-    \item Wähle Zeiteinheit $\delta = \frac{1}{n}$ 
+    \item Sei $p=p(n)$ sodass  $\lim_{n \to \infty} pn = λ \in (0,\infty)$.
+    \item Wähle Zeiteinheit $\delta = \frac{1}{n}$.
 \end{itemize}
-Die Antwort gibt folgender
+Die Antwort gibt der folgende Satz.
 \begin{theorem}\label{thm:poisson-verteilung-als-limes-von-binomialverteilungen}
     Sei $λ\in (0,\infty)$. Dann ist
     \[
