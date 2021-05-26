@@ -1,27 +1,27 @@
 \lecture[$σ$-Algebren, Messräume. Wahrscheinlichkeitsverteilungen, Wahrscheinlichkeitsräume. Einschluss-Ausschluss-Prinzip. Endliche (diskrete) Wahrscheinlichkeitsräume.]{Mi 14 Apr 2021 10:17}{}
-Wir kennen nun die Grundbegriffe $\Omega, \mathcal{F}, \mathbb{P}$ zur Beschreibung von Zufallsexperimenten, die wir uns nun genauer ansehen wollen:
+Wir kennen nun die Grundbegriffe $\Omega, \mathcal{F}, \mathbb{P}$ zur Beschreibung von Zufallsexperimenten. Diese wollen wir uns nun genauer ansehen:
 \begin{question}
-    Welche Struktur muss $\mathcal{F}$ besitzen.
+    Welche Struktur muss $\mathcal{F}$ besitzen?
 \end{question}
-Sein $A,B\in \mathcal{F}$, dann können wir das Ereignis $A \cap B$ betrachten, d.h. beide der Eigeschaften treten ein. Genauso sollte
+Seien $A,B\in \mathcal{F}$. Dann kann man das Ereignis $A \cap B$ betrachten, also das beide der Eigeschaften eintreten. Genauso sollte
  \[
 A^{c} := \Omega \setminus A 
 .\] 
-, das \vocab{Komplement von $A$}, bzw. das \vocab{Gegenereignis} von $A$ ebenfalls in  $\mathcal{F}$  sein. Aus den beiden vorherigen Eigenschaften folgt bereits, dass
+, das \vocab{Komplement von $A$}, bzw. das \vocab{Gegenereignis} von $A$ ebenfalls in  $\mathcal{F}$  sein. Aus diesen beiden Eigenschaften folgt bereits, dass
 \[
     A \cup B= (A^{c} \cap B^{c})^{c}
 .\] 
-ebenfalls in $\mathcal{F}$ sein wird. \\
+ebenfalls in $\mathcal{F}$ sein muss. \\
 Eine Menge $\mathcal{F}$ mit solchen Eigenschaften heißt \vocab{Algebra}.
 \begin{dnotation}
-Seien nun $A,B$ und $(A_i)_{i\in I}$  Ereignisse, wobei $I$ endlich oder abzählbar sei. Dann notieren wir die folgenden Ereignisse:
+Seien nun $A,B$ und $(A_i)_{i\in I}$  Ereignisse, wobei $I$ endlich oder abzählbar ist. Dann notieren wir die folgenden Ereignisse wie folgt:
 \begin{enumerate}[label=\protect\circled{\alph*}]
     \item \emphasize{$A \cup B$} : $ω\in A \cup B \iff  ω\in A \lor ω\in B$, d.h. $A\cup B$ tritt ein, genau dann, wenn  $A$ eintritt oder  $B$ eintritt.
-        \item  \emphasize{$\bigcup_{i \in  I} A_i$}: $ω\in \bigcup_{i \in  I} A_i$, wenn es ein $i\in I$ gibt, sodass $\omega \in A_i$
+        \item  \emphasize{$\bigcup_{i \in  I} A_i$}: $ω\in \bigcup_{i \in  I} A_i$, wenn es ein $i\in I$ gibt, sodass $\omega \in A_i$ ist.
     \item  \emphasize{$A \cap B$}: $\omega\in A \cap B \iff  $ A \underline{und} B treten ein.
         \item \emphasize{$\bigcap_{i \in I} A_i$}: $\omega\in \bigcap_{i \in I}A_i \iff \forall i \in I \colon$ $A_i$ tritt ein.
-            \item \emphasize{$A = \emptyset$} ist das Ereignis, das  \underline{nie} eintritt. \\
-                \emphasize{$A = \Omega$} ist das Ereignis, dass \underline{immer} eintritt.
+            \item \emphasize{$A = \emptyset$} ist das Ereignis, welches  \underline{nie} eintritt. \\
+                \emphasize{$A = \Omega$} ist das Ereignis, welches \underline{immer} eintritt.
 \end{enumerate}
 \end{dnotation}
 
@@ -30,13 +30,13 @@ Seien nun $A,B$ und $(A_i)_{i\in I}$  Ereignisse, wobei $I$ endlich oder abzähl
     \begin{enumerate}[label=\protect\circled{\alph*}]
         \item $\Omega \in \mathcal{F}$
         \item $\forall A\in \mathcal{F} \colon A^{c}\in \mathcal{F}$.
-        \item Falls $(A_i)_{i \in I}\in \mathcal{F}$, dann auch $\bigcup_{i=1} ^{\infty}A_i \in \mathcal{F}$
+        \item Falls $(A_i)_{i \in I}\in \mathcal{F}$, dann auch $\bigcup_{i=1} ^{\infty}A_i \in \mathcal{F}$.
     \end{enumerate}
     Wir nennen $(\Omega,\mathcal{F})$ dann einen \vocab{Messraum}. 
 \end{definition}
 
 \begin{lemma}\label{lm:weitere-eigenschaften-einer-sigma-algebra}
-    Sei $\mathcal{F}$ eine $\sigma$-Algebra, dann ist:
+    Sei $\mathcal{F}$ eine $\sigma$-Algebra, dann gilt:
     \begin{enumerate}[label=\protect\circled{\alph*}]
         \item $\emptyset\in \mathcal{F}$
         \item $A,B \in \mathcal{F} \implies A \cup B \in \mathcal{F}$ und $A\cap B \in \mathcal{F}$.
@@ -51,7 +51,7 @@ Seien nun $A,B$ und $(A_i)_{i\in I}$  Ereignisse, wobei $I$ endlich oder abzähl
     \end{enumerate}
 \end{proof}
 
-Wir haben nun $(\Omega, \mathcal{F})$ näher untersucht, es fehlt nun noch $\mathbb{P}$. 
+Wir haben nun $(\Omega, \mathcal{F})$ näher untersucht, es fehlt noch $\mathbb{P}$. 
 \begin{question}
     Welche Eigenschaften soll $\mathbb{P}$ (das Wahrscheinlichkeitsmaß bzw. die Wahrscheinlichkeitsverteilung) besitzen?
 \end{question}
