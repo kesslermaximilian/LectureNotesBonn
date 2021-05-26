@@ -93,7 +93,7 @@ OBdA setzen wir $Z(0) = 0$. \\
 \end{question}
 \begin{enumerate}[\protect\circled{\alph*}]
     \item Typischerweise erhalten wir $\abs{Z(n)} =  O(\sqrt{n}) $ 
-    \item Wenn wir die Frequenz von $[Z(n)]_i$ betrachten, (d.h. bei welcher Koordinate in Richtung $i$ befinden wir uns nach  $n$ Würfen) sehen wir typischerweise: 
+    \item Wenn wir die Frequenz von $[Z(n)]_i$ betrachten, (also bei welcher Koordinate in Richtung $i$ befinden wir uns nach  $n$ Würfen) sehen wir typischerweise: 
         \begin{figure}[h]
             \centering
 \begin{tikzpicture}[
@@ -114,7 +114,7 @@ OBdA setzen wir $Z(0) = 0$. \\
 \end{tikzpicture}
 \caption{Binomialverteilung und Gaussglocke}
 \end{figure}
-Für $n\gg 1$ sieht diese Verteilung dann ungefähr wie die Gaussglocke aus. \\
+Diese Verteilung sieht für $n\gg 1$ ungefähr wie die Gaussglocke aus. \\
 \end{enumerate}
 \underline{Skalierung:} Wir setzen nun
 \[
@@ -126,7 +126,7 @@ Nun möchten wir Vorhersagen treffen können:
 \begin{question}
         Ist $Z(n)$ in einer gegebenen Menge  $A$?
 \end{question}
-Das kann man (im Allgemeinen) nicht einfach mit 'Ja' oder 'Nein' beantworten. Stattdessen müssen wir fragen:
+Das kann man (im Allgemeinen) nicht einfach mit 'Ja' oder 'Nein' beantworten. Stattdessen müssen wir folgende Frage stellen:
 \begin{question}
 Wenn man $Z(n)$ beobachtet, wie häufig wird  $Z(n)$ in  $A$ sein?
 \end{question}
@@ -135,26 +135,26 @@ Diese Frage lässt sich mit einer Zahl $\in [0,1]$ beantworten.
 \subsection{Ereignisse und Wahrscheinlichkeiten}
 Wir benötigen 3 Grundelemente:
 \begin{enumerate}[(1)]
-    \item Die Menge $\Omega$ von möglichen \vocab{Ergebnissen}. die Elemente von $\Omega$ heißen auch  \vocab{Elementarereignisse}.
-    \item Die Menge $\mathcal{F}$ der \vocab{Ereignisse}. Ein Ereignis  $E$ ist eine Eigenschaft, die mit einer Teilmenge $G\subset \Omega$ assoziiert ist: $ω\in G \iff $ Eigenschaft $E$ ist erfüllt.
+    \item Die Menge $\Omega$ von möglichen \vocab{Ergebnissen} - die Elemente von $\Omega$ heißen auch  \vocab{Elementarereignisse}.
+    \item Die Menge $\mathcal{F}$ der \vocab{Ereignisse} - ein Ereignis  $E$ ist eine Eigenschaft, die mit einer Teilmenge $G\subset \Omega$ assoziiert ist: $ω\in G \iff $ Eigenschaft $E$ ist erfüllt.
     \item Eine \vocab{Wahrscheinlichkeitsverteilung (auch W-maß)}:
         \[
             \mathbb{P}: \mathcal{F} \to  [0,1]
         .\] 
 \end{enumerate}
 \begin{remark*}
-    Wir werden noch sehen, dass gewisse Dinge für unsere Begriffe erfüllt sein müssen, dazu aber später mehr.
+    Wir werden noch sehen, dass gewisse Bedingungen für unsere Begriffe erfüllt sein müssen, dazu aber später mehr.
 \end{remark*}
 
 \begin{example}
     Eine Urne hat 12 nummerierte Kugeln (von 1 bis 12).
     \begin{enumerate}[(1)]
-        \item Das \vocab{Zufallsexperiment} besteht daraus, dass wir eine Kugel aus der Urne ziehen und die Zahl notieren, die wir sehen. D.h.
+        \item Das \vocab{Zufallsexperiment} besteht darin, eine Kugel aus der Urne zu ziehen und die Zahl zu notieren, die auf der jeweiligen Kugel steht, d.h.
             \[
             \Omega = \left \{1,\ldots,12\right\} 
             .\] 
-            Ein Elementarereignis ist nun z.B. gegeben durch $ω = \left \{5\right\}  \equiv 5$ (wir vereinfachen die Notation).
-        \item Mögliche Ereignisse sind z.B:
+            Ein Elementarereignis ist nun z.B. gegeben durch $ω = \left \{5\right\}  \equiv 5$ (Vereinfachung der Notation).
+        \item Mögliche Ereignisse sind beispielsweise:
             \begin{equation}
                 \begin{split}
                     A &= \text{'Die Zahl ist gerade'} \\
@@ -162,7 +162,7 @@ Wir benötigen 3 Grundelemente:
                     C &= \text{'Die Zahl ist 8'}
                 \end{split}
             \end{equation}
-            Die assoziierten Mengen sind dann
+            Die assoziierten Mengen sind damit
             \begin{equation}
                 \begin{split}
                     A &= \left \{2,4,6,8,10,12\right\}  \\
@@ -170,11 +170,11 @@ Wir benötigen 3 Grundelemente:
                       C & = \left \{8\right\} 
                 \end{split}
             \end{equation}
-        \item Für die Wahrscheinlichkeiten nehmen wir an, dass jede Kugel die gleiche Chance hat, gezogen zu werden, d.h.
+        \item Für die Wahrscheinlichkeiten wird angenommen, dass jede Kugel die gleiche Chance hat, gezogen zu werden, also
             \[
                 \forall G\in \mathcal{F}: \mathbb{P}(G) = \frac{\abs{G}}{\abs{\Omega} }
             .\] 
-            Wir erhalten nun die Wahrscheinlichkeiten
+            Nun erhält man damit die Wahrscheinlichkeiten
             \[
                 \mathbb{P}(A) = \frac{6}{12}=\frac{1}{2} \qquad \mathbb{P}(B) = \frac{5}{12} \qquad \mathbb{P}(C) = \frac{1}{12}
             .\] 
