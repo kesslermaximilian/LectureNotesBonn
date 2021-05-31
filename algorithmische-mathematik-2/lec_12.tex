@@ -1,0 +1,144 @@
+\lecture[]{Mo 31 Mai 2021 10:16}{Simulationsverfahren von Zufallsvariablen}
+\section{Simulationsverfahren und Monte Carlo Methode}
+\subsection{Simulation von Zufallsvariablen}
+    
+%In \autoref{sec:simualiton-von-gleichverteilung} haben wir bereits die Simulation der Gleichverteilung und der geometrischen Verteilung kennengelernt.
+\begin{definition}
+    \begin{enumerate}[label=\protect\circled{\alph*}]
+        \item $U$ ist eine  \underline{reellwertige} Zufallsvariable, falls 
+            \[
+                \left \{ω\in \Omega \mid  U(ω) \leq  x\right\}  \in \mathcal{F} \quad \forall x\in \R
+            .\] 
+        \item $U: \Omega\to [0,1]$ ist gleichverteilt auf $[0,1]$, falls
+             \[
+                 \mathbb{P}(U \leq  x) = x \qquad \forall x \in  [0,1]
+            .\] 
+    \end{enumerate}
+\item Eine Familie von rellwertigen Zufallsvariablen $\left \{U_k\right\} _{k\in I}$ heißen unabhängig, falls $\forall x_1x_2,\ldots,\in \R : \left \{U_k \leq  x_k\right\} _{k\in I}$ unabhängig sind.
+\end{definition}
+
+\begin{notation}
+    Wir schreiben hierfür $U \sim  U([0,1])$ oder auch $U \sim  \Unif([0,1])$
+\end{notation}
+
+\begin{itemize}
+    \item Sei $\mathcal{S} = \left \{a_1,a_2,\ldots\right\} $ ein diskreter Zustandsraum (d.h. abzählbar) und $μ$ eine Wahrscheinlichkeitsverteilung auf  $\mathcal{S}$ mit $p_k = \mu(a_k)$, also $\sum_{k=1}^{\infty} p_k = 1$. Setze nun $s_0 \coloneqq 0$, $s_n \coloneqq  \sum_{k=1}^n p_k$ für $n\geq 1$.
+\end{itemize}
+\begin{lemma}
+    Sei $U \sim  \Unif([0,1])$ uniform verteilt und $X(ω) \coloneqq  a_n$ falls $U(ω) \in  (s_{n-1},s_n]$. Dann ist $X \sim  \mu$.
+\end{lemma}
+\begin{proof}
+    Für $n\geq 1$ ist
+    \begin{IEEEeqnarray*}{rCl}
+        \mathbb{P}(X = a_n) &=& \mathbb{P}(s_{n-1} < U(ω) \leq  s_n) \\
+                            & = & \mathbb{P}(U(\omega \leq s_n)) - \mathbb{P}(U( ω\leq  s_{n-1})) \\
+                            & = & s_n - s_{n-1} \\
+                            & = & p_n
+    \end{IEEEeqnarray*}
+\end{proof}
+
+\begin{oral}
+    Wir können mit diesem Lemma theoretisch schon für beliebige diskrete Verteilungen einen enstprechenden Algorithmus schreiben, das ist aber unter Umständen äußerst unpraktikabel, wenn $\mathcal{S}$ sehr groß ist oder $μ$ keine tolle Form hat, wie wir gleich sehen werden:
+\end{oral}
+
+\begin{algorithm}[H]
+    \SetKwInput{KwInput}{Eingabe}
+    \SetKwInput{KwOutput}{Ausgabe}
+    \SetKwInput{KwLaufzeit}{Laufzeit}
+    \SetKw{KwGoTo}{go to}
+    \SetKwProg{Fn}{Def}{:}{}
+    \DontPrintSemicolon
+
+    \caption{Simulation von $μ$}
+    \KwInput{$p_1,p_2,\ldots$}
+    \KwOutput{Eine Zufallsvariable $X$ mit  $X \sim  \mu$}
+    \;
+    $n = 1$ \;
+    $s = p_1$ \;
+    erzeuge $u \sim  \Unif([0,1])$ \;
+    \While{$n>s$}{
+        $ n = n+1$ \;
+        $s = s + p_n$ \;
+    }
+    return $a_n$
+\end{algorithm}
+
+\begin{question}
+    Wie viele Schritte brauchen wir?
+\end{question}
+
+\[
+    \mathbb{E}(\# \text{'Schritte'}) = \sum_{n\geq 1} n\cdot p_n
+.\]
+\begin{oral}
+    Abgesehen von potentiell sehr langer Rechendauer, kommen hier auch noch numerische Ungenauigkeiten / Probleme vor.
+\end{oral}
+
+\subsection{Acceptance-Rejection-Verfahren}
+\begin{itemize}
+    \item Sei $μ$ eine Wahrscheinlichkeitsverteilung mit Massenfunktion $p$ und $\nu$ eine Wahrscheinlichkeitsverteilung mit Massenfunktion  $q$, wobei wir $\nu$ simulieren wollen.
+    \item Nehmen wir an, dass  $\exists c \in [1,\infty)$, sodass
+        \begin{IEEEeqnarray*}{RrCl}
+&            p(x) & \leq & c \cdot  q(x) \qquad \forall x\in \mathcal{S} \\
+            \iff  & 0 & \leq  & \frac{p(x)}{c\cdot q(x)} \qquad \forall x\in \mathcal{S}
+        \end{IEEEeqnarray*}
+\end{itemize}
+\begin{algorithm}[H]
+    \SetKwInput{KwInput}{Eingabe}
+    \SetKwInput{KwOutput}{Ausgabe}
+    \SetKwInput{KwLaufzeit}{Laufzeit}
+    \SetKw{KwGoTo}{go to}
+    \SetKwProg{Fn}{Def}{:}{}
+    \DontPrintSemicolon
+
+    \caption{}
+    \KwInput{$p(x),q(x)$ für  $x\in \mathcal{S}$, Konstante $c$}
+    \KwOutput{Zufallsvariable $X$ mit  $X \sim \mu$}
+    \;
+    repeat: \;
+    erzeuge $x \sim  \nu$ \;
+    erzeuge $u \sim  \Unif([0,1])$\;
+    until ($\frac{p(x)}{c\cdot q(x)}\geq u$ ) \;
+    return x.
+\end{algorithm}
+Wir nehmen also den Vorschlag $X = x$ mit der Wahrscheinlichkeit  $\frac{p(x)}{c\cdot q(x)}$ an.
+\begin{oral}
+    Die Erzeugung von $x\sim \nu$ ist im Algorithmus nicht genauer beschrieben. Der Algorithmus ist also nur dann (sinnvoll) anwendbar, wenn wir $x \sim  \nu$ mit einem anderen Algorithmus sinnvoll schnell erzeugen können. \\
+    Wir gehen ebenfalls davon aus, dass wir $u \sim  \Unif([0,1])$ mit einem Pseudo-Zufallsgenerator mit dem Computer erzeugen können.
+\end{oral}
+Seien $X_1,X_2,\ldots \sim  \nu$ die Vorschläge, die wir erhalten, und seien $U_1,U_2,\ldots \sim  \Unif([0,1])$ die uniformen Zufallsvariablen. Sei 
+ \[
+     T \coloneqq  \min \left \{n\geq 1 \mid  \frac{p(X_n)}{c\cdot q(X_n)} \geq  U_n\right\} 
+.\] 
+der erste Zeitpunkt, bei dem die entsprechende Ungleichung gilt, d.h. wenn wir unsere Schleife abbrechen. Also ist $X_{T}(ω) \coloneqq  X_{T(ω)}(ω)$ der Output unseres Algorithmus.
+\begin{theorem}
+    \begin{enumerate}[label=\protect\circled{\alph*}]
+        \item $X_{T} \sim  \mu$, dh. der Algorithmus ist korrekt.
+        \item $T-1\sim \Geo(\frac{1}{c})$, also $\mathbb{E}(T) = c$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Die Ereignisse
+    \[
+        A_n = \left \{\frac{p(X_n)}{c\cdot q(X_n)}\geq U_n\right\}  \qquad n = 1,2,\ldots
+    .\] 
+    sind unabhängig, also ist
+    \begin{IEEEeqnarray*}{rCl}
+        \mathbb{P}(T = n)& = &\mathbb{P}(A_1^{c} \cap  \ldots \cap  A_{n-1}^{c} \cap  A_n) \\
+                         & \stackrel{\text{unabhängig}}{=} & \mathbb{P}(A_1) \cdot (1-\mathbb{P}(A_1))^{n-1}
+    \end{IEEEeqnarray*}
+    Nun ist
+    \begin{IEEEeqnarray*}{rCl}
+        \mathbb{P}(A_1) & = & \sum_{a\in \mathcal{S}} \mathbb{P}(\left\{U_1 \leq \frac{p(a)}{c\cdot q(a)}\right\} \cap  \left \{X_1 = a\right\} ) \\
+                        & = & \sum_{a\in \mathcal{S}} \frac{p(a)}{c\cdot q(a)} \cdot  q(a) \\
+                         & = & \frac{1}{c}
+    \end{IEEEeqnarray*}
+    Also folgt bereits Teil \circled{b}. \\
+    Es ist
+    \begin{IEEEeqnarray*}{rCl}
+        \mathbb{P}(X_T) = a) & = & \sum_{n\geq 1} \mathbb{P}(X_T = a, T = n) \\
+                             & = & \sum_{n\geq 1} \mathbb{P}(A_1 ^{c} \cap  \ldots \cap  A_n \cap  \left \{X_n = a\right\} ) \\
+                             & = & \sum_{n\geq 1} \left(1-\frac{1}{c}\right)^{n-1} \frac{1}{c} q(a)
+    \end{IEEEeqnarray*}
+    
+\end{proof}
