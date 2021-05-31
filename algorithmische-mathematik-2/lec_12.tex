@@ -84,6 +84,7 @@
         \end{IEEEeqnarray*}
 \end{itemize}
 \begin{algorithm}[H]
+    \label{alg:acceptance-rejection}
     \SetKwInput{KwInput}{Eingabe}
     \SetKwInput{KwOutput}{Ausgabe}
     \SetKwInput{KwLaufzeit}{Laufzeit}
@@ -138,7 +139,124 @@ der erste Zeitpunkt, bei dem die entsprechende Ungleichung gilt, d.h. wenn wir u
     \begin{IEEEeqnarray*}{rCl}
         \mathbb{P}(X_T) = a) & = & \sum_{n\geq 1} \mathbb{P}(X_T = a, T = n) \\
                              & = & \sum_{n\geq 1} \mathbb{P}(A_1 ^{c} \cap  \ldots \cap  A_n \cap  \left \{X_n = a\right\} ) \\
-                             & = & \sum_{n\geq 1} \left(1-\frac{1}{c}\right)^{n-1} \frac{1}{c} q(a)
+                             & = & \sum_{n\geq 1} \left(1-\frac{1}{c}\right)^{n-1} \frac{p(a)}{c} \\
+                              & = & p(a)
     \end{IEEEeqnarray*}
-    
 \end{proof}
+\begin{example}
+    Sei $Y \sim  \nu = \Geo(q)$ geometrische verteilt.\\
+    \begin{itemize}
+        \item     In Kapitel 1.7.4 haben wir gesehen, dass wir $u \sim  \Unif([0,1])$ erzeugen, und dann
+    \[
+        Y = \left\lfloor   \frac{\ln (1-u)}{\ln (q)}\right\rfloor
+    .\] 
+    setzen können, um $Y$ zu simulieren, und dann eben  $\mathbb{P}(Y = k) = (1-q) q^k$ für $k = 0,1,\ldots$.
+\item
+    Sei $X \sim  \mu = \Poi(λ)$, d.h.
+    \[
+        \mathbb{p}(X = k) = \frac{e^{-λ}λ^k}{k!}
+    .\] 
+\item Sei
+     \[
+         \mathcal{R}(k) \coloneqq  \frac{e^{-λ}λ^k}{k!} \cdot  \frac{1}{(1-q)q^k}
+    .\] 
+\item Wähle $q = \frac{λ}{λ+1}$, denn dann ist $λ = \frac{q}{1-q}$, und die beiden Verteilungen erhalten den gleichen Mittelwert, also ist
+    \[
+        \mathcal{R}(k) = \frac{e^{-λ} (λ+1)^{k+1}}{k!}
+    .\] 
+    \end{itemize}
+    Wegen
+    \[
+        \mathcal{R}(k+1) - \mathcal{R}(k) = \mathcal{R}(k) \left( \frac{1+λ}{1+k}-1 \right) \begin{cases}
+            >0 & k < λ \\
+            < 0 & k > λ
+        \end{cases}
+    .\] 
+    \missingfigure{Veranschaulichung des maximalen $k$}
+    erhalten wir
+    \[
+        \max_{k\geq 0} \mathcal{R}(k) \leq  \frac{e^{-λ}(1+λ)^{\left\lfloor λ \right\rfloor +1}}{\left\lfloor λ \right\rfloor !} =:c
+    .\] 
+    Wir können nun also $\Poi(λ)$ mit Algorithums \autoref{alg:acceptance-rejection} simulieren, weil wir ein entsprechendes  $c$ gefunden haben.
+\end{example}
+
+\subsection{Monte-Carlo-Verfahren}
+\begin{goal}
+    es ist
+    \[
+        \mathbb{P}_{μ}(f) \coloneqq  \sum_{x\in \mathcal{S}} f(x) \mu(x)
+        \tag{1}
+    .\] 
+    für $\abs{S} \gg 1$ zu berechnen.
+\end{goal}
+\begin{strategy}
+    Man simuliert eine Folge von Zufallsvariablen oder eine Markovkette mit $μ = μP$.
+\end{strategy}
+\begin{example}
+    Sei $\mathcal{S} = \left \{-1,+1\right\} ^{100}$, also $\abs{\mathcal{S}} =2^{100}\approx 10^{30}$. Das könnte z.B. dann der Fall sein, wenn wir bei einem $10\times 10$-Gitter in jedem Punkt eine Markierung haben oder nicht.
+\begin{oral}
+    Wenn wir nun den Erwartungswert einer Funktion über diesem Zustandsraum berechnen wollen, so ergeben sich Probleme, da wir einerseits absurd viele Summanden haben, aber auch numerische, denn $μ$ ist für jeden einzelnen Zustand verschwindend klein. Unsere Formel (1) stimmt also, wir haben aber keine Chance, diese auszurechnen.
+\end{oral}
+\end{example}
+
+\begin{itemize}
+    \item Sei $\mathcal{S}$ abzählbar und $μ$ eine Wahrscheinlichkeitsverteilung auf  $\mathcal{S}$.
+    \item Sei $f$ eine Funktion  $\mathcal{S} \to  \R$, sodass 
+        \[
+            \mathbb{E}_{μ}(f^2) = \sum_{x\in \mathcal{S}} (f(x))^2 \mu(x) < \infty
+        .\] 
+\end{itemize}
+Wir wollen z.B. $\theta \coloneqq  \mathbb{E}_{\mu}(f)$ bestimmen. Als Schätzung definieren wir
+\[
+    \theta_n \coloneqq  \frac{1}{n}\sum_{k=1}^n f (X_k)
+.\] 
+wobei $X_1$, $X_2$,\ldots Zufallsvariablen mit Verteilung $μ$ sind. Falls $X_1,X_2, \ldots$ unabhängig:
+\begin{theorem}
+    $\forall ε>0$ ist $\mathbb{P}(\abs{\theta_n - \theta} \geq  ε ) \leq  $ 
+    \[
+        \leq  \frac{\Var_{μ}(f^2)}{nε^2} \leq  \frac{\mathbb{E}_{μ}(f^2)}{nε^2} \to  0
+    .\] 
+\end{theorem}
+\begin{proof}
+    Tchebishev Ungleichung, siehe Gesetz der großen Zahlen.
+\end{proof}
+\begin{example}
+    \begin{enumerate}[label=\protect\circled{\arabic*}]
+        \item Schätzung von $\theta = \int_0^1 f(x) \dx$.
+            \begin{itemize}
+                \item Seien $u_1,u_2,\ldots \sim  \Unif([0,1])$, dann setze
+                    \[
+                        \theta_n \coloneqq  \frac{1}{n} \sum_{k=1}^n f(u_k)
+                    .\] 
+                    und diese ist eine Schätzung des entsprechenden Integrals mit
+                    \[
+                        \sqrt{\mathbb{E}(\abs{\theta_n - \theta}^2 }  = O\left( \frac{1}{n} \right) 
+                    .\] 
+            \end{itemize}
+        \item Schätzung einer Wahrscheinlichkeitsverteilung. 
+            \begin{itemize}
+                \item Sei $\mathcal{S}$ ein diskreter Zustandsraum und $B\subset \mathcal{S}$. Gesucht ist $p\coloneqq  \mu(B)$ (unbekannt).
+                \item Es ist $\mu(B) = \mathbb{E}_{μ}(\One_B)$, also setze
+                    \[
+                        p_n \coloneqq  \frac{1}{n} \sum_{k=1}^n \One_B (X_k)
+                    .\] 
+                    wobei $X_1,X_2,\ldots \sim  \mu$ (unabhängige) Zufallsvariablen sind und erhalte damit eine Näherung.
+                    \begin{question}
+                        Wie gut ist diese Annäherung?
+                    \end{question}
+                    \[
+                        \mathbb{P}(\abs{p_n-p} \geq ε) \leq  \frac{1}{ε^2} \Var(p_n) = \frac{1}{nε^2}\Var(\One_B) = \frac{p(1-p)}{nε^2} \leq  \frac{1}{4nε^2}
+                    .\] 
+            \end{itemize}
+            Gegeben $ε$ wählen wir  $n$ also groß genug, sodass  $\frac{1}{4nε^2}\leq$ angegebene Fehlerschranke.
+            \begin{oral}
+                Wir können nun, wenn wir $p \coloneqq  \mu(B)$ bestimmen wollen, also für ein gewünschtes $ε$ ein geeignetes  $n$ wählen, sodass wir  $p$ approximieren und mit höchstens der gewünschten Wahrscheinlichkeit um mindestens  $ε$ von der echten Wahrscheinlichkeit abweichen.
+            \end{oral}
+    \end{enumerate}
+\end{example}
+
+
+
+
+
+
