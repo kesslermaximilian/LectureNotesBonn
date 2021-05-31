@@ -1,0 +1,190 @@
+\lecture[]{Mo 17 Mai 2021 10:15}{}
+
+\subsubsection{Abschätzung von Abweichungen}
+Seien $X_1,X_2,\ldots,X_n\sim \Ber(p)$ unabhängige Zufallsvariablen. wobei $p\neq 0,1$. Dann ist $\mathcal{S}_n \coloneqq  X_1 + \ldots + X_n \sim  \Bin(n,p)$. Bekannt ist für uns bereits
+       \[
+            \mathbb{E}\left( \frac{\mathcal{S}_n}{n} \right) = p, \Var\left( \frac{\mathcal{S}_n}{n} \right) = \frac{1}{n^2} \Var(\mathcal{S}_n) = \frac{np(1-p)}{n^2} = \frac{p(1-p)}{n}
+        .\] 
+        \missingfigure{Binomialverteilung für große $n$}
+\begin{question}
+    Was ist $\mathbb{P}\left( \abs{\frac{\mathcal{S}_n}{n} -p}\geq ε \right) $, bzw ist das $\leq  ?$ für $n\gg 1$.
+\end{question}
+\begin{theorem}[Ungleichung von Tchebishev]
+    Sei $X$ eine Zufallsvariable auf  $(\Omega,\mathcal{F},\mathbb{P})$. Dann gilt $\forall  ε>0$:
+    \[
+        \mathbb{P}\left( \abs{X - \mathbb{E}(X)} \geq ε \right) \leq  \frac{\Var(X)}{ε^2}
+    .\] 
+\end{theorem}
+\begin{proof}
+    Wir stellen fest, dass beide Seiten unabhängig vom Milltwert sind, also können wir $\mathbb{E}(X) = 0$ voraussetzen, indem wir $Y\coloneqq  X - \mathbb{E}(X)$ als Zufallsvariable betrachten. Wir überlegen uns nun:
+    \begin{IEEEeqnarray*}{rCl}
+        \mathbb{P}(\abs{X} \geq ε) &=& \mathbb{E}\left( \One_{\abs{X} \geq  ε } \right)  \\
+                                   & \stackrel{\leq}{(1)}  & \mathbb{E}\left( \One_{\abs{X} \geq  ε } \frac{X^2}{ε^2}\right) \\
+                                   & \leq  & \frac{\mathbb{E}(X^2)}{ε^2} \\
+                                   & = & \frac{\Var(X)}{ε^2}
+    \end{IEEEeqnarray*}
+    Man beachte, dass wir hier bei (1) einfach benutzen, dass $1 \leq  \frac{X^2}{ε^2}$, denn $\abs{X} \geq  ε $.
+\end{proof}
+Wir lernen nun eine Verallgemeinerung kennen:
+\begin{lemma}\label{lm:markov-ungleichung-allgemeiner}
+    Sei $X$ enie Zufallsvariable,  $f: \R \to  \R_{+}$ eine \emphasize{monoton wachsende} Zufallsvariable. Dann ist
+    \[
+        \mathbb{P}(X \geq  a) \leq  \frac{\mathbb{E}(f(X))}{f(a)} \qquad \forall a\in \R
+    .\] 
+\end{lemma}
+
+\begin{proof}
+    Völlig analog:
+    \begin{IEEEeqnarray*}{rCl}
+        \mathbb{P}(X \geq a) &=& \mathbb{E}(\One_{X\geq a}) \\
+                             & \leq  & \mathbb{E}\left( \One_{X\geq a} \frac{f(X)}{f(a)} \right) \\
+                             & \leq  & \frac{1}{f(a)} \mathbb{E}(f(X))
+    \end{IEEEeqnarray*}
+\end{proof}
+
+\begin{example}
+    Wir erhalten zum Beispiel die \vocab{Markov-Ungleichung}:
+    \[
+        \mathbb{P}(\abs{X} \geq ε) \leq  \frac{\mathbb{E}(\abs{X}) }{ε}
+    .\] 
+\end{example}
+
+\begin{corollary}
+    Sei $X$ eine Zufallsvariable auf  $(\Omega,\mathcal{F},\mathbb{P})$. Dann ist
+    \[
+        \mathbb{P}(X \geq  a) \leq  \inf_{λ\geq 0} e^{-λa} \mathbb{E}(e^{λx})
+    .\] 
+\end{corollary}
+
+\begin{proof}
+    Verwende das Lemma mit $f(x) = e^{λx}$ für alle $λ\geq 0$, dann sind wir schon fertig.
+\end{proof}
+
+\begin{theorem}
+    Betrachte wieder das Setting zu Beginn des Kapitels. Für alle $ε>0$ ist
+     \[
+         \mathbb{P}\left( \frac{\mathcal{S}_n}{n}\geq p + ε \right) \leq e^{-cε^2n}
+    .\] 
+    und
+    \[
+        \mathbb{P}\left( \frac{\mathcal{S}_n}{n}\leq p-ε \right) \leq  e^{-cε^2n}
+    .\] 
+    für ein $0<c = c(p)$, das nur von  $p$ abhängt. Also ist
+     \[
+         \mathbb{P}\left( \abs{\frac{\mathcal{S}_n}{n}-p} \geq  ε  \right)  \leq  2\cdot e^{-cε^2n}
+    .\] 
+\end{theorem}
+\begin{remark}
+    Man kann $c= 2$ zeigen.
+\end{remark}
+    Die Abschätzung konvergiert gegen $0$ exponentiell schnell in  $n$ für  $n\to \infty$.
+Wäs würden wir mit Tchebishev erhalten?
+\[
+    \mathbb{P}\left( \abs{\frac{\mathcal{S}_n}{n}-p} \geq ε \right)  \leq  \frac{1}{ε^2} \Var\left( \frac{\mathcal{S}_n}{n} \right)  = \frac{p(1-p)}{n\cdot ε^2}
+.\] 
+Das geht auch gegen $0$, aber eben nicht exponentiell (sondern nur quadratisch / polynomiell), also nicht wirklich schnell.
+\begin{remark}
+    Es gilt sogar
+    \[
+        \mathbb{P}\left( \abs{\frac{\mathcal{S}_n}{n}-p} \geq \frac{X}{\sqrt{n} } \right) \to 2\cdot \frac{1}{2 \pi \gamma^2} \int_{x}^{\infty} e^{-y^2 / (2σ^2)} \dy
+    .\] 
+    aber das soll nicht Teil dieser Vorlesung sein.
+\end{remark}
+\begin{proof}
+    Stellen wir zunächst fest, dass wir mit $X \coloneqq  \frac{\mathcal{S}_n}{n}-p$
+    \begin{IEEEeqnarray*}{rCl}
+        \mathbb{P}\left( \frac{\mathcal{S}_n}{n}\geq p + ε \right)  &=& \mathbb{P}(X \geq  ε)  \\
+                                                                    & \leq  & \inf_{λ>0} e^{-λε} \mathbb{E}\left( e^{λ\left( \frac{\mathcal{S}_n}{n}-p \right) } \right) \\
+                                                                    & \stackrel{λ\coloneqq  μn}{=}& \inf_{μ> 0} e^{-μn(p+ε)} \underbrace{\mathbb{E}(e^{μ\mathcal{S}_n})}_{= \psi (e^{μ})} \\
+    \end{IEEEeqnarray*}
+    Setzen wir nun $\psi (z) = \sum_{k=0}^n \binom{n}{k} p^k (1-p)^{n-k}z^k = (p\cdot z + 1-p)^n$, so erhalten wir weiter:
+    \begin{IEEEeqnarray*}{rCl}
+        \mathbb{P}\left( \frac{\mathcal{S}_n}{n}\geq p+ε \right)         & = & \inf_{μ>0} e^{-n [\underbrace{μ(p+ε) - \ln [p e^{μ} + 1-p]}_{\coloneqq  I(μ,p)}]} 
+    \end{IEEEeqnarray*}
+    Wir untersuchen nun $I(μ,p)$ weiter:
+     \begin{itemize}
+         \item $I(0,p) = 0$
+         \item  $\frac{d}{d\mu}I(μ,p) = p + ε - \frac{pe^{μ}}{1-p + p e^{μ}}$ und diese ist 0 genau dann, wenn $e ^{ μ} = \frac{(1-p) (p+ε)}{p(1-p-ε)} =: e^{μ^*}$ 
+         \item Es ist
+                 \begin{IEEEeqnarray*}{rCl}
+                     I(μ^*,p) &=& (p+ε) \ln \left( \frac{p+ε}{p} \right)  + (1-p-ε) \ln \left( \frac{1-p-ε}{} \right) \\
+                              & \stackrel{\text{Taylor}}{=} & \frac{ε^2}{2p(1-p)} + O(ε^3)
+                 \end{IEEEeqnarray*}
+                 Also erhalten wir für kleine $ε$ und  $p\in (0,1)$, dass 
+                 \[
+                     I(μ^*,p) \geq  2 ε^2 + O(ε^3) \geq  ε^2
+                 .\] 
+                 und damit
+                 \[
+                     \mathbb{P}\left( \frac{\mathcal{S}_n}{n}\geq p+ ε \right) \leq  e^{-nε^2}
+                 .\] 
+                 Setze nun $X = -\frac{\mathcal{S}_n}{n}+p$, dann erhalten wir direkt die zweite Abschätzung, die ir zeigen wollten.
+    \end{itemize}
+\end{proof}
+\todo{Details des Beweises aufschreiben.}
+\begin{remark}
+    Wir hätten das ganze auch so schreiben können:
+    \begin{IEEEeqnarray*}{rCl}
+        \mathbb{E}(e^{μ\mathcal{S}_n}) &=& \mathbb{E}(e^{μX_1}\cdot \ldots\cdot e^{μX_n})\\
+                                       &\stackrel{zz.}{=} & \prod_{k=1}^n \mathbb{E}(e^{μX_k})
+    \end{IEEEeqnarray*}
+\end{remark}
+
+\begin{lemma}
+    Seien $X_1: \Omega\to \mathcal{S}_1$, $X_2\colon  \Omega\to \mathcal{S}_2$ zwei Zufallsvariablen auf $(\Omega,\mathcal{F},\mathbb{P})$. Falls $X_1$ und $X_2$ unabhängig sind, so sind für alle $f_1 \colon  \mathcal{S} \to  \R$ und $f_2\colon \mathcal{S}2\to \R$ auch $f_1(X_1)$ und $f_2(X_2)$ zwei unabhängige Zufallsvariablen.
+\end{lemma}
+
+\begin{proof}
+    \begin{IEEEeqnarray*}{rCl}
+        \mathbb{P}(f_1(X_1) = a_1, f_2(X_2) = a_2) & = & \mathbb{P}(X_1 \in f_1^{-1}(a_1), X_2\in f_2^{-1}(a_2)) \\
+                                                   & \stackrel{X_1, X_2 \text{ unabhängig}}{=} & \mathbb{P}(X_1 \in f_1^{-1}(a_1)) \cdot  \mathbb{P}(X_2\in f_2^{-1}(a_2)) \\
+                                                   & = & \mathbb{P}(f_1(X_1) = a_1)\cdot \mathbb{P}(f_2(X_2) = a_2)
+    \end{IEEEeqnarray*}
+    
+\end{proof}
+\subsubsection{Das schwache Gesetz der großen Zahlen}
+Seien $X_1$,$X_2$,\ldots Ergebnisse von Experimenten mit $X_k \sim μ$ für jedes $k$. Setze
+\[
+    M_n(\omega) \coloneqq  \frac{1}{n} \sum_{k=1}^n X_k(\omega)
+.\] 
+als den empirischen Mittelwert.
+\begin{question}
+    Unter welchen Bedingungen gilt für große $n$, dass  $M_n - \mathbb{E}(M_n)$ klein ist?
+\end{question}
+Extremfälle:
+\begin{enumerate}[label=\protect\circled{\alph*}]
+    \item Sei $X_1 = X_2 = X_3 = \ldots$ für alle $ω$. Dann ist  $M_n - \mathbb{E}(M_n) = X_1 - \mathbb{E}(X_1)$, und das geht nicht gegen 0.
+    \item Falls die Zufallsvariablen paarweise unabhängig (aber gleich verteilt) sind, so erhalten wir
+        \[
+            \mathbb{P}\left( \abs{M_n - \mathbb{E}(M_n)}\geq ε  \right)  \leq  \frac{\Var(X_1)}{nε^2} \to 0
+        .\] 
+\end{enumerate}
+Ein allgemeineres Resultat bietet uns:
+
+\begin{theorem}[Schwaches Gesetz der großen Zahlen]\label{thm:schwaches-gesetz-der-großen-zahlen}
+    Seien $X_1,X_2,\ldots$ Zufallsvariablen auf $(\Omega,\mathcal{F},\mathbb{P})$ mit $\mathbb{E}(X_k^2)<\infty$ für alle $k$, sodass
+    \begin{enumerate}[label=\protect\circled{\alph*}]
+        \item $\Cov(X_k,X_l) = 0$ für  $k\neq l$
+        \item $\nu \coloneqq  \sup_{k\geq 1} \Var(X_k) < \infty$
+    \end{enumerate}
+    Sei $M_n = X_1 + \ldots + X_n$, so ist für jedes $ε>0$:
+     \[
+         \mathbb{P}\left( \abs{\frac{\mathcal{M}_n}{n} - \frac{\mathbb{E}(\mathcal{M}_n)}{n}}\geq ε  \right)  \leq  \frac{\nu}{ε^2n} \to  0
+    .\] 
+\end{theorem}
+\begin{dnotation}
+    Wir schreiben auch $X_k \in  \mathcal{L}^2(\Omega,\mathcal{F},\mathbb{P})$ für $\mathbb{E}(X_k)^2 < \infty$.
+\end{dnotation}
+\begin{proof}
+    Mit Tchebishev erhalten wir, dass 
+    \begin{IEEEeqnarray*}{rCl}
+        \lhs &\leq&  \frac{\Var(M_n)}{ε^2n^2} \\
+             & \stackrel{lemma 20}{=} &\frac{\Var(X_1) + \ldots + \Var(X_n)}{ε^2n^2} \\
+             & \leq  & \frac{ν}{e^2n}
+    \end{IEEEeqnarray*}
+\end{proof}
+
+\todo{Namen und label für Sätze hinzufügen}
+
+
+
