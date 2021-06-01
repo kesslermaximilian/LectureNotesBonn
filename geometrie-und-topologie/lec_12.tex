@@ -316,6 +316,20 @@ Zur Erklärung des Diagramms: In rot und blau die beiden Kegel $\lim X$ und  $Y$
 \begin{oral}
     Limiten sind eindeutig, wenn sie existieren (bis auf eindeutigen Isomorphismus)
 \end{oral}
+\begin{proof*}
+    Das ganze ist ein 'Standard'-Beweis für Objekte mit universeller Eigenschaft. Seien $Y, Y'$ beides Limiten über  $X \colon  \cat{I} \to  \cat{C}$, wir werden zeigen, dass diese isomorph mit eindeutigem Isomorphismus sind. Nach universeller Eigenschaft existiert zunächst eine (eindeutige) Abbildung $g\colon  Y \to  Y'$ in der Kegelkategorie, sodass das Diagramm
+    \[
+    \begin{tikzcd}
+        & {\color{blue}Y}\ar[bend right = 10, blue, swap]{ddl}{h_1} \ar[blue, bend left = 10]{ddr}{h_2} \ar[violet, dashed, "g" description]{d}  \\
+        & {\color{red}Y'} \ar[red,swap]{dl}{s_1} \ar[red]{dr}{s_2} \ar[dashed, "s_0" description, near start, red]{dd}\\
+        X_1 \ar[swap]{dr}{f_1} & & X_2\ar{dl}{f_2} \\
+         & X_0
+    \end{tikzcd}
+\]
+kommutiert. Analog finden wir jedoch $f\colon  Y' \to  Y$ als Morphismus in der Kegelkategorie, denn $Y$ ist ja ebenfalls ein Limes und  $Y'$ ist ein Kegel. Nun ist  $f \circ  g \colon  Y \to  Y$ eine Abbildung von $Y$ (ein Kegel) nach  $Y$ (der Limes) in der Kegelkategorie. Allerdings ist solch eine Abbildung eindeutig bestimmt (Definition des Terminalobjekts), und wir wissen auch, dass offensichtlich die Identitätsabbildung  $\id : Y \to  Y$ ein Morphismus ist, der ebenfalls zur Kegelkategorie gehört. Also muss bereits $f \circ  g = \id_Y$ gelten. Völlig analog zeigt man $g \circ  f = \id_{Y'}$, und damit sind $g$ bzw.  $f$ die geforderten Isomorphismen. \\
+Für die Eindeutigkeit von  $f,g$ reicht es zu bemerken, dass ja bereits die Abbildung $g\colon Y\to Y'$ eindeutig bestimmt war, also kann es erst recht keine weiteren Isomorphismen geben.
+\end{proof*}
+
 
 \begin{example}
     \begin{enumerate}[1)]
@@ -360,12 +374,27 @@ Zur Erklärung des Diagramms: In rot und blau die beiden Kegel $\lim X$ und  $Y$
 \end{example}
 
 \begin{definition}[Kokegelkategorie]\label{def:kokegelkategorie}
-    Analog zur Kegelkategorie $\cat{C} / X$ gibt es die Kokegelkategorie $X / \cat{C}$ (sprich: '$\cat{C}$ unter $X$') mit Objekten  $(Y, f_i)$, wobei  $f_i \colon  X_i \to  Y$\ldots
+    Die Definition ist völlig analog zu der des Kegels, nur dass wir die Richtungen der Morphismen umdrehen:
+
+
+    Ein \vocab{Kokegel} über $X\colon  \cat{I} \to  \cat{C}$ ist ein Paar $(Y, \left \{f_i\right\} _{i\in \cat{I}})$, sodass $f_i \in  \Mor_{\cat{C}}(X_i, Y)$ (die Morphismen gehen jetzt in die andere Richtung) und für jeden Morphismus $h\in \Mor_{\cat{I}}(i,j)$ das entsprechende Diagramm
+    \[
+    \begin{tikzcd}
+        X_i \ar{rr}{X(h)} \ar[swap]{dr}{f_i} & & X_j \ar{dl}{f_j} \\
+         & Y
+    \end{tikzcd}
+    .\] 
+    kommutiert. Die Kokegelkategoriebesteht $X / \cat{C}$ (sprich: '$\cat{C}$ unter $X$') besteht nun aus allen Kokegeln, wobei ein Morphismus $(Y, \left \{f_i\right\} ) \to  (Y', \left \{f_i'\right\} )$ gegeben ist durch $g\in \Mor_{\cat{C}}(Y,Y')$, sodass für alle $i\in \Ob(\cat{I})$ folgendes kommutiert:
+    \[
+        \begin{tikzcd}
+    & X_i \ar[swap]{dl}{f_i} \ar{dr}{f_j} \\
+            Y \ar[swap]{rr}{g}& & Y'
+        \end{tikzcd}
+    .\] 
 \end{definition}
-\todo{Definition ausschreiben}
 
 \begin{definition}[Kolimes]\label{def:kolimes}
-    Ein \vocab{Kolimes} von $X\colon \cat{I} \to  \cat{C}$ ist ein initiales objekt in $X / \cat{C}$ 
+Ein \vocab{Kolimes} ist ein Initialobjekt in der Kokegelkategorie $X / \cat{C}$. 
 \end{definition}
 
 \begin{warning}
@@ -375,6 +404,12 @@ Zur Erklärung des Diagramms: In rot und blau die beiden Kegel $\lim X$ und  $Y$
 \begin{oral}
     Auch das Konzept des Kolimes kann man wieder auf das des Limes zurückführen, indem wir die duale Kategorie einführen.
 \end{oral}
+
+\begin{lemma**}[Kolimes als Limes in der Dualkategorie]
+    TODO
+\end{lemma**}
+
+
 \todo{ausarbeiten}
 
 \begin{example}
