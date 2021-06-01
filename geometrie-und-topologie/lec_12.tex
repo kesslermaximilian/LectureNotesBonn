@@ -1,6 +1,6 @@
 %! TEX root = ./master.tex
 \lecture[]{Di 01 Jun 2021 12:15}{}
-\begin{definition}[kontravarianter Funktor]{def:kontravarianter-funktor}
+\begin{definition}[kontravarianter Funktor]\label{def:kontravarianter-funktor}
    Ein \vocab{kontravarianter} Funktor $\mathcal{F} : \cat{C} \to  \cat{D}$ besteht aus
    \begin{itemize}
        \item einer Abbildung $\mathcal{F}: \Ob(\mathcal{C}) \to  \Ob(\cat{D})$
@@ -18,21 +18,45 @@
             ()^* : \left| \begin{array}{c c l} 
         \Vect_{\R} & \longrightarrow & \Vect_{\R} \\
         V & \longmapsto &  V^*=\Hom_{\R}(V,\R) \\
-        f: V\colon  \to  W & \longmapsto & f^*
+        f\colon  V \to  W & \longmapsto & 
+            f^*: \left| \begin{array}{c c l} 
+            W^*  & \longrightarrow & V^* \\
+            W\stackrel{g}{\to} \R & \longmapsto	 & V \stackrel{f}{\to }W \stackrel{g}{\to } \R \\
+            g & \longmapsto & g \circ f
+        \end{array} \right.
+        
         \end{array} \right.
     \end{equation*}
 \end{example}
+
+\begin{remark*}
+   Natürlich ist hier an $\R$ nichts besonders, das geht mit jedem Körper $K$. 
+\end{remark*}
 
 \begin{definition}[Dualkategorie]\label{def:dualkategorie}
     Ist $\cat{C}$ eine Kategorie, so ist $\mathcal{C}^{\op}$ die Kategorie mit $\Ob(\mathcal{C}^{\op}) = \Ob(\cat{C})$, sowie $\Mor_{\cat{C}^{\op}}(X,Y) \coloneqq \Mor_{\cat{C}}(Y,X)$, und 'denselben' Verknüpfungen.
 \end{definition}
 
+\begin{remark*}
+    'Dieselben' Verknüpfungen, d.h für $X,Y,Z \in  \Ob(\cat{C}^{\op}) = \Ob(\cat{C})$ definieren wir:
+        \begin{equation*}
+        \circ _{\cat{C}^{\op}}: \left| \begin{array}{c c l} 
+            \Mor_{\cat{C}^{\op}}(X,Y) \times  \Mor_{\cat{C}^{\op}}(Y,Z) & \longrightarrow & \Mor_{\cat{C}^{\op}}(X,Z) \\
+            (f,g) & \longmapsto &  f \circ _{\cat{C}} g
+        \end{array} \right.
+    \end{equation*}
+    indem wir uns erinnern, dass $f \in \Mor_{\cat{C}}(Y,X)$ und $g\in \Mor_{\cat{C}}(Z,Y)$
+\end{remark*}
+
 \begin{lemma}\label{lm:kovariante-funktoren-sind-funktoren-von-der-dualen-kategorie}
     Ein kontravarianter Funktor $\mathcal{F}\colon \cat{C} \to  \cat{D}$ ist ein (kovarianter) Funktor $\mathcal{F}\colon  \cat{C}^{\op} \to  \cat{D}$.
 \end{lemma}
+\begin{proof*}
+    Nur Definitionen ausschreiben, wirklich nichts spannendes, sollte man aber einmal machen als Übung.
+\end{proof*}
 
 \begin{example}
-$\Vect_{\R}^{\op} \stackrel{(\cdot )^*}{\longrightarrow} \Vect_{\R}$ als kovarianter Funktor des vorherigen Beispiels.
+$\Vect_{\R}^{\op} \stackrel{(\cdot )^*}{\longrightarrow} \Vect_{\R}$ als kovarianter Funktor, analog zu vorherigem Beispiel.
 \end{example}
 
 \begin{example}
@@ -85,7 +109,7 @@ $\Vect_{\R}^{\op} \stackrel{(\cdot )^*}{\longrightarrow} \Vect_{\R}$ als kovaria
         \end{array} \right.
         \end{array} \right.
     \end{equation*}
-    Wir müssen prüfen, dass folgendes Diagramm für eine lineare Abbildung $f\colon  V \to  W$ kommutiert.
+    Wir müssen prüfen, dass folgendes Diagramm für jede lineare Abbildung $f\colon  V \to  W$ kommutiert.
     \[
     \begin{tikzcd}
         V \ar[swap]{d}{t_V} \ar{r}{f} & W \ar{d}{t_W}\\
@@ -96,23 +120,37 @@ $\Vect_{\R}^{\op} \stackrel{(\cdot )^*}{\longrightarrow} \Vect_{\R}$ als kovaria
      \[
     \begin{tikzcd}
         v \ar[swap]{d}{} \ar{r}{} & f(v) \ar{d}{}\\
-        \ev_v \ar[swap]{r}{} & TODO
+        \ev_v \ar[swap]{r}{} & {\ev_v^*}^* = \ev_{f(v)}
     \end{tikzcd}
     \]
-    
+    Um zu sehen, dass die beiden Abbildungen, die wir rechts unten erhalten, gleich sind, sollte man sich kurz klarmachen, dass es sich dabei um Elemente aus ${W^*}^* = \Hom{W^*, \R}$ handelt, also können wir zeigen, dass die Abbildungen gleich sind, indem wir ein Element $g\in W^* = \Hom(W,\R)$ einsetzen, und die gleiche reelle Zahl erhalten. Dazu ist erstmal:
+    \[
+        \ev_{f(v)} (g) \stackrel{\text{Def. von $\ev$}}{=} g(f(v)) = (g \circ  f) (v)
+    .\] 
+sofort nach Definition. Die andere Rechnung ist etwas langwieriger, aber nur direktes Definitionen-Einsetzen:
+\begin{IEEEeqnarray*}{rCl}
+    {\ev_{v}^*}^* (g) & = & ((f^*)^*(\ev_v)) (g) \\
+                      & \stackrel{a^*(b) = b \circ  a}{=} & ( \ev_v \circ  f^*) (g) \\
+                      & = & \ev_v (f^*(g)) \\
+                      & \stackrel{a^o(b) = b \circ  a}{=} & \ev_v(g \circ  f) \\
+                      & \stackrel{\text{Def. von $\ev$}}{=} &(g \circ  f) (v)
+\end{IEEEeqnarray*}
+und damit erhalten wir die gleiche reelle Zahl, also schlussendlich $(\ev_v^*)^* = \ev_{f(v)}$ wie gewünscht, das Diagramm kommutiert und in der Tat handelt es sich bei $t$ um eine natürliche Transformation  $\id_{\Vect_{\R}} \to  {()^*}^*$
 \end{example}
-    \todo{Natürlichkeit im Diagramm prüfen}
 
     \begin{example}
         Betrachte die Kategorie der endlich-dimensionalen Untervektorräume von $\R^{\infty}$ mit ihren linearen Abbildung und diese mittels eines Inklusionsfunktors in $\Vect_{\R}^{f.d.}$ (endlich-dimensionale $\R$-Vektorräume)
     \end{example}
+
     \begin{oral}[In der Pause]
         Es ist $\Vect_{\R}^{f.d.}$ keine kleine Kategorie, denn wir können z.B. für jede beliebige Menge $X$ die Menge  $\R^n \times \left \{X\right\} $ bilden und diese kanonisch wideer als $\R^n$ auffassen, damit erhalten wir also für jede Menge (mindestens) ein Objekt in $\Vect_{\R}^{f.d.}$, und damit können wir auch die Menge aller Mengen basteln. \\
         Umgekehrt ist aber die Kategorie der endlich dimensionalen Untervektorräume von $\R^{\infty}$ eine kleine Kategorie, weil jedes Objekt ja insbesondere eine Teilmenge von $\R^{\infty}$ (zumindest die Trägermenge) ist, und wir damit wieder eine Menge erhalten.
     \end{oral}
 
     \begin{oral}
-        Man kann zeigen, dass ein Funktor genau dann eine natürliche Äquivalenz ist, wenn er essentiell surjektiv  und eine bijektion auf den Morphismen ist.
+        Man kann zeigen, dass ein Funktor $\mathcal{F}$ genau dann eine natürliche Äquivalenz ist, wenn er essentiell surjektiv  und eine Bijektion auf den Morphismen ist. \\
+        Essentiell surjektiv bedeutet, dass für jedes Objekt $Y\in \cat{D}$ ein zu $Y$ isomorphes Objekt  $Z$ existiert, das im Bild von  $\mathcal{F}$ liegt. \\
+        Bijektion auf Morphismen heißt, dass $\mathcal{F}$ einen Isomorphismus $\Mor_{\cat{C}}(X,Y) \cong \Mor_{\cat{D}}(\mathcal{F}(X), \mathcal{F}(Y))$ mittels $f \mapsto \mathcal{F}(f)$ induziert.
     \end{oral}
 
 \begin{oral}
@@ -140,33 +178,45 @@ Wir können Gruppen auch als $\left< E \mid  R \right> $ darstellen, wobei $E$ e
     \item $\left< a,b \mid  [a,b] \right> \cong \Z^2$, denn jetzt kommutieren beliebige zwei Elemente, und wir können jedes Wort aus  $a,b,a^{-1},b^{-1}$ als $a^nb^m$ mit  $n,m \in \Z$ umschreiben, und der Isomorphismus zu $\Z^2$ ist kanonisch.
     \item $\left< a,b \mid  [a,b], a^3, b^3 \right> \cong \left( \Z / 3\Z \right) ^2$, denn jetzt ist ja zusätzlich noch $a^3 = b^3 = e$ das neutrale Element.
 \end{itemize}
-\begin{warning}
-    Es sei noch darauf hingewiesen, dass nicht alle Relationen, die gelten, aufgeführt sind. Im dritten Beispiel ist ja z.B. auch $a^6 = e$, weil  $a^6 = a^3 a^3 = e e = e$.
-\end{warning}
-Es sei gesagt, dass wir jede Gruppe in obiger Form darstellen können, indem wir $E$ als die Trägermenge von  $G$ wählen, und nun einfach für jede Gleichung  $g_1g_2 = g_3$, die in $G$ gilt, die entsprechende Relation  $g_1g_2g_3^{-1}$ in $R$ fordern. (Das wird aber schnell hässlich, don't do it!)
-
-\begin{warning}
-    Auch, wenn diese Darstellung von Gruppen sehr schön sein \textit{kann}, ist sie sicherlich nicht immer die Beste. Es ist z.B. ein NP-vollständiges Problem, für eine Darstellung $\left< E \mid  R \right> $ zu entscheiden, ob die dadurch definierte Gruppe trivial ist, d.h. nur aus einem Element besteht.
-\end{warning}
-Als nächstes kann man sich überlegen, dass wir morphismen von $\left< E \mid  R \right> $ in eine Gruppe $G$ genau angeben können durch  $f(a)$ für jedes Element  $a\in E$, sodass $f(r) = e$ für jede Relation  $r\in R$. Damit kann man dann auch die Abbildung $G \to  G / [G,G]$ leicht angeben, denn haben wir $G$ dargestellt als  $\left< E \mid  R \right> $, so ist $G / [G,G]$ gegeben durch  $\left< E \mid R, \left \{[a,b]\right\} _{a,b\in G^2} \right> $, und den Morphismus geben wir durch $f(a) = a$ an.
 \end{recap}
 
-\subsection{Limiten und Colimiten}
-Sei $\cat{C}$ eine Kategorie und $\cat{I}$ eine kleine Kategorie. Wir stellen uns $\cat{I}$ als Diagramm vor, z.B:
-\[
+\begin{oral}
+\Warning    Es sei noch darauf hingewiesen, dass nicht alle Relationen, die gelten, aufgeführt sein müssen. Im dritten Beispiel ist ja z.B. auch $a^6 = e$, weil  $a^6 = a^3 a^3 = e e = e$.
+\end{oral}
+\begin{remark*}
+Es sei gesagt, dass wir jede Gruppe in obiger Form darstellen können, indem wir $E$ als die Trägermenge von  $G$ wählen, und nun einfach für jede Gleichung  $g_1g_2 = g_3$, die in $G$ gilt, die entsprechende Relation  $g_1g_2g_3^{-1}$ in $R$ fordern. (Das wird aber schnell hässlich, don't do it!)
+\end{remark*}
+
+\begin{remark*}
+\Warning    Auch, wenn diese Darstellung von Gruppen sehr schön sein \textit{kann}, ist sie sicherlich nicht immer die Beste. Es ist z.B. ein NP-vollständiges Problem, für eine Darstellung $\left< E \mid  R \right> $ zu entscheiden, ob die dadurch definierte Gruppe trivial ist, d.h. nur aus einem Element besteht.
+\end{remark*}
+\begin{recap}
+    Als nächstes kann man sich überlegen, dass wir morphismen von $G = \left< E \mid  R \right> $ in eine Gruppe $H$ genau angeben können durch  $f(g)$ für jedes Element  $g\in E$, sodass $f(r) = e$ für jede Relation  $r\in R$. (Dabei meinen wir mit $f(r)$ für  $r = g_1g_2,\ldots,g_n$ einfach $f(g_1)\circ f(g_2)\circ \ldots\circ f(g_n)$). 
+
+    Damit kann man dann auch die Abbildung $G \to  G / [G,G]$ leicht angeben, denn haben wir $G$ dargestellt als  $\left< E \mid  R \right> $, so ist $G / [G,G]$ gegeben durch  $\left< E \mid R, \left \{[a,b]\right\} _{a,b\in G^2} \right> $, und den Morphismus geben wir durch $f(g) = g$ an.
+\end{recap}
+
+\subsection{Limiten und Kolimiten}
+Um Limiten und Kolimiten zu betrachten, brauchen wir sogenannte \vocab{Diagramme}:
+
+Sei $\cat{C}$ eine Kategorie und $\cat{I}$ eine kleine Kategorie. Wir stellen uns dann $\cat{I}$ als Diagramm vor, z.B. eines der folgenden drei Beispiele:
+
+\begin{equation}
 \begin{tikzcd}
     \star \ar{r} \ar{d} & \star \\
     \star
 \end{tikzcd} 
-\quad
+\qquad
 \begin{tikzcd}
     \ldots \ar{r} & \star \ar{r} & \star \ar{r} &\ldots
 \end{tikzcd}
-\quad
+\qquad
 \begin{tikzcd}
     \star \ar[bend left = 10]{r} \ar[bend right = 10]{r} & \star
 \end{tikzcd}
-\]
+\label{eq:diagramme}
+\end{equation}
+
 \begin{definition}[Terminales Objekt]
     Ein \vocab{terminales} Objekt in $\cat{C}$ ist ein Objekt $X\in \Ob(\cat{C})$, sodass es für alle $Y\in \Ob(\cat{C})$ enien eindeutigen Morphismus $Y \to  X$ gibt, d.h.
      \[
@@ -181,28 +231,83 @@ Sei $\cat{C}$ eine Kategorie und $\cat{I}$ eine kleine Kategorie. Wir stellen un
     In $\Top$ und  $\Set$ sind die Einpunktmengen die terminalen Objekte.
 \end{example}
 
-\begin{definition}[Kegelkategorie]\label{def:kegelkategorie}
-    Sei $X: \cat{I} \to  \cat{C}$ ein Funktor. Die \vocab{Kegelkategorie} $\mathcal{C} / X$ hat als Objekte Paare $(Y,f_i)$ mit  $Y\in \cat{C}$ und $f_i \in \Mor_{\cat{C}}(Y,X(i) \coloneqq  X_i)$, sodass für alle $h\in \Mor_{\cat{I}}(i,j)$ folgendes kommutiert:
+\begin{remark*}
+    In der Vorlesung wurde der Begriff 'Kegelkategorie' auf einmal definiert, ich splitte das ganze jedoch auf, weil auch Kegel einzeln danach noch Verwendung finden, und ich das so lieber mag, der Inhalt ist aber derselbe:
+\end{remark*}
+
+\begin{dabuse}
+    Sei $\cat{I}$ eine kleine Kategorie, $\cat{C}$ eine beliebige Kategorie und $X\colon  \cat{I} \to  \cat{C}$ ein Funktor. Für $i\in \Ob(\cat{I})$ schreiben wir auch kurz $X_i \coloneqq  X(i)$, um die entsprechenden Bildobjekte des Funktors in $\cat{C}$ zu bezeichnen.
+\end{dabuse}
+
+\begin{remark*}
+    So sollte man auch wirklich über diese Diagramme nachdenken, $\cat{I}$ ist einfach eine elegante Möglichkeit, eine Menge von Objekten in $\cat{C}$ mittels $\cat{I}$ zu indizieren (= Indizes zu verteilen), und gleichzeitig einige Morphismen zwischen diesen Objekten mit zu beschreiben.
+\end{remark*}
+
+\begin{definition**}[Kegel]\label{def:kegel}
+    Sei $\cat{I}$ eine kleine Kategorie und $X: \cat{I} \to  \cat{C}$ ein Funktor. Ein \vocab{Kegel} über $X$ ist ein Objekt $N\in \Ob(\cat{C})$ mit einer Familie von Morphismen $\left \{f_i\right\} _{i\in \cat{I}}$, wobei $f_i \in  \Mor_{\cat{C}}(N, X_i)$, sodass für jeden Morphismus $h\in \Mor_{\cat{I}}(i,j)$ das folgende Diagramm kommutiert:
+    \[
+    \begin{tikzcd}
+        & N \ar[swap]{dl}{f_i} \ar{dr}{f_j} \\
+        X_i \ar[swap]{rr}{X(h)} & & X_j
+    \end{tikzcd}
+    .\] 
+\end{definition**}
+
+\begin{dremark}
+    Der name Kegel kommt daher, dass $N$ gewissermaßen mit den Morphismen  $f_i$ einen Kegel über den  $X_i$ erzeugt. Ist z.B.
+     \[
+         \cat{I} = 
+    \begin{tikzcd}
+        \star \ar{rr} \ar{dr} & & \star \ar{dl} \\
+                              & \star
+    \end{tikzcd}
+\]
+so ergibt sich als Ausschnitt der Kategorie $\cat{C}$ ein \textit{kommutatives} Diagramm (kommutativ wegen der Kommutativitätsbedingung in der Definition):
 \[
 \begin{tikzcd}
-    & Y \ar[swap]{dl}{f_i} \ar{dr}{f_j} \\
-    X_i \ar[swap]{rr} & & X_j
+    & Y\ar[bend right = 10, dashed,swap]{ddl}{f_1} \ar[dashed, "f_3" description, near start]{ddd} \ar[bend left = 10, dashed]{ddr}{f_2} \\
+    \\
+    X_1 \ar{dr}\ar{rr} & & X_2 \ar{dl}\\
+                & X_3
 \end{tikzcd}
-\]
+.\]
+
+\end{dremark}
+
+\begin{definition}[Kegelkategorie]\label{def:kegelkategorie}
+    Sei $X: \cat{I} \to  \cat{C}$ ein Funktor. Die \vocab{Kegelkategorie} $\cat{C} / X$ hat als Objekte genau die Kegel über $X$. Die Morphismen zwischen Kegeln $(Y, \left \{f_i\right\}) \to (Y', f_i')$ sind gegebene durch $g\in \Mor_{\cat{C}}(Y,Y')$ (also durch übliche Morphismen zwischen $Y,Y'$ als Objekten von  $\cat{C}$), sodass für alle $i\in \Ob(\cat{I})$ folgendes kommutiert:
+    \[
+    \begin{tikzcd}
+        Y \ar{rr}{g} \ar[swap]{dr}{f_i} & & Y' \ar{dl}{f_i'} \\
+                                        & X_i
+    \end{tikzcd}
+    .\] 
 \end{definition}
 
 \begin{oral}
-    Ist $\cat{I}$ einelementig, so erhalten wir genau das gleiche wie auf dem Übungszettel, d.h. die Kategorie über einem Objekt.
+    Ist $\cat{I}$ einelementig, so erhalten wir die Kategorie über  $X\in \Ob(\cat{C})$, vergleiche hierzu \autoref{aufgabe-6.4}.
 \end{oral}
-\todo{Referenz auf Übungsblatt}
+
+\begin{remark*}
+    Morphismen zwischen Kegeln lassen im Wesentlichen einfach 'alles' kommutieren, d.h. zeichnen wir die beiden Kegel und den entsprechenden Morphismus zwischen ihnen ein, so erhalten wir ein kommutatives Diagramm.
+\end{remark*}
 
 \begin{definition}[Limes]\label{def:limes}
-    Ein Limes für $X \colon  \cat{I} \to  \cat{C}$ ist ein terminalse Objekt in $\cat{C} / X$.
+    Ein Limes für $X \colon  \cat{I} \to  \cat{C}$ ist ein terminales Objekt in $\cat{C} / X$.
+    \[
+    \begin{tikzcd}
+        & {\color{blue}Y}\ar[bend right = 10, blue, swap]{ddl}{h_1} \ar[blue, bend left = 10]{ddr}{h_2} \ar[violet, dashed, "\exists !" description, near start]{d}  \\
+        & {\color{red}\lim X} \ar[red,swap]{dl}{s_1} \ar[red]{dr}{s_2} \ar[dashed, "s_0" description, near start, red]{dd}\\
+        X_1 \ar[swap]{dr}{f_1} & & X_2\ar{dl}{f_2} \\
+         & X_0
+    \end{tikzcd}
+\]
+Zur Erklärung des Diagramms: In rot und blau die beiden Kegel $\lim X$ und  $Y$ über dem Diagramm  $X$ (in schwarz). In violett der induzierte Morphismus  $Y \to  \lim X$ (der sogar ein Morphismus in $\cat{C} / X$ ist!), der eindeutig existiert, weil $\lim X$ ein Terminalobjekt in  $\cat{C} / X$ ist.
 \end{definition}
-\missingfigure{Kommutatives Diagramm zu Limiten}
 \begin{dnotation}
-    Existiert der Limes von $X \colon  \cat{I} \to  \cat{C}$, so notieren wir ihn mit $\lim X$.
+    Existiert 'der' (eigentlich ein) Limes von $X \colon  \cat{I} \to  \cat{C}$, so notieren wir ihn mit $\lim X$.
 \end{dnotation}
+
 
 \begin{warning}
     Es muss nicht immer ein Limes existieren (d.h. es gibt nicht immer ein terminales Objekt in jeder Kategorie)
@@ -290,6 +395,6 @@ Sei $\cat{C}$ eine Kategorie und $\cat{I}$ eine kleine Kategorie. Wir stellen un
                 X_1
             \end{tikzcd}
             .\] 
-            Dann ist $\colim X$ das  \vocab{Pushout} (Kofaserprodukt). In $\Top$ bzw.  $\Set$ ist das  $X_1 \bigcup\limits_{X_0} X_2$, also 'verkleben'.
+            Dann ist $\colim X$ das  \vocab{Pushout} (Kofaserprodukt). In $\Top$ bzw.  $\Set$ ist das  $X_1 \bigcup\limits_{X_0} X_2$ 
     \end{enumerate}
 \end{example}
