@@ -1,0 +1,141 @@
+%! TEX root = ./master.tex
+\lecture[]{Di 01 Jun 2021 12:15}{}
+\begin{definition}[kontravarianter Funktor]{def:kontravarianter-funktor}
+   Ein \vocab{kontravarianter} Funktor $\mathcal{F} : \cat{C} \to  \cat{D}$ besteht aus
+   \begin{itemize}
+       \item einer Abbildung $\mathcal{F}: \Ob(\mathcal{C}) \to  \Ob(\cat{D})$
+       \item Abbildungen $\mathcal{F}\colon  \Mor_{\mathcal{C}}(X,Y) \to  \Mor_{\cat{D}}(\mathcal{F}(Y), \mathcal{F}(X))$ für $X,Y \in  \Ob(\cat{C})$
+   \end{itemize}
+   sodass
+   \[
+       \mathcal{F}(\id_X) = \id_{\mathcal{F}(X)}, \qquad \mathcal{F}(f \circ  g) = \mathcal{F} (g) \circ  \mathcal{F}(f)
+   .\] 
+\end{definition}
+
+\begin{example}[Dualraum]
+    Das Bilden des Dualraums eines Vektorraums bildet einen Funktor
+        \begin{equation*}
+            ()^* : \left| \begin{array}{c c l} 
+        \Vect_{\R} & \longrightarrow & \Vect_{\R} \\
+        V & \longmapsto &  V^*=\Hom_{\R}(V,\R) \\
+        f: V\colon  \to  W & \longmapsto & f^*
+        \end{array} \right.
+    \end{equation*}
+\end{example}
+
+\begin{definition}[Dualkategorie]\label{def:dualkategorie}
+    Ist $\cat{C}$ eine Kategorie, so ist $\mathcal{C}^{\op}$ die Kategorie mit $\Ob(\mathcal{C}^{\op}) = \Ob(\cat{C})$, sowie $\Mor_{\cat{C}^{\op}}(X,Y) \coloneqq \Mor_{\cat{C}}(Y,X)$, und 'denselben' Verknüpfungen.
+\end{definition}
+
+\begin{lemma}\label{lm:kovariante-funktoren-sind-funktoren-von-der-dualen-kategorie}
+    Ein kontravarianter Funktor $\mathcal{F}\colon \cat{C} \to  \cat{D}$ ist ein (kovarianter) Funktor $\mathcal{F}\colon  \cat{C}^{\op} \to  \cat{D}$.
+\end{lemma}
+
+\begin{example}
+$\Vect_{\R}^{\op} \stackrel{(\cdot )^*}{\longrightarrow} \Vect_{\R}$ als kovarianter Funktor des vorherigen Beispiels.
+\end{example}
+
+\begin{example}
+    $\Cat$ ist die Kategorie der  \underline{kleinen} Kategorie und Funktoren. 
+\end{example}
+\todo{Das Beispiel sollte eigentlich früher kommen}
+
+\begin{oral}
+    Wir betrachten hier nur die kleinen Kategorien (also die, deren Objekte eine Menge bilden), damit wir nicht im Probleme wieder 'Klasse aller Klassen' laufen, solche Probleme könnte man aber auch wieder umgehen, wenn man weitere unerreichbare Kardinalzahlen fordert.
+\end{oral}
+
+\begin{definition}[natürliche Transformation und Äquivalenz]\label{def:natürliche-transformation-und-äquivalenz}
+    Seien $\mathcal{F},\mathcal{G}\colon  \cat{C} \to  \cat{D}$ zwei Funktoren. 
+    \begin{enumerate}[i)]
+        \item 
+    Eine \vocab{natürliche Transformation} $t\colon  \mathcal{F} \to  \mathcal{G}$ ist eine Familie von Morphismen (in $\cat{D}$)
+    \[
+        \left \{t_X \in  \Mor_{\cat{D}}(\mathcal{F}(X),\mathcal{G}(X))\right\} _{X\in \Ob(\cat{C})}
+    .\] 
+    sodass das Diagramm
+    \begin{equation*}
+        \begin{tikzcd}
+            \mathcal{F}(X) \ar{r}{\mathcal{F}(f)} \ar[swap]{d}{t_X} & \mathcal{F}(Y) \ar{d}{t_{Y}} \\
+            \mathcal{G}(X) \ar[swap]{r}{\mathcal{G}(f)} & \mathcal{G}(Y)
+        \end{tikzcd}
+    \end{equation*}
+    kommutiert.
+\item $t$ ist eine  \vocab{natürliche Äquivalenz} (auch natürlicher Isomorphismus genannt), falls jedes $t_X$ ein Isomorphismus ist. 
+\item $\mathcal{F}\colon  \cat{C} \to  \cat{D}$ ist eine \vocab{Äquivalenz} (von Kategorien), falls es einen Funktor $\mathcal{G} \colon  \mathcal{D} \to  \cat{C}$ gibt, sodass $\mathcal{F} \circ  \mathcal{G}$ und $\mathcal{G} \circ  \mathcal{F}$ jeweils natürlich äquivalent zum Identitätsfunktor sind.
+    \end{enumerate}
+\end{definition}
+
+\begin{remark*}
+    Die Idee an obigem kommutativen Diagramm ist einfach, dass wir nun per se zwei Wege haben, von $\mathcal{F}(X)$ nach $\mathcal{G}(Y)$ zu gelangen, und wir wollen, dass diese gleich sind.
+\end{remark*}
+
+\begin{oral}
+    Die Idee daran, natürliche Äquivalenz von Kategorien zuzulassen ist, dass wir uns nicht mehr um die Anzahl von (in einer Kategorie) zueinander isomorphen Objekten kümmern müssen, und davon ebenfalls wegabstrahieren.
+\end{oral}
+
+\begin{example}
+    Es gibt eine natürliche Transformation $t\colon  \id_{\Vect_{\R}} \to  {()^*}^*$, gegeben durch Komponenten für jeden $\R$-Vektorraum $V$:
+        \begin{equation*}
+        t_V: \left| \begin{array}{c c l} 
+            V & \longrightarrow & {V^*}^* = \Hom_{\R}(V^*,\R) \\
+        v & \longmapsto &
+            \ev_v: \left| \begin{array}{c c l} 
+            V^* & \longrightarrow & \R \\
+            f & \longmapsto	 &f(v)
+        \end{array} \right.
+        \end{array} \right.
+    \end{equation*}
+    Wir müssen prüfen, dass folgendes Diagramm für eine lineare Abbildung $f\colon  V \to  W$ kommutiert.
+    \[
+    \begin{tikzcd}
+        V \ar[swap]{d}{t_V} \ar{r}{f} & W \ar{d}{t_W}\\
+        {V^*}^* \ar[swap]{r}{{f^*}^*} & {W^*}^*
+    \end{tikzcd}
+    \]
+    Sei hierzu $v$ beliebig, dann erhalten wir
+     \[
+    \begin{tikzcd}
+        v \ar[swap]{d}{} \ar{r}{} & f(v) \ar{d}{}\\
+        \ev_v \ar[swap]{r}{} & TODO
+    \end{tikzcd}
+    \]
+    
+\end{example}
+    \todo{Natürlichkeit im Diagramm prüfen}
+
+    \begin{example}
+        Betrachte die Kategorie der endlich-dimensionalen Untervektorräume von $\R^{\infty}$ mit ihren linearen Abbildung und diese mittels eines Inklusionsfunktors in $\Vect_{\R}^{f.d.}$ (endlich-dimensionale $\R$-Vektorräume)
+    \end{example}
+
+    \begin{oral}
+        Man kann zeigen, dass ein Funktor genau dann eine natürliche Äquivalenz ist, wenn er essentiell surjektiv  und eine bijektion auf den Morphismen ist.
+    \end{oral}
+
+\begin{oral}
+    Das tolle an obigem Beispiel ist, dass wir nun eine Äquivalenz zwischen $\Vect_{\R}^{f.d.}$ und einer kleinen Kategorie gefunden habe. Das ist toll, wenn wir z.B. mit $\Cat$ arbeiten wollen, weil wir dann hier zwar  $\Vect_{\R}^{f.d.}$ nicht als Objekt wiederfinden, allerdings eine dazu natürlich äquivalente Kategorie.
+\end{oral}
+
+\begin{example}
+    Betrachte die natürliche Transformation $t\colon \id_{\Grp} \to  ()^{ab}$, gegeben durch Komponenten für jede Gruppe $G$:
+        \begin{equation*}
+        t_G: \left| \begin{array}{c c l} 
+            G & \twoheadrightarrow & G / [G,G] \\
+            g & \longmapsto &  [g]
+        \end{array} \right.
+    \end{equation*}
+\end{example}
+
+\begin{recap}
+    Ist $G$ eine Gruppe und  $a,b\in G$, so ist $[a,b] \coloneqq  aba^{-1}b^{-1}$ der \vocab{Kommutator} der beiden Elemente (der Name kommt daher, dass $[a,b] = e$ genau dann, wenn  $a,b$ kommutieren), und  $[G,G]$ ist die Untergruppe von  $G$, die von den Kommutatoren in $G$ erzeugt wird, d.h. alle endlichen Verknüpfungen von solchen Kommutatoren. Man kann nun zeigen, dass $[G,G]\unlhd G$ eine normale Untergruppe ist, und  $G / [G,G]$ ist abelsch und die  \vocab{Abelisierung} von $G$. Wir erhalten ebenfalls die kanonische Projektion $G \twoheadrightarrow G / [G,G]$.
+\end{recap}
+
+\begin{recap}
+Wir können Gruppen auch als $\left< E \mid  R \right> $ darstellen, wobei $E$ eine Menge an Symbolen und  $R$ eine Menge an Relationen ist. Die beschrieben Gruppe besteht dann aus allen Wörtern, die die Buchstaben der Menge  $E$ und deren Inversen bilden, modulo der erzeugten Untergruppe der Relationen. \\
+\begin{itemize}
+    \item $\left< a,b \mid \emptyset \right>  = \left< a,b \right>  \cong F_2$ ist die freie Gruppe mit 2 Elementen. Sie besteht aus Wörtern wie $aba^{-1}b^{-2}a^3$, bei der keine Relationen gelten (außer $a a^{-1} = a^{-1}a = e, b b^{-1} = b^{-1} b = e$, was immer gefordert  wird).
+    \item $\left< a,b \mid  [a,b] \right> \cong \Z^2$, denn jetzt kommutieren beliebige zwei Elemente, und wir können jedes Wort aus  $a,b,a^{-1},b^{-1}$ als $a^nb^m$ mit  $n,m \in \Z$ umschreiben, und der Isomorphismus zu $\Z^2$ ist kanonisch.
+    \item $\left< a,b \mid  [a,b], a^3, b^3 \right> \cong \left( \Z / 3\Z \right) ^2$, denn jetzt ist ja zusätzlich noch $a^3 = b^3 = e$ das neutrale Element.
+\end{itemize}
+\end{recap}
+
+\todo{Zeug zu Gruppen schreiben, die durch Relationen erzeugt werden.}

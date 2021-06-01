@@ -8,8 +8,6 @@ des $\mathbb{R}^2$:
 
 \hspace*{-1cm}
 %\includegraphics{bilder/sinus}
-\missingfigure{Sinuskurve des Topologisten}
-
 (Mit anderen Worten: $S$ ist der Abschluss, in $\mathbb{R}^2$, des Graphen
 der Funktion $x \mapsto \sin \frac{1}{x}$ für $x > 0$.)
 
@@ -18,6 +16,22 @@ Zeige:
 \item Der Raum $S$ ist zusammenhängend.
 \item Der Raum $S$ ist nicht wegzusammenhängend.
 \end{enumerate}
+\begin{minipage}{\textwidth}
+    \centering
+            \begin{tikzpicture}[domain=0.001:1, xscale = 6]
+                \draw[color=blue!30!white,smooth,samples=100,domain=0.001:0.01,line width = 0.1pt] plot[id=gnuplots/topologists-sine-curve-1] function{sin(1/x)};
+                \draw[color=blue!30!white,smooth,samples=1000,domain=0.01:0.1, line width = 0.1pt] plot[id=gnuplots/topologists-sine-curve-2] function{sin(1/x)};
+                \draw[color=blue!30!white,smooth,samples=100,domain=0.1:1, line width = 0.1pt] plot[id=gnuplots/topologists-sine-curve-3] function{sin(1/x)};
+                \draw[color=red,thick] (0,-1) -- (0,1);
+                \draw[->] (0,0) -- (1,0);
+                \foreach \x in {1,2,3,4,5,6,7,8,9} {
+                    \draw (0.1*\x,-0.1) node[anchor=north]{0,\x} -- (0.1*\x, 0.1);
+                }
+                \draw (-0.01,-1) node[anchor = east] {-1} -- (0.01,-1);
+                \draw (-0.01,1) node[anchor = east] {1} -- (0.01,1);
+            \end{tikzpicture}
+\end{minipage}
+\captionof{figure}{Sinuskurve des Topologen}
 \end{aufgabe}
 
 \begin{aufgabe}
