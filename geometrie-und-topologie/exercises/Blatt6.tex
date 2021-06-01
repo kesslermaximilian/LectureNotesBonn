@@ -1,0 +1,60 @@
+\begin{aufgabe}[Der Erweitreungssatz von Tietze v.2]
+Sei $X$ ein normaler Raum, $A\subseteq X$ abgeschlossen. 
+\begin{enumerate}[(i)]
+\item Jede stetige Funktion $f\colon A\to [a,b]$ mit $a<b$ lässt sich fortsetzen zu einer stetigen Funktion $\overline{f}\colon X\to [a,b]$. 
+\item Nach (i) lässt sich jede stetige Funktion $f\colon A\to (-1,1)$ fortsetzen zu einer stetigen Funktion $s\colon X\to [-1,1]$. Setze $D:= s^{-1}(-1) \cup s^{-1}(1)$. Zeige, dass es eine stetige Funktion $\phi\colon X\to [0,1]$ gibt mit $\phi(D)=\{0\}$ und $\phi(A)=\{1\}$.  
+\item Sei $h\colon X\to (-1,1)$ die Abbildung $h(x)=\phi(x)\cdot s(x)$. Zeige, dass $h$ tatsächlich Bild in $(-1,1)$ hat und dass $h$ $f$ fortsetzt. 
+\item Jede stetige Funktion $f\colon A\to \R$ lässt sich fortsetzen zu einer stetigen Funktion $\overline{f}\colon X\to \R$. 
+
+\emph{Hinweis:} $\R\cong (-1,1)$. 
+\end{enumerate}
+\end{aufgabe}
+
+\begin{aufgabe}
+\begin{enumerate}[(i)] 
+\item 
+Sei $X:= \prod_{i=0}^\infty [0,1]$. Definiere $D\colon X\times X\to \R$ durch 
+\[
+D((x_n)_{n\in \N},(y_n)_{n\in \N}):=\sup\left\{\frac{\lvert x_n,y_n\rvert}{n}\,\middle\vert\,n\in \N\right\}.
+\]
+ $D$ ist eine Metrik auf $X$ und induziert die Produkttopologie auf $X$.
+ \item Ein kompakter Hausdorff-Raum ist metrisierbar genau dann, wenn er eine abz\"ahlbare Basis besitzt. 
+  
+(\emph{Erinnerung:} Kompakte Hausdorff-R\"aume sind normal.)
+\end{enumerate} 
+\end{aufgabe}
+
+%\begin{aufgabe}
+%\end{aufgabe}
+
+\begin{aufgabe}
+\begin{enumerate}[(i)]
+\item Sei $X:=\prod_{[0,1]} \{0,1\}$. Zeige, dass $X$ kompakt, aber nicht folgenkompakt ist.
+	
+	\emph{Hinweis:} Betrachte die Folge $(a_i)_{i\geq 1}$ so dass $x=\sum_{i=1}^\infty \tfrac{a_i(x)}{2^i}$.
+
+\item Gegeben sei eine total geordnete Menge $(X,\leq)$. F\"ur Punkte $a,b\in X\cup \{\pm \infty\}$ definiere das \emph{Intervall} $(a,b):=\{x\in X\mid a< x< b\}$. Solche Intervalle bilden eine Basis einer Topologie auf $X$, die \emph{Ordnungstopologie}. Für zwei total geordnete Mengen $(X,\leq)$ und $(Y,\leq)$ ist die \emph{lexikographische Ordnung} auf $X\times Y$ definiert als: $(y_1,z_1)< (y_2,z_2)$ genau dann, wenn $y_1< y_2$, oder $y_1=y_2$ und $z_1< z_2$. 
+
+Sei $\omega_1$ die kleinste überabz\"ahlbare Ordinalzahl. Der \emph{abgeschlossene lange Strahl} $L$ wird definiert als das kartesische Produkt $\omega_1 \times [0,1)$, ausgestattet mit der Ordnungstopologie von der lexikographischen Ordnung. (Zum Beispiel ist $\R\cong \N\times [0,1)$.) Beweise:
+\begin{enumerate}[(a)]
+\item Jede monoton steigende Folge in $L$ konvergiert. 
+\item Jede Folge in $L$ hat eine monotone Teilfolge. 
+\item $L$ ist folgenkompakt.
+\item $L$ ist nicht kompakt.
+%\item $L$ ist nicht metrisierbar.
+\end{enumerate}
+(\emph{Hinweis}: Benutze ohne Beweis, dass jede steigende Folge von Ordinalzahlen konvergiert und dass $\omega_1$ nicht der Limes einer Folge von abz\"ahlbaren Ordinalzahlen ist.)
+%\emph{Anmerkung:} Der \emph{offene lange Strahl} bezeichnet das Komplement des Ursprungs $(0,0)$ im abgeschlossenen langen Strahl. Invertiert man die Ordnungsrelation auf dem offenen langen Strahl, vereinigt diese geordnete Menge mit dem abgeschlossenen langen Strahl so zu einer neuen geordneten Menge, dass jedes Element des ersteren kleiner ist als jedes Element des letzteren, und versieht diese dann mit der Ordnungstopologie, so erhält man die \emph{lange Gerade}. 
+\end{enumerate}
+\end{aufgabe}
+
+\begin{aufgabe}
+	Sei $\cC$ eine Kategorie und $X\in\ob(\cC)$. Die Kategorie $\cC/X$ der Objekte über $X$ ist die Kategorie mit Objekten $\ob(\cC/X):=\{(Y,f)\mid Y\in\ob(\cC),f\in\Mor_\cC(Y,X)\}$ und $\Mor_{\cC/X}((Y,f),(Z,g))=\{h\in\Mor_\cC(Y,Z)\mid f=g\circ h\}$, d.h. solche Abbildungen, die mit $f$ und $g$ kommutieren.  Analog ist die Kategorie $X/\cC$ der Objekte unter $X$ die Kategorie mit Objekten $\ob(X/\cC):=\{(Y,f)\mid Y\in\ob(\cC),f\in\Mor_\cC(X,Y)\}$ und $\Mor_{X/\cC}((Y,f),(Z,g))=\{h\in\Mor_\cC(Y,Z)\mid h\circ f=g\}$, d.h. wieder solche Abbildungen, die mit $f$ und $g$ kommutieren. 
+	\begin{enumerate}[(i)]
+		\item Zeige, dass $\cC/X$ und $X/\cC$ mit der offensichtlichen Verknüpfung von Morphismen tatsächlich Kategorien sind.
+		\item Sei $*\in\Top$ ein Einpunktraum. Zeige $\Top/*$ is isomorph zu $\Top$ und $*/\Top$ ist isomorph zu $\Top_*$, wobei $\Top_*$ die Kategorie der punktierten topologischen Räume ist.
+	\end{enumerate}
+\emph{Bemerkung:} Im Englischen heißen $\cC/X$ und $X/\cC$ overcategory bzw. undercategory. Im Deutschen ist aber zumindest Unterkategorie missverständlich.
+\end{aufgabe}
+
+\end{document}
