@@ -151,3 +151,145 @@ Es sei gesagt, dass wir jede Gruppe in obiger Form darstellen können, indem wir
 Als nächstes kann man sich überlegen, dass wir morphismen von $\left< E \mid  R \right> $ in eine Gruppe $G$ genau angeben können durch  $f(a)$ für jedes Element  $a\in E$, sodass $f(r) = e$ für jede Relation  $r\in R$. Damit kann man dann auch die Abbildung $G \to  G / [G,G]$ leicht angeben, denn haben wir $G$ dargestellt als  $\left< E \mid  R \right> $, so ist $G / [G,G]$ gegeben durch  $\left< E \mid R, \left \{[a,b]\right\} _{a,b\in G^2} \right> $, und den Morphismus geben wir durch $f(a) = a$ an.
 \end{recap}
 
+\subsection{Limiten und Colimiten}
+Sei $\cat{C}$ eine Kategorie und $\cat{I}$ eine kleine Kategorie. Wir stellen uns $\cat{I}$ als Diagramm vor, z.B:
+\[
+\begin{tikzcd}
+    \star \ar{r} \ar{d} & \star \\
+    \star
+\end{tikzcd} 
+\quad
+\begin{tikzcd}
+    \ldots \ar{r} & \star \ar{r} & \star \ar{r} &\ldots
+\end{tikzcd}
+\quad
+\begin{tikzcd}
+    \star \ar[bend left = 10]{r} \ar[bend right = 10]{r} & \star
+\end{tikzcd}
+\]
+\begin{definition}[Terminales Objekt]
+    Ein \vocab{terminales} Objekt in $\cat{C}$ ist ein Objekt $X\in \Ob(\cat{C})$, sodass es für alle $Y\in \Ob(\cat{C})$ enien eindeutigen Morphismus $Y \to  X$ gibt, d.h.
+     \[
+         \forall Y\in \Ob(\cat{C})\colon  \qquad \Mor_{\cat{C}}(Y,X) = \left \{\star\right\} 
+    .\] 
+\end{definition}
+\begin{oral}
+    Es gibt zwar nicht die Definition \textit{des} terminalen Objekts, allerdings überlegt man sich leicht, dass terminale Objekte bis auf eindeutigen Isomorphismus eindeutig sind, deswegen ist eine Unterscheidung nicht notwendig bzw. erfolgt normalerweise nicht.
+\end{oral}
+
+\begin{example}
+    In $\Top$ und  $\Set$ sind die Einpunktmengen die terminalen Objekte.
+\end{example}
+
+\begin{definition}[Kegelkategorie]\label{def:kegelkategorie}
+    Sei $X: \cat{I} \to  \cat{C}$ ein Funktor. Die \vocab{Kegelkategorie} $\mathcal{C} / X$ hat als Objekte Paare $(Y,f_i)$ mit  $Y\in \cat{C}$ und $f_i \in \Mor_{\cat{C}}(Y,X(i) \coloneqq  X_i)$, sodass für alle $h\in \Mor_{\cat{I}}(i,j)$ folgendes kommutiert:
+\[
+\begin{tikzcd}
+    & Y \ar[swap]{dl}{f_i} \ar{dr}{f_j} \\
+    X_i \ar[swap]{rr} & & X_j
+\end{tikzcd}
+\]
+\end{definition}
+
+\begin{oral}
+    Ist $\cat{I}$ einelementig, so erhalten wir genau das gleiche wie auf dem Übungszettel, d.h. die Kategorie über einem Objekt.
+\end{oral}
+\todo{Referenz auf Übungsblatt}
+
+\begin{definition}[Limes]\label{def:limes}
+    Ein Limes für $X \colon  \cat{I} \to  \cat{C}$ ist ein terminalse Objekt in $\cat{C} / X$.
+\end{definition}
+\missingfigure{Kommutatives Diagramm zu Limiten}
+\begin{dnotation}
+    Existiert der Limes von $X \colon  \cat{I} \to  \cat{C}$, so notieren wir ihn mit $\lim X$.
+\end{dnotation}
+
+\begin{warning}
+    Es muss nicht immer ein Limes existieren (d.h. es gibt nicht immer ein terminales Objekt in jeder Kategorie)
+\end{warning}
+
+\begin{oral}
+    Limiten sind eindeutig, wenn sie existieren (bis auf eindeutigen Isomorphismus)
+\end{oral}
+
+\begin{example}
+    \begin{enumerate}[1)]
+        \item Sei $\cat{I} = \emptyset$ die leere Kategorie, dann ist $\cat{C} / X \cong \cat{C}$. Also ist $\lim X$ ein terminalse Objekt.
+        \item Sei $\cat{I} = \left \{1,2\right\} $ (mit nur den Identitätsabbildungen). Sei $X\colon  \mathcal{I}t \to  \cat{C}$ gegeben ducrh $X_1,X_2\in \Ob(\cat{C})$, dann ist $\lim X$ das  \underline{Produkt} von $X_1$ und $X_2$. \\
+            In $\Top$ und  $\Set$ ist dieses das klassiche / bekannte Produkt  $X_1\times X_2$ (mit Projektionen!)
+        \item Sei 
+            \[
+            \cat{I} = 
+            \begin{tikzcd}
+                & \star \ar{d} \\
+                \star \ar{r} & \star 
+            \end{tikzcd}
+            \qquad
+            X = 
+            \begin{tikzcd}
+                & X_2 \ar{d}{f_2} \\
+                X_1 \ar[swap]{r}{f_1} & X_0
+            \end{tikzcd}
+            .\] 
+            dann ist $\lim X$ das  \vocab{Faserprodukt} (Pullback). In $\Top$ bzw.  $\Set$ ist
+             \[
+                 \lim X = \left \{(x_1,x_2) \in  X_1\times X_2 \mid  f_1(x_1) = f_2(x_2)\right\} 
+            .\] 
+            mit der Teilraumtopologie des Produktes und inklusive der entsprechenden Projektionen.
+    \end{enumerate}
+\end{example}
+
+\begin{oral}
+    Zu einem Limes gehören immer auch die entsprechenden Abbildungen, oft unterdrücken wir diese jedoch implizit.
+\end{oral}
+
+\begin{definition}[Initiales Objekt]\label{def:initiales-objekt}
+    Ein initiales Objekt in $\cat{C}$ ist ein Objekt $X\in \Ob(\cat{C})$, sodass für alle $Y\in \Ob(\cat{C})$ eine eindeutige Abbildung von $X$ nach  $Y$ existiert, d.h.
+     \[
+         \forall Y\in \Ob(\cat{C})\colon  \qquad \Mor_{\cat{C}}(X,Y) = \left \{\star\right\} 
+    .\] 
+\end{definition}
+
+\begin{example}
+    In $\Top$ bzw.  $\Set$ ist  $\emptyset$ das initiale Objekt.
+\end{example}
+
+\begin{definition}[Kokegelkategorie]\label{def:kokegelkategorie}
+    Analog zur Kegelkategorie $\cat{C} / X$ gibt es die Kokegelkategorie $X / \cat{C}$ (sprich: '$\cat{C}$ unter $X$') mit Objekten  $(Y, f_i)$, wobei  $f_i \colon  X_i \to  Y$\ldots
+\end{definition}
+\todo{Definition ausschreiben}
+
+\begin{definition}[Kolimes]\label{def:kolimes}
+    Ein \vocab{Kolimes} von $X\colon \cat{I} \to  \cat{C}$ ist ein initiales objekt in $X / \cat{C}$ 
+\end{definition}
+
+\begin{warning}
+    Auch hier gilt wieder: Initialobjekte und damit Kolimiten müssen nicht immer existieren.
+\end{warning}
+
+\begin{oral}
+    Auch das Konzept des Kolimes kann man wieder auf das des Limes zurückführen, indem wir die duale Kategorie einführen.
+\end{oral}
+\todo{ausarbeiten}
+
+\begin{example}
+    \begin{enumerate}[1)]
+        \item Ist $\cat{I} = \emptyset$, so erhalten wir ein initiales Objekt.
+        \item Ist $\cat{I} = \left \{1,2\right\} $ und $X = X_1,X_2$, dann ist $\colim X$ das  \vocab{Koprodukt}. In $\Top$ bzw.  $\Set$ ist dieses  $X_1 \coprod X_2$ (mit den entsprechenden Inklusionen).
+        \item Betrachte
+            \[
+            \cat{I} = 
+            \begin{tikzcd}
+                \star \ar{r} \ar{d} & \star \\
+                \star
+            \end{tikzcd}
+            \qquad
+            X = 
+            \begin{tikzcd}
+                X_0 \ar{r}{f_2} \ar[swap]{d}{f_1}&X_2 \\
+                X_1
+            \end{tikzcd}
+            .\] 
+            Dann ist $\colim X$ das  \vocab{Pushout} (Kofaserprodukt). In $\Top$ bzw.  $\Set$ ist das  $X_1 \bigcup\limits_{X_0} X_2$, also 'verkleben'.
+    \end{enumerate}
+\end{example}
