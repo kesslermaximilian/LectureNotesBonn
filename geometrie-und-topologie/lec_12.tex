@@ -106,6 +106,10 @@ $\Vect_{\R}^{\op} \stackrel{(\cdot )^*}{\longrightarrow} \Vect_{\R}$ als kovaria
     \begin{example}
         Betrachte die Kategorie der endlich-dimensionalen Untervektorräume von $\R^{\infty}$ mit ihren linearen Abbildung und diese mittels eines Inklusionsfunktors in $\Vect_{\R}^{f.d.}$ (endlich-dimensionale $\R$-Vektorräume)
     \end{example}
+    \begin{oral}[In der Pause]
+        Es ist $\Vect_{\R}^{f.d.}$ keine kleine Kategorie, denn wir können z.B. für jede beliebige Menge $X$ die Menge  $\R^n \times \left \{X\right\} $ bilden und diese kanonisch wideer als $\R^n$ auffassen, damit erhalten wir also für jede Menge (mindestens) ein Objekt in $\Vect_{\R}^{f.d.}$, und damit können wir auch die Menge aller Mengen basteln. \\
+        Umgekehrt ist aber die Kategorie der endlich dimensionalen Untervektorräume von $\R^{\infty}$ eine kleine Kategorie, weil jedes Objekt ja insbesondere eine Teilmenge von $\R^{\infty}$ (zumindest die Trägermenge) ist, und wir damit wieder eine Menge erhalten.
+    \end{oral}
 
     \begin{oral}
         Man kann zeigen, dass ein Funktor genau dann eine natürliche Äquivalenz ist, wenn er essentiell surjektiv  und eine bijektion auf den Morphismen ist.
@@ -136,6 +140,14 @@ Wir können Gruppen auch als $\left< E \mid  R \right> $ darstellen, wobei $E$ e
     \item $\left< a,b \mid  [a,b] \right> \cong \Z^2$, denn jetzt kommutieren beliebige zwei Elemente, und wir können jedes Wort aus  $a,b,a^{-1},b^{-1}$ als $a^nb^m$ mit  $n,m \in \Z$ umschreiben, und der Isomorphismus zu $\Z^2$ ist kanonisch.
     \item $\left< a,b \mid  [a,b], a^3, b^3 \right> \cong \left( \Z / 3\Z \right) ^2$, denn jetzt ist ja zusätzlich noch $a^3 = b^3 = e$ das neutrale Element.
 \end{itemize}
+\begin{warning}
+    Es sei noch darauf hingewiesen, dass nicht alle Relationen, die gelten, aufgeführt sind. Im dritten Beispiel ist ja z.B. auch $a^6 = e$, weil  $a^6 = a^3 a^3 = e e = e$.
+\end{warning}
+Es sei gesagt, dass wir jede Gruppe in obiger Form darstellen können, indem wir $E$ als die Trägermenge von  $G$ wählen, und nun einfach für jede Gleichung  $g_1g_2 = g_3$, die in $G$ gilt, die entsprechende Relation  $g_1g_2g_3^{-1}$ in $R$ fordern. (Das wird aber schnell hässlich, don't do it!)
+
+\begin{warning}
+    Auch, wenn diese Darstellung von Gruppen sehr schön sein \textit{kann}, ist sie sicherlich nicht immer die Beste. Es ist z.B. ein NP-vollständiges Problem, für eine Darstellung $\left< E \mid  R \right> $ zu entscheiden, ob die dadurch definierte Gruppe trivial ist, d.h. nur aus einem Element besteht.
+\end{warning}
+Als nächstes kann man sich überlegen, dass wir morphismen von $\left< E \mid  R \right> $ in eine Gruppe $G$ genau angeben können durch  $f(a)$ für jedes Element  $a\in E$, sodass $f(r) = e$ für jede Relation  $r\in R$. Damit kann man dann auch die Abbildung $G \to  G / [G,G]$ leicht angeben, denn haben wir $G$ dargestellt als  $\left< E \mid  R \right> $, so ist $G / [G,G]$ gegeben durch  $\left< E \mid R, \left \{[a,b]\right\} _{a,b\in G^2} \right> $, und den Morphismus geben wir durch $f(a) = a$ an.
 \end{recap}
 
-\todo{Zeug zu Gruppen schreiben, die durch Relationen erzeugt werden.}
