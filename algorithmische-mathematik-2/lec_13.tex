@@ -1,0 +1,88 @@
+%! TEX root = ./master.tex
+\lecture[]{Mi 02 Jun 2021 10:15}{}
+
+\subsection{Gleichgewicht von Markovketten}
+Oft ist $\mu$ nicht explizit bekannt, z.B. wenn
+\[
+\mu = \lim_{n \to \infty} \mu_0 P^n
+.\] 
+wobei $P$ die Übergangsmatrix einer Markovkette ist.
+ \begin{oral}
+     Selbst wenn der obige Limes existiert und eindeutig ist (d.h. nicht von $\mu_0$ abhängt), heißt das nicht, dass wir eine explizite Formel für  $\mu$ kennen. Allerdings können wir natürlich approximieren, indem wir mit einem  $\mu_0$ starten und  $\mu_0P^n$ für ein hinreichend großes  $n$ bestimmen.
+\end{oral}
+
+Betrachten wir eine \underline{homogene Markovkette} mit Übergangsmatrix $P$ und Anfangsverteilung $\mu_0$.
+\begin{definition}[Stationäre Verteilung]\label{def:stationäre-verteilung}
+    \begin{enumerate}[label=\protect\circled{\alph*}]
+        \item Eine Wahrscheinlichkeitsverteilung $\mu$ auf  $\mathcal{S}$ ist eine \vocab{stationäre Verteilung}  einer Markovkette mit Übergangsmatrix $P$, falls  $μ = μP$. 
+        \item $\mu$ erfüllt die \vocab{Detailed-Balance-Bedingung} bezüglich $P$, falls
+            \[
+                \mu(x) P(x,y) = \mu(y) P(y,x) \qquad \forall x,y \in \mathcal{S}
+            .\] 
+    \end{enumerate}
+\end{definition}
+\missingfigure{Gleichgewicht zwischen $x,y$ durch  $\mu(x) P(x,y) \equiv $ Massenflus von $x$ nach $y$}
+
+
+\begin{theorem}
+    Falls $\mu$ die Detailed-Balance-Bedingung erfüllt, so ist  $\mu$ stationär.
+\end{theorem}
+
+\begin{proof}
+    Es ist
+    \begin{IEEEeqnarray*}{rCl}
+        (\mu P)(x)& = &\sum_{y\in \mathcal{S}} \mu(y) P(y,x)\\
+                  &\stackrel{\text{Detailed Balance}}{=} & \sum_{y\in \mathcal{S}} \mu(x) P(x,y) \\
+                  & = & \mu(x) \underbrace{\sum_{y\in \mathcal{S}} P(x,y)}_{=1 (P  \text{ stochastisch})} \\
+                  & = & \mu(x)
+    \end{IEEEeqnarray*}
+\end{proof}
+
+\begin{warning}
+    $\mu$ stationär  $\not \implies$ $\mu$ erfüllt die Detailed Balance Bedingung
+\end{warning}
+
+\begin{example}
+    Sei $\mathcal{S} = \left \{1,2,3\right\} $ und $p\in \left( \frac{1}{2},1 \right) $.
+    \[
+    \begin{tikzcd}
+        \circled{1} \ar[bend left = 20, blue]{rr}{p}& & \circled{2} \ar[bend left = 20, green!70!black]{ll}{1-p} \\
+                                                    & \circled{3} \arrow[blue,swap]{ul}{p} \arrow[green!70!black]{ur}{1-p}
+    \end{tikzcd}
+    .\] 
+    also
+    \[
+        P = \begin{pmatrix} 0 & p & 1-p \\ 1-p & 0 & p \\ p & 1-p & 0 \end{pmatrix}  
+    .\] 
+    Dann ist $\mu = \left( \frac{1}{3},\frac{1}{3},\frac{1}{3} \right) $ eine stationäre Verteilung, wie man leicht prüft (Syemmtriegründe oder einfaches Nachrechnen). Allerdings ist 
+    \[
+        \mu(1) P(1,2) = \frac{1}{3}p \neq  \frac{1}{3}(1-p) = \mu(2)P(2,1)
+    .\] 
+    also erfüllt $\mu$  \underline{nicht} die Detailed-Balance-Bedingung. 
+\end{example}
+\todo{Ordentliches Diagramm}
+
+\subsection{Konvergenz ins Gleichgewicht}
+Um Konvergenz messen zu können, brauchen  wir einen Abstandsbegriff für Wahrscheinlichkeitsverteilungen. Sei hierzu
+\[
+    \mathcal{M}(\mathcal{S}) \coloneqq  \left \{\mu = (\mu(x))_{x\in \mathcal{S}} \mid  \mu(x) \geq 0 \; \forall x, \sum_{x\in \mathcal{S}} \mu(x) = 1\right\} 
+.\] 
+der Raum aller Wahrscheinlichkeitsverteilungen.
+
+\begin{definition}
+    Die \vocab{totale Variatonsdistanz} zweier Wahrscheinlichkeitsverteilungen $\mu,\nu$ auf  $\mathcal{S}$ ist defniert durch:
+    \begin{IEEEeqnarray*}{rCl}
+        d_{TV}(\mu,\nu) &\coloneqq  &\frac{1}{2} \lVert \mu - \nu \rVert _1 \\
+                        & = & \frac{1}{2} \sum_{x\in \mathcal{S}} \abs{\mu(x) - \nu(x)} 
+    \end{IEEEeqnarray*}
+\end{definition}
+
+\begin{remark}
+    \begin{enumerate}[label=\protect\circled{\alph*}]
+        \item $d_{TV}$ ist eine Metrik.
+        \item  $\forall \mu,\nu \in \mathcal{M}(\mathcal{S})$ ist 
+            \[
+                d_{TV}(\mu,\nu) \leq  \frac{1}{2} \sum_{x} (\mu(x) + \nu(x)) = 1
+            .\] 
+    \end{enumerate}
+\end{remark}
