@@ -1,5 +1,5 @@
 %! TEX root = ./master.tex
-\lecture[]{Mi 02 Jun 2021 10:15}{}
+\lecture[]{Mi 02 Jun 2021 10:15}{Gleichgewicht in Markovketten}
 
 \subsection{Gleichgewicht von Markovketten}
 Oft ist $\mu$ nicht explizit bekannt, z.B. wenn
@@ -86,3 +86,30 @@ der Raum aller Wahrscheinlichkeitsverteilungen.
             .\] 
     \end{enumerate}
 \end{remark}
+
+\begin{lemma}
+    Sei
+    \[
+        B = \left \{x\in \mathcal{S} \mid  \mu(x) \geq  \nu(x)\right\} 
+    .\] 
+    Dann ist
+    \begin{IEEEeqnarray*}{rCl}
+        d_{TV}(\mu,\nu)  & = & \sum_{x\in B} (\mu(x) - \nu(x)) \\
+                         & = & \max_{A\subset \mathcal{S}} \abs{\mu(A) - \nu(A)} 
+    \end{IEEEeqnarray*}
+\end{lemma}
+
+\begin{proof}
+    \begin{IEEEeqnarray*}{rCl}
+        d_{TV}(\mu,\nu) & = & \frac{1}{2} \sum_{x\in B} (\mu(x) - \nu(x)) + \frac{1}{2} \sum_{x\in B^{c}} (\nu(x) - \mu(x))
+    \end{IEEEeqnarray*}
+    Beweis nicht vollständig aufgeschrieben!
+\end{proof}
+\todo{Beweis fertig (war zu lange weg)}
+
+\begin{theorem}
+    Nehmen wir an, dass $\exists \delta \in  (0,1]$ und ein $m\in \N$, sodass
+    \[
+        P^m(x,y) \geq  \delta\cdot \mu(y) \forall x,y \in  \mathcal{S}
+    .\] 
+\end{theorem}
