@@ -17,7 +17,7 @@
         \Mor_{\cat{C}\times \cat{D}}((X,Y),(X',Y')) \coloneqq  \Mor_{\cat{C}}(X,X') \times \Mor_{\cat{D}}(Y,Y') 
     .\] 
     setzen mit komponentenweiser Komposition, d.h. $(f,g) \circ  (f', g') = (f \circ  f', g \circ  g')$.
-\item Das Wedge-Produkt ($\twedge$, siehe \autoref{def:wedge-produkt}) können wir nun als Funktor
+\item Das \nameref{def:wedge-produkt} ($\twedge$, siehe \autoref{def:wedge-produkt}) können wir nun als Funktor
      \[
     \twedge \colon \Top_{\star} \times \Top_{\star} \to  \Top_{\star}
     .\] 
@@ -28,13 +28,51 @@
     wobei der Punkt $x_0 \sim y_0$ der Basispunkt des neuen Raumes ist. Das Wedge-Produkt ist gleichzeitig auch das Koprodukt in $\Top_{\star}$.
 
 
-    Analog geht das auch für das Sm, d.h. 
+    Analog geht das auch für das \nameref{def:smash-produkt} ($\tsmash$, siehe \autoref{def:smash-produkt}).
     \[
     \tsmash\colon  \Top_{\star} \times \Top_{\star} \to  \Top_{\star}
     .\] 
+    mittels
+    \[
+        ((X,x_0),(Y,y_0)) \mapsto \faktor{X \times Y}{X \twedge Y}
+    .\] 
+    wobei wir die Einbettung
+        \begin{equation*}
+        \begin{array}{c c l} 
+        X \twedge Y & \longrightarrow & X\times Y \\
+        x & \longmapsto &  (x,y_0) \\
+          & \longmapsto & (x_0,y)
+        \end{array}
+    \end{equation*}
+    gewählt haben, um den Quotienten zu bilden, und das Bild von $X \twedge Y$ als Basispunkt von  $X \tsmash Y$ wählen.
+\begin{oral}
+    Das Smash-Produkt ist \emphasize{nicht} das Produkt in $\Top_{\star}$, denn dieses ist gegeben durch das übliche Produkt $X \times  Y$, wobei wir diesen Raum mittels  $(x_0,y_0) \in  X \times Y$ punktieren.
+\end{oral}
+\begin{minipage}{\textwidth}
+    \begin{minipage}{0.7\textwidth}
+        
     \begin{example}
-        Fehlt.
+        \begin{enumerate}[1)]
+            \item $S^1 \tsmash S^1\cong S^2$ 
+            \item Die \vocab{Einhängung} eines topologischen Raumes ist ein Funktor
+                \[
+                \Sigma \colon  \Top \to  \Top
+                .\] 
+                gegeben durch
+                \[
+                    X \mapsto \faktor{X \times [0,1]}{\substack{X\times \left \{0\right\} \\ X\times \left \{1\right\} } }
+                .\] 
+                (genaugenommen wollen wir hier $(x,0) \sim  (x',0)$ für $x,x'\in X$ und analog $(x,1)\sim (x',1)$ identifizieren). Für Details siehe z.B. \cite[Seite 8]{algebraic-topology-hatcher}
+        \end{enumerate}
     \end{example}
+    \end{minipage}
+                \begin{minipage}{0.25\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{figures/1024px-Suspension.svg.png}
+                    \captionof{figure}{Einhängung des Kreises $C^1$}
+                    \scriptsize{Grafik von \cite{img:suspension}}
+                \end{minipage}
+\end{minipage}
 \item Wir können die Funktorkategorie $\Mor(\cat{C},\cat{D})$ bilden, indem wir $\Ob(\Mor(\cat{C},\cat{D}))$ als die Menge der Funktoren von $\cat{C}$ nach $\cat{D}$, und $\Mor_{\Mor_{\cat{C},\cat{D}}}(\mathcal{F},\mathcal{G})$ als die Menge der natürlichen Transformationen von $\mathcal{F}$ nach $\mathcal{G}$ wählen.
     \end{enumerate}
 \end{example}
