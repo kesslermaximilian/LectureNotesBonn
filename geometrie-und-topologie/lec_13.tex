@@ -1,5 +1,5 @@
 %! TEX root = ./master.tex
-\lecture[Gruppen und Gruppenwirkungen als Kategorien. Produkt- und Funktorkategorie. Wedge- und Smash-Produkt als Funktoren. Homotopie, die Homotopiekategorie $\hTop$, Homotopieäquivalenz. Schleifen. Die Fundamentalgruppe und ihr Operator $\star$.  $\pi_1$ als Funktor $\Top_{\star} \to \Grp$]{Di 08 Jun 2021 12:15}{}
+\lecture[Gruppen und Gruppenwirkungen als Kategorien. Produkt- und Funktorkategorie. Wedge- und Smash-Produkt als Funktoren. Homotopie, die Homotopiekategorie $\hTop$, Homotopieäquivalenz. Schleifen. Die Fundamentalgruppe und ihr Operator $\star$.  $\pi_1$ als Funktor $\Top_{\star} \to \Grp$]{Di 08 Jun 2021 12:15}{Homotopie}
 \begin{example}
     \begin{enumerate}[1)]
         \item Wir können eine Gruppe $G$ als Kategorie auffassen, indem wir  $\Ob{\cat{G}} = \left \{\star\right\} $ und $\Mor_{\cat{G}}(\star,\star) = G$ setzen, wobei natürlich $g \circ  h = gh$. Man könnte das in etwa so skizzieren:
@@ -17,18 +17,21 @@
         \Mor_{\cat{C}\times \cat{D}}((X,Y),(X',Y')) \coloneqq  \Mor_{\cat{C}}(X,X') \times \Mor_{\cat{D}}(Y,Y') 
     .\] 
     setzen mit komponentenweiser Komposition, d.h. $(f,g) \circ  (f', g') = (f \circ  f', g \circ  g')$.
-\item Das Wedge-Produkt ($\twedge$) können wir nun als Funktor
+\item Das Wedge-Produkt ($\twedge$, siehe \autoref{def:wedge-produkt}) können wir nun als Funktor
      \[
-    \twedge \Top_{\star} \times \Top_{\star} \to  \Top_{\star}
+    \twedge \colon \Top_{\star} \times \Top_{\star} \to  \Top_{\star}
     .\] 
     auffassen, mittels
     \[
-        ((X,x_0),(Y,y_0)) \mapsto X \bigcup\limits_{\left \{\star\right\} }Y / (x_0 \sim  y_0)
+        ((X,x_0),(Y,y_0)) \mapsto \faktor{X \coprod Y}{x_0 \sim  y_0} =\vcentcolon X \bigcup_{\left \{\star\right\} } Y 
     .\] 
-wobei der Punkt $x_0 \sim y_0$ der Basispunkt des neuen Raumes ist.
+    wobei der Punkt $x_0 \sim y_0$ der Basispunkt des neuen Raumes ist. Das Wedge-Produkt ist gleichzeitig auch das Koprodukt in $\Top_{\star}$.
 
 
-    Analog geht das auch für das Wedge-Produkt, d.h. $\tsmash \Top_{\star} \times  \Top_{\star} \to  \Top_{\star}$ 
+    Analog geht das auch für das Sm, d.h. 
+    \[
+    \tsmash\colon  \Top_{\star} \times \Top_{\star} \to  \Top_{\star}
+    .\] 
     \begin{example}
         Fehlt.
     \end{example}
@@ -264,7 +267,11 @@ Homotopieäquivalenz ist eine Äquivalenzrelation.
     \[
         \pi_1 (X,x_0) \stackrel{p_1(f) =: f_*}{\longrightarrow}   \pi_1(Y,y_0)
     .\] 
-    mittels $[w] \mapsto [f \circ  w]$. Damit ist insbesondere $\pi_1$ ein Funktor $\Top_{\star} \to  \Grp$.
+    mittels $[w] \mapsto [f \circ  w]$. Zudem ist
+    \[
+    \pi_1\colon  \Top_{\star} \to  \Grp
+    .\] 
+    ein Funktor.
 \end{theorem}
 
 \begin{proof}
