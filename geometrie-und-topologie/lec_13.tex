@@ -30,12 +30,12 @@ wobei der Punkt $x_0 \sim y_0$ der Basispunkt des neuen Raumes ist.
 
     Analog geht das auch für das Wedge-Produkt, d.h. $\tsmash \Top_{\star} \times  \Top_{\star} \to  \Top_{\star}$ 
     \begin{example}
-        \todo{Fehlt}
+        Fehlt.
     \end{example}
-\item Die Funktorkategorie $\Mor(\cat{C},\cat{D})$ mit $\Ob(\Mor(\cat{C},\cat{D}))$ als der Menge der Funktoren von $\cat{C}$ nach $\cat{D}$, und $\Mor_{\Mor_{\cat{C},\cat{D}}}(\mathcal{F},\mathcal{G})$ als die Menge der natürlichen Transformationen von $\mathcal{F}$ nach $\mathcal{G}$
+\item Wir können die Funktorkategorie $\Mor(\cat{C},\cat{D})$ bilden, indem wir $\Ob(\Mor(\cat{C},\cat{D}))$ als die Menge der Funktoren von $\cat{C}$ nach $\cat{D}$, und $\Mor_{\Mor_{\cat{C},\cat{D}}}(\mathcal{F},\mathcal{G})$ als die Menge der natürlichen Transformationen von $\mathcal{F}$ nach $\mathcal{G}$ wählen.
     \end{enumerate}
 \end{example}
-
+\todo{Wedge-Produkt hier nochmal überarbeiten.}
 
 
 \section{Homotopien und die Fundamentalgruppen}
@@ -56,7 +56,9 @@ wobei der Punkt $x_0 \sim y_0$ der Basispunkt des neuen Raumes ist.
 \end{definition}
 
 \begin{dnotation}
-    Ab nun notieren wir $I \coloneqq  [0,1]$ als das Einheitsintervall
+    Da wir uns $t\in I$ als 'zeitlichen Verlauf' vorstellen, notieren wir üblicherweise $H_t \coloneqq  H(-,t)\colon  X \to  Y$ als die Abbildung zum Zeitpunkt $t\in [0,1]$. 
+
+    Zudem notieren wir $I \coloneqq  [0,1]$ als das Einheitsintervall.
 \end{dnotation}
 
 \begin{lemma}
@@ -67,7 +69,7 @@ wobei der Punkt $x_0 \sim y_0$ der Basispunkt des neuen Raumes ist.
         \item[Reflexivität] Ist $f\colon  X \to  Y$ stetig, so auch  $H \colon  X \times I \stackrel{\pr_X}{\to } X \stackrel{f}{\to } Y $ und klarerweise ist $H_0 = H_1 = f$.
         \item[Symmetrie] Ist $H \colon  X \times I \to  Y$ stetig, so auch
             \[
-                H' \colon  X \times I \stackrel{(\id, 1-t)}{\to}  X\times I \to  Y
+                H' \colon  X \times I \stackrel{(\id, 1-t)}{\longrightarrow}  X\times I \longrightarrow  Y
             .\] 
         \item[Transitivität] Sind $H,G \colon  X \times I \to  Y$ stetig und $H_1 = G_0$, so ist auch die Abbildung
                 \begin{equation*}
@@ -107,10 +109,14 @@ wobei der Punkt $x_0 \sim y_0$ der Basispunkt des neuen Raumes ist.
     d.h. wir identifizieren Abbildungen modulo Homotopie.
 \end{definition}
 
+\begin{proof}
+    Übung. Einige Wohldefiniertheiten müssen geprüft werden.
+\end{proof}
+
 \begin{definition}[Homotopieäquivalenz]\label{def:homotopieäquivalenz}
     \begin{enumerate}[a)]
         \item 
-    Eine Abbildung $f\colon  X \to  Y$ heißt \vocab{Homotopieäquivalenz}, falls $f$ ein Isomorphismus in  $\hTop$ ist, d.h. falls es eine Abbildung $g\colon  Y \to  X$ gibt, so dass $g \circ  f \sim  \id_X$ und $f \circ  g \sim \id_Y$ jeweils homotop zu den Identitäten sind.
+            Eine Abbildung $f\colon  X \to  Y$ heißt \vocab{Homotopieäquivalenz}, falls $[f]$ ein Isomorphismus in  $\hTop$ ist, d.h. falls es eine Abbildung $g\colon  Y \to  X$ gibt, so dass $g \circ  f \sim  \id_X$ und $f \circ  g \sim \id_Y$ jeweils homotop zu den Identitäten sind.
 \item Existiert eine Homotopieäquivalenz $f\colon  X \to Y$, so heißen $X$ und  $Y$  \vocab{homotopieäquivalent}. 
     \end{enumerate}
 \end{definition}
@@ -129,15 +135,174 @@ wobei der Punkt $x_0 \sim y_0$ der Basispunkt des neuen Raumes ist.
         x & \longmapsto &  \star
         \end{array} \right.
     \end{equation*}
-    Hierbei ist $g \circ  f = \id_{\left \{\star\right\} }$ sowieso schon die Identität, und es ist $f \circ  g = c_0$ (die konstante Nullabbildung). Mittels
+    Hierbei ist $g \circ  f = \id_{\left \{\star\right\} }$ sowieso schon die Identität, und es ist $f \circ  g = \mathcal{C}_0$ (die konstante Nullabbildung). Mittels
         \begin{equation*}
         H: \left| \begin{array}{c c l} 
         \R^n\times I & \longrightarrow & \R^n \\
         (x,t) & \longmapsto &  tx
         \end{array} \right.
     \end{equation*}
-    erhalten wir auch $H_0 = c_0$ und $H_1 = \id_{\R^n}$, sodass wir eine Homotopie $c_0 \sim \id$ gefunden haben.
+    erhalten wir auch $H_0 = \mathcal{C}_0$ und $H_1 = \id_{\R^n}$, sodass wir eine Homotopie $\mathcal{C}_0 \sim \id$ gefunden haben.
 \end{example}
 
+\begin{lemma}\label{lm:homotopieäquivalenz-ist-äquivalenzrelation}
+Homotopieäquivalenz ist eine Äquivalenzrelation.    
+\end{lemma}
 
+\begin{proof}
+    Isomorphie in einer Kategorie ist eine Äquivalenzrelation.
+\end{proof}
+
+
+\begin{notation}
+    Wir bezeichen
+    \[
+        [X,Y] \coloneqq  \Mor_{\Top}(X,Y) / \sim = \Mor_{\hTop}(X,y)
+    .\] 
+    und analog
+    \[
+        [X,Y]_{\star} \coloneqq  [(X,x_0),(Y,y_0)] \coloneqq  \Mor_{\Top_{\star}}(X,Y) / \sim 
+    .\] 
+\end{notation}
+\todo{Notation nummerieren}.
+
+\begin{definition}[Schleife]\label{def:schleife}
+    Eine \vocab[Schleife]{Schleife in $X$ an  $x\in X$} ist eine Abbildung $w\colon  I \to  X$ mit $w(0) = w(1) = x$. 
+
+    Äquivalent ist  $w$ eine Schleife, wenn  $w\in \Mor_{\Top_{\star}}((S^1,1), (X,x_0))$, indem wir \autoref{thm:kreis-ist-quotientenraum-von-einheitsintervall} anwenden.
+\end{definition}
+
+
+\begin{definition}[Komposition von Schleifen]\label{def:komposition-von-schleifen}
+    Für zwei Schleifen $w,w'$ in  $X$ an  $x$ ist  $w \star w'$ die Schleife mit
+     \[
+         (w \star w')(t) = \begin{cases}
+             w(2t) & 0\leq t\leq \frac{1}{2} \\
+             w'(2t-1) & \frac{1}{2}\leq t\leq 1
+         \end{cases}
+    .\] 
+\end{definition}
+
+\begin{theorem}\label{thm:star-ist-gruppenstruktur}
+    Sei $x_0\in X$ ein Basispunkt. Dann definiert $\star$ eine Gruppenstruktur auf  $[S^1,(X,x_0)]_{\star}$.
+\end{theorem}
+
+\begin{proof}
+    Als erstes zeigen wir wohldefiniertheit auf den Homotopieklassen, d.h. Wenn wir $w,w'$ bis auf Homotopie ändern, so ist auch deren Komposition bis auf Homotopie stets gleich. Seien hierzu
+    \[
+        H,G \colon  [0,1] / \left \{0,1\right\} \times I \to  X
+    .\] 
+    punktierte Homotopien. Dann setzen wir
+    \[
+        (H \star G) (s,t) = \begin{cases}
+            H(2s,t) & 0 \leq  s \leq  \frac{1}{2} \\
+            G(2s-1,t) & \frac{1}{2} \leq  s \leq  1
+        \end{cases}
+    .\] 
+    und erhalten wegen $(H \star G)_0 = H_0 \star G_0$ und  $(H\star G) _1 = H_1 \star G_1$ eine entsprechende Homotopie der verknüpften Wege.
+
+    Man beachte, dass wir hierzu $H(1,t) =H_t(1) =  x_0 = G_t(0) = G(0,t)$ benötigen, weil es sich um Schleifen handelte.
+
+    \begin{description}
+        \item[Assoziativität] Sind $w,w',w''$ drei Schleifen an  $x_0$, so durchlaufen wir bei der Schleife $(w \star w') \star w''$ auf $[0,\frac{1}{2}]$ den Weg $w \circ  w'$ und auf $[\frac{1}{2},1]$ $w''$. Für $w \star (w' \star w'')$  passiert zwar eigentlich das Gleiche, allerdings in anderen Zeitintervallen, weswegen folgendes hilft:
+\[
+            \begin{tikzpicture}
+                \draw (0,0) -- (4,0) -- (4,2) -- (0,2) -- cycle;
+                \draw (1,2) -- (2,0);
+                \draw (2,2) -- (3,0);
+            \end{tikzpicture}
+        \]
+    Formal setzen wir also
+    \[
+        H(t,s) = \begin{cases}
+            w\left( \frac{4t}{1+s} \right) & 0 \leq  t \leq  \frac{1+s}{4} \\
+            w'(4t-1-s) & \frac{1+s}{4}\leq t \leq  \frac{2+s}{4} \\
+            w''\left( \frac{4t-2-s}{2-s} \right) & \frac{2+s}{4}\leq t\leq 1
+        \end{cases}
+    .\] 
+    Wir prüfen wieder, dass für $t = \frac{1+s}{4}$ $w(1) = x_0 = w'(0)$ und analog auch für $t = \frac{2+s}{4}$.
+\item[neutrales Element] Sei $w$ eine Schleife an $x_0$, und $c\colon  I \to  X$ konstant $x_0$. Dann ist
+    \[
+        H(t,s) = \begin{cases}
+            w(\frac{2t}{1+s}) & 0 \leq  t\leq \frac{1+s}{2} \\
+           x_0 & \frac{1+s}{2}\leq t\leq 1
+        \end{cases}
+    .\] 
+\item[Inverses] Sei $\overline{w} (t) = w(1-t)$, wir behaupten, dass diese Schleife ein Inverses darstellt. Dann ist
+    \[
+        H(t,s) = \begin{cases}
+            w(2t) & 0 \leq  t \leq  \frac{1-s}{2} \\
+            w(1-s) & \frac{1-s}{2} \leq  t \leq  \frac{1+s}{2} \\
+            w(2(1-t)) = \overline{w}(2t-1) & \frac{1+s}{2}\leq  t \leq  1
+        \end{cases}
+    .\] 
+    eine Homotopie von $w \star \overline{w}$ nach $c$.
+    \missingfigure{Illustration der Homotopie mittels Spaghetti-Trick}.
+    \end{description}
+\end{proof}
+\todo{Homotopie-Illustration beschriften}.
+\begin{oral}
+    Man erkennt, dass es für obigen Beweis wichtig war, dass wir die Verknüpfung nur bis auf Homotopie definieren, weil wir ansonsten Probleme mit der Parametrisierung bekommen.
+\end{oral}
+
+\begin{definition}[Fundamentalgruppe]\label{def:fundamentalgruppe}
+    Für $(X,x_0) \in \Top_{\star}$ ist 
+    \[
+        \pi_1(X,x_0) \coloneqq  ([(S^1,1),(X,x_0)]_{\star},\star)
+    .\] 
+    die \vocab{Fundamentalgruppe} von $X$ an  $x_0$. 
+\end{definition}
+
+\begin{oral}
+    Wir werden feststellen, dass es sich bei obigem um eine Homotopieinvariante handelt, mit der wir eine weitere charakteristische Eigenschaft von topologischen Räumen gefunden haben, um diese zu unterscheiden. 
+
+    Allerdings wird sich herausstellen, dass die Berechnung solcher Gruppen recht mühsam ist, weswegen wir noch die Technik sogenannter \textit{Überlagerungen} kennenlernen werden.
+\end{oral}
+
+\begin{theorem}
+    Ist $f\colon  (X,x_0) \to  (Y,y_0)$ eine Abbildung, so induziert diese einen Gruppenhomomorphismus
+    \[
+        \pi_1 (X,x_0) \stackrel{p_1(f) =: f_*}{\longrightarrow}   p_1(Y,y_0)
+    .\] 
+    mittels $[w] \mapsto [f \circ  w]$. Damit ist insbesondere $\pi_1$ ein Funktor $\Top_{\star} \to  \Grp$.
+\end{theorem}
+
+\begin{proof}
+    \begin{description}
+        \item[Wohldefiniertheit] Ist $w\stackrel{H}{\sim} w'$, so ist $f \circ  w \stackrel{f \circ  H}{\sim }  f \circ  w''$.
+        \item[Gruppenhomomorphismus] Es ist
+            \begin{IEEEeqnarray*}{rCl}
+                p_1(f) ([w] \star [w']) &=& p_1(f) ([w\star w']) \\
+                                        & = & [f \circ  (w \star w')] \\
+                                        & \stackrel{\text{(1)}}{=}  & [(f \circ  w) \star (f \circ  w') ] \\
+                                        & = & [f \circ  w] \star [f \circ  w'] \\
+                                        & = & \pi(f) ([w]) \circ  \pi_1(f)([w'])
+            \end{IEEEeqnarray*}
+            wobei in (1) Gleichheit gilt, weil es sich bei beiden Seiten um die Abbildung
+            \[
+            \begin{cases}
+                (f \circ w)(2t) & 0\leq t\leq \frac{1}{2} \\
+                (f \circ  w') (2t-1) & \frac{1}{2}\leq t\leq 1
+            \end{cases}
+            .\]
+            handelt. 
+        \item[Funktorialität] 
+            \begin{itemize}
+                \item Es ist $\pi_1(\id_X) [w] = [\id_X \circ  w = [w]]$, also bilden wir Identitäten auf Identitäten ab.
+                \item Wir rechnen nach:
+                    \begin{IEEEeqnarray*}{rCl}
+                        \pi_1(f \circ g)([w]) & = & [(f \circ g) \circ  w] \\
+                                              &=& [f \circ  (g \circ  w)] \\
+                                              & = & \pi_1(f) [g \circ  w] \\
+                                              & = & \pi_1(f)(\pi_1(g)[w]))\\
+                                              & = & (p_1(f) \circ  \pi_1(g))[w]
+                    \end{IEEEeqnarray*}
+                    und wir erhalten, dass $\pi_1(f \circ g) = \pi_1(f) \circ  \pi_1(g)$.
+            \end{itemize}
+    \end{description}
+\end{proof}
+
+\begin{oral}
+    Wir können uns $\pi_1$ vorstellen als 'Löcher-zählen', dazu später mehr.
+\end{oral}
 
