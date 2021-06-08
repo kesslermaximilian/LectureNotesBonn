@@ -390,6 +390,24 @@
 \newtheorem*{idea}{\ifenglish Idea\else Idee\fi}
 \newtheorem{exercise}{\ifenglish Exercise\else Aufgabe\fi}
 
+%Numbering of environments with a fractional environment number, see
+% https://tex.stackexchange.com/questions/598076/how-to-have-a-fractional-environment-number/598080?noredirect=1#comment1499689_598080
+%However, for a reason i don't understand the posted answer does not work for me, but i had to replace theorem with definition in the definition of the gag environment (so apparently, i have to do this for each environment separately). It seems that the definitions of this document do use \thedefinition and not \thetheorem, although by default this is not the case.
+\newcounter{gag}
+\makeatletter
+\newenvironment{gag}[1]{%
+  \let\savedthedefinition\thedefinition
+  \thm@headfont{\bfseries\boldmath}%
+  \stepcounter{gag}%
+  \renewcommand{\thedefinition}{\savedthedefinition#1}%
+  \renewcommand{\theHdefinition}{gag\thegag}%
+  \addtocounter{definition}{-1}\ignorespaces
+}{\ignorespacesafterend}
+\makeatother
+
+
+
+
 %%subproof environment - essentially copied proof environment from amsthm and modified its name + symbol
 \makeatletter
 \DeclareRobustCommand{\blackqed}{%
