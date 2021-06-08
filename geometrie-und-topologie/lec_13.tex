@@ -1,5 +1,5 @@
 %! TEX root = ./master.tex
-\lecture[]{Di 08 Jun 2021 12:15}{}
+\lecture[Gruppen und Gruppenwirkungen als Kategorien. Produkt- und Funktorkategorie. Wedge- und Smash-Produkt als Funktoren. Homotopie, die Homotopiekategorie $\hTop$, Homotopieäquivalenz. Schleifen. Die Fundamentalgruppe und ihr Operator $\star$.  $\pi_1$ als Funktor $\Top_{\star} \to \Grp$]{Di 08 Jun 2021 12:15}{}
 \begin{example}
     \begin{enumerate}[1)]
         \item Wir können eine Gruppe $G$ als Kategorie auffassen, indem wir  $\Ob{\cat{G}} = \left \{\star\right\} $ und $\Mor_{\cat{G}}(\star,\star) = G$ setzen, wobei natürlich $g \circ  h = gh$. Man könnte das in etwa so skizzieren:
@@ -262,7 +262,7 @@ Homotopieäquivalenz ist eine Äquivalenzrelation.
 \begin{theorem}
     Ist $f\colon  (X,x_0) \to  (Y,y_0)$ eine Abbildung, so induziert diese einen Gruppenhomomorphismus
     \[
-        \pi_1 (X,x_0) \stackrel{p_1(f) =: f_*}{\longrightarrow}   p_1(Y,y_0)
+        \pi_1 (X,x_0) \stackrel{p_1(f) =: f_*}{\longrightarrow}   \pi_1(Y,y_0)
     .\] 
     mittels $[w] \mapsto [f \circ  w]$. Damit ist insbesondere $\pi_1$ ein Funktor $\Top_{\star} \to  \Grp$.
 \end{theorem}
