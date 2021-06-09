@@ -89,16 +89,29 @@
     .\] 
     gibt mit 
     \[
-        H_0 \coloneqq  H(-,0) = f \qquad H_1 = g
+        H_0 \coloneqq  H(-,0) = f \qquad H_1 \coloneqq H(-,1) = g
     .\] 
     Die Abbildung $H$ nennen wir dann  \vocab{Homotopie}. 
 \end{definition}
 
 \begin{dnotation}
-    Da wir uns $t\in I$ als 'zeitlichen Verlauf' vorstellen, notieren wir üblicherweise $H_t \coloneqq  H(-,t)\colon  X \to  Y$ als die Abbildung zum Zeitpunkt $t\in [0,1]$. 
-
-    Zudem notieren wir $I \coloneqq  [0,1]$ als das Einheitsintervall.
+    Wir notieren von nun an $I \coloneqq  [0,1]$ als das Einheitsintervall.
 \end{dnotation}
+
+\begin{notation**}
+    Da wir uns das Intervall $[0,1]$ als einen zeitlichen Verlauf vorstellen wollen, über dem wir  $f$ nach  $g$ homotopieren, bietet sich allgemein die Notation  $H_t \coloneqq  H(-,t) \coloneqq  X \stackrel{x \mapsto (x,t)}{\hookrightarrow} X \times [0,1] \stackrel{H}{\longrightarrow}   Y$ an, um 'die' Abbildung zum Zeitpunkt $t\in [0,1]$ zu notieren. 
+
+    Sollte es sich bei $X$ um das Intervall  $[0,1]$ handeln, d.h.  $f,g\colon [0,1] \to  Y$ sind Wege in $Y$, so parametrisieren wir diese Wege üblicherweise mit $s$. Für Wege  $w_1,w_2$  ist dann zum Zeitpunkt $t\in [0,1]$
+        \begin{equation*}
+            H_t \coloneqq H(-,t)\colon  \left| \begin{array}{c c l} 
+            [0,1] & \longrightarrow & Y \\
+        s & \longmapsto &  H(s,t)
+        \end{array} \right.
+    \end{equation*}
+   ein Weg in $Y$, wobei  $H_0 = w_1$ und $H_1 = w_2$.
+
+   In der Vorlesung wir das nicht immer so gehandhabt und teilweise gewechselt, was ich persönlich verwirrend finde. Ich bemühe mich daher, einheitlich $H(s,t)$ zu verwenden und hierzu wenn nötig  $s,t$ bezüglich der Vorlesungsmitschrift zu vertauschen, damit dieses Skript einheitlich wird. Das hat den Vorteil, dass  $t$ im Kontext von Homotopien immer die Abbildungen  $X\to Y$ parametrisiert, bzw. die Notation $H_t$ die richtige ist, und - sollte es sich um Wege handeln, die wir homotopieren -  $s$ als Parameter für das Durchlaufen eines Weges verwendet wird.
+\end{notation**}
 
 \begin{lemma}
     Homotopie ist eine Äquivalenzrelation auf $\Mor_{\Top}(X,Y)$.
@@ -204,6 +217,10 @@ Homotopieäquivalenz ist eine Äquivalenzrelation.
     .\] 
 \end{notation}
 
+\begin{remark*}
+    Für die Notation $[X,Y]_{\star}$ bzw. $[(X,x_0),(Y,y_0)]$ definieren wir $\sim $ natürlich wie in Teil i) von \autoref{def:homotopie-relativ-einer-menge}, d.h. wir lassen nur punktierte Homotopie zu, wie man das in der Kategorie der punktierten topologischen Räume auch erwartet, zu.
+\end{remark*}
+
 \begin{definition}[Schleife]\label{def:schleife}
     Eine \vocab[Schleife]{Schleife in $X$ an  $x\in X$} ist eine Abbildung $w\colon  I \to  X$ mit $w(0) = w(1) = x$. 
 
@@ -232,53 +249,136 @@ Homotopieäquivalenz ist eine Äquivalenzrelation.
     .\] 
     punktierte Homotopien. Dann setzen wir
     \[
-        (H \star G) (s,t) = \begin{cases}
+        (H \star G)(s,t) = \begin{cases}
             H(2s,t) & 0 \leq  s \leq  \frac{1}{2} \\
-            G(2s-1,t) & \frac{1}{2} \leq  s \leq  1
+            G(2s-1,t) & \frac{1}{2}\leq s\leq 1
         \end{cases}
-    .\] 
-    und erhalten wegen $(H \star G)_0 = H_0 \star G_0$ und  $(H\star G) _1 = H_1 \star G_1$ eine entsprechende Homotopie der verknüpften Wege.
+    .\]
+    und sehen sofort allgemein $(H\star G)_t = H_s \star G_t$, weswegen wir also eine Homotopie zwischen  $(H \star G)_0 = H_0 \star G_0$ und  $(H\star G)_1 = H_1 \star G_1$ definiert haben.
 
-    Man beachte, dass wir hierzu $H(1,t) =H_t(1) =  x_0 = G_t(0) = G(0,t)$ benötigen, weil es sich um Schleifen handelte.
+    Man beachte, dass wir für die Wohldefiniertheit $H(1,t) =H_t(1) =  x_0 = G_t(0) = G(0,t)$ benötigen (an der Übergangsstelle $s = \frac{1}{2}$ müssen die beiden Fälle übereinstimmen).
 
-    \begin{description}
-        \item[Assoziativität] Sind $w,w',w''$ drei Schleifen an  $x_0$, so durchlaufen wir bei der Schleife $(w \star w') \star w''$ auf $[0,\frac{1}{2}]$ den Weg $w \circ  w'$ und auf $[\frac{1}{2},1]$ $w''$. Für $w \star (w' \star w'')$  passiert zwar eigentlich das Gleiche, allerdings in anderen Zeitintervallen, weswegen folgendes hilft:
-\[
+\begin{description}
+        \item[Assoziativität] Sind $w,w',w''$ drei Schleifen an  $x_0$, so durchlaufen wir bei der Schleife $(w \star w') \star w''$ auf $[0,\frac{1}{2}]$ den Weg $w \circ  w'$ und auf $[\frac{1}{2},1]$ $w''$. Für $w \star (w' \star w'')$  passiert zwar eigentlich das Gleiche, allerdings in anderen Zeitintervallen, weswegen wir diese Zeitintervalle mittels einer Homotopie verschieben:
+            \[
             \begin{tikzpicture}
-                \draw (0,0) -- (4,0) -- (4,2) -- (0,2) -- cycle;
-                \draw (1,2) -- (2,0);
-                \draw (2,2) -- (3,0);
+                \draw (0,0) --  (1,0) node[anchor=north, midway] {$w$} --  (2,0) node[anchor=north,midway]{$w'$} -- (4,0) node[anchor=north, midway] {$w''$} -- (4,2) -- (3,2) node[anchor=south, midway] {$w''$} -- (2,2) node[anchor=south, midway] {$w'$} -- (0,2) node[anchor=south, midway] {$w$} -- cycle;
+                \draw[->] (0,0) -- (4.5,0) node[anchor=west, text width =3cm] {s \\ (Zeitlicher Durchlauf \\einer Schleife)};
+                \draw[->] (0,0) -- (0,2.5) node[anchor=south] {t (Verlauf der Homotopie)};
+                \draw[blue,thick] (0,2) node[anchor=east, text width=2cm] {$H_1 =$ \\ $w \star (w' \star w'')$} -- (4,2);
+                \draw[blue,thick] (0,0) node[anchor=east, text width=2cm] {$H_0 =$ \\$(w \star w') \star w''$} --(4,0);
+                \draw[blue,thick] (0,1) node[anchor=east] {$H_{\frac{1}{2}}$} --(4,1);
+                \draw[red,thick] (2,2) -- (1,0);
+                \draw[red,thick] (2,0) -- (3,2);
+                \draw[red,thick] (0,0) -- (0,2);
+                \draw[red, thick] (4,0) -- (4,2);
             \end{tikzpicture}
         \]
-    Formal setzen wir also
+        Dazu durchlaufen wir mit $H_t$ (also zum Zeitpunkt  $t$ der Homotopie) $w$ auf dem Intervall $s\in [0, \frac{1+t}{4}]$, den Weg $w'$ auf  $[\frac{1+t}{4},\frac{2+t}{4}]$ und den Weg $w''$ auf  $[\frac{2+t}{4},1]$, formal also folgendermaßen:
     \[
-        H(t,s) = \begin{cases}
-            w\left( \frac{4t}{1+s} \right) & 0 \leq  t \leq  \frac{1+s}{4} \\
-            w'(4t-1-s) & \frac{1+s}{4}\leq t \leq  \frac{2+s}{4} \\
-            w''\left( \frac{4t-2-s}{2-s} \right) & \frac{2+s}{4}\leq t\leq 1
+        H(s,t) = \begin{cases}
+            w\left( \frac{4s}{1+t} \right) & 0 \leq  s \leq  \frac{1+t}{4} \\
+            w'(4s-1-t) & \frac{1+t}{4}\leq s \leq  \frac{2+t}{4} \\
+            w''\left( \frac{4s-2-t}{2-t} \right) & \frac{2+t}{4}\leq s\leq 1
         \end{cases}
     .\] 
-    Wir prüfen wieder, dass für $t = \frac{1+s}{4}$ $w(1) = x_0 = w'(0)$ und analog auch für $t = \frac{2+s}{4}$.
-\item[neutrales Element] Sei $w$ eine Schleife an $x_0$, und $c\colon  I \to  X$ konstant $x_0$. Dann ist
+    Man prüft an den Übergängen zwischen den Wegen wieder leicht, dass für  $s = \frac{1+t}{4}$ und $s = \frac{2+t}{4}$ jeweils $H(s,t) = w(1) = x_0 = w'(0)$ bzw. $H(s,t) = w'(1) = x_0 = w''(0)$ gilt, in obiger Skizze sind die rot markierten Strecken diejenigen, auf denen $H(s,t)$ den Wert  $x_0$ (zwingend) annimmt, weil es sich um Schleifenanfänge bzw. Enden handelt.
+\item[neutrales Element] Sei $c\colon  I \to X$ die Abbildung, die konstant $x_0$ ist. Wir behaupten, dass $c$ ein neutrales Elemente ist. Sei hierzu  $w$ eine beliebige Schleife an  $x$, dann ist
     \[
-        H(t,s) = \begin{cases}
-            w(\frac{2t}{1+s}) & 0 \leq  t\leq \frac{1+s}{2} \\
-           x_0 & \frac{1+s}{2}\leq t\leq 1
+        H(s,t) = \begin{cases}
+            w(\frac{2s}{1+t}) & 0 \leq  s\leq \frac{1+t}{2} \\
+           x_0 & \frac{1+t}{2}\leq s\leq 1
         \end{cases}
     .\] 
+    eine Homotopie von $w \star c$ nach  $w$. Die Abbildung $H_t$ durchläuft hierzu auf  $[0,\frac{1+t}{2}]$ den Weg $w$, und bleibt für den Rest der Zeit stehen.
+    \begin{remark*}
+        Wir müssen eigentlich noch zeigen, dass auch $c\star w$ zu  $w$ homotop ist, damit  $c$ eine beidseitiges neutrales Element ist, dazu ergibt sich jedoch völlig analog die Homotopie
+         \[
+             H(s,t) = \begin{cases}
+                 x_0 & 0\leq s \leq  \frac{t}{2} \\
+                 w\left( \frac{2s-t}{2-t} \right) & \frac{t}{2} \leq s \leq  1
+             \end{cases}
+        .\] 
+        von $w$ nach  $c \star w$.  $H_t$ bleibt zunächst stehen, und durchläuft dann auf  $[\frac{t}{2},1]$ den Weg $w$.
+    \end{remark*}
+
 \item[Inverses] Sei $\overline{w} (t) = w(1-t)$, wir behaupten, dass diese Schleife ein Inverses darstellt. Dann ist
     \[
-        H(t,s) = \begin{cases}
-            w(2t) & 0 \leq  t \leq  \frac{1-s}{2} \\
-            w(1-s) & \frac{1-s}{2} \leq  t \leq  \frac{1+s}{2} \\
-            w(2(1-t)) = \overline{w}(2t-1) & \frac{1+s}{2}\leq  t \leq  1
+        H(s,t) = \begin{cases}
+            w(2s) & 0 \leq  s \leq  \frac{1-t}{2} \\
+            w(1-t) & \frac{1-t}{2} \leq  s \leq  \frac{1+t}{2} \\
+            w(2-2s) = \overline{w}(2s-1) & \frac{1+t}{2} \leq  s \leq  1
         \end{cases}
     .\] 
-    eine Homotopie von $w \star \overline{w}$ nach $c$.
-    \missingfigure{Illustration der Homotopie mittels Spaghetti-Trick}.
+    eine Homotopie von $w \star \overline{w}$ nach $c$. Hierbei laufen wir mit $H_t$ zunächst auf $[0, \frac{1-t}{2}]$ einen Teil von $w$ entlang (in normaler Geschwindigkeit ), dann bleiben wir stehen (an der Stelle $w(1-t)$) und laufen dann im Zeitraum  $[\frac{1+t}{2},1]$ wieder zurück, also ein Endstück von $\overline{w}$.
+
     \end{description}
+    \begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.15\textwidth}
+            \centering
+    \begin{tikzpicture}[auto]
+        \useasboundingbox (-1,-1) rectangle (1,1);
+        \def\x{-180}
+        \draw (-0.6,0) arc (180:\x:0.6) node[near start,swap] {$w$};
+        \draw (-0.7,0) arc (180:\x:0.7) node[near start] {$\overline{w}$};
+        \fill (-0.65,0) circle (2pt) node[anchor=east] {$x_0$}; 
+        \draw (\x:0.6) -- (\x:0.7);
+    \end{tikzpicture}
+    \caption{$H_0$}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.15\textwidth}
+            \centering
+    \begin{tikzpicture}[auto]
+        \useasboundingbox (-1,-1) rectangle (1,1);
+        \def\x{-60}
+        \draw (-0.6,0) arc (180:\x:0.6) node[near start,swap] {$w$};
+        \draw (-0.7,0) arc (180:\x:0.7) node[near start] {$\overline{w}$};
+        \fill (-0.65,0) circle (2pt) node[anchor=east] {$x_0$}; 
+        \draw (\x:0.6) -- (\x:0.7);
+    \end{tikzpicture}
+    \caption{$H_{\frac{1}{3}}$}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.15\textwidth}
+            \centering
+    \begin{tikzpicture}[auto]
+        \useasboundingbox (-1,-1) rectangle (1,1);
+        \def\x{60}
+        \draw (-0.6,0) arc (180:\x:0.6) node[midway,swap] {$w$};
+        \draw (-0.7,0) arc (180:\x:0.7) node[midway] {$\overline{w}$};
+        \fill (-0.65,0) circle (2pt) node[anchor=east] {$x_0$}; 
+        \draw (\x:0.6) -- (\x:0.7);
+    \end{tikzpicture}
+    \caption{$H_{\frac{2}{3}}$}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.15\textwidth}
+            \centering
+    \begin{tikzpicture}[auto]
+        \useasboundingbox (-1,-1) rectangle (1,1);
+        \def\x{120}
+        \draw (-0.6,0) arc (180:\x:0.6) node[near end,swap] {$w$};
+        \draw (-0.7,0) arc (180:\x:0.7) node[near end] {$\overline{w}$};
+        \fill (-0.65,0) circle (2pt) node[anchor=east] {$x_0$}; 
+        \draw (\x:0.6) -- (\x:0.7);
+    \end{tikzpicture}
+    \caption{$H_{\frac{5}{6}}$}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.15\textwidth}
+            \centering
+    \begin{tikzpicture}[auto]
+        \useasboundingbox (-1,-1) rectangle (1,1);
+        \fill (-0.65,0) circle (2pt) node[anchor=east] {$x_0$}; 
+    \end{tikzpicture}
+    \caption{$H_1$}
+        \end{subfigure}
+        \caption{Illustration der Homotopie von $w \star \overline{w}$ zu $c$ mit dem 'Spaghetti-Trick'}
+    \end{figure}
 \end{proof}
-\todo{Homotopie-Illustration beschriften}.
+
 \begin{oral}
     Man erkennt, dass es für obigen Beweis wichtig war, dass wir die Verknüpfung nur bis auf Homotopie definieren, weil wir ansonsten Probleme mit der Parametrisierung bekommen.
 \end{oral}
@@ -300,7 +400,7 @@ Homotopieäquivalenz ist eine Äquivalenzrelation.
 \begin{theorem}
     Ist $f\colon  (X,x_0) \to  (Y,y_0)$ eine Abbildung, so induziert diese einen Gruppenhomomorphismus
     \[
-        \pi_1 (X,x_0) \stackrel{p_1(f) =: f_*}{\longrightarrow}   \pi_1(Y,y_0)
+        \pi_1 (X,x_0) \stackrel{\pi_1(f) =: f_*}{\longrightarrow}   \pi_1(Y,y_0)
     .\] 
     mittels $[w] \mapsto [f \circ  w]$. Zudem ist
     \[
@@ -312,9 +412,9 @@ Homotopieäquivalenz ist eine Äquivalenzrelation.
 \begin{proof}
     \begin{description}
         \item[Wohldefiniertheit] Ist $w\stackrel{H}{\sim} w'$, so ist $f \circ  w \stackrel{f \circ  H}{\sim }  f \circ  w''$.
-        \item[Gruppenhomomorphismus] Es ist
+        \item[Gruppenhomomorphismus] Seien $[w], [w']$ zwei beliebige Element aus  $\pi_1(X,x_0)$, dann ist 
             \begin{IEEEeqnarray*}{rCl}
-                p_1(f) ([w] \star [w']) &=& p_1(f) ([w\star w']) \\
+                \pi_1(f) ([w] \star [w']) &=& \pi_1(f) ([w\star w']) \\
                                         & = & [f \circ  (w \star w')] \\
                                         & \stackrel{\text{(1)}}{=}  & [(f \circ  w) \star (f \circ  w') ] \\
                                         & = & [f \circ  w] \star [f \circ  w'] \\
@@ -330,7 +430,7 @@ Homotopieäquivalenz ist eine Äquivalenzrelation.
             handelt. 
         \item[Funktorialität] 
             \begin{itemize}
-                \item Es ist $\pi_1(\id_X) [w] = [\id_X \circ  w = [w]]$, also bilden wir Identitäten auf Identitäten ab.
+                \item Es ist $\pi_1(\id_X) [w] = [\id_X \circ  w] = [w]$, also bilden wir Identitäten auf Identitäten ab.
                 \item Wir rechnen nach:
                     \begin{IEEEeqnarray*}{rCl}
                         \pi_1(f \circ g)([w]) & = & [(f \circ g) \circ  w] \\
