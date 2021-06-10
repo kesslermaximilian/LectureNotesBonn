@@ -4,50 +4,107 @@
 %Provides fancy theorem-like-environments usedd in the write-ups of my lecture nots
 
 \newif\ifenglish\englishtrue
-\newif\iflecturenumbers\lecturenumberstrue
-\newif\ifnumberwiththeorem\numberwiththeoremfalse
-\newif\ifnumberall\numberallfalse
 \newif\ifshowstars\showstarstrue
 \newif\ifshowdaggers\showdaggerstrue
 \newif\ifincludestars\includestarstrue
 \newif\ifincludeoral\includeoraltrue
 \newif\ifmarkoral\markoraltrue
+
+\newif\iflecturenumbers\lecturenumberstrue
+\newif\ifnumbersmallenvironmentswiththeorem\numbersmallenvironmentswiththeoremfalse
+\newif\ifnumbersmallenvironments\numbersmallenvironmentsfalse
+
 \newcommand{\fancythmlinewidth}{2pt}
 \newcommand{\fancythmskipabove}{8pt}
 
 
-\DeclareOption{english}{\englishtrue}
-\DeclareOption{german}{\englishfalse}
-\DeclareOption{lecturenumbers}{\lecturenumberstrue}
-\DeclareOption{numberwiththeorem}{\numberwiththeoremtrue}
-\DeclareOption{truenumbers}{\lecturenumbersfalse}
-\DeclareOption{numberall}{\numberalltrue\lecturenumbersfalse}
-\DeclareOption{nostars}{\showstarsfalse}
-\DeclareOption{nodaggers}{\showdaggersfalse}
-\DeclareOption{excludestars}{\includestarsfalse}
-\DeclareOption{excludeoral}{\includeoralfalse}
 
 %Sometimes lecturers don't number environments for no particular reason. For compatibility reasons, i also don't number these environments so that the numbers are the same as in the lecture to make them better referencable, but if you want to number all (theorem, lemma, corollary, definition), then use the 'truenumber' option (true because in my opinion they really should be numbered)
 
-%Option to number ALL environments. This numbers examples, remarks, etc as well. I usually don't do that, but if you prefer it that way, use option 'numberall'
+%Option to number ALL environments. This numbers examples, remarks, etc as well. I usually don't do that, but if you prefer it that way, use option 'numbersmallenvironments'
 %Note also that if you put this option on, it does not matter wheter option 'lecturenumbers' ore 'truenumbers' was chosen, as anyway everything will be numbered. (ALL only applys to the environments that have colored boxes)
-
-\DeclareOption*{\PackageWarning{mkessler-fancythm}{Unknown '\CurrentOption'}}
-\ProcessOptions\relax
 
 \RequirePackage{xkeyval}
 
 %%These are two options to adjust the skipabove and the width of the left margin of theorem-like environments. Default values are 2pt and 8pt, but feel free to change them as you like.
 \DeclareOptionX{linewidth}{\renewcommand\fancythmlinewidth{#1}}
 \DeclareOptionX{fancythmskipabove}{\renewcommand{\fancythmskipabove}{#1}}
-\DeclareOptionX{numbering}{
-    \ifthenelse{\equal{#1}{as in lecture}}{\lecturenumberstrue}{}
-    \ifthenelse{\equal{#1}{default}}{\lecturenumbersfalse}{}
+
+\define@choicekey*{mkesslerfancythm}{numbersmallenvironments}[\val\nr]{no,section,theorem}{%
+    \ifcase\nr\relax
+        \numbersmallenvironmentsfalse
+    \or
+        \numbersmallenvironmentstrue
+        %numbering small environments within sections is forbidden whilst using lecturenumbes
+        \iflecturenumbers
+            \numbersmallenvironmentswiththeoremtrue
+        \else
+            \numbersmallenvironmentswiththeoremfalse
+        \fi
+    \or
+        \numbersmallenvironmentstrue
+        \numbersmallenvironmentswiththeoremtrue
+    \fi
 }
 
+\define@choicekey*{mkesslerfancythm}{lecturenumbers}[\val\nr]{true,false}{%
+    \ifcase\nr\relax
+        \lecturenumberstrue
+    \else
+        \lecturenumbersfalse
+    \fi
+}
 
-\DeclareOptionX*{\PackageWarning{mkessler-fancythm}{Unknown `\CurrentOption'}}% For unknown options
+\define@choicekey*{mkesslerfancythm}{showdaggers}[\val\nr]{true,false}{%
+    \ifcase\nr\relax
+        \showdaggerstrue
+    \else
+        \showdaggersfalse
+    \fi
+}
+
+\define@choicekey*{mkesslerfancythm}{ownenvironments}[\val\nr]{on, natural, off}{%
+    \ifcase\nr\relax
+        \includestarstrue
+        \showstarstrue
+    \or
+        \includestarstrue
+        \showstarsfalse
+    \or
+        \includestarsfalse
+        \showstarsfalse
+    \fi
+}
+
+\define@choicekey*{mkesslerfancythm}{oralremarks}[\val\nr]{on,natural,off}{%
+    \ifcase\nr\relax
+        \includeoraltrue
+        \markoraltrue
+    \or
+        \includeoraltrue
+        \markoralfalse
+    \or
+        \includeoralfalse
+    \fi
+}
+
+\DeclareOptionX{english}{\englishtrue}
+\DeclareOptionX{german}{\englishfalse}
+
+\DeclareOptionX{showdaggers}{\setkeys{mkesslerfancythm}{showdaggers=#1}}
+\DeclareOptionX{ownenvironments}{\setkeys{mkesslerfancythm}{ownenvironments=#1}}
+\DeclareOptionX{oralremarks}{\setkeys{mkesslerfancythm}{oralremarks=#1}}
+
+\DeclareOptionX{lecturenumbers}{\setkeys{mkesslerfancythm}{lecturenumbers=#1}}
+\DeclareOptionX{numbersmallenvironments}{\setkeys{mkesslerfancythm}{numbersmallenvironments=#1}}
+
+\DeclareOptionX*{\PackageWarning{mkesslerfancythm}{Unknown X \CurrentOption}}% For unknown options
 \ProcessOptionsX*\relax
+
+\RequirePackage{comment}
+\begin{comment}
+\DeclareOption{numbersmallenvironments}{\numbersmallenvironmentstrue\lecturenumbersfalse}
+\end{comment}
 
 %Required Packages
 \RequirePackage{amsmath}
@@ -275,15 +332,21 @@
 \newcounter{smalldummy}
 \counterwithin{smalldummy}{dummy}  % Make belowtheorem reset each time theorem resets
 
-\NewDocumentCommand{\declaredefaultnumberedtheorem}{O{} O{} m m O{}}{
+\NewDocumentCommand{\declarebigtheorem}{O{} O{} m m O{}}{
+    %First, store the name of the theorem in \theoremname
     \ifenglish
         \ifthenelse{\isempty{#2}}{\def\theoremname{#4}}{\def\theoremname{#2}}
     \else
         \ifthenelse{\isempty{#1}}{\def\theoremname{#4}}{\def\theoremname{#1}}
     \fi
+
+    %Define the mane version of the theorem
     \ifthenelse{\isempty{#5}}{\declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}, sibling = dummy]{#4}}{}
+
+    %Define the versions theorem*, theorem**, dtheorem
+
     \iflecturenumbers
-        \ifnumberwiththeorem
+        \ifnumbersmallenvironments
             \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}, sibling=smalldummy]{#4*}
             \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, sibling=smalldummy]{#4**}
             \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, sibling=smalldummy]{d#4}
@@ -300,26 +363,27 @@
     \ifincludestars\else\renewenvironment{#4**}{\comment}{\endcomment}\fi
 }
 
-\NewDocumentCommand{\declaredefaultnotnumberedtheorem}{O{} O{} m m}{
+\NewDocumentCommand{\declaresmalltheorem}{O{} O{} m m}{
+    %Get the name of the theorem and store it in \theoremname
     \ifenglish
         \ifthenelse{\isempty{#2}}{\def\theoremname{#4}}{\def\theoremname{#2}}
     \else
         \ifthenelse{\isempty{#1}}{\def\theoremname{#4}}{\def\theoremname{#1}}
     \fi
-    \ifnumberall
-    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}, sibling=dummy]{#4}
-    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, sibling=dummy]{#4*}
-    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, sibling=dummy]{d#4}
+    \ifnumbersmallenvironments
+        \ifnumbersmallenvironmentswiththeorem
+            \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}, sibling = smalldummy]{#4}
+            \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, sibling=smalldummy]{#4*}
+            \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, sibling=smalldummy]{d#4}
+        \else
+            \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}, sibling=dummy]{#4}
+            \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, sibling=dummy]{#4*}
+            \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, sibling=dummy]{d#4}
+        \fi
     \else
-    \ifnumberwiththeorem
-    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}, sibling = smalldummy]{#4}
-    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, sibling=smalldummy]{#4*}
-    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, sibling=smalldummy]{d#4}
-    \else
-    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}, numbered = no]{#4}
-    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, numbered = no]{#4*}
-    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, numbered = no]{d#4}
-    \fi
+        \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}, numbered = no]{#4}
+        \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, numbered = no]{#4*}
+        \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, numbered = no]{d#4}
     \fi
     \ifincludestars\else\renewenvironment{#4*}{\comment}{\endcomment}\fi
 }
@@ -329,27 +393,27 @@
 %Theorem
 \declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem\else Satz\fi, sibling=dummy, refname = {Satz,Sätze}, Refname = {Satz,Sätze}]{theorem}
 \AtBeginDocument{\def\theoremautorefname{\ifenglish Theorem \else Satz\fi}} %Make referencing of theorems work properly (in german) with \autoref
-\declaredefaultnumberedtheorem[Satz][Theorem]{thmredmarginandfill}{theorem}[nomain]
+\declarebigtheorem[Satz][Theorem]{thmredmarginandfill}{theorem}[nomain]
 %Other
-\declaredefaultnumberedtheorem{thmredmarginandfill}{proposition}
-\declaredefaultnumberedtheorem[Korollar]{thmredmarginandfill}{corollary}
-\declaredefaultnumberedtheorem{thmorangemarginandfill}{lemma}
-\declaredefaultnumberedtheorem[Lemma und Definition][Lemma and Definition]{thmorangemarginbluefill}{lemmadef}
-\declaredefaultnumberedtheorem{thmbluemarginandfill}{definition}
-\declaredefaultnumberedtheorem[Satz und Definition][Theorem and Definition]{thmredmarginbluefill}{theoremdef}
-\declaredefaultnumberedtheorem{thmvioletmarginandfill}{notation}
+\declarebigtheorem{thmredmarginandfill}{proposition}
+\declarebigtheorem[Korollar]{thmredmarginandfill}{corollary}
+\declarebigtheorem{thmorangemarginandfill}{lemma}
+\declarebigtheorem[Lemma und Definition][Lemma and Definition]{thmorangemarginbluefill}{lemmadef}
+\declarebigtheorem{thmbluemarginandfill}{definition}
+\declarebigtheorem[Satz und Definition][Theorem and Definition]{thmredmarginbluefill}{theoremdef}
+\declarebigtheorem{thmvioletmarginandfill}{notation}
 
 %%%Environments that are not numbered by default (notation, question, example, remark etc) have two forms:
-% - normal form: won't be numbered unless 'numberall' is set
-% - having an asterisk: will be displayed with an asterisk, will be numbered if 'numberall' is set
+% - normal form: won't be numbered unless 'numbersmallenvironments' is set
+% - having an asterisk: will be displayed with an asterisk, will be numbered if 'numbersmallenvironments' is set
 %Notation
 
-\declaredefaultnotnumberedtheorem[Notationsmissbrauch][Abuse of Notation]{thmvioletmargin}{abuse}
-\declaredefaultnotnumberedtheorem[Beispiel]{thmgreenmargin}{example}
-\declaredefaultnotnumberedtheorem[Bemerkung]{thmyellowmargin}{remark}
-\declaredefaultnotnumberedtheorem[Trivial Nonsense][Trivial Nonsense]{thmyellowmargin}{trivial}
-\declaredefaultnotnumberedtheorem[Frage]{thmblackmarginandfill}{question}
-\declaredefaultnotnumberedtheorem[Organisatorisches][Organisational stuff]{thmblackmargin}{orga}
+\declaresmalltheorem[Notationsmissbrauch][Abuse of Notation]{thmvioletmargin}{abuse}
+\declaresmalltheorem[Beispiel]{thmgreenmargin}{example}
+\declaresmalltheorem[Bemerkung]{thmyellowmargin}{remark}
+\declaresmalltheorem[Trivial Nonsense][Trivial Nonsense]{thmyellowmargin}{trivial}
+\declaresmalltheorem[Frage]{thmblackmarginandfill}{question}
+\declaresmalltheorem[Organisatorisches][Organisational stuff]{thmblackmargin}{orga}
 \newcounter{blatt}
 
 %%Aufgaben environment to include exercises at the end of the documnt
@@ -361,7 +425,7 @@
 
 
 %Oral remarks receive their own environment
-\declaredefaultnotnumberedtheorem[Mündliche Anmerkung][Oral remark]{thmyellowmargin}{oral}
+\declaresmalltheorem[\ifmarkoral Mündliche Anmerkung\else Bemerkung\fi][\ifmarkoral Oral remark\else remark\fi]{thmyellowmargin}{oral}
 
 \ifincludeoral\else
     \renewenvironment{oral}{\comment}{\endcomment}
