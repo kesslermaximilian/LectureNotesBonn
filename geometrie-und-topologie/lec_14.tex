@@ -63,6 +63,7 @@
     Der Isomorphismus $v_*\colon  \pi_1(X,x') \to  \pi_1(X,x)$ hängt von $v$ ab (genauer von der Homotopieklasse von  $v$ relativ Endpunkten). Die Gruppen sind aber in jedem Fall isomorph.    
 \end{warning}
 \todo{Frage: gilt hier potenziell die Umkehrung?}
+\todo{Nein, schreibe hierzu kleine Bemerkung}
 
 \begin{recap}
     Ist $G$ eine Gruppe,  $g\in G$, so ist
@@ -133,8 +134,16 @@ Sind $v,v' \colon  I \to  X$ Wege von $x$ nach  $x'$, dann gilt:
                           & U
 \end{tikzcd}
 \]
-\missingfigure{Triviale Überlagerung und Überlagerung $\exp\colon  \R \to  S^1$ skizzieren}
+\missingfigure{Triviale Überlagerung und Überlagerung $\exp\colon  \R \to  S^1$ skizzieren, erste Hälfte siehe unten}
 \end{definition}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{definition-überlagerung}
+    \caption{Veranschaulichung einer (trivialen) Überlagerung}
+    \label{fig:definition-überlagerung}
+\end{figure}
+
 
 \begin{remark}
     $F$ ist homöomorph zu  $F_x = p^{-1}(\left \{x\right\} )$, der \vocab{Faser über $x$} mittels
@@ -142,4 +151,153 @@ Sind $v,v' \colon  I \to  X$ Wege von $x$ nach  $x'$, dann gilt:
         v|_{p^{-1}(x)} \colon  p^{-1}(x) \to  \left \{x\right\} \times F
     .\] 
 \end{remark}
-test
+
+
+\begin{lemma}[Überlagerung von Teilräumen]\label{lm:überlagerung-von-teilräumen}
+    Sei $p\colon E \to  X$ eine Überlagerung, $Y\subset X$ ein Teilraum. Dann ist auch
+    \[
+        p|_{p^{-1} (Y)} \colon  p^{-1} (Y) \to  Y
+    .\] 
+    eine Überlagerung.
+\end{lemma}
+
+\begin{proof}
+    Sei $x\in Y$. Dann $\exists U\subset X$ Umgebung von $x$ und  $F$ diskret und ein Homöomorphismus
+     \[
+         v\colon  p^{-1} (U) \to  U\times F
+    .\] 
+    über $U$. Dann ist $U\cap Y$ eine umgebung von $x$ in $Y$ und somit
+     \[
+         v|_{p^{-1} (U\cap Y)}\colon p^{-1} (U\cap Y) \to  (U\cap Y) \times F
+    .\] 
+    ein Homöomorphismus.
+\end{proof}
+
+\begin{example}
+    Sei $X$ ein topologischer Raum,  $F$ diskret. Dann ist
+     \[
+    \pr_X \colon  X \times F \to  X
+    .\] 
+    eine Überlagerung.
+\end{example}
+
+\begin{remark}
+    Ist $p\colon  E \to  X$ eine Überlagerung, so heißt diese \vocab[Überlagerung!trivial]{trivial}, falls ein Homöomorphismus $u\colon  E \to  X\times F$ über $X$ existiert, wobei  $F$ diskret.
+\end{remark}
+
+\begin{definition}
+    $f\colon X \to  Y$ ist ein \vocab{lokaler Homöomorphismus}, falls $\forall x\in X$ eine offene Umgebung $x\in V \subset X$ existiert mit
+    \begin{enumerate}[i)]
+        \item $f(V)\subset Y$ ist offen
+        \item $f|_V\colon  V \to  f(V)$ ist ein Homöomorphismus
+    \end{enumerate}
+\end{definition}
+
+\begin{oral}
+    Die Abbildung $f|_V \to  f(V)$ erfüllt etwas stärkere Eigenschaften als eine \nameref{def:einbettung}, weil wir hier zusätzlich fordern, dass $f(V)\subset Y$ offen ist.
+
+    Es ist z.B. $\R \hookrightarrow \R^2$ eine Einbettung, jedoch kein lokaler Homöomorphismus.
+\end{oral}
+
+\begin{lemma}\label{lm:überlagerung-ist-lokaler-homöomorphismus}
+    Eine Überlagerung ist ein lokaler Homöomorphismus.
+\end{lemma}
+
+\begin{proof}
+    Für $x\in X$ existiert $x\in U\subset X$ offen mit $u\colon p^{-1} (U) \cong U\times p^{-1} ((x))$ (per Definition der Überlagerung) 
+
+    Sei $e\in E$ mit $x = p(e)$. Wähle  $V = u^{-1}(U\times \left \{e\right\} )$. Dann ist $p|_V \colon  V \to  U$ ein Homöomorphismus.
+\[
+    \begin{tikzcd}
+        V & &U \times \left \{e\right\} \\
+        p^{-1} (U) & &U\times p^{-1} (\left \{x\right\} ) \\
+                   & U 
+    \end{tikzcd}
+\]
+Da $p^{-1} (U)\subset Y$ offen ist und $U\times \left \{e\right\} \subset U\times p^{-1} (\left \{x\right\} ) \stackrel{u^{-1}}{\cong} p^{-1} (U)$ offen, ist $V\subset Y$ offen.
+\end{proof}
+\todo{Kommutatives Diagramm des Beweises, Beweis nochmal durchgehen}
+
+\begin{lemma}\label{lm:offene-überdeckung-von-überlagerung-mit-homöomorphismen}
+    Sei $p\colon  E \to  X$ eine Überlagerung. Dann gibt es eine offene Überdeckung $\left \{U_i\right\} _{i \in I}$ von $X$, so dass gilt:
+     \[
+         \forall x\in U_i, y\in p^{-1} (x)
+    .\] 
+    gibt es eine stetige Funktion $s\colon  U_i \to  E$ mit 
+    \begin{itemize}
+        \item $s(x) = y$
+        \item  $p \circ s = \id_{U_i}$
+    \end{itemize}
+\end{lemma}
+
+\begin{oral}
+    Der Unterschied der Aussage des Lemmas ist, dass wir hier die  $U_i$ und das  $y$ fest wählen.
+\end{oral}
+
+\begin{proof}[Beweis von \autoref{lm:offene-überdeckung-von-überlagerung-mit-homöomorphismen}]
+Für jedes $x\in X$ gibt es eine offene Umgebung $U_x$, auf der $p$ trivial ist. Dann ist $\left \{U_x\right\} _{x \in X}$ eine offene Überdeckung.
+\end{proof}
+\todo{Kommutatives Diagramm}
+
+
+\begin{remark}
+    Nicht jeder lokale Homöomorphismus ist eine Überlagerung. Die Abbildung $(0,2) \stackrel{\exp}{\longrightarrow} S^1$ ist ein lokaler Homöomorphismus, aber keine Überlagerung.
+
+    Das 'Problem' ist hierbei, dass $1\in S^1$ nur ein Urbild unter $\exp$ hat, jede Umgebung von  $1\in (0,2)$ im Urbild ist hat jedoch drei Urbilder von den Punkten nahe $1$, ist also nicht einfach nur ein Intervall.
+\end{remark}
+
+\begin{notation*}
+    Ist $p\colon  E \to  X$ eine Überlagerung, so nennen wir
+    \begin{itemize}
+        \item $X$ die  \vocab[Überlagerung!Basis]{Basis} oder den \vocab[Überlagerung!Basisraum]{Basisraum}  
+        \item $E$ den  \vocab[Überlagerung!Totalraum]{Totalraum}
+        \item $p$ die  \vocab[Überlagerung!Überlagerungsabbildung]{Überlagerungsabbildung} oder \vocab[Überlagerung!Überlagerungsprojektion]{Überlagerungsprojektion}  
+        \item $p^{-1} (x)$ die \vocab{Faser über $x$}, $F_x$ 
+        \item $\abs{p^{-1} (x)} $ die \vocab[Überlagerung!Blätterzahl]{Blätterzahl} . Diese ist lokal konstant.
+    \end{itemize}
+\end{notation*}
+
+\begin{example}
+    \begin{enumerate}[1)]
+        \item Die triviale Überlagerung
+        \item Die unendlich-blättrige Überlagerung
+                \begin{equation*}
+                \exp: \left| \begin{array}{c c l} 
+                \R & \longrightarrow & S^1 \\
+                t & \longmapsto &  e^{2\pi it}
+                \end{array} \right.
+            \end{equation*}
+        \item Es gibt auch eine $k$-blättrige Überlagerung des Einheitskreises:
+                \begin{equation*}
+                    ()^k : \left| \begin{array}{c c l} 
+                S^1 & \longrightarrow & S^1 \\
+                z & \longmapsto &  z^k
+                \end{array} \right.
+            \end{equation*}
+            (wir fassen hier $S^1 \subset \C$ auf, um $z^k$ zu definieren).
+    \missingfigure{Skizzen zur endlichblättrigen Überlagerung}
+        \item Sind  $E,E' \stackrel{p,p'}{\longrightarrow} X$ Überlagerungen, so auch
+            \[
+            E \coprod E' \stackrel{p \coprod p'}{\longrightarrow} X
+            .\] 
+        \item Die Projektion $S^n \stackrel{p}{\longrightarrow} \R \mathbb{P}^n \cong \faktor{S^n}{x \sim  -x}$ ist eine 2-blättrige Überlagerung.
+            \missingfigure{Überlagerung $S^n \stackrel{p}{\longrightarrow} \R\mathbb{P}^n$}
+    \end{enumerate}    
+\end{example}
+
+\begin{oral}
+    Man kann zeigen, dass die endlichen Überlagerungen die einzigen \textit{zusammenhängenden} Überlagerungen von $S^1$ sind. Für 'schöne' Räume werden wir diese auch noch klassifizieren.
+\end{oral}
+
+In der nächsten Woche behandeln wir \textit{Liftungssätze}, d.h. wir fragen uns
+\[
+\begin{tikzcd}
+    & E \ar{d}{p} \\
+    T \ar[dashed]{ur}{\exists \tilde{f}?} \ar[swap]{r}{f} & X
+\end{tikzcd}
+\]
+das ganze gilt z.B. für Wege, also wenn $T = I$, wir können uns dann ein Urbild  $e \mapsto f(0) = x$ wählen und erhalten  $\tilde{f}$ mit $\tilde{f}(0) = e$, sodass obiges kommutiert.
+
+\begin{oral}[ca.]
+    Wir werden dann feststellen, dass die Hebung von $w\colon  I \to  X$ nicht zwingend eine Schleife ist, auch wenn $w$ es war. Wenn wir dann auch noch Homotopien heben können, so können wir schließen, dass  $w$ nicht nullhomotop war, weil das sonst auch für den gehobenen Weg gelten müsste, dieser aber nichtmal dieselben Endpunkte hat.
+\end{oral}
