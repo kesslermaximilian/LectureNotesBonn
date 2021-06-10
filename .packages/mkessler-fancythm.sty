@@ -270,21 +270,32 @@
 %%\makenumberedtheorem[german Name]{style}{Name}
 \RequirePackage{xparse}
 
+\newcounter{dummy}
+\counterwithin{dummy}{section}
+\newcounter{smalldummy}
+\counterwithin{smalldummy}{dummy}  % Make belowtheorem reset each time theorem resets
+
 \NewDocumentCommand{\declaredefaultnumberedtheorem}{O{} O{} m m O{}}{
     \ifenglish
         \ifthenelse{\isempty{#2}}{\def\theoremname{#4}}{\def\theoremname{#2}}
     \else
         \ifthenelse{\isempty{#1}}{\def\theoremname{#4}}{\def\theoremname{#1}}
     \fi
-    \ifthenelse{\isempty{#5}}{\declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}, sibling = theorem]{#4}}{}
+    \ifthenelse{\isempty{#5}}{\declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}, sibling = dummy]{#4}}{}
     \iflecturenumbers
-        \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}, numbered=no]{#4*}
-        \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, numbered = no]{#4**}
-        \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, numbered = no]{d#4}
+        \ifnumberwiththeorem
+            \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}, sibling=smalldummy]{#4*}
+            \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, sibling=smalldummy]{#4**}
+            \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, sibling=smalldummy]{d#4}
+        \else
+            \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}, numbered=no]{#4*}
+            \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, numbered = no]{#4**}
+            \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, numbered = no]{d#4}
+        \fi
     \else
-        \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}, sibling=theorem]{#4*}
-        \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, sibling=theorem]{#4**}
-        \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, sibling=theorem]{d#4}
+        \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}, sibling=dummy]{#4*}
+        \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, sibling=dummy]{#4**}
+        \declaretheorem[style = #3, name = \makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, sibling=dummy]{d#4}
     \fi
     \ifincludestars\else\renewenvironment{#4**}{\comment}{\endcomment}\fi
 }
@@ -296,14 +307,14 @@
         \ifthenelse{\isempty{#1}}{\def\theoremname{#4}}{\def\theoremname{#1}}
     \fi
     \ifnumberall
-    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}, sibling=theorem]{#4}
-    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, sibling=theorem]{#4*}
-    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, sibling=theorem]{d#4}
+    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}, sibling=dummy]{#4}
+    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, sibling=dummy]{#4*}
+    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, sibling=dummy]{d#4}
     \else
     \ifnumberwiththeorem
-    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}, numberwithin=theorem]{#4}
-    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, numberwithin=theorem]{#4*}
-    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, numberwithin=theorem]{d#4}
+    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}, sibling = smalldummy]{#4}
+    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, sibling=smalldummy]{#4*}
+    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, sibling=smalldummy]{d#4}
     \else
     \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}, numbered = no]{#4}
     \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, numbered = no]{#4*}
@@ -316,7 +327,7 @@
 
 
 %Theorem
-\declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem\else Satz\fi,numberwithin=section, refname = {Satz,Sätze},Refname = {Satz,Sätze}]{theorem}
+\declaretheorem[style=thmredmarginandfill,name=\ifenglish Theorem\else Satz\fi, sibling=dummy, refname = {Satz,Sätze}, Refname = {Satz,Sätze}]{theorem}
 \AtBeginDocument{\def\theoremautorefname{\ifenglish Theorem \else Satz\fi}} %Make referencing of theorems work properly (in german) with \autoref
 \declaredefaultnumberedtheorem[Satz][Theorem]{thmredmarginandfill}{theorem}[nomain]
 %Other
