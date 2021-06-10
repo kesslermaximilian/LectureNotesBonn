@@ -1,4 +1,145 @@
 %! TEX root = ./master.tex
 \lecture[]{Do 10 Jun 2021 10:15}{}
 
+\begin{theorem}[$\pi_1$ auf Wegzusammenhangskomponenten]\label{thm:pi-1-ist-gleich-auf-wegusammenhangskomponente}
+    Seien $x,x' \in X$ durch einen Weg verbunden, d.h. $\exists w\colon  I \to X$ mit $w(0) = x$,  $w(1) = x'$. Dann sind die Gruppen  $\pi_1(X,x)$ und $\pi_1(X,x')$ homöomorph.
+\end{theorem}
 
+\begin{remark}
+    Liegen $x,x'$ in verschiedenen Wegzusammenhangskomponenten, so gibt es (im Allgemeinen) keine Beziehung zwischen  $\pi_1(X,x)$ und $\pi_1(X,x')$. Betrachte hierzu z.B. $X = X_1 \coprod X_2$ mit $x\in X_1$ und $x' \in X_2$, so ist $p_1(X,x) = p_1(X_1,x)$ und $p_1(X,x') = p_1(X_2,x')$. Es genügt daher zu sehen, dass es Räume mit verschiedenen Fundamentalgruppen gibt.
+    \missingfigure{Disjunkte Vereinigung von Räumen mit verschiedener Fundamentalgruppe}
+\end{remark}
+
+\begin{proof}[Beweis von \autoref{thm:pi-1-ist-gleich-auf-wegusammenhangskomponente}]
+    Sei $v\colon  I \to  X$ eine Weg von $x \circ  x'$. Dann definiere
+        \begin{equation*}
+        v_*: \left| \begin{array}{c c l} 
+            \pi_1(X,x') & \longrightarrow & (X,x) \\
+            \left[w\right] & \longmapsto &  \left[v \star w \star \overline{v}\right]
+        \end{array} \right.
+    \end{equation*}
+    wobei wie üblich $\overline{v}\colon [0,1] \to X$ gegeben ist durch $\overline{v}(t) = v(1-t)$.
+    \missingfigure{Illustration von $v \star w \star \overline{v}$}
+    Hierbei definieren wir
+    \[
+        (v \star w \star \overline{v})(t) = \begin{cases}
+            v(3t) & 0 \leq  t \leq  \frac{1}{3}\\
+            w(3t-1) & \frac{1}{3}\leq t \leq  \frac{2}{3} \\
+            v(3(1-t)) & \frac{2}{3} \leq  t \leq  1
+        \end{cases}
+    .\] 
+    Damit diese Konstruktion ein Gruppenisomorphismus ist, zeigen wir:
+    \begin{description}
+        \item[Wohldefiniertheit] Für $w \stackrel{H}{\sim } w'$ ist auch $v \star w \star \overline{v} \sim  v \star w' \star \overline{v}$ mittels der Homotopie
+            \[
+                H(t,s) = \begin{cases}
+                    v(3t) & 0\leq t\leq \frac{1}{3} \\
+                    H(3t-1,s) & \frac{1}{3}\leq  t \leq  \frac{2}{3} \\
+                    v(3(1-t)) & \frac{2}{3}\leq t\leq 1
+                \end{cases}
+            .\] 
+        \item[Gruppenhomomorphismus] Es ist:
+            \begin{IEEEeqnarray*}{rCl}
+                v \star (w \star w') \star \overline{v} &\stackrel{\overline{v}\star v \sim c_{x'}}{=} &v \star (w \star (\overline{v} \star v) \star w') \star \overline{v} \\
+                                                        & \stackrel{\text{assoz.}}{=}  & (v \star w \star \overline{v}) \star (v \star w' \star \overline{v}) \\
+                                                        & = & v_*(w) \circ v_*(w')
+            \end{IEEEeqnarray*}
+        \item[Isomorphismus] $\overline{v}$ induziert analog zu $v$ eine Abbildung
+             \[
+                 \overline{v}_*\colon  \pi_1(X,x) \to  \pi_1(X,x')
+            .\] 
+            Wir behaupten, dass $\overline{v}_*$ ein Inverses ist, also $v_* \circ  \overline{v}_* = \id_{\pi_1(X,x)}$, dann folgt wegen $\overline{\overline{v}} = v$ auch sofort $\overline{v}_* \circ  v_ = \id_{\pi_1(X,x')}$. 
+
+            Sei also $[w] \in  \pi_1(X,x)$, dann ist
+            \begin{IEEEeqnarray*}{rCl}
+                (                v_* \circ  \overline{v}_*)([w]) & = & [v \star \overline{v} \star w \star v \star \overline{v}] \\
+                                                                 & = & [w]
+            \end{IEEEeqnarray*}
+            also ist $v_* \circ  \overline{v}_*$ tatsächlich die Identität.
+    \end{description}
+\end{proof}
+
+\begin{warning}
+    Der Isomorphismus $v_*\colon  \pi_1(X,x') \to  \pi_1(X,x)$ hängt von $v$ ab (genauer von der Homotopieklasse von  $v$ relativ Endpunkten). Die Gruppen sind aber in jedem Fall isomorph.    
+\end{warning}
+\todo{Frage: gilt hier potenziell die Umkehrung?}
+
+\begin{recap}
+    Ist $G$ eine Gruppe,  $g\in G$, so ist
+        \begin{equation*}
+        c_g: \left| \begin{array}{c c l} 
+        G & \longrightarrow & G \\
+        h & \longmapsto &  ghg^{-1}
+        \end{array} \right.
+    \end{equation*}
+    eine Automorphismus von $G$, die  \vocab[Gruppe!Konjugation]{Konjugation mit $g$}. Diese heißen \vocab[Gruppe!innerer Automorphismus]{innere Automorphismen} 
+\end{recap}
+
+Sind $v,v' \colon  I \to  X$ Wege von $x$ nach  $x'$, dann gilt:
+\begin{IEEEeqnarray*}{rCl}
+    v_*([w]) &=& v\star [w] \star \overline{v}\\
+             & = & [v \star \overline{v'}]  \star v_*'([w]) \star [v' \star \overline{v}]\\& = & c_{[v \star \overline{v'}]} (v_*'[w])
+\end{IEEEeqnarray*}
+
+\begin{oral}
+    Man muss aufpassen, bei wegzusammenhängenden Räumen einfach von 'der' Fundamentalgruppe zu sprechen. Es gibt zwar nur eine, allerdings sind die Isomorphismen nicht zwingend kanonisch, weswegen man trotzdem implizit noch die Wahl des Basispunktes mit sich rumschleppt. Das motiviert die Betrachtung der nächsten Definition:
+\end{oral}
+
+
+\begin{definition}[Fundamentalgruppoid]\label{def:fundamentalgruppoid}
+    Der \vocab{Fundamentalgruppoid} $\Pi(X)$ ist die Kategorie mit  $\ob(\Pi(X)) = X$ und
+     \[
+         \Mor_{\Pi(X)}(x,x') = \faktor{\left \{w\colon  I \to  X \mid  w(0) = x, w(1) = x'\right\}}{\sim \text{ rel } \left \{0,1\right\} }
+    .\] 
+    d.h. die Morphismen sind genau die Wege von $x$ nach $x'$ modulo Homotopie bezüglich endpunkten. Die Verknüpfung der Morphismen ist durch $\star$ gegeben.
+\end{definition}
+
+\begin{remark*}
+    \begin{enumerate}[1)]
+        \item Ein \vocab{Gruppoid} ist eine Kategorie, in der jeder Morphismus invertierbar ist, d.h. in der jedere Morphismus ein Isomorphismus ist. In obigem Fall ist das gegeben, weil wir für $w$ den Weg $\overline{w}$ als Inverses haben.
+            \begin{warning}
+                Wir fordern nicht, dass zwischen je zwei Objekten ein Isomorphismus existiert. Das ist auch in $\Pi(X)$ nicht der Fall, wenn  $X$ nicht wegzusammenhängend ist.
+            \end{warning}
+            Ist $\cat{G}$ ein Gruppoid, so ist $\Mor_{\cat{G}}(A,A)$ für $A\in \Ob(\cat{C})$ stets eine Gruppe. Vergleiche hierzu auch das Beispiel, bei dem wir eine Gruppe als Kategorie mit einem Objekt aufgefasst haben.
+        \item Per Definition ist $\Mor_{\Pi(X)}(x,x) \cong \pi_1(X,x)$ (als Gruppen).
+        \item Per Definition ist nun
+            \[
+                \pi_0(X) \cong \faktor{\Ob(\Pi(X))}{\text{Isomorphi}}
+            .\] 
+    \end{enumerate}
+\end{remark*}
+
+\begin{oral}
+    Obige Konstruktion ist funktoriell (Zuordnung $X \to  \Pi(X)$). Dadurch 'verpacken' wir die Basispunktwahl in eine Kategorie und umgehen so willkürliche Wahlen, können die Informationen aus der Kategorie (über die Fundamentalgruppe) aber jederzeit 'zurückgewinnen' (bzw. haben sie schon).
+\end{oral}
+
+
+\section{Überlagerungen Teil 1}
+
+\begin{definition}[Überlagerung]\label{def:überlagerung}
+    Eine \vocab{Überlagerung} ist eine stetige, surjektive Abbildung
+    \[
+    p\colon  E \to  X
+    .\] 
+    mit den folgenden Eigenschaften:
+    Für jedes $x\in X$ gibt es eine Umgebung $U$ von  $x$, einen diskreten Raum  $F$ und einen Homöomorphismus
+     \[
+         v\colon  p^{-1}(U) \stackrel{\cong}{\longrightarrow} U \times F
+    .\] 
+    über $U$, d.h.
+    \[
+\begin{tikzcd}
+    p^{-1}(U) \ar{rr}{v} \ar[swap]{dr}{p}& &  U \times F \ar{dl}{\pr_U} \\
+                          & U
+\end{tikzcd}
+\]
+\missingfigure{Triviale Überlagerung und Überlagerung $\exp\colon  \R \to  S^1$ skizzieren}
+\end{definition}
+
+\begin{remark}
+    $F$ ist homöomorph zu  $F_x = p^{-1}(\left \{x\right\} )$, der \vocab{Faser über $x$} mittels
+    \[
+        v|_{p^{-1}(x)} \colon  p^{-1}(x) \to  \left \{x\right\} \times F
+    .\] 
+\end{remark}
+test
