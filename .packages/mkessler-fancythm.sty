@@ -5,6 +5,7 @@
 
 \newif\ifenglish\englishtrue
 \newif\iflecturenumbers\lecturenumberstrue
+\newif\ifnumberwiththeorem\numberwiththeoremfalse
 \newif\ifnumberall\numberallfalse
 \newif\ifshowstars\showstarstrue
 \newif\ifshowdaggers\showdaggerstrue
@@ -18,6 +19,7 @@
 \DeclareOption{english}{\englishtrue}
 \DeclareOption{german}{\englishfalse}
 \DeclareOption{lecturenumbers}{\lecturenumberstrue}
+\DeclareOption{numberwiththeorem}{\numberwiththeoremtrue}
 \DeclareOption{truenumbers}{\lecturenumbersfalse}
 \DeclareOption{numberall}{\numberalltrue\lecturenumbersfalse}
 \DeclareOption{nostars}{\showstarsfalse}
@@ -298,9 +300,15 @@
     \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, sibling=theorem]{#4*}
     \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, sibling=theorem]{d#4}
     \else
+    \ifnumberwiththeorem
+    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}, numberwithin=theorem]{#4}
+    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, numberwithin=theorem]{#4*}
+    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, numberwithin=theorem]{d#4}
+    \else
     \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}, numbered = no]{#4}
     \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, numbered = no]{#4*}
     \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, numbered = no]{d#4}
+    \fi
     \fi
     \ifincludestars\else\renewenvironment{#4*}{\comment}{\endcomment}\fi
 }
