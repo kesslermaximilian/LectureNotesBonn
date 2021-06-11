@@ -1,5 +1,5 @@
 %! TEX root = ./master.tex
-\lecture[Wege $x\to x'$ induzieren Isomorphismen  $\pi_1(X,x) \cong \pi_1(X,x')$. Fundamentalgruppoiden. Überlagerungen. Lokale Homöomorphismen. Überlagerungen von $S^1$, triviale Überlagerungen. Blätterzahl. Teaser der Liftungssätze.]{Do 10 Jun 2021 10:15}{}
+\lecture[Wege $x\to x'$ induzieren Isomorphismen  $\pi_1(X,x) \cong \pi_1(X,x')$. Fundamentalgruppoiden. Überlagerungen. Lokale Homöomorphismen. Überlagerungen von $S^1$, triviale Überlagerungen. Blätterzahl. Teaser der Liftungssätze.]{Do 10 Jun 2021 10:15}{Fundamentalgruppen und Überlagerungen}
 
 \begin{theorem}[$\pi_1$ auf Wegzusammenhangskomponenten]\label{thm:pi-1-ist-gleich-auf-wegusammenhangskomponente}
     Seien $x,x' \in X$ durch einen Weg verbunden, d.h. $\exists w\colon  I \to X$ mit $w(0) = x$,  $w(1) = x'$. Dann sind die Gruppen  $\pi_1(X,x)$ und $\pi_1(X,x')$ homöomorph.
@@ -7,11 +7,17 @@
 
 \begin{remark}
     Liegen $x,x'$ in verschiedenen Wegzusammenhangskomponenten, so gibt es (im Allgemeinen) keine Beziehung zwischen  $\pi_1(X,x)$ und $\pi_1(X,x')$. Betrachte hierzu z.B. $X = X_1 \coprod X_2$ mit $x\in X_1$ und $x' \in X_2$, so ist $p_1(X,x) = p_1(X_1,x)$ und $p_1(X,x') = p_1(X_2,x')$. Es genügt daher zu sehen, dass es Räume mit verschiedenen Fundamentalgruppen gibt.
-    \missingfigure{Disjunkte Vereinigung von Räumen mit verschiedener Fundamentalgruppe}
 \end{remark}
 
+\begin{figure}[ht]
+    \centering
+    \incfig{disjunkte-vereinigung-von-räumen-mit-verschiedener-fundamentalgruppe}
+    \caption{Disjunkte Vereinigung von Räumen mit verschiedener Fundamentalgruppe}
+    \label{fig:disjunkte-vereinigung-von-räumen-mit-verschiedener-fundamentalgruppe}
+\end{figure}
+
 \begin{proof}[Beweis von \autoref{thm:pi-1-ist-gleich-auf-wegusammenhangskomponente}]
-    Sei $v\colon  I \to  X$ eine Weg von $x \circ  x'$. Dann definiere
+    Sei $v\colon  I \to  X$ eine Weg von $x$ nach  $x'$. Dann definiere
         \begin{equation*}
         v_*: \left| \begin{array}{c c l} 
             \pi_1(X,x') & \longrightarrow & (X,x) \\
@@ -19,7 +25,12 @@
         \end{array} \right.
     \end{equation*}
     wobei wie üblich $\overline{v}\colon [0,1] \to X$ gegeben ist durch $\overline{v}(t) = v(1-t)$.
-    \missingfigure{Illustration von $v \star w \star \overline{v}$}
+\begin{figure}[ht]
+    \centering
+    \incfig{schleifen-zwischen-verschiedene-basispunkten-durch-weg}
+    \caption{Aus einer Schleife $w$ um  $x'$ können wir mittels  $v,\overline{v}$ eine Schleife um $x$ erzeugen}
+    \label{fig:schleifen-zwischen-verschiedene-basispunkten-durch-weg}
+\end{figure}
     Hierbei definieren wir
     \[
         (v \star w \star \overline{v})(t) = \begin{cases}
@@ -62,8 +73,6 @@
 \begin{warning}
     Der Isomorphismus $v_*\colon  \pi_1(X,x') \to  \pi_1(X,x)$ hängt von $v$ ab (genauer von der Homotopieklasse von  $v$ relativ Endpunkten). Die Gruppen sind aber in jedem Fall isomorph.    
 \end{warning}
-\todo{Frage: gilt hier potenziell die Umkehrung?}
-\todo{Nein, schreibe hierzu kleine Bemerkung}
 
 \begin{recap}
     Ist $G$ eine Gruppe,  $g\in G$, so ist
@@ -76,11 +85,18 @@
     eine Automorphismus von $G$, die  \vocab[Gruppe!Konjugation]{Konjugation mit $g$}. Diese heißen \vocab[Gruppe!innerer Automorphismus]{innere Automorphismen} 
 \end{recap}
 
+\begin{dremark}\label{rm:verschiedene-wege-induzieren-konjugierte-isomorphismen-der-fundamentalgruppen}
 Sind $v,v' \colon  I \to  X$ Wege von $x$ nach  $x'$, dann gilt:
 \begin{IEEEeqnarray*}{rCl}
     v_*([w]) &=& v\star [w] \star \overline{v}\\
              & = & [v \star \overline{v'}]  \star v_*'([w]) \star [v' \star \overline{v}]\\& = & c_{[v \star \overline{v'}]} (v_*'[w])
 \end{IEEEeqnarray*}
+die von verschiedenen Wegen $v$, $v'$ von $x$ nach  $x'$ induzierent Wege unterscheiden sich also nur um Konjugation.
+\end{dremark}
+
+\begin{remark*}
+    Es gibt auch Wege $v,w \colon  x' \to x$, die nicht in der gleichen Homotopieklasse (relativ Endpunkten) liegen, die aber dennoch denselben Isomorphismus induzieren. Das liegt daran, dass die beiden induzierten Isomorphismen sich nur um Konjugation unterscheiden (s. \autoref{rm:verschiedene-wege-induzieren-konjugierte-isomorphismen-der-fundamentalgruppen}), und damit z.B. insbesondere für abelsche Fundamentalgruppen denselben Isomorphismus induzieren.
+\end{remark*}
 
 \begin{oral}
     Man muss aufpassen, bei wegzusammenhängenden Räumen einfach von 'der' Fundamentalgruppe zu sprechen. Es gibt zwar nur eine, allerdings sind die Isomorphismen nicht zwingend kanonisch, weswegen man trotzdem implizit noch die Wahl des Basispunktes mit sich rumschleppt. Das motiviert die Betrachtung der nächsten Definition:
@@ -203,26 +219,26 @@ Sind $v,v' \colon  I \to  X$ Wege von $x$ nach  $x'$, dann gilt:
 \end{lemma}
 
 \begin{proof}
-    Für $x\in X$ existiert $x\in U\subset X$ offen mit $u\colon p^{-1} (U) \cong U\times p^{-1} ((x))$ (per Definition der Überlagerung) 
+   Sei $p\colon  E \to  X$ eine beliebige Überlagerung. Für $x\in X$ existiert $x\in U\subset X$ offen mit $u\colon p^{-1} (U) \cong U\times p^{-1} (\left \{x\right\} )$ (per Definition der Überlagerung) 
 
-    Sei $e\in E$ mit $x = p(e)$. Wähle  $V = u^{-1}(U\times \left \{e\right\} )$. Dann ist $p|_V \colon  V \to  U$ ein Homöomorphismus.
+   Sei nun $e\in E$ beliebig und setze $x = p(e)$. Wähle  $V = u^{-1}(U\times \left \{e\right\} )$. Dann ist $p|_V \colon  V \to  U$ ein Homöomorphismus, denn (nach Anwendung von $u$ bzw.  $u|_V$) für $U\times \left \{e\right\} \to U$ ist dies trivial.
 \[
     \begin{tikzcd}
-        V & &U \times \left \{e\right\} \\
-        p^{-1} (U) & &U\times p^{-1} (\left \{x\right\} ) \\
+        V \ar[out=220, in = 210,looseness=2,blue, near start,swap]{ddr}{p|_V} \ar{rr}{\cong}[swap]{u|_V}\ar[phantom]{d}[rotate=-90]{\subset }& &U \times \left \{e\right\} \ar[phantom]{d}[rotate=-90]{\subset } \ar[out=-30, in = -30,looseness=2,blue,dashed,near start]{ddl}{\cong}\\
+        p^{-1} (U) \ar[swap]{dr}{p|_{p^{-1} (U)}} \ar{rr}{\cong}[swap]{u} & & U\times p^{-1} (\left \{x\right\} ) \ar{dl}{\pr_U}\\
                    & U 
     \end{tikzcd}
 \]
-Da $p^{-1} (U)\subset Y$ offen ist und $U\times \left \{e\right\} \subset U\times p^{-1} (\left \{x\right\} ) \stackrel{u^{-1}}{\cong} p^{-1} (U)$ offen, ist $V\subset Y$ offen.
+Da $p^{-1} (U)\subset E$ offen ist (Stetigkeit von $p$) und 
+\[V \stackrel{u}{\cong}U\times \left \{e\right\} \subset U\times p^{-1} (\left \{x\right\} ) \stackrel{u^{-1}}{\cong} p^{-1} (U)
+\]
+offen, ist $V\subset p^{-1} (U)\subset E$ offen. Also ist $V$ eine offene Umgebung von  $e$, und  $p|_V \colon  V \stackrel{\cong}{\longrightarrow} U$ ein Homöomorphismus mit offenem Bild $U\subset X$, und wir erfüllen alle Eigenschaften eines lokalen Homöomorphismus.
 \end{proof}
-\todo{Kommutatives Diagramm des Beweises, Beweis nochmal durchgehen}
 
 \begin{lemma}\label{lm:offene-überdeckung-von-überlagerung-mit-homöomorphismen}
     Sei $p\colon  E \to  X$ eine Überlagerung. Dann gibt es eine offene Überdeckung $\left \{U_i\right\} _{i \in I}$ von $X$, so dass gilt:
-     \[
-         \forall x\in U_i, y\in p^{-1} (x)
-    .\] 
-    gibt es eine stetige Funktion $s\colon  U_i \to  E$ mit 
+
+    Für alle $i\in I$, $x\in U_i$ und $y\in p^{-1} (x)$ gibt es eine stetige Funktion $s\colon  U_i \hookrightarrow   E$ mit 
     \begin{itemize}
         \item $s(x) = y$
         \item  $p \circ s = \id_{U_i}$
@@ -230,14 +246,19 @@ Da $p^{-1} (U)\subset Y$ offen ist und $U\times \left \{e\right\} \subset U\time
 \end{lemma}
 
 \begin{oral}
-    Der Unterschied der Aussage des Lemmas ist, dass wir hier die  $U_i$ und das  $y$ fest wählen.
+    Im Wesentlichen passiert hier nicht viel mehr als beim lokalen Homöomorphismus. Der Unterschied der Aussage des Lemmas ist, dass wir hier die  $U_i$ und das $y$ fest wählen können, und erst dann den Homöomorphismus bauen.
 \end{oral}
 
 \begin{proof}[Beweis von \autoref{lm:offene-überdeckung-von-überlagerung-mit-homöomorphismen}]
-Für jedes $x\in X$ gibt es eine offene Umgebung $U_x$, auf der $p$ trivial ist. Dann ist $\left \{U_x\right\} _{x \in X}$ eine offene Überdeckung.
+    Für jedes $x\in X$ gibt es eine offene Umgebung $U_x$, auf der $p$ trivial ist (im Wesentlichen die Definition einer Überlagerung). Dann ist $\left \{U_x\right\} _{x \in X}$ eine offene Überdeckung, die die Eigenschaften des Lemmas erfüllt:
+    \[
+    \begin{tikzcd}
+        E &        p^{-1} (U_x) \ar{r}{\cong}[swap]{v} \ar[phantom]{l}{\supset }& U_x \times F \\
+          &        U_x \ar{r}{\cong} \ar[out = 20, looseness=4, in=-15,blue,near end]{ul}{s}& U_x \times \left \{f\right\} \ar[hook]{u}
+    \end{tikzcd}
+\]
+$s$ als Verknüpfung der anderen Abbildungen hat nämlich genau die gewünschten Eigenschaften, sofern wir  $f$ natürlich so wählen, dass  $y \stackrel{v}{\leftrightarrow} (x,f)$ in Bijektion stehen.
 \end{proof}
-\todo{Kommutatives Diagramm}
-
 
 \begin{remark}
     Nicht jeder lokale Homöomorphismus ist eine Überlagerung. Die Abbildung $(0,2) \stackrel{\exp}{\longrightarrow} S^1$ ist ein lokaler Homöomorphismus, aber keine Überlagerung.
@@ -256,7 +277,7 @@ Für jedes $x\in X$ gibt es eine offene Umgebung $U_x$, auf der $p$ trivial ist.
     \end{itemize}
 \end{notation*}
 
-\begin{example}
+\begin{example}\label{ex:überlagerungen}
     \begin{enumerate}[1)]
         \item Die triviale Überlagerung
         \item Die unendlich-blättrige Überlagerung
@@ -273,16 +294,28 @@ Für jedes $x\in X$ gibt es eine offene Umgebung $U_x$, auf der $p$ trivial ist.
                 z & \longmapsto &  z^k
                 \end{array} \right.
             \end{equation*}
-            (wir fassen hier $S^1 \subset \C$ auf, um $z^k$ zu definieren).
-    \missingfigure{Skizzen zur endlichblättrigen Überlagerung}
+            (wir fassen hier $S^1 \subset \C$ auf, um $z^k$ zu definieren). 
+
+
+            \begin{minipage}{\textwidth}
+                \centering
+                \incfig{k-blättrige-überlagerung-des-kreises}
+                \captionof{figure}{4-blättrige Überlagerung $S^1 \to  S^1$}
+                \label{fig:k-blättrige-überlagerung-des-kreises}
+            \end{minipage}
         \item Sind  $E,E' \stackrel{p,p'}{\longrightarrow} X$ Überlagerungen, so auch
             \[
             E \coprod E' \stackrel{p \coprod p'}{\longrightarrow} X
             .\] 
-        \item Die Projektion $S^n \stackrel{p}{\longrightarrow} \R \mathbb{P}^n \cong \faktor{S^n}{x \sim  -x}$ ist eine 2-blättrige Überlagerung.
-            \missingfigure{Überlagerung $S^n \stackrel{p}{\longrightarrow} \R\mathbb{P}^n$}
+        \item Die Projektion $S^n \stackrel{p}{\longrightarrow} \R \mathbb{P}^n \cong \faktor{S^n}{x \sim  -x}$ ist eine 2-blättrige Überlagerung. Bezeichne hierzu mit $N$,  $S$ den Nord- und den Südpol von  $S^n$ (die den gleichen Punkt in  $\R\mathbb{P}^n$ darstellen und wegen Symmetrie ein generischer Punkt aus $\R\mathbb{P}^n$ sind). Dann können wir die offene ober bzw. untere Halbkugel betrachten, d.h.
+            \begin{IEEEeqnarray*}{rCl}
+                S^n \cap  \left \{(x_1,\ldots,x_{n+1})\mid x_{n+1} > 0\right\} \\
+                S^n \cap  \left \{(x_1,\ldots,x_{n+1})\mid x_{n+1}<0\right\} 
+            \end{IEEEeqnarray*}
+            deren Projektion auf $\R\mathbb{P}^n$ dann genau eine 2-blättrige triviale Überlagerung auf eine offene Umgebung von $p(N) = p(S)$ darstellt.
     \end{enumerate}    
 \end{example}
+
 
 \begin{oral}
     Man kann zeigen, dass die endlichen Überlagerungen die einzigen \textit{zusammenhängenden} Überlagerungen von $S^1$ sind. Für 'schöne' Räume werden wir diese auch noch klassifizieren.
