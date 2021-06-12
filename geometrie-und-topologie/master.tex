@@ -1,16 +1,17 @@
-\documentclass[a4paper,german, number small environments = theorem]{article}
-\input{../preamble.tex}
-\input{exercises/preambleBlatt.tex}
-\title{{Einführung in die} \\ Geometrie und Topologie}
-\author{{\normalfont Dozent}\\{\sc Daniel Kasprowski} \vspace{1em}\\ {\normalfont Assistentin} \\ {\sc Arunima Ray}}
+\documentclass[a4paper, german, lecturenumbers = true, number small environments = theorem, hide version]{mkessler-script}
 
+\course{Einführung in die Geometrie und Topologie}
+\lecturer{Daniel Kasprowski}
+\assistant[f]{Arunima Ray}
+\author{Maximilian Keßler}
+
+\RequirePackage{mkessler-math}
+\RequirePackage{mkessler-fancythm}
+\input{exercises/preambleBlatt.tex}
 
 
 \begin{document}
     \maketitle
-    \vspace{3em}
-    \centering \small Version \\
-    \today\; \currenttime
     \abstract{{\color{red} Achtung:} Diese Version des Skripts benutze ich zur Bearbeitung! Einige Dinge fehlen, dafür gibt es TODO-Notes. Für Inhalte, benutzt die \href{https://kesslermaximilian.github.io/LectureNotesBonn/2021_Topologie.pdf}{normale Version}}
     \newpage
     \listoftodos
@@ -27,5 +28,5 @@
     \input{lec_13.tex}
     \input{lec_14.tex}
     % end lectures
-    \input{fragestunden.tex}
+    %\input{fragestunden.tex}
 \end{document}

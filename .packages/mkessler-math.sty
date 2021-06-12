@@ -73,9 +73,6 @@
 \RequirePackage{latexsym}
 \RequirePackage{mathrsfs}
 \RequirePackage[shortlabels]{enumitem}
-\RequirePackage{imakeidx}
-\makeindex[columns=2, title = C\smallskip\hspace{0.7em}Stichwortverzeichnis,intoc]
-\RequirePackage[colorlinks,citecolor=violet,urlcolor=blue!80!black,linkcolor=red!50!black,pdftitle=Geometrie und Topologie,pdfauthor=Maximilian Keßler]{hyperref} % Hyperlinks
 \RequirePackage{wrapfig}
 
 %Pgfplots
@@ -138,17 +135,6 @@
 \usepackage{stmaryrd} % for \lightning
 \newcommand\contra{\scalebox{1.5}{$\lightning$}}
 
-%Emphasize \vocabulary
-\RequirePackage{xparse}
-\RequirePackage{mfirstuc}
-\RequirePackage{expl3}
-\ExplSyntaxOn
-\NewDocumentCommand{\vocab}{O{} m}{
-    \textbf{\color{blue} #2}
-    \ifthenelse{\isempty{#1}}{\index{\text_titlecase_first:n{#2}}}{\index{#1}}
-}
-\ExplSyntaxOff
-
 %\def\thevocab{}
 %\newcommand{\vocab}[2][\thevocab]{\renewcommand\thevocab{#2}\textbf{\color{blue} #2}\index{#1}}
 
@@ -194,6 +180,6 @@
 \RequirePackage[ngerman,ruled,vlined]{algorithm2e}
 
 
-
-
+%%Load additional operators
+\RequirePackage{mkessler-operators}
 

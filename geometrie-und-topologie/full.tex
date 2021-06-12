@@ -1,27 +1,31 @@
-\documentclass[a4paper, german, lecturenumbers = true, number small environments = theorem]{article}
-\input{../preamble.tex}
+\documentclass[a4paper, german, lecturenumbers = true, number small environments = theorem]{mkessler-script}
+
+\course{Einführung in die Geometrie und Topologie}
+\lecturer{Daniel Kasprowski}
+\assistant[f]{Arunima Ray}
+\author{Maximilian Keßler}
+
+\RequirePackage{mkessler-math}
+\RequirePackage{mkessler-fancythm}
 \input{exercises/preambleBlatt.tex}
 
-\title{{Einführung in die} \\ Geometrie und Topologie}
-\author{{\normalfont Dozent}\\{\sc Daniel Kasprowski} \vspace{1em}\\ {\normalfont Assistentin} \\ {\sc Arunima Ray}}
-
-\hypersetup{pdftitle={Einführung in die Geometrie und Topologie}}
 \setuptodonotes{disable}
+
 
 \begin{document}
     \maketitle
-    \vspace{3em}
-    \centering \small Version \\
-    \today\; \currenttime
-    \vspace{10em}
+
     \input{abstract.tex}
-    \newpage
+
+    %Table of contents
+    \cleardoublepage
     \tableofcontents
-    \newpage
-    \listoflecture
-    \section*{}
-    \addcontentsline{toc}{section}{Übersicht der Vorlesungen}
-    \newpage
+
+    %List of lectures with their corresponding keywords
+    \cleardoublepage
+    \summaryoflectures
+
+    \cleardoublepage
     % start lectures
     \input{lec_01.tex}
     \input{lec_02.tex}
@@ -38,23 +42,31 @@
     \input{lec_13.tex}
     \input{lec_14.tex}
     % end lectures
-    \newpage
+
+    %Start appendix
+    \cleardoublepage
     \appendix
     \part{Anhang}
+
+    %Exercises of the lecture
     \input{exercises/exercises.tex}
-    \newpage
+    
+    %Explanation of environments
+    \cleardoublepage
     \input{environments.tex}
-    \newpage
+
+    %Index
+    \cleardoublepage
     \printindex
+
+    %Image attributions
     \cleardoublepage
-    \setcounter{section}{3}
-    \thispagestyle{plain}
-    \section{Bildquellen}
-    \printbibliography[title={Bildquellen}, type=image]
+    \printimageattributions
+
+    %Literature
     \cleardoublepage
-    \thispagestyle{plain}
-    \section{Literaturverzeichnis}
-    \printbibliography[nottype=image]
+    \printliterature
+
 \end{document}
 
 

@@ -111,7 +111,7 @@
 \RequirePackage{amsthm}
 \RequirePackage{mdframed}
 \RequirePackage{thmtools}
-\RequirePackage[colorlinks]{hyperref}
+\RequirePackage{hyperref}
 \RequirePackage{cleveref}
 \RequirePackage[skins]{tcolorbox}
 %\RequirePackage[usenames,svgnames,dvipsnames]{xcolor}
@@ -524,4 +524,8 @@
 \makeatother
 \newaliascnt{algocf}{theorem}
 
+%Taken from
+% https://github.com/gillescastel/university-setup/blob/master/preamble.tex
+% Make boxes breakable
+\tcbuselibrary{breakable}
 
