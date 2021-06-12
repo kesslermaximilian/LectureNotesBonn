@@ -219,17 +219,14 @@ und wir wissen schon, dass $\R^n \setminus \left \{0\right\}$ wegzusammenhängen
     .\] 
     Die erste Implikation ist trivial, wähle $x_0\in X$ beliebig, für die zweite bilden wir $[0,1]$ einfach auf die Verbindungsstrecke von  $x_0$ nach $y$ ab, dann sind alle Punkte mit  $x_0$ verbunden, und deren Hintereinanderschalten ergibt Wege von $x$ nach  $y$ für  $x,y$ beliebig. \\
     Im Wesentlichen ist das das gleiche Argument, dass wir auch schon für die Intervalle in $\R$ benutzt haben.
-    \missingfigure{Sternförmige Menge skizzieren}
 \end{dexample}
 
-\begin{comment}
 \begin{figure}[ht]
     \centering
     \incfig{sternförmige-menge}
-    \caption{sternförmige Menge}
+    \caption{Links: eine konvexe Menge. Rechts: eine sternförmige, nicht-konvexe Menge}
     \label{fig:sternförmige-menge}
 \end{figure}
-\end{comment}
 
 \section{Lemma von Urysohn}
 \begin{dremark}
@@ -256,8 +253,16 @@ und wir wissen schon, dass $\R^n \setminus \left \{0\right\}$ wegzusammenhängen
 
 \begin{lemma}\label{lm:stetige-abbildung-durch-familie-von-rationalen-offenen-mengen}
     Sei $X$ ein topologischer Raum, sodass für jedes $r\in [0,1]\cap \Q$ offene $V_r \subset X$, sodass $r < r' \implies \overline{V_r} \subset V_{r'}$. Dann existiert eine stetige Abbildung $f: X \to  [0,1]$, sodass $f(x) = 0$ für  $x\in V_0$ und $f(x) = 1$ für  $x\not\in V_1$.
-    \missingfigure{Funktion skizzieren}
 \end{lemma}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{urysohn-funktion-über-dyadische-zahlen}
+    \caption{$f$ wird durch die Familie der Mengen  $V_i$ 'approximiert'}
+    \label{fig:urysohn-funktion-über-dyadische-zahlen}
+\end{figure}
+
+
 \begin{proof}
     Definiere
         \begin{equation*}
