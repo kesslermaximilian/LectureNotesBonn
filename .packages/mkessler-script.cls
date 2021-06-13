@@ -216,7 +216,7 @@
     %Add lecture as an entry to the lectures file
     \addcontentsline{lec}{lecture}{\@lectureprefix\,\thelecture\,(#2)}
     %If key words are provided, add the key words of the lecture below the entry
-    \ifthenelse{\isempty{#1}}{}{\addtocontents{lec}{\smallskip\hspace{1.5em}\protect\parbox{\dimexpr\textwidth-\@pnumwidth - 7em}{#1}}}
+    \ifthenelse{\isempty{#1}}{}{\addtocontents{lec}{\smallskip\hspace{1.5em}\protect\parbox{\dimexpr\textwidth-\@pnumwidth - 2em}{#1}}}
 }
 
 
