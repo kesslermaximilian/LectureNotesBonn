@@ -15,9 +15,10 @@
 
 %%%%Define command to set metainformation of document
 %Set the course
-\def\@course{}%
+\def\@course{\ClassError{mkessler-script}{No \noexpand\course given}{See documentation for details}}%
 \DeclareRobustCommand*{\course}[1]{\gdef\@course{#1}}
-\def\@lecturer{}%
+
+\def\@lecturer{\ClassError{mkessler-script}{No \noexpand\lecturer given}{See documentation for details}}%
 \def\@lecturertitle{}
 \DeclareRobustCommand*{\lecturer}[2][]{
     \gdef\@lecturer{#2}
@@ -25,9 +26,11 @@
 }
 
 %Set the assistant
+\newif\ifprintassistant\printassistantfalse
 \def\@assistant{}%
 \def\@assistantitle{}
 \DeclareRobustCommand*{\assistant}[2][]{
+    \printassistanttrue
     \gdef\@assistant{#2}
     \gdef\@assistanttitle{\ifenglish Assistant\else\ifthenelse{\isempty{#1}}{Assistent}{Assistentin}\fi}
 }
@@ -37,6 +40,7 @@
 
 %%%%Title
 %Define layout of title using course, lecturer, assistant and author, and optionally the current time
+\RequirePackage{xparse}
 \RequirePackage{datetime}
 \renewcommand\@maketitle{%
   \newpage
@@ -52,11 +56,13 @@
         \@lecturertitle \\
         {\sc \@lecturer} \\
       \end{tabular}\par
+    \ifprintassistant
     \vskip 1em%
         \begin{tabular}[t]{c}%
         \@assistanttitle \\
         {\sc \@assistant} \\
         \end{tabular}\par
+    \fi
     \vskip 1em%
         \begin{tabular}[t]{c}%
         \ifenglish Notes\else Mitschrift\fi \\
