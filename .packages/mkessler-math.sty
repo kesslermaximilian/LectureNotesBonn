@@ -27,6 +27,7 @@
 % When using utf8x, we have to load ucs and inputenc with utf8x option and must exclude bibtex
 % When not using utf8x (plan utf8), we must NOT load ucs, and then load inputenc with utf8-option as well as bibtex
 % also, when using plain utf8, we want to load the newunicodechar package
+\RequirePackage[\ifutf utf8\else utf8x\fi]{inputenc}
 \ifutf
 \RequirePackage{newunicodechar}
 \newunicodechar{α}{\ensuremath\alpha}
@@ -54,10 +55,10 @@
 \newunicodechar{ω}{\ensuremath\omega}
 
 \RequirePackage[backend=biber,style=alphabetic]{biblatex}
+\RequirePackage{csquotes}
 \else
 \RequirePackage[mathletters]{ucs}
 \fi
-\RequirePackage[\ifutf utf8\else utf8x\fi]{inputenc}
 
 \RequirePackage{anyfontsize}
 \RequirePackage{lmodern}
@@ -82,7 +83,7 @@
 % TIKZ
 \RequirePackage{tikz}
 \usetikzlibrary{calc, intersections, through, quotes, angles, babel, positioning}
-\RequirePackage{tkz-euclide}
+%\RequirePackage{tkz-euclide}
 \RequirePackage[export]{adjustbox}
 %Commutative diagrams
 \RequirePackage{tikz-cd}
