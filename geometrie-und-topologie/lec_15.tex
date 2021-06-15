@@ -1,5 +1,5 @@
 %! TEX root = ./master.tex
-\lecture[]{Di 15 Jun 2021 12:15}{Hebungssätze}
+\lecture[Weghebungssatz. Lebesguelemma. Homotopieliftungssatz.]{Di 15 Jun 2021 12:15}{Hebungssätze}
 
 \begin{theorem}[Weghebungssatz]\label{thm:weghebungssatz}
     Sei $p\colon E \to  X$ eine Überlagerung, und $w\colon  [0,1] \to  X$ ein Weg mit Anfangspunkt $x_0\coloneqq w(0)$. Sei $y\in p^{-1} (x_0)$ (also ein Punkt in der Faser von $x_0$). Dann existiert genau ein Weg $\tilde{w}\colon  [0,1] \to  E$, sodass $\tilde{w}(0) = y$ und $p \circ  \tilde{w} = w$, d.h. es kommutiert
@@ -67,6 +67,13 @@
     .\] 
     hat Bild in einer trivialisierenden Umgebung $U_i$.
 
+\begin{figure}[ht]
+    \centering
+    \incfig{hebung-auf-einzelnen-offenen-mengen}
+    \caption{Zerlegung des Weges in trivialisierende Umgebungen, auf denen wir heben können}
+    \label{fig:hebung-auf-einzelnen-offenen-mengen}
+\end{figure}
+
     Wir zeigen per Induktion, dass $w|_{\left[ 0,\frac{k}{n} \right] }\colon  \left[ 0, \frac{k}{n} \right]  \to  X$ einen eindeutigen Lift $\tilde{w}$ mit Anfangspunkt $y$ hat.
 
      \underline{IA}: $k=1$ ist genau die Aussage von Fall 2, wir sind also fertig. 
@@ -81,13 +88,6 @@
      .\] 
      zusammen. Zudem ist diese Hebung eindeutige, denn das Anfangsstück auf $\left[0, \frac{k}{n}\right]$ ist nach Induktion schon eindeutig, also auch der Anfangspunkt  $y_k$ von  $\tilde{w}'$, und somit auch $\tilde{w}'$ nach Fall 2.
 \end{proof}
-
-\begin{figure}[ht]
-    \centering
-    \incfig{hebung-auf-einzelnen-offenen-mengen}
-    \caption{Hebung auf einzelnen offenen Mengen}
-    \label{fig:hebung-auf-einzelnen-offenen-mengen}
-\end{figure}
 
 \begin{remark*}
     Das Lebesgue-Lemma fand sich auf den Übungsblättern als \autoref{aufgabe-5.4}, wir geben dies im folgenden wieder:
@@ -121,3 +121,92 @@
         \item Ist $H$ eine Homotopie relativ Endpunkt, so auch  $\tilde{H}$.
     \end{enumerate}
 \end{theorem}
+
+
+\begin{figure}[ht]
+    \centering
+    \incfig{hebung-von-homotopie}
+    \caption{Hebung von Homotopie (TODO)}
+    \label{fig:hebung-von-homotopie}
+\end{figure}
+
+
+\begin{proof}[Beweis von \autoref{thm:homotopieliftungssatz}]
+    \begin{description}
+        \item[Existenz von $\tilde{H}$]. Sei $\left \{U_i\right\} $ eine offene Überdeckung von $X$, so dass  $p$ über jedem  $U_i$ trivial ist. Dann ist  $\left \{H^{-1}(U_i)\right\} _{i \in I}$ eine offene Überdeckung von $I^2$. Nach dem Lebesguelemma existiert $m\in \N$, so dass jedes Quadrat
+            \[
+            Q_{i,j} \coloneqq  \left[ \frac{i-1}{m}, \frac{i}{m} \right] \times \left[ \frac{j-1}{m}, \frac{j}{m} \right] 
+            .\] 
+            für $i,j = 1,\ldots,m$.
+            \todo{Ausführlichere anwendung von lebesgue-lemma}
+            \todo{$i$ wird doppelt benutzt.}
+            Wir definieren im Folgenden stetige Abbildungen $\tilde{H}_{ij}\colon  Q_{ij} \to  E$, so dass
+            \begin{itemize}
+                \item $ p \circ  \tilde{H}_{ij} = H|_{Q_{ij}}$ 
+                \item $\tilde{H}_{11}(0,0) = \tilde{w}_0(0) = \tilde{w}_1(0)$
+                \item $(\tilde{H}_{ij})|_{Q_{ij} \cap  Q_{i'j'}} = (\tilde{H}_{i'j'})|_{Q_{/j} \cap  Q_{i'j'}}$ (die Abbildungen passen an den Rändern zusammen)
+            \end{itemize}
+    Das machen wir induktiv in der Reihenfolge $11,12,\ldots$,$1m, 21,22$,\ldots,$2m, \ldots, 3m$, \ldots,$mm$.
+
+    Es liegt $H_{Q_{ij}}$ in einem $U$. Sei  $s\colon  U \to  E$ eine lokale Umkehrfunktion mit
+    \[
+        s\left(H\left( \frac{i-1}{m}, \frac{j-1}{m} \right) \right) = \begin{cases}
+            \tilde{w}_0(0) & i=j=1 \\
+            \tilde{H}_{i-1,j}\left( \frac{i-1}{m}, \frac{j-1}{m} \right) & i>1 \\
+            \tilde{H}_{i,j-1}\left( \frac{i-1}{m}, \frac{j-1}{m} \right) & j>1
+        \end{cases}
+    .\] 
+    - wir wollen also, dass der Funktionswert an der linken unteren Ecke bereits stimmt.
+    \begin{remark}
+        Da $\tilde{H}_{i-1,j}$ und $ \tilde{H}_{i,j-1}$ auf $\left[ \frac{i-1}{m}, \frac{j-1}{m} \right) $ übereinstimmen, ist das wohldefiniert für $i,j > 1$.
+    \end{remark}
+    Setze $\tilde{H}_{ij}\coloneqq  s \circ  H|_{Q_{ij}}$. Per Definition ($s$ ist eine Umkehrfunktion) ist nun  $p \circ  \tilde{H}_{ij} = p \circ  s \circ  H\mid _{Q_{ij}} = H\mid _{Q_{ij}}$.
+    \begin{claim}
+        Ist $i>1$, so ist  $\tilde{H}_{ij}|_{Q_{ij} \cap  Q_{i-1,j}} = \tilde{H}_{i-1,j} |_{Q_{ij} \cap Q_{i-1,j}}$
+    \end{claim}
+    \begin{subproof}
+        Es ist $Q_{ij} \cap  Q_{i-1,j} = \left \{\left( \frac{i-1}{m}, \frac{j-t}{m} \mid t\in I \right) \right\} $.
+        
+        Die Wege
+        \begin{IEEEeqnarray*}{rCl}
+            t &\mapsto &\tilde{H}_{ij}\left( \frac{i-1}{m}, \frac{j-t}{m} \right)  \\
+            t & \mapsto & \tilde{H}_{i-1,j} \left( \frac{i-1}{m}, \frac{j-t}{m} \right) 
+        \end{IEEEeqnarray*}
+        heben $t \mapsto H\left( \frac{i-1}{m}, \frac{j-t}{m} \right) $ und stimmen für $t=0$ überein. Nach dem \nameref{thm:weghebungssatz} sind sie also gleich.
+
+        Analog zeigen wir: Ist $j>1$, so ist  $\tilde{H}_{ij}\mid _{Q_{ij} \cap  Q_{i,j-1}} = \tilde{H}_{i,j-1}\mid_{ Q_{ij}\cap  Q_{i,j-1}}$
+\end{subproof}
+\item[Eindeutigkeit] Sei $\tilde{\tilde{H}}$ eine weitere Hebung mit $\tilde{\tilde{H}} (0,0) = \tilde{w}_0(0)$. Sei $(t,s) \in I^2$ und $w$ ein Weg von  $(0,0)$ nach  $(t,s)$ in  $I^2$ (z.B. der lineare Weg). Dann sind $\tilde{H} \circ w$ und $\tilde{\tilde{H}} \circ  w$ Hebungen von $H\circ  w$. mit demselben Anfangspunkt. 
+
+    Nach der Eindeutigkeit im \nameref{thm:weghebungssatz} sind also auch schon $\tilde{H} \circ w$ und $\tilde{\tilde{H}} \circ w$ gleich, insbosender stimmen sie an $(t,s)$ überein, und somit  $\tilde{\tilde{H}}(t,s) = \tilde{H}(t,s) $. Da $(t,s)\in I^2$ beliebig war, folgt also wie gewünscht $\tilde{H} = \tilde{\tilde{H}} $.
+\end{description}
+\begin{enumerate}[i)]
+    \setItemnumber{2}
+\item Der Weg $\tilde{H}(-,0)$ hebt $H(-,0)= w_0$ mit Anfangspunkt $\tilde{w}_0(0)$. Auch $\tilde{w}_0$ ist ein solcher Lift. Aus der Eindeutigkeit im \nameref{thm:weghebungssatz} folgt also genau $\tilde{H}(-,0) = \tilde{w}_0$.
+    \missingfigure{Illustration der verschiedenen Wege}
+    Weiter hebt $\tilde{H}(0,-)$ den Weg $H(0,-) = c_{w_0(0)}$, weil $H$ eine Homotopie relativ Anfangspunkt ist. Auch  $c_{\tilde{w}_0(0)}$ ist eine solche Hebung (mit gleichem Anfangspunkt), also ist bereits $\tilde{H}(0,-) = c_{\tilde{w}_0(0)}$.
+
+    Damit folgt bereits, dass $\tilde{H}$ eine Homotopie relativ Anfangspunkt ist, und dass $\tilde{H}(0,1) = c_{\tilde{w}_0(0)}$. Also hebt der Weg $\tilde{H}(-,1)$ den Weg $H(-,1) = w_1$ \textit{mit Anfangspunkt} $\tilde{w}_0(0) = \tilde{w}_1(0)$, und wegen der Eindeutigkeit der Wegeliftung erhalten wir wie gewünscht $\tilde{H}(-,1) = \tilde{w}_1$.
+\item Der Weg $\tilde{H}(1,-)$ hebt nun $H(1,-)$. Ist  $H(1,-)$ konstant, dann auch  $\tilde{H}(1,-)$, weil wir auch die konstante Hebung haben, und die Hebung eindeutig ist.
+\end{enumerate}
+\end{proof}
+
+\section{Beispiele für $\pi_1$}
+
+\begin{definition}
+    Ein topologischer Raum $X$ heißt  \vocab[Topologischer Raum!einfach zusammenhängend]{einfach zusammenhängend}, falls $X$ wegzusammenhängend ist und je zwei Wege mit gleichen Anfangs- und Endpunkten homotop sind (relativ Anfangs- und Endpunkt).
+\end{definition}
+
+\begin{lemma}
+    Ein Raum $X$ ist einfach zusammenhängend genau dann, wenn er wegzusammenhängend ist und  $\pi_1(X,x)$ trivialist für ein (oder äquivalent alle) $x\in X$.
+\end{lemma}
+
+\begin{proof}
+'$\implies$' Spezialfall der Definition.    
+
+'$\impliedby$' Seien $w, w'\colon I \to X$ Wege mit $w(0) = w'(0) =x$ und  $w(1) = w'(1) = y$. Dann ist 
+ \[
+     w \simeq (w' \star  \overline{w'}) \star w \simeq w' \star (\overline{w'} \star w) \stackrel{\pi_1(X,y) = 0}{\simeq} w'
+.\] 
+\end{proof}
+
