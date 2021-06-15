@@ -1,0 +1,123 @@
+%! TEX root = ./master.tex
+\lecture[]{Di 15 Jun 2021 12:15}{Hebungssätze}
+
+\begin{theorem}[Weghebungssatz]\label{thm:weghebungssatz}
+    Sei $p\colon E \to  X$ eine Überlagerung, und $w\colon  [0,1] \to  X$ ein Weg mit Anfangspunkt $x_0\coloneqq w(0)$. Sei $y\in p^{-1} (x_0)$ (also ein Punkt in der Faser von $x_0$). Dann existiert genau ein Weg $\tilde{w}\colon  [0,1] \to  E$, sodass $\tilde{w}(0) = y$ und $p \circ  \tilde{w} = w$, d.h. es kommutiert
+    \[
+    \begin{tikzcd}
+        & E \ar{d}{p} \\
+        I \ar[dashed]{ur}{\tilde{w}} \ar[swap]{r}{w} & X
+    \end{tikzcd}
+    \]
+    Der Weg $\tilde{w}$ heißt \vocab[Weg!Hebung]{Hebung} oder \vocab[Weg!Lift]{Lift} von $w$.  
+\end{theorem}
+
+\begin{oral}[auf Nachfrage]
+    Wir können uns den Endpunkt des Weges $\tilde{w}$, also $\tilde{w}(1)$, nicht aussuchen. Dieser ist aber eindeutig bestimmt durch die Wahl des Anfangspunktes $\tilde{w}(0) = y$.
+
+    Wir wissen also, dass dieser Endpunkt existiert und eindeutig bestimmt ist, können aber noch keine Aussage darüber treffen.
+
+    Zudem werden wir sehen, dass der Endpunkt nicht notwendigerweise der Anfangspunkt sein wird, selbst wenn es sich bei $w$ um eine Schleife handelt.
+\end{oral}
+
+\begin{proof}
+    \underline{1. Fall}: Wir nehmen an, dass $p$ trivial ist, d.h. wir finden $F$, sodass kommutiert:
+    \[
+    \begin{tikzcd}
+        E \ar{rr}{\cong}[swap]{u} \ar[swap]{dr}{p} & & X\times F \ar{dl}{\pr_X} \\
+    & X
+    \end{tikzcd}
+    \]
+    Wir müssen also zeigen, dass genau eine Hebung $\tilde{w}\colon I \to  X\times F$ existiert mit $\tilde{w}(0) = u(y)$. Sei $u(y) = (x_0,f)$ mit $f\in F$. Wir definieren nun
+    \[
+        \tilde{w}(t) = (w(t),f)
+    .\] 
+    d.h. wir heben den Weg einfach nach $X\times \left \{f\right\} \cong X$. Dann ist $\tilde{w}(0) = (w(0),f) = (x_0,f) = u(y)$, und die Projektion ist genau
+    \[
+        \pr_X(\tilde{w}(t)) = w(t)
+    .\] 
+    wie gewünscht.
+
+    \underline{Eindeutigkeit}:  Sei $\tilde{\tilde{w}}\colon I \to  X \times F$ ein weiterer Lift mit Anfangspunkt $(w(0),f)$. Weil  $I$ zusammenhängend ist, ist $\pr_F \circ  \tilde{\tilde{w}} \colon  I \to  F$ konstant, weil das Bild zusammenhängend, $F$ aber diskret ist. Also folgt bereits
+     \[
+         \tilde{\tilde{w}} (t) = (w(t),f) = \tilde{w}(t)
+    .\] 
+    , denn die zweite Komponente ergibt sich aus vorherigem Argument, und die erste dann sofort aus der Hebungseigenschaft.
+
+    \underline{2. Fall}: $w$ hat Bild in einer trivialisierenden Umgebung  $U$, d.h. in  $U\subset X$ mit $p|_{p^{-1} (U)}$ trivial. 
+
+    Wir fassen $w$ als Weg  $I \to  U$ auf. Nach Fall 1 existiert $\tilde{w}\colon  I \to  p^{-1} (U)$ mit $\tilde{w}(0) = y$. Dann ist $\tilde{w}\colon  I \to  p^{-1} (U) \hookrightarrow E$ eine Hebung von $w$ entlang  $p\colon  E \to  X$.
+    \begin{tikzcd}
+        I \ar{r} \ar[swap]{dr}{w} & p^{-1} (U) \ar{d}{p|_{p^{-1} (U)}} \ar[hook]{r} & E \ar{d}{p}\\
+                                  & U \ar{r}& X
+    \end{tikzcd}
+    \todo{Kommutatives Diagramm}
+
+    Da jede Hebung Bild in $p^{-1} (U)$ hat (Verknüpfung mit $p$ liefert ja einen Weg in  $U$, nämlich  $w$), folgt die Eindeutigkeit auch aus Fall 1.
+
+    \underline{3. Fall}: Allgemeiner Fall. Sei $\left \{U_i\right\} _{i \in I}$ eine offene Überdeckung von $X$, so dass  $p|_{p^{-1} (U_i)}$ trivial ist für alle $i\in I$.
+
+    Dann ist $\left \{w^{-1}(U_i)\right\}_{i \in I} $ eine offene Überdeckung von $I$. Es gibt also eine Lebesgue-Zahl  $ε>0$, d.h. ein  $ε>0$, sodass jeder  $ε$-Ball  $U(t,ε)\subset I$ in einem $w^{-1}(U_j)$ liegt. Also finden wir ein $n\in \N$, so dass 
+    \[
+      \forall k=0,\ldots,n-1 \; \exists i\in I \colon  \quad  \left[ \frac{k}{n}, \frac{k+1}{n} \right] \subset w^{-1}(U_i)
+    \]
+    d.h. analog, dass
+    \[
+    w|_{\left[ \frac{k}{n}, \frac{k+1}{n} \right] } \colon  \left[ \frac{k}{n}, \frac{k+1}{n} \right] \to  X
+    .\] 
+    hat Bild in einer trivialisierenden Umgebung $U_i$.
+
+    Wir zeigen per Induktion, dass $w|_{\left[ 0,\frac{k}{n} \right] }\colon  \left[ 0, \frac{k}{n} \right]  \to  X$ einen eindeutigen Lift $\tilde{w}$ mit Anfangspunkt $y$ hat.
+
+     \underline{IA}: $k=1$ ist genau die Aussage von Fall 2, wir sind also fertig. 
+
+     \underline{IS} Es gelte die Aussage für $k$. Sei  $\tilde{w}\colon  \left[0,\frac{k}{n}\right]\to  E$ die eindeutige Hebung von $w|_{\left[0,\frac{k}{n}\right]}$ und setze $y_k \coloneqq  \tilde{w}\left( \frac{k}{n} \right) $. Nach Fall 2 hat also der Weg
+     \[
+     w|_{\left[ \frac{k}{n}, \frac{k+1}{n} \right] }\colon  \left[ \frac{k}{n}, \frac{k+1}{n} \right] \to  X
+     .\] 
+     einen eindeutigen Lift $\tilde{w}'$ mit $\tilde{w}'\left( \frac{k}{n} \right) = \tilde{w}\left(\frac{k}{n}\right)$. Nun passen $\tilde{w}$ und $\tilde{w}'$ zusammen zu einer Hebung 
+     \[
+     w|_{\left[ 0, \frac{k+1}{n} \right] }
+     .\] 
+     zusammen. Zudem ist diese Hebung eindeutige, denn das Anfangsstück auf $\left[0, \frac{k}{n}\right]$ ist nach Induktion schon eindeutig, also auch der Anfangspunkt  $y_k$ von  $\tilde{w}'$, und somit auch $\tilde{w}'$ nach Fall 2.
+\end{proof}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{hebung-auf-einzelnen-offenen-mengen}
+    \caption{Hebung auf einzelnen offenen Mengen}
+    \label{fig:hebung-auf-einzelnen-offenen-mengen}
+\end{figure}
+
+\begin{remark*}
+    Das Lebesgue-Lemma fand sich auf den Übungsblättern als \autoref{aufgabe-5.4}, wir geben dies im folgenden wieder:
+\end{remark*}
+
+\begin{definition*}[Lebesguezahl]\label{def:lebesguezahl}
+    Sei $\mathcal{U}$ eine (offene) Überdeckung eines metrischen Raumes $X$. Dann ist eine  $ε>0$ eine  \vocab{Lebesguezahl}, falls $\forall x\in X$ eine (offene) Umgebung $U\in \mathcal{U}$ mit $U(x,ε) \subset U$.
+\end{definition*}
+
+\begin{lemma*}[Lebesgue-Lemma]\label{lm:lebesgue}
+    Ist $X$ eine kompakter metrischer Raum,  $\mathcal{U}$ eine offene Überdeckung. Dann existiert eine Lebesguezahl $ε>0$.
+\end{lemma*}
+
+\begin{remark*}
+    Auf dem Übungsblatt haben wir das Lemma für einen \textit{folgenkompakten} metrischen Raum gezeigt, und das ist auch die Eigenschaft, die wir im Beweis verwenden. Allerdings ist \autoref{aufgabe-5.4} auch genau dazu da, zu zeigen, dass Folgenkompaktheit und Kompaktheit für metrische Räume äquivalent sind, in der Formulierung des Lebesgue-Lemmas ist dies alos nicht (mehr) wichtig, sobald wir das wissen.
+\end{remark*}
+
+\begin{remark}
+    Ist $w\colon  I \to  X$ eine Schleife, so ist $\tilde{w}$ im Allgemeinen trotzdem keine Schleife, hierzu betrachte wieder die Überlagerung $\R \stackrel{\exp }{\longrightarrow} S^1$ und die Schleife $w$, die einmal um den Kreis läuft, die Hebung ist in $\R$ jedoch einfach ein Weg von $2\pi k$ zu $2\pi(k+1)$.
+\missingfigure{Hebung von Schleife ist Weg}
+\end{remark}
+
+\begin{theorem}[Homotopieliftungssatz]\label{thm:homotopieliftungssatz}
+    Sei $p\colon  E \to  X$ eine Überlagerung, und seien $\tilde{w}_0, \tilde{w}_1\colon  I \to  E$ Wege mit $\tilde{w}_0(0) = \tilde{w}_1(0)$, also gleichem Anfangspunkt. Sei $w_i = p \circ  \tilde{w}_i$.
+
+    Sei $H\colon  I \times I \to  X$ eine Homotopie von $w_0$ nach $w_1$ relativ Anfangspunkten.
+
+    \begin{enumerate}[i)]
+        \item Es gibt eine eindeutige Hebung $\tilde{H}\colon  I \times I \to  E$ von $H$ mit  $\tilde{H}(0,0) = \tilde{w}_0(0)$.
+        \item $\tilde{H}$ ist eine Homotopie von $\tilde{w}_0$ nach $\tilde{w}_1$ relativ Anfangspunkten.
+        \item Ist $H$ eine Homotopie relativ Endpunkt, so auch  $\tilde{H}$.
+    \end{enumerate}
+\end{theorem}
