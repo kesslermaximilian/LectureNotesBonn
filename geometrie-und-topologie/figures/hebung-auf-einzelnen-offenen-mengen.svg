@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.99437386"
-     inkscape:cx="353.27705"
-     inkscape:cy="38.832154"
+     inkscape:zoom="1.9887477"
+     inkscape:cx="512.80546"
+     inkscape:cy="91.688746"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -35,10 +35,10 @@
      width="200mm"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1920"
-     inkscape:window-height="1080"
-     inkscape:window-x="0"
-     inkscape:window-y="1080"
+     inkscape:window-width="636"
+     inkscape:window-height="1027"
+     inkscape:window-x="640"
+     inkscape:window-y="1100"
      inkscape:window-maximized="0">
     <inkscape:grid
        type="xygrid"
@@ -94,35 +94,35 @@
        id="path26"
        inkscape:connector-curvature="0" />
     <ellipse
-       style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.28747249;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:none;marker-end:none"
+       style="opacity:1;vector-effect:none;fill:black;fill-opacity:0.12;stroke:black;stroke-width:0.28088167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:none;marker-end:none"
        id="path3833"
        cx="118.53274"
        cy="242.71953"
        rx="15.330702"
        ry="14.389966" />
     <ellipse
-       style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.28088167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:none;marker-end:none"
+       style="opacity:1;vector-effect:none;fill:black;fill-opacity:0.12;stroke:black;stroke-width:0.28088167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:none;marker-end:none"
        id="path3833-6"
        cx="136.59486"
        cy="236.98105"
        rx="15.333997"
        ry="13.734746" />
     <ellipse
-       style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.28088167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:none;marker-end:none"
+       style="opacity:1;vector-effect:none;fill:black;fill-opacity:0.12;stroke:black;stroke-width:0.28088167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:none;marker-end:none"
        id="path3833-7"
        cx="148.44815"
        cy="221.92928"
        rx="15.333997"
        ry="13.734746" />
     <ellipse
-       style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.28088167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:none;marker-end:none"
+       style="opacity:1;vector-effect:none;fill:black;fill-opacity:0.12;stroke:black;stroke-width:0.28088167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:none;marker-end:none"
        id="path3833-5"
        cx="99.15358"
        cy="244.50693"
        rx="15.333997"
        ry="13.734746" />
     <ellipse
-       style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.28088167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:none;marker-end:none"
+       style="opacity:1;vector-effect:none;fill:black;fill-opacity:0.12;stroke:black;stroke-width:0.28088167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:none;marker-end:none"
        id="path3833-3"
        cx="77.140358"
        cy="236.60475"
@@ -144,10 +144,10 @@
        xml:space="preserve"
        style="font-size:2.64583325px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        y="218.53139"
-       x="137.19676"><tspan
+       x="135.08012"><tspan
          id="tspan31"
          sodipodi:role="line"
-         x="137.19676"
+         x="135.08012"
          y="218.53139"
          style="stroke-width:0.26458332">$w(1)$</tspan></text>
     <text
@@ -165,34 +165,34 @@
        id="text61"
        xml:space="preserve"
        style="font-size:2.64583325px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       y="263.91357"
+       y="266.03027"
        x="92.101494"><tspan
          id="tspan59"
          sodipodi:role="line"
          x="92.101494"
-         y="263.91357"
+         y="266.03027"
          style="stroke-width:0.26458332">$U_{j_2}$</tspan></text>
     <text
        id="text75"
        xml:space="preserve"
        style="font-size:2.64583325px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       y="261.78491"
-       x="116.38132"><tspan
+       y="263.90161"
+       x="114.26466"><tspan
          id="tspan73"
          sodipodi:role="line"
-         x="116.38132"
-         y="261.78491"
+         x="114.26466"
+         y="263.90161"
          style="stroke-width:0.26458332">$U_{j_3}$</tspan></text>
     <text
        id="text89"
        xml:space="preserve"
        style="font-size:2.64583325px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       y="244.48972"
+       y="242.37308"
        x="152.4352"><tspan
          id="tspan87"
          sodipodi:role="line"
          x="152.4352"
-         y="244.48972"
+         y="242.37308"
          style="stroke-width:0.26458332">$U_{j_4}$</tspan></text>
     <text
        id="text103"

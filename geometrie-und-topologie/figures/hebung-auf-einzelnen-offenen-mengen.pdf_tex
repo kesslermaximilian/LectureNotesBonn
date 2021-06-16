@@ -55,11 +55,11 @@
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{hebung-auf-einzelnen-offenen-mengen.pdf}}%
     \put(0.29160338,0.18750827){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$w(0)$\end{tabular}}}}%
-    \put(0.56624941,0.25141784){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$w(1)$\end{tabular}}}}%
+    \put(0.557484,0.25141784){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$w(1)$\end{tabular}}}}%
     \put(0.31504062,0.24584427){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{j_1}$\end{tabular}}}}%
-    \put(0.3795012,0.06348145){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{j_2}$\end{tabular}}}}%
-    \put(0.48004863,0.07229665){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{j_3}$\end{tabular}}}}%
-    \put(0.6293547,0.1439194){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{j_4}$\end{tabular}}}}%
+    \put(0.3795012,0.05471579){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{j_2}$\end{tabular}}}}%
+    \put(0.47128316,0.063531){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{j_3}$\end{tabular}}}}%
+    \put(0.6293547,0.15268481){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{j_4}$\end{tabular}}}}%
     \put(0.68279641,0.24253863){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{j_5}$\end{tabular}}}}%
   \end{picture}%
 \endgroup%
