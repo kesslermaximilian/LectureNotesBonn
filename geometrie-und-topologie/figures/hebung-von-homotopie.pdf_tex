@@ -59,7 +59,11 @@
     \put(0.69383723,0.08520813){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X$\end{tabular}}}}%
     \put(0.45760908,0.41649392){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\tilde{w}_0$\end{tabular}}}}%
     \put(0.48975093,0.27146378){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\tilde{w}_1$\end{tabular}}}}%
-    \put(0.29637963,0.34750659){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\tilde{w}_0(0) = \tilde{w}_1(0)$\end{tabular}}}}%
     \put(0.50801716,0.08369954){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\color{blue} H$\end{tabular}}}}%
+    \put(0.35759942,0.12288653){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$w_0$\end{tabular}}}}%
+    \put(0.3803339,0.04081688){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$w_1$\end{tabular}}}}%
+    \put(0.33903732,0.36980006){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\tilde{w}_0$\end{tabular}}}}%
+    \put(0.30770572,0.34642868){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$= \tilde{w}_1$\end{tabular}}}}%
+    \put(0.5685112,0.37219187){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\tilde{H}$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

@@ -47,11 +47,12 @@
     \underline{2. Fall}: $w$ hat Bild in einer trivialisierenden Umgebung  $U$, d.h. in  $U\subset X$ mit $p|_{p^{-1} (U)}$ trivial. 
 
     Wir fassen $w$ als Weg  $I \to  U$ auf. Nach Fall 1 existiert $\tilde{w}\colon  I \to  p^{-1} (U)$ mit $\tilde{w}(0) = y$. Dann ist $\tilde{w}\colon  I \to  p^{-1} (U) \hookrightarrow E$ eine Hebung von $w$ entlang  $p\colon  E \to  X$.
+    \[
     \begin{tikzcd}
         I \ar{r} \ar[swap]{dr}{w} & p^{-1} (U) \ar{d}{p|_{p^{-1} (U)}} \ar[hook]{r} & E \ar{d}{p}\\
                                   & U \ar{r}& X
     \end{tikzcd}
-    \todo{Kommutatives Diagramm}
+\]
 
     Da jede Hebung Bild in $p^{-1} (U)$ hat (Verknüpfung mit $p$ liefert ja einen Weg in  $U$, nämlich  $w$), folgt die Eindeutigkeit auch aus Fall 1.
 
@@ -107,15 +108,15 @@
 
 \begin{remark}
     Ist $w\colon  I \to  X$ eine Schleife, so ist $\tilde{w}$ im Allgemeinen trotzdem keine Schleife, hierzu betrachte wieder die Überlagerung $\R \stackrel{\exp }{\longrightarrow} S^1$ und die Schleife $w$, die einmal um den Kreis läuft, die Hebung ist in $\R$ jedoch einfach ein Weg von $2\pi k$ zu $2\pi(k+1)$.
-\missingfigure{Hebung von Schleife ist Weg}
-\end{remark}
 
-\begin{figure}[ht]
+
+    \begin{minipage}{\textwidth}
     \centering
     \incfig{hebung-von-schleife-zu-weg}
-    \caption{Hebung von Schleife zu Weg}
+    \captionof{figure}{Hebung der Schleife in $S^1$ zu einem Weg in  $\R$}
     \label{fig:hebung-von-schleife-zu-weg}
-\end{figure}
+    \end{minipage}
+\end{remark}
 
 \begin{theorem}[Homotopieliftungssatz]\label{thm:homotopieliftungssatz}
     Sei $p\colon  E \to  X$ eine Überlagerung, und seien $\tilde{w}_0, \tilde{w}_1\colon  I \to  E$ Wege mit $\tilde{w}_0(0) = \tilde{w}_1(0)$, also gleichem Anfangspunkt. Sei $w_i = p \circ  \tilde{w}_i$.
@@ -133,7 +134,7 @@
 \begin{figure}[ht]
     \centering
     \incfig{hebung-von-homotopie}
-    \caption{Hebung von Homotopie (TODO)}
+    \caption{Hebung der Homotopie $H$ in den Überlagerungsraum  $E$}
     \label{fig:hebung-von-homotopie}
 \end{figure}
 

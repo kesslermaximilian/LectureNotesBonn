@@ -44,8 +44,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.406257"
-     inkscape:cx="484.30385"
-     inkscape:cy="151.25527"
+     inkscape:cx="443.41516"
+     inkscape:cy="208.14388"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -53,10 +53,10 @@
      width="200mm"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="956"
+     inkscape:window-width="636"
      inkscape:window-height="1027"
-     inkscape:window-x="960"
-     inkscape:window-y="1100"
+     inkscape:window-x="640"
+     inkscape:window-y="20"
      inkscape:window-maximized="0">
     <inkscape:grid
        type="xygrid"
@@ -270,17 +270,6 @@
          y="231.84869"
          style="stroke-width:0.26458332">$\tilde{w}_1$</tspan></text>
     <text
-       id="text1022"
-       xml:space="preserve"
-       style="font-size:2.64583325px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       y="213.59842"
-       x="71.131111"><tspan
-         id="tspan1020"
-         sodipodi:role="line"
-         x="71.131111"
-         y="213.59842"
-         style="stroke-width:0.26458332">$\tilde{w}_0(0) = \tilde{w}_1(0)$</tspan></text>
-    <text
        id="text1036"
        xml:space="preserve"
        style="font-size:2.64583325px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -291,5 +280,60 @@
          x="121.92412"
          y="276.91211"
          style="stroke-width:0.26458332">$\color{blue} H$</tspan></text>
+    <text
+       id="text50"
+       xml:space="preserve"
+       style="font-size:2.64583325px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       y="267.50723"
+       x="85.82386"><tspan
+         id="tspan48"
+         sodipodi:role="line"
+         x="85.82386"
+         y="267.50723"
+         style="stroke-width:0.26458332">$w_0$</tspan></text>
+    <text
+       id="text64"
+       xml:space="preserve"
+       style="font-size:2.64583325px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       y="287.20395"
+       x="91.280136"><tspan
+         id="tspan62"
+         sodipodi:role="line"
+         x="91.280136"
+         y="287.20395"
+         style="stroke-width:0.26458332">$w_1$</tspan></text>
+    <text
+       id="text78"
+       xml:space="preserve"
+       style="font-size:2.64583325px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       y="208.24799"
+       x="81.368958"><tspan
+         id="tspan76"
+         sodipodi:role="line"
+         x="81.368958"
+         y="208.24799"
+         style="stroke-width:0.26458332">$\tilde{w}_0$</tspan></text>
+    <text
+       id="text92"
+       xml:space="preserve"
+       style="font-size:2.64583325px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       y="213.85712"
+       x="73.849373"><tspan
+         id="tspan90"
+         sodipodi:role="line"
+         x="73.849373"
+         y="213.85712"
+         style="stroke-width:0.26458332">$= \tilde{w}_1$</tspan></text>
+    <text
+       id="text106"
+       xml:space="preserve"
+       style="font-size:2.64583325px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       y="207.67395"
+       x="136.44269"><tspan
+         id="tspan104"
+         sodipodi:role="line"
+         x="136.44269"
+         y="207.67395"
+         style="stroke-width:0.26458332">$\tilde{H}$</tspan></text>
   </g>
 </svg>

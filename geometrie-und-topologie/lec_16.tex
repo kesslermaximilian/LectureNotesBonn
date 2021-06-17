@@ -1,0 +1,131 @@
+%! TEX root = ./master.tex
+\lecture[]{Do 17 Jun 2021 10:15}{}
+
+\begin{notation*}
+    Sei $p\colon  E \to  X$ eine Überlagerung, $w\colon  I \to  X$ ein Weg mit $w(0) = x$ und  $e\in p^{-1} (x)$. Dann notieren wir mit $L(w,e)$ die Hebung von  $w$ mit Anfangspunkt  $e$, die nach dem \autoref{thm:weghebungssatz } eindeutig existiert.
+\end{notation*}
+
+\begin{theorem}\label{thm:fundamentalgruppe-durch-überlagerung-mit-einfach-zusammenhängendem-raum}
+    Sei $p\colon  E \to  X$ eine Überlagerung, wobei $E$ einfach zusammenhängend sei. Sei $x\in X$ und $e\in p^{-1} (x)$. Dann ist die Abbildung
+        \begin{equation*}
+        \varphi : \left| \begin{array}{c c l} 
+            \pi_1(X,x) & \longrightarrow & p^{-1} (x) \\
+            \left[w\right] & \longmapsto &  L(w,e)(1)
+        \end{array} \right.
+    \end{equation*}
+    wohldefiniert und bijektiv.
+\end{theorem}
+
+\begin{proof}
+    \begin{description}
+        \item[Wohldefiniertheit:] Angenommen, $w \simeq w'$ relativ Anfangs- und Endpunkt. Nach dem  \autoref{thm:homotopieliftungssatz} ist dann auch $L(w,e) \simeq L(w',e)$ homotop relativ Anfangs- und Endpunkt. Insbesondere haben sie denselben Endpunkt (dieser bleibt während der Homotopie ja konstant), und somit  $L(w,e)(1) = L(w',e)(1)$. 
+        \item[Injektivität:] Angenommen, $[w], [w']\in \pi_1(X,x)$ werden auf den gleichen Endpunkt $L(w,e)(1) = L(w',e)(1)$ abgebildet. 
+
+            Da $E$ einfach zusammenhängend, sind nun  $L(w,e)$ und  $L(w',e)$ homotop (sie haben den gleichen Anfangs- und Endpunkt) relativ Endpunkten. Sei $H$ eine solche Homotopie. Dann ist  $p \circ  H$ eine Homotopie von $w$ nach  $w'$ relativ Anfangs- und Endpunkt, also  $[w] = [w']$ und  $\varphi $ ist wie gewünscht bijektiv.
+        \item[Surjektivität:] Sei $e' \in p^{-1} (x)$. Da $E$ als einfach zusammenhängender Raum insbesondere wegzusammenhängend ist, gibt es einen Weg  $\tilde{w}\colon I \to  E$ von $e$ nach  $e'$. Dann ist $w \coloneqq  p \circ  \tilde{w}$ eine Schleife an $x$, weil  $e$, $e' \in p^{-1} (x)$, also ist $\varphi ([w]) = L(w,e)(1) = \tilde{w}(1)$ = e'. Da $e'\in p^{-1} (x)$ beliebig war, ist $\varphi $ surjektiv.
+    \end{description}
+\end{proof}
+
+\begin{oral}
+    Mit dieser Bijektion haben wir ein erstes starkes Werkzeug, mit der wir - mittels geschickter Überlagerungen - schon einmal die Mächtigkeit der Fundamentalgruppe bestimmen können.
+\end{oral}
+
+\begin{theorem}\label{thm:fundamentalgruppe-von-s1-kreis}
+    Es ist $\pi_1(S^1,1) \cong \Z$.
+\end{theorem}
+
+\begin{proof}
+    Wir betrachten die Überlagerung $\exp \colon  \R \to  S^1$. Zudem ist $\R$ einfach zusammenhängend. Wir wählen das Urbild $0\in \exp ^{-1}(1)$. Nach \autoref{thm:fundamentalgruppe-durch-überlagerung-mit-einfach-zusammenhängendem-raum} ist nun
+        \begin{equation*}
+        \varphi : \left| \begin{array}{c c l} 
+            \pi_1(S^1,1) & \longrightarrow & \exp ^{-1}(1) = \Z \subset \R \\
+            \left[w\right] & \longmapsto &  L(w,0)(1)
+        \end{array} \right.
+    \end{equation*}
+    eine Bijektion.
+    \begin{claim}
+        $\varphi $ ist ein Gruppenhomomorphismus.
+    \end{claim}
+    \begin{subproof}
+    Seien $[w],[w'] \in \pi_1(S^1,1)$. Es ist zunächst
+    \[
+        L(w\star w', 0) = L(w,0) \star L(w',L(w,0)(1))
+    .\]
+    und zudem
+    \[
+        L(w',L(w,0)(1))(t) = L(w',0)(t) + L(w,0)(1)
+    .\] 
+    , denn ist $L(w',0)$ eine Hebung, so auch  $L(w.,0)+n$ für alle  $n\in \Z$, da $\exp (t+n) = \exp (t)$. Also ist 
+    \[
+        \varphi ([w] \circ  [w']) =         L(w \star w',0)(1) = L(w',0)(1) + L(w,0)(1) = \varphi ([w]) + \varphi ([w'])
+    .\] 
+    also ist $\varphi $ tatsächlich ein Gruppenhomomorphismus.
+    \end{subproof}
+    Also ist $\varphi$ bijektiv und ein Gruppenhomomorphismus, also schon ein Isomorphismus von Gruppen.
+\end{proof}
+\todo{Anmerkung mit Ende von Wegen einfügen}
+
+\begin{oral}
+    Es ist hier ein bisschen Glück bzw. Zufall, dass die Bijektion $\varphi $ sogar ein Gruppenhomomorphismus ist. Im Allgemeinen wir dies nicht so sein, wir werden uns aber im Zuge von \textit{Gruppenwirkungen} dieser Thematik auch im Allgemeineren noch annähern.
+\end{oral}
+
+
+\begin{remark}
+    Ein Erzeuger von $\pi_1(S^1,0)$ ist gegeben durch die Abbildung
+    \[
+        \exp |_{[0,1)} \colon  [0,1) \to  S^1
+    .\] 
+\end{remark}
+\begin{proof}
+    Es ist
+    \begin{IEEEeqnarray*}{rCl}
+        \varphi (\left[ \exp |_{[0,1)} \right] ) & = & L\left( \exp |_{[0,1)},0 \right)(1) \\
+                                                 & = & (t \mapsto t)(1) \\
+                                                 & = & 1
+    \end{IEEEeqnarray*}
+
+    Allgemein kann man so auch zeigen, dass die Abbildung
+    \[
+        \varphi  (t\mapsto \exp (tk)) = k
+    .\] 
+\end{proof}
+
+\begin{theorem}\label{thm:r^n-einfach-zusammenhängend}
+    $\forall n\in \N$ ist $\R^n$ einfach zusammenhängend, insbesondere $\pi_1(\R^n,0) = 0$.
+\end{theorem}
+
+\begin{remark*}
+    Vergleiche hierzu auch  \autoref{aufgabe-8.4}, hier zeigen wir das gleiche Resultat, aber mit einem etwas anderen Weg.
+\end{remark*}
+
+\begin{theorem}\label{thm:s^n-einfach-zusammenhängend-wenn-n-geq-2}
+    Sei $n\in \N$ mit $n\geq 2$. Dann ist $S^n$ einfach zusammenhägend, insbesondere $\pi_1(S^n,1) = 0$. 
+\end{theorem}
+
+Als kleine Vorbereitung benötigen wir:
+
+\begin{lemma*}\label{lm :s^n-ohne-punkt-ist-r^n}
+    $S^n \setminus \left \{\star\right\} \cong\R^n$
+\end{lemma*}
+
+\begin{proof}
+    Wir führen eine stereographische Projektion durch, d.h.
+
+    Ein Alternativer Beweis wäre, zu verwenden, dass
+    \[
+    S^n \setminus \left \{z\right\} \cong D^n \setminus \left \{0\right\} / \partial D^n \cong  \R^n
+    .\] 
+    wobei wir im letzten Schritt $x \mapsto  \frac{1-\lVert x \rVert }{\lVert x \rVert }$ abbilden.
+\end{proof}
+\todo{Diesen Beweis ausschreiben}
+
+\begin{proof}[Beweis von \autoref{thm:s^n-einfach-zusammenhängend-wenn-n-geq-2}]
+    \underline{Schritt 1}: Sei  $w\colon I \to  S^n$ eine Schleife an $x$, so dass das Bild von  $w$ nicht gleich  $S^n$ ist.
+    \begin{claim}
+        Dann ist $w$ homotop relativ Endpunkten zur konstanten Schleife.
+    \end{claim}
+    \begin{subproof}
+        Sei $z\in S^n \setminus \Bild(z)$, solch ein Punkt existiert nach Voraussetzung. Wegen \autoref{lm :s^n-ohne-punkt-ist-r^n}  können wir $w$ als Schleife in  $\R^n$ auffassen, und $w$ ist somit homotop relativ endpunkten zur konstanten Schleife.
+    \end{subproof}
+    \underline{Schritt 2}: Sei $w$ beliebig.  
+\end{proof}
