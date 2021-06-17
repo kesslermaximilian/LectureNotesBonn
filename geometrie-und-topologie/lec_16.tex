@@ -105,19 +105,52 @@
 Als kleine Vorbereitung benötigen wir:
 
 \begin{lemma*}\label{lm :s^n-ohne-punkt-ist-r^n}
-    $S^n \setminus \left \{\star\right\} \cong\R^n$
+Sei $z\in S^n$ beliebig, dann ist $S^n \setminus \left \{z\right\} \cong\R^n$
 \end{lemma*}
 
 \begin{proof}
-    Wir führen eine stereographische Projektion durch, d.h.
+    Wir führen eine stereographische Projektion durch, d.h. wir definieren die Abbildung
+        \begin{equation*}
+        \varphi : \left| \begin{array}{c c l} 
+        S^n \setminus \left \{z\right\}  & \longrightarrow & \left< z \right> ^{\bot} \\
+        x & \longmapsto &  z - \frac{1}{\left< x-z,z \right> }(x-z)
+        \end{array} \right.
+    \end{equation*}
+Hierbei ist $\left< z \right> ^{\bot}$ der Unterraum der Dimension $n$ von  $\R^{n+1}$, auf dem $z$ senkrecht steht, und $x$ wir dann abgebildet auf den Schnittpunkt der Geraden durch  $x$ und  $z$ mit diesem Unterraum.
 
     Ein Alternativer Beweis wäre, zu verwenden, dass
     \[
     S^n \setminus \left \{z\right\} \cong D^n \setminus \left \{0\right\} / \partial D^n \cong  \R^n
     .\] 
-    wobei wir im letzten Schritt $x \mapsto  \frac{1-\lVert x \rVert }{\lVert x \rVert }$ abbilden.
+    wobei wir im letzten Schritt $x \mapsto  \frac{1-\lVert x \rVert }{\lVert x \rVert^2 }x$ abbilden.
 \end{proof}
 \todo{Diesen Beweis ausschreiben}
+
+\begin{remark*}[Wie kommt man auf die Formel der stereographischen Projektion?]
+Wir wollen für $z\in S^n$ ein $x\neq z \in S^n$ abbilden auf den Schnittpunkt der Geraden durch $x,z$ und dem zu  $z$ senkrecht stehenden Unterraum $\left< z \right> ^{\bot} \cong \R^n$. Bezeichnen wir das Bild von $x$ unter dieser Abbildung mit  $y$, so ergeben sich folgende beiden Bedingungen
+ \begin{itemize}
+    \item $\left< x,z \right> =0$, damit $x$ senkrecht zu  $z$ steht, also in der entsprechenden Hyperebene  $\cong \R^n$.
+    \item Es sind $x,y,z$ kollinear, d.h. es existiert ein  $λ\in \R$ mit
+        \[
+            y = z + λ(x-z)
+        .\] 
+        , indem wir die entsprechende Gerade durch den Fußpunkt $z$ und den Richtungsvektor  $(x-z)$ mit  $λ$ parametrisieren.
+\end{itemize}
+Einsetzen ineinander ergibt die Bedingung
+\begin{IEEEeqnarray*}{rCl}
+    0 & = & \left< y,z \right> \\
+      & = & \left< z + λ(x-z),z \right> \\
+      & = & \left< z,z \right> + λ \left< x-z,z \right>  \\
+       & = & 1 + λ\left< x-z,z \right> 
+\end{IEEEeqnarray*}
+was sich äquivalent umformt zu
+\[
+λ = -\frac{1}{\left< x-z,z \right> }
+.\] 
+weswegen wir die obige Form der Abbildung erhalten.
+\end{remark*}
+
+
 
 \begin{proof}[Beweis von \autoref{thm:s^n-einfach-zusammenhängend-wenn-n-geq-2}]
     \underline{Schritt 1}: Sei  $w\colon I \to  S^n$ eine Schleife an $x$, so dass das Bild von  $w$ nicht gleich  $S^n$ ist.
@@ -127,5 +160,154 @@ Als kleine Vorbereitung benötigen wir:
     \begin{subproof}
         Sei $z\in S^n \setminus \Bild(z)$, solch ein Punkt existiert nach Voraussetzung. Wegen \autoref{lm :s^n-ohne-punkt-ist-r^n}  können wir $w$ als Schleife in  $\R^n$ auffassen, und $w$ ist somit homotop relativ endpunkten zur konstanten Schleife.
     \end{subproof}
-    \underline{Schritt 2}: Sei $w$ beliebig.  
+    \underline{Schritt 2}: Sei $w$ eine beliebige Schleife an $x$. Wir wollen $x$ in Teile zerlegen, die nicht als Bild die gesamte Kugel haben, um auf Schritt 1 zu reduzieren.
+
+    OBdA sei hierzu  $x\neq (0,0,\ldots,1)$ und auch $x\neq  (0,0,\ldots,-1)$, sonst rotiere die Sphäre. D.h. $x$ ist nicht der 'Nord-' oder 'Südpol' der Kugel. Nun betrachte
+     \[
+         S^n = \underbrace{S^n \setminus \left \{(0,0,\ldots,1)\right\}}_{\coloneqq  U_1} \cup \underbrace{S^n \setminus \left \{(0,0,\ldots,-1\right\}}_{\coloneqq  U_2} 
+    .\] 
+    Zudem ist
+    \[
+    V \coloneqq  U_1 \cap U_2 = S^n \setminus \left \{(0,0,\ldots,1) , (0,0,\ldots,-1)\right\}  \cong S^{n-1}\times \R
+    .\] 
+    wegzusammenhängend für $n\geq 2$. Nach dem Lebesguelemma existiert $n\in \N$, sodass
+    \[
+        \forall i\leq n-1 \exists k\in \left \{1,2\right\} \text{ mit } w\left( \left[ \frac{i}{n},\frac{i+1}{n} \right]  \right) \subset U_k
+    .\] 
+    Sei $0 = j_0 \leq  j_1 \leq  \ldots \leq j_l = n$ mit $j_i \in (0,\ldots,n)$, sodass
+    \[
+        w\left( \frac{j_i}{n} \right) \in V \text{ und } w\left( \left[ \frac{j_i}{n}, \frac{j_i+1}{n} \right]  \right) \in  U_k
+    .\] 
+    d.h. die $j_i$ sind diejenigen Übergangspunkte, die in  $V$ liegen. Nach  \autoref{thm:r^n-einfach-zusammenhängend} ist $w|_{\left[ \frac{j_i}{n}, \frac{j_i+1}{n} \right] }$ relativ Endpunkten homotop zu einem Weg in $V$, hierzu wählen wir einen Weg in  $V$, der Anfangs- und Endpunkt verbindet, und beide Wege liegen dann in einem $U_k$, also einem einfach zusammenhängendem Raum.
+
+    Zusammensetzen liefert dies, dass $w$ homotop ist relativ Endpunkten zu einer Schleife in  $V$. Nach Schritt 1 ist somit $w$ homotop relativ Endpunkten homotop zur konstanten Schleife, denn  $V \subsetneq S^n$.
+\end{proof}
+
+\begin{oral}
+    Der Beweis scheitert für $S^1$, weil wir wir zwar auch  $U_1,U_2\subset S^1$ als einfach zusammenhängende Teile konstruieren können, allerdings der Schnitt $V = U_1 \cap U_2$ nicht mehr zusammenhängend ist. Wir können also in $U_1,U_2$ jeweils Teilstücke des Weges zusammenziehen, diese aber nicht nach $V$ bringen, weswegen uns das nichts nützt.
+\end{oral}
+
+\begin{remark*}
+    Es gibt tatsächlich Wege $w\colon [0,1] \to  S^n$, die als Bild die gesamte Sphäre haben. Im ersten Moment erscheint das unintuitiv, weil das von den Dimensionen nicht passt, allerdings gibt es sogenannte \textit{Raumfüllende Kurven}. Siehe hierzu auch \href{https://en.wikipedia.org/wiki/Space-filling_curve}{https://en.wikipedia.org/wiki/Space-filling\_curve}
+\end{remark*}
+
+\section{Überlagerungen Teil 2}
+\begin{definition}
+    Ein Raum $X$ heißt  \vocab{lokal wegzusammenhängend}, falls für jeden Punkt $x\in X$ und jede Umgebung $U$ von  $x$ eine Umgebung  $V\subset U$ existiert, die wegzusammenhängend ist. 
+\end{definition}
+
+\begin{example}
+\begin{warning}
+    Es gibt wegzusammenhängende Räume, die nicht lokal wegzusammenhängend sind.
+\end{warning}
+Hierzu betrachte wieder die Sinuskurve des Topologen, füge aber einen weiteren Weg ein, der die beiden Wegzusammenhangskomponenten verbindet, also in etwa so:
+
+\begin{minipage}{\textwidth}
+    \centering
+            \begin{tikzpicture}[domain=0.001:1, xscale = 6]
+                \draw[color=blue!30!white,smooth,samples=100,domain=0.001:0.01,line width = 0.1pt] plot[id=gnuplots/topologists-sine-curve-1] function{sin(1/x)};
+                \draw[color=blue!30!white,smooth,samples=1000,domain=0.01:0.1, line width = 0.1pt] plot[id=gnuplots/topologists-sine-curve-2] function{sin(1/x)};
+                \draw[color=blue!30!white,smooth,samples=100,domain=0.1:1, line width = 0.1pt] plot[id=gnuplots/topologists-sine-curve-3] function{sin(1/x)};
+                \draw[color=red,thick] (0,-1) -- (0,1);
+                \draw[->] (0,0) -- (1,0);
+                \foreach \x in {1,2,3,4,5,6,7,8,9} {
+                    \draw (0.1*\x,-0.1) node[anchor=north]{0,\x} -- (0.1*\x, 0.1);
+                }
+                \draw (-0.01,-1) node[anchor = east] {-1} -- (0.01,-1);
+                \draw (-0.01,1) node[anchor = east] {1} -- (0.01,1);
+            \end{tikzpicture}
+\end{minipage}
+TODO: linie hinzufügen
+\end{example}
+
+\begin{example}
+    Das ganze gilt natürlich erst recht nicht in die andere Richtung, es ist z.B. $S^0 = \left \{-1,1\right\} $ lokal wegzusammenhängend, aber sicherlich nicht wegzusammenhängend.
+\end{example}
+
+
+\begin{theorem}\label{thm:wegkomponenten-in-lokal-wegzusammenhängendem-raum-sind-offen}
+    Sei $X$ lokal wegzusammenhängend. Dann sind alle Wegekomponenten offen in  $X$.
+\end{theorem}
+
+\begin{corollary}\label{cor:lokal-wegzusammenhängende-räume-sind-koprodukt-ihrer-wegkomponenten}
+
+    Sei $X$ lokal wegzusammenhängend. Dann ist  $X$ die disjunkte Vereinigung seiner Wegekomponenten (topologische gesehen, nicht nur als Mengen).
+\end{corollary}\label{cor:lokal-wegzusammenhängende-räume-sind-koprodukt-ihrer-wegkomponenten}
+
+\begin{proof}[Beweis von \autoref{} ]
+    Sei $C\subset X$ eine Wegkomponente von $X$, und $x\in C$. Da $X$ lokal wegzusammenhängend ist, hat  $x$ eine wegzusammenhängende Umgebung  $V$. Dann folgt $V\subset C$, weil $C$ die größte wegzusammenhängende Umgebung von  $x$ ist, also enthält  $C$ eine Umgebung von  $x$, d.h.  $C$ ist Umgebung aller inneren Punkte, und somit ist  $C$ offen in  $X$.
+\end{proof}
+
+\begin{theorem}\label{thm:überlagerung-über-lokal-wegzusammenhängendem-raum-zerfällt-in-wegzusammenhängende-komponenten-von-e}
+    Sei $p\colon E\to X$ eine Überlagerung und $X$ lokal wegzusammenhägend sowie wegzusammenhängend.
+    \begin{enumerate}[1)]
+        \item Dann ist $E$ lokal wegzusammenhängend. 
+        \item Sei $C\subset E$ eine Wegekomponenten. Dann ist auch
+            \[
+            p|_C \colon  C \to X
+            .\] 
+            eine Überlagerung.
+    \end{enumerate}
+\end{theorem}
+
+\begin{oral}
+    Eigenschaft 1) gilt nicht mit Wegzusammenhang, dazu betrachte als Gegenbeispiele eine triviale Überlagerung $S^1 \times F \to  S^1$ für $F\neq \left \{\star\right\} $.
+\end{oral}
+
+\begin{proof}
+    \begin{enumerate}[1)]
+        \item Sei $e\in E$ und $e\in U$ eine Umgebung. Sei $U' \subset E$ offen, $e\in U'$, so dass
+            \[
+                p|_{U'}\colon U' \to p(U')
+            .\] 
+            ein Homöomorphismus ist und $p(U')\subset X$ offen (das existiert, weil $p$ ein lokaler Homöomorphismus ist). Sei  $U'' \coloneqq  U \cap U'$. Dann ist $p(U'')$ eine Umgebung von  $p(e) \in X$. Da $X$ lokal wegzusammenhängend existiert eine Umgebung  $V'$ von  $p(e)$ mit  $v'\subset p(U'')$, und da $p|_{U'}$ ein lokaler Homöomorphismus, ist $V \coloneqq  p^{-1} (V')$ eine wegzusammenhängende Umgebung von $e$.
+            \todo{Skizze zum Beweis}
+        \item  $E$ ist nach 1) lokal wegzusammenhängend. Dann ist aber bereits  $C\subset E$ offen nach \autoref{thm:wegkomponenten-in-lokal-wegzusammenhängendem-raum-sind-offen}.
+
+            Sei $x\in X$ beliebig, da $p\colon  E \to  X$ eine Überlagerung ist, existiert eine Umgebung $U$ von  $x$, über der  $p$ trivial ist. Da $X$ lokal wegzusammenhängend finden wir  eine Umgebung $V\subset U$ von $x$, sodass  $V$ wegzusammenhängend. Es kommutiert dann auch
+            \[
+            \begin{tikzcd}
+                p^{-1} (V) \ar{rr}{u} \ar[swap]{dr}{} & & V\times p^{-1} (x) \ar{dl}{} \\
+            & V
+            \end{tikzcd}
+            \]
+            weil das Ganze schon über $U$ galt. Da  $V$ wegzusammenhängend und  $C$ eine Wegekomponente ist, liegt  $u^{-1}(V\times \left \{e\right\} )$ entweder ganz in $C$ oder ganz in  $E\setminus C$. Also ist
+            \[
+                p|_{C}^{-1}(V) = \bigcup_{e\in p^{-1} (x)\cap C} u^{-1}(V\times \left \{e\right\} ) = u^{-1}(V\times p|_{C}^{-1}(x)) 
+            .\] 
+            und somit ergibt sich das Diagramm:
+            \[
+            \begin{tikzcd}
+                p\mid _C^{-1}(V) \ar{rr}{u}[swap]{\cong} \ar[swap]{dr}{} & & V\times p|_{C}^{-1}(x) \ar{dl}{} \\
+            & V
+            \end{tikzcd}
+            \]
+            Es bleibt noch zu zeigen, dass $p|_C$ auch tatsächlich surjektiv ist. Es ist  $C\neq \emptyset$, weil es sich um eine Wegekomponente handelt. Sei $c\in C$ und $x\in X$, wir wollen ein Urbild von $X$ finden. Sei  $w$ ein Weg von $p(c)$ nach  $x$, dieser existiert, weil  $X$ wegzusammenhängend ist. Sei  $\tilde{w}\colon  I \to E$ ein Lift von $w$ mit Anfangspunkt $c$. Dann ist  $\tilde{w}(t) \in C$ für alle $t$, weil  $C$ eine Wegekomponente ist, und somit
+             \[
+                 p|_C(\tilde{w}(1)) = x
+            .\] 
+            und somit ist $p|_C$ surjektiv.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Allgemeiner Liftungssatz]
+    Sei $p\colon  E \to X$ eine Überlagerung, $x_0\in X$, $e_0\in p^{-1} (x_0)$. Sei $Y$ wegzusammenhängend und lokal wegzusammenhängend. Sei  $y_0\in Y$ und $f\colon  (Y,y_0) \to  (X,x_0)$ eine punktierte Abbildung.
+
+    Dann sind äquivalent:
+    \begin{enumerate}[1)]
+        \item Es gibt eine Hebunf $\tilde{f}\colon  Y \to  X$ mit $\tilde{f}(y_0) = e_0$
+        \item Es ist $f_*(p_1(Y,y_0)) \subset p_*\pi_1(E,e_0))$
+    \end{enumerate}
+    Ist eine der Bedingungen erfüllt, so ist $\tilde{f}$ eindeutig.
+\end{theorem}
+
+\begin{proof}
+    '1)$\implies$2)' Sei $\tilde{f}\colon (Y,y_0) \to  (E,e_0)$ eine Hebung, also $p \circ  \tilde{f} = f$. Wegen Funktorialität von $\pi_1$ ergibt sich dann
+    \[
+        f_* = (p \circ \tilde{f})_* = p_* \circ  \tilde{f}_*\colon  p_1(Y,y_0) \to  p_1(X,x_0)
+    .\] 
+    Also ist
+    \[
+        f_*(\pi_1(X,x_0)) = (p_* \circ  \tilde{f}_*)(\pi_1(Y,y_0)) \subset p_*(\pi_1(E,e_0))
+    .\] 
 \end{proof}
