@@ -1,5 +1,5 @@
 %! TEX root = ./master.tex
-\lecture[]{Do 17 Jun 2021 10:15}{}
+\lecture[Bijektion zwischen Faser und Fundamentalgruppe für einfach zusammenhängende Überlagerungen. Fundamentalgruppe von $S^1$. Einfacher Zusammenhang von  $\R^n$, $ninn\N$ und $S^n$, $n\geq 2$. Stereographische Projektion $S^n \setminus \left\{\star\right\}\cong \R^n$. Lokal Wegzusammenhängende Räume und ihre Wegzusammenhangskomponenten. Überlagerungen über lokal wegzusammenhängenden Räumen. Allgemeiner Liftungssatz.]{Do 17 Jun 2021 10:15}{Die Fundamentalgruppe von $S^1$}
 
 \begin{notation*}
     Sei $p\colon  E \to  X$ eine Überlagerung, $w\colon  I \to  X$ ein Weg mit $w(0) = x$ und  $e\in p^{-1} (x)$. Dann notieren wir mit $L(w,e)$ die Hebung von  $w$ mit Anfangspunkt  $e$, die nach dem \autoref{thm:weghebungssatz } eindeutig existiert.
@@ -51,19 +51,29 @@
     \[
         L(w\star w', 0) = L(w,0) \star L(w',L(w,0)(1))
     .\]
-    und zudem
+    (wir heben zunächst $w$, und müssen verknüpfen mit der Wegung von  $w'$, die am Endpunkt der Hebung von  $w$, also an  $L(w,0)(1)$, beginnt). Wir interessieren uns für den Endpunkt von $L(w\star w',0)$, denn auf diesen bildet  $\varphi $ den Weg $w \star w'$ ab. Dazu genügt, den Endpunkt von  $L(w', L(w,0)(1))$ zu bestimmen, dies tun wir, indem wir den Weg parametrisieren:
     \[
         L(w',L(w,0)(1))(t) = L(w',0)(t) + L(w,0)(1)
     .\] 
-    , denn ist $L(w',0)$ eine Hebung, so auch  $L(w.,0)+n$ für alle  $n\in \Z$, da $\exp (t+n) = \exp (t)$. Also ist 
-    \[
-        \varphi ([w] \circ  [w']) =         L(w \star w',0)(1) = L(w',0)(1) + L(w,0)(1) = \varphi ([w]) + \varphi ([w'])
-    .\] 
+    Wir erhalten hier die Hebung an $0$ mit einer Verschiebung um  $L(w,0)(1)$ - diese ist auch eine Hebung, weil  $\exp (t+n) = \exp (t)$ periodisch ist, und $L(w,0)(1)\in \Z$ ein Vielfaches der Periode 1 ist.
+
+    \begin{remark*}
+        An dieser Stelle - nämlich dass $L(w,0)(1)\in \Z$, und wir somit mit $L(w',0)(t) + L(w,0)(1)$ wieder eine Hebung von  $w'$ erhalten - geht maßgeblich in den Beweis ein, dass wir  $1\in S^1$ als Basispunkt für die definierte Abbildung $\varphi $ gewählt haben. $\varphi $ ist zwar auch für andere Basispunkte in $S^1$ eine Bijektion, nicht jedoch ein Gruppenhomomorphismus (das Urbild hat in diesem Fall auch gar keine Gruppenstruktur).
+    \end{remark*}
+    Alles in allem können wir nun nachrechnen, dass
+    \begin{IEEEeqnarray*}{rCl}
+        \varphi ([w] \circ [w']) & = & L(w\star w',0)(1) \\
+                                 & = & L(w,0)\star L(w',L(w,0)(1))(1)\\
+                                 & = & L(w',L(w,0)(1))(1) \\
+                                 & = & (t \mapsto L(w',0)(t) + L(w,0)(1))(1) \\
+                                 & = & L(w',0)(1) + L(w,0)(1) \\
+                                 & = & \varphi ([w']) + \varphi ([w]) \\
+                                 & = & \varphi ([w]) + \varphi ([w'])
+    \end{IEEEeqnarray*}
     also ist $\varphi $ tatsächlich ein Gruppenhomomorphismus.
     \end{subproof}
     Also ist $\varphi$ bijektiv und ein Gruppenhomomorphismus, also schon ein Isomorphismus von Gruppen.
 \end{proof}
-\todo{Anmerkung mit Ende von Wegen einfügen}
 
 \begin{oral}
     Es ist hier ein bisschen Glück bzw. Zufall, dass die Bijektion $\varphi $ sogar ein Gruppenhomomorphismus ist. Im Allgemeinen wir dies nicht so sein, wir werden uns aber im Zuge von \textit{Gruppenwirkungen} dieser Thematik auch im Allgemeineren noch annähern.
@@ -73,13 +83,14 @@
 \begin{remark}
     Ein Erzeuger von $\pi_1(S^1,0)$ ist gegeben durch die Abbildung
     \[
-        \exp |_{[0,1)} \colon  [0,1) \to  S^1
+        \exp |_{[0,1]} \colon  [0,1] \to  S^1
     .\] 
 \end{remark}
+
 \begin{proof}
     Es ist
     \begin{IEEEeqnarray*}{rCl}
-        \varphi (\left[ \exp |_{[0,1)} \right] ) & = & L\left( \exp |_{[0,1)},0 \right)(1) \\
+        \varphi (\left[ \exp |_{[0,1]} \right] ) & = & L\left( \exp |_{[0,1]},0 \right)(1) \\
                                                  & = & (t \mapsto t)(1) \\
                                                  & = & 1
     \end{IEEEeqnarray*}
@@ -109,7 +120,7 @@ Sei $z\in S^n$ beliebig, dann ist $S^n \setminus \left \{z\right\} \cong\R^n$
 \end{lemma*}
 
 \begin{proof}
-    Wir führen eine stereographische Projektion durch, d.h. wir definieren die Abbildung
+    Wir führen eine \vocab{stereographische Projektion} durch, d.h. wir definieren die Abbildung
         \begin{equation*}
         \varphi : \left| \begin{array}{c c l} 
         S^n \setminus \left \{z\right\}  & \longrightarrow & \left< z \right> ^{\bot} \\
@@ -124,7 +135,13 @@ Hierbei ist $\left< z \right> ^{\bot}$ der Unterraum der Dimension $n$ von  $\R^
     .\] 
     wobei wir im letzten Schritt $x \mapsto  \frac{1-\lVert x \rVert }{\lVert x \rVert^2 }x$ abbilden.
 \end{proof}
-\todo{Diesen Beweis ausschreiben}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{stereographische-projektion}
+    \caption{Stereographische Projektion zwischen $S^1\setminus \left \{(0,1)\right\} $ und $\R^1\subset \R^2$}
+    \label{fig:stereographische-projektion}
+\end{figure}
 
 \begin{remark*}[Wie kommt man auf die Formel der stereographischen Projektion?]
 Wir wollen für $z\in S^n$ ein $x\neq z \in S^n$ abbilden auf den Schnittpunkt der Geraden durch $x,z$ und dem zu  $z$ senkrecht stehenden Unterraum $\left< z \right> ^{\bot} \cong \R^n$. Bezeichnen wir das Bild von $x$ unter dieser Abbildung mit  $y$, so ergeben sich folgende beiden Bedingungen
@@ -176,11 +193,11 @@ weswegen wir die obige Form der Abbildung erhalten.
     .\] 
     Sei $0 = j_0 \leq  j_1 \leq  \ldots \leq j_l = n$ mit $j_i \in (0,\ldots,n)$, sodass
     \[
-        w\left( \frac{j_i}{n} \right) \in V \text{ und } w\left( \left[ \frac{j_i}{n}, \frac{j_i+1}{n} \right]  \right) \in  U_k
+        w\left( \frac{j_i}{n} \right) \in V \text{ und } w\left( \left[ \frac{j_i}{n}, \frac{j_{i+1}}{n} \right]  \right) \in  U_k
     .\] 
-    d.h. die $j_i$ sind diejenigen Übergangspunkte, die in  $V$ liegen. Nach  \autoref{thm:r^n-einfach-zusammenhängend} ist $w|_{\left[ \frac{j_i}{n}, \frac{j_i+1}{n} \right] }$ relativ Endpunkten homotop zu einem Weg in $V$, hierzu wählen wir einen Weg in  $V$, der Anfangs- und Endpunkt verbindet, und beide Wege liegen dann in einem $U_k$, also einem einfach zusammenhängendem Raum.
+    d.h. die $j_i$ sind diejenigen Übergangspunkte, die in  $V$ liegen (Liegt einer der $j_i$ nicht in  $V$, so überspringen wir diesen in obiger Auswahl). Nach  \autoref{thm:r^n-einfach-zusammenhängend} ist $w|_{\left[ \frac{j_i}{n}, \frac{j_{i+1}}{n} \right] }$ relativ Endpunkten homotop zu einem Weg in $V$, hierzu wählen wir einen Weg in  $V$, der Anfangs- und Endpunkt verbindet, und beide Wege liegen dann in einem $U_k$, also einem einfach zusammenhängendem Raum.
 
-    Zusammensetzen liefert dies, dass $w$ homotop ist relativ Endpunkten zu einer Schleife in  $V$. Nach Schritt 1 ist somit $w$ homotop relativ Endpunkten homotop zur konstanten Schleife, denn  $V \subsetneq S^n$.
+    Zusammensetzen der so erhaltenen Wege $j_i \to  j_{i+1}$ in $V$ liefert, dass $w$ homotop ist relativ Endpunkten zu einer Schleife in  $V$ ist. Nach Schritt 1 ist somit $w$ homotop relativ Endpunkten zur konstanten Schleife, denn  $V \subsetneq S^n$.
 \end{proof}
 
 \begin{oral}
@@ -188,7 +205,19 @@ weswegen wir die obige Form der Abbildung erhalten.
 \end{oral}
 
 \begin{remark*}
-    Es gibt tatsächlich Wege $w\colon [0,1] \to  S^n$, die als Bild die gesamte Sphäre haben. Im ersten Moment erscheint das unintuitiv, weil das von den Dimensionen nicht passt, allerdings gibt es sogenannte \textit{Raumfüllende Kurven}. Siehe hierzu auch \href{https://en.wikipedia.org/wiki/Space-filling_curve}{https://en.wikipedia.org/wiki/Space-filling\_curve}
+    Es gibt tatsächlich Wege $w\colon [0,1] \to  S^n$, die als Bild die gesamte Sphäre haben. Im ersten Moment erscheint das unintuitiv, weil das von den Dimensionen nicht passt, allerdings gibt es sogenannte \textit{Raumfüllende Kurven}. Siehe hierzu auch \href{https://en.wikipedia.org/wiki/Space-filling_curve}{https://en.wikipedia.org/wiki/Space-filling\_curve}.
+
+    Haben wir nun z.B. einen surjektiven Weg $w\colon [0,1] \to  \R^n$, so können wir diesen auch nach $S^n$ surjektiv abbilden, indem wir 
+     \[
+     I \stackrel{w}{\longrightarrow} \R^n \twoheadrightarrow  D^n \stackrel{p}{\longrightarrow} \faktor{D^n}{\left \{\partial D^n\right\} } \cong  S^n
+    .\] 
+    verknüpfen. Hierbei genügt eine beliebige stetige surjektive Projektion $\R^n \to  D^n$, z.B.
+    \[
+    x \mapsto \begin{cases}
+        x & x \in D^n \\
+        \frac{x}{\lVert x \rVert } & x \not\in D^n 
+    \end{cases}
+    .\] 
 \end{remark*}
 
 \section{Überlagerungen Teil 2}
@@ -215,9 +244,12 @@ Hierzu betrachte wieder die Sinuskurve des Topologen, füge aber einen weiteren 
                 }
                 \draw (-0.01,-1) node[anchor = east] {-1} -- (0.01,-1);
                 \draw (-0.01,1) node[anchor = east] {1} -- (0.01,1);
+                \draw[color=blue!30!white] (0,0) to[out=180, in = 180, looseness = 0.3] (0,-1.5) -- (1,-1.5) to[out = 0, in = -2, looseness = 0.2] (1,0.84147);
             \end{tikzpicture}
 \end{minipage}
-TODO: linie hinzufügen
+Wir wissen bereits, dass die ursprünglich Kurve 2 Wegzusammenhangskomponenten besitzt, da wir diese allerdings verbinden, erhalten wir nun nur noch eine. Betrachten wir aber vom Punkt $(0,0)$ eine Umgebung mit z.B. Radius  $\frac{1}{2}$, so gibt es keine in $U\left((0,0),\frac{1}{2}\right)$ enthaltene wegzusammenhängende Umgebung:
+
+Jede solche Umgebung enthält Punkte beider ursprünglicher Zusammenhangskomponenten der Sinuskurve, alleridngs kann keine solche Umgebung einen Weg zwischen zwei Punkten dieser Zusammenhangskomponenten enthalten - denn jeder solche muss zwingend außerhalb der ursprünglichen Sinuskurve verlaufen (also den neuen Pfad benutzen), dieser liegt aber nicht gänzlich in der Umgebung $U((0,0),\frac{1}{2})$.
 \end{example}
 
 \begin{example}
@@ -232,9 +264,22 @@ TODO: linie hinzufügen
 \begin{corollary}\label{cor:lokal-wegzusammenhängende-räume-sind-koprodukt-ihrer-wegkomponenten}
 
     Sei $X$ lokal wegzusammenhängend. Dann ist  $X$ die disjunkte Vereinigung seiner Wegekomponenten (topologische gesehen, nicht nur als Mengen).
-\end{corollary}\label{cor:lokal-wegzusammenhängende-räume-sind-koprodukt-ihrer-wegkomponenten}
+\end{corollary}
+\begin{proof*}
+    Seien $C_i$ die Wegzusammenhangskomponenten von  $X$. Nach universeller Eigenschaft induzieren die Inklusionen $C_i \subset X$ eine Abbildung $f\colon  \coprod C_i \to  X$, die auch offensichtlich bijektiv ist. Wir prüfen die Stetigkeit von $f^{-1}$ auf der kanonischen Subbasis von $\coprod C_i$, d.h. für die Elemente der Form
+    \[
+        U_j \times \prod_{\substack{ i\in I \\ i\neq j}} C_i \subset \coprod C_i
+    .\] 
+    Das entsprechende Urbild unter $f^{-1}$, d.h. das Bild unter $f$, ergibt sich als
+     \[
+    U_j \cup \bigcup_{\substack{i\in I\\i\neq j} } C_j
+    .\] 
+    Es sind nun aber die $C_i$ nach  \autoref{thm:wegkomponenten-in-lokal-wegzusammenhängendem-raum-sind-offen} offen, und da $U_j \subset C_j \subset X$ jeweils offen sind, ist auch $U_j\subset X$ offen.
 
-\begin{proof}[Beweis von \autoref{} ]
+    Dieser Beweis funktioniert natürlich für eine beliebige Partition eines beliebigen Raumes in offene Mengen.
+\end{proof*}
+
+\begin{proof}[Beweis von \autoref{thm:wegkomponenten-in-lokal-wegzusammenhängendem-raum-sind-offen}]
     Sei $C\subset X$ eine Wegkomponente von $X$, und $x\in C$. Da $X$ lokal wegzusammenhängend ist, hat  $x$ eine wegzusammenhängende Umgebung  $V$. Dann folgt $V\subset C$, weil $C$ die größte wegzusammenhängende Umgebung von  $x$ ist, also enthält  $C$ eine Umgebung von  $x$, d.h.  $C$ ist Umgebung aller inneren Punkte, und somit ist  $C$ offen in  $X$.
 \end{proof}
 
@@ -260,8 +305,16 @@ TODO: linie hinzufügen
             \[
                 p|_{U'}\colon U' \to p(U')
             .\] 
-            ein Homöomorphismus ist und $p(U')\subset X$ offen (das existiert, weil $p$ ein lokaler Homöomorphismus ist). Sei  $U'' \coloneqq  U \cap U'$. Dann ist $p(U'')$ eine Umgebung von  $p(e) \in X$. Da $X$ lokal wegzusammenhängend existiert eine Umgebung  $V'$ von  $p(e)$ mit  $v'\subset p(U'')$, und da $p|_{U'}$ ein lokaler Homöomorphismus, ist $V \coloneqq  p^{-1} (V')$ eine wegzusammenhängende Umgebung von $e$.
-            \todo{Skizze zum Beweis}
+            ein Homöomorphismus ist und $p(U')\subset X$ offen (das existiert, weil $p$ ein lokaler Homöomorphismus ist). Sei  $U'' \coloneqq  U \cap U'$. Dann ist $p(U'')$ eine Umgebung von  $p(e) \in X$. Da $X$ lokal wegzusammenhängend existiert eine Umgebung  $V'$ von  $p(e)$ mit  $V'\subset p(U'')$, und da $p|_{U'}$ ein lokaler Homöomorphismus, ist $V \coloneqq  p^{-1} (V')$ eine wegzusammenhängende Umgebung von $e$.
+
+\begin{figure}[ht]
+    \centering
+    \incfig{beweis-von-überlagerung-eines-wegzusammenhängenden-raumes}
+    \caption{Beweisskizze zu \autoref{thm:überlagerung-über-lokal-wegzusammenhängendem-raum-zerfällt-in-wegzusammenhängende-komponenten-von-e}}
+    \label{fig:beweis-von-überlagerung-eines-wegzusammenhängenden-raumes}
+\end{figure}
+
+
         \item  $E$ ist nach 1) lokal wegzusammenhängend. Dann ist aber bereits  $C\subset E$ offen nach \autoref{thm:wegkomponenten-in-lokal-wegzusammenhängendem-raum-sind-offen}.
 
             Sei $x\in X$ beliebig, da $p\colon  E \to  X$ eine Überlagerung ist, existiert eine Umgebung $U$ von  $x$, über der  $p$ trivial ist. Da $X$ lokal wegzusammenhängend finden wir  eine Umgebung $V\subset U$ von $x$, sodass  $V$ wegzusammenhängend. Es kommutiert dann auch
@@ -271,7 +324,7 @@ TODO: linie hinzufügen
             & V
             \end{tikzcd}
             \]
-            weil das Ganze schon über $U$ galt. Da  $V$ wegzusammenhängend und  $C$ eine Wegekomponente ist, liegt  $u^{-1}(V\times \left \{e\right\} )$ entweder ganz in $C$ oder ganz in  $E\setminus C$. Also ist
+            weil das Ganze schon über $U$ galt. Da  $V$ wegzusammenhängend und  $C$ eine Wegekomponente ist, liegt  $u^{-1}(V\times \left \{e\right\} )$ für jedes $e\in p^{-1} (x)$ entweder ganz in $C$ oder ganz in  $E\setminus C$. Also ist
             \[
                 p|_{C}^{-1}(V) = \bigcup_{e\in p^{-1} (x)\cap C} u^{-1}(V\times \left \{e\right\} ) = u^{-1}(V\times p|_{C}^{-1}(x)) 
             .\] 
@@ -295,8 +348,8 @@ TODO: linie hinzufügen
 
     Dann sind äquivalent:
     \begin{enumerate}[1)]
-        \item Es gibt eine Hebung $\tilde{f}\colon  Y \to  X$ mit $\tilde{f}(y_0) = e_0$
-        \item Es ist $f_*(p_1(Y,y_0)) \subset p_*\pi_1(E,e_0))$
+        \item Es gibt eine Hebung $\tilde{f}\colon  Y \to  E$ mit $\tilde{f}(y_0) = e_0$
+        \item Es ist $f_*(\pi_1(Y,y_0)) \subset p_*(\pi_1(E,e_0))$
     \end{enumerate}
     Ist eine der Bedingungen erfüllt, so ist $\tilde{f}$ eindeutig.
 \end{theorem}
@@ -304,7 +357,7 @@ TODO: linie hinzufügen
 \begin{proof}
     '1)$\implies$2)' Sei $\tilde{f}\colon (Y,y_0) \to  (E,e_0)$ eine Hebung, also $p \circ  \tilde{f} = f$. Wegen Funktorialität von $\pi_1$ ergibt sich dann
     \[
-        f_* = (p \circ \tilde{f})_* = p_* \circ  \tilde{f}_*\colon  p_1(Y,y_0) \to  p_1(X,x_0)
+        f_* = (p \circ \tilde{f})_* = p_* \circ  \tilde{f}_*\colon  \pi_1(Y,y_0) \to  \pi_1(X,x_0)
     .\] 
     Also ist
     \[
