@@ -107,7 +107,7 @@
 \end{remark*}
 
 \begin{remark}
-    Ist $w\colon  I \to  X$ eine Schleife, so ist $\tilde{w}$ im Allgemeinen trotzdem keine Schleife, hierzu betrachte wieder die Überlagerung $\R \stackrel{\exp }{\longrightarrow} S^1$ und die Schleife $w$, die einmal um den Kreis läuft, die Hebung ist in $\R$ jedoch einfach ein Weg von $2\pi k$ zu $2\pi(k+1)$.
+    Ist $w\colon  I \to  X$ eine Schleife, so ist $\tilde{w}$ im Allgemeinen trotzdem keine Schleife, hierzu betrachte wieder die Überlagerung $\R \stackrel{\exp }{\longrightarrow} S^1$ und die Schleife $w$, die einmal um den Kreis läuft, die Hebung ist in $\R$ jedoch einfach ein Weg von $k$ zu $k+1$.
 
 
     \begin{minipage}{\textwidth}
@@ -141,72 +141,126 @@
 
 \begin{proof}[Beweis von \autoref{thm:homotopieliftungssatz}]
     \begin{description}
-        \item[Existenz von $\tilde{H}$]. Sei $\left \{U_i\right\} $ eine offene Überdeckung von $X$, so dass  $p$ über jedem  $U_i$ trivial ist. Dann ist  $\left \{H^{-1}(U_i)\right\} _{i \in I}$ eine offene Überdeckung von $I^2$. Nach dem Lebesguelemma existiert $m\in \N$, so dass jedes Quadrat
+        \item[Existenz von $\tilde{H}$]. Sei $\left \{U_k\right\}_{k\in K}$ eine offene Überdeckung von $X$, so dass  $p$ über jedem  $U_k$ trivial ist. Dann ist  $\left \{H^{-1}(U_k)\right\} _{k \in K}$ eine offene Überdeckung von $I^2$. Nach dem \nameref{lm:lebesgue} existiert $m\in \N$, so dass jedes Quadrat
             \[
-            Q_{i,j} \coloneqq  \left[ \frac{i-1}{m}, \frac{i}{m} \right] \times \left[ \frac{j-1}{m}, \frac{j}{m} \right] 
+            Q_{i,j} \coloneqq  \left[ \frac{i-1}{m}, \frac{i}{m} \right] \times \left[ \frac{j-1}{m}, \frac{j}{m} \right] \subset I^2
             .\] 
-            für $i,j = 1,\ldots,m$.
-            \todo{Ausführlichere anwendung von lebesgue-lemma}
-            \todo{$i$ wird doppelt benutzt.}
-            Wir definieren im Folgenden stetige Abbildungen $\tilde{H}_{ij}\colon  Q_{ij} \to  E$, so dass
-            \begin{itemize}
-                \item $ p \circ  \tilde{H}_{ij} = H|_{Q_{ij}}$ 
-                \item $\tilde{H}_{11}(0,0) = \tilde{w}_0(0) = \tilde{w}_1(0)$
-                \item $(\tilde{H}_{ij})|_{Q_{ij} \cap  Q_{i'j'}} = (\tilde{H}_{i'j'})|_{Q_{/j} \cap  Q_{i'j'}}$ (die Abbildungen passen an den Rändern zusammen)
-            \end{itemize}
-    Das machen wir induktiv in der Reihenfolge $11,12,\ldots$,$1m, 21,22$,\ldots,$2m, \ldots, 3m$, \ldots,$mm$.
+            in einem der $H^{-1}(U_k)$ liegt, für $i,j = 1,\ldots,m$.
 
-    Es liegt $H_{Q_{ij}}$ in einem $U$. Sei  $s\colon  U \to  E$ eine lokale Umkehrfunktion mit
-    \[
+\[
+    \begin{tikzpicture}[scale=0.8]
+        \draw (0,0) grid (4,4);
+        \foreach \x in {1,2,3,4}  {   
+            \foreach \y in {1,2,3,4} {
+                \node (A\x\y) at (\x-0.5,\y-0.5) {$Q_{\x\y}$};
+            }
+        }
+    \end{tikzpicture}
+        \]
+
+            \begin{remark*}[teilweise mündlich]
+                Genauer gesagt würden wir nach dem Lebesgue-Lemma ein $\delta$ erhalten, sodass jede offene Menge mit  $\diam < \delta$ in einem der $U_i$ liegt. Aber natürlich können wir dann  $m$ groß genug machen, sodass ein abgeschlossenes Quadrat in einer etwas größeren offenen Menge liegt, die Durchmesser  $<\delta$ hat.
+            \end{remark*}
+            Wir wollen im Folgenden eine Familie von stetigen Abbildungen $\tilde{H}_{ij}\colon  Q_{ij}\to E$ konstruieren, die $H$ lokal, d.h. auf  $Q_{ij}$, heben und untereinander 'kompatibel' sind, genauer:
+            \begin{enumerate}[i)]
+                \item $ p \circ  \tilde{H}_{ij} = H|_{Q_{ij}}$ ($\tilde{H}_{ij}$ ist Hebung auf $Q_{ij}$)
+                \item $\tilde{H}_{11}(0,0) = \tilde{w}_0(0) = \tilde{w}_1(0)$ ($\tilde{H}_{11}$ hebt $w_0(0)$ auf $\tilde{w}_0(0)$)
+                \item $(\tilde{H}_{ij})|_{Q_{ij} \cap  Q_{i'j'}} = (\tilde{H}_{i'j'})|_{Q_{/j} \cap  Q_{i'j'}}$ (die lokalen Hebungen sind auf ihren Schnittmengen, d.h. den Rändern der Quadrate, identisch)
+            \end{enumerate}
+
+            Dies führen wir rekursiv in der Reihenfolge $11, 12, \ldots, 1m$, $21, 22, \ldots, 2m$, $\ldots, 3m, \ldots, mm$ durch, wobei wir in jedem Schritt obige Bedingungen sicherstellen, d.h. wir beweisen diese Aussagen parallel mittels Induktion.
+
+            Seien also $1\leq i,j\leq m$ gegeben, sodass wir die vorherigen $\tilde{H}_{ij}$ bereits definiert haben. Wir finden ein $k$, sodass $H(Q_{ij})$ in $U_k$ liegt, über dem die Überlagerung trivial ist, also können wir eine lokale Umkehrfunktion  $s\colon  U \to  E$ wählen, die zusätzlich den Startpunkt
+    \begin{equation}
+        \label{eq:def-von-s}
         s\left(H\left( \frac{i-1}{m}, \frac{j-1}{m} \right) \right) = \begin{cases}
             \tilde{w}_0(0) & i=j=1 \\
             \tilde{H}_{i-1,j}\left( \frac{i-1}{m}, \frac{j-1}{m} \right) & i>1 \\
             \tilde{H}_{i,j-1}\left( \frac{i-1}{m}, \frac{j-1}{m} \right) & j>1
         \end{cases}
-    .\] 
-    - wir wollen also, dass der Funktionswert an der linken unteren Ecke bereits stimmt.
+    \end{equation}
+    besitzt, d.h. $s$ hebt die 'linke untere Ecke' von  $H(Q_{ij})$ auf den gleichen Punkt wie eine der vorherigen Abbildungen $\tilde{H}_{i',j'}$ (bzw. auf den Anfangspunkt $\tilde{w}_0(0)$, wenn wir die erste Abbildung definieren), damit die Abbildungen letztendlich zusammenpassen.
     \begin{remark}
-        Da $\tilde{H}_{i-1,j}$ und $ \tilde{H}_{i,j-1}$ auf $\left[ \frac{i-1}{m}, \frac{j-1}{m} \right) $ übereinstimmen, ist das wohldefiniert für $i,j > 1$.
+        Da $\tilde{H}_{i-1,j}$ und $ \tilde{H}_{i,j-1}$ auf der Ecke $\left( \frac{i-1}{m}, \frac{j-1}{m} \right) $ übereinstimmen, ist das wohldefiniert für $i,j > 1$. Dazu ist insbesondere wichtig, dass wir Eigenschaft iii) für $i-1,j$ und  $i,j-1$ bereits induktiv annehmen können.
     \end{remark}
-    Setze $\tilde{H}_{ij}\coloneqq  s \circ  H|_{Q_{ij}}$. Per Definition ($s$ ist eine Umkehrfunktion) ist nun  $p \circ  \tilde{H}_{ij} = p \circ  s \circ  H\mid _{Q_{ij}} = H\mid _{Q_{ij}}$.
-    \begin{claim}
-        Ist $i>1$, so ist  $\tilde{H}_{ij}|_{Q_{ij} \cap  Q_{i-1,j}} = \tilde{H}_{i-1,j} |_{Q_{ij} \cap Q_{i-1,j}}$
-    \end{claim}
-    \begin{subproof}
-        Es ist $Q_{ij} \cap  Q_{i-1,j} = \left \{\left( \frac{i-1}{m}, \frac{j-t}{m} \mid t\in I \right) \right\} $.
-        
-        Die Wege
-        \begin{IEEEeqnarray*}{rCl}
-            t &\mapsto &\tilde{H}_{ij}\left( \frac{i-1}{m}, \frac{j-t}{m} \right)  \\
-            t & \mapsto & \tilde{H}_{i-1,j} \left( \frac{i-1}{m}, \frac{j-t}{m} \right) 
-        \end{IEEEeqnarray*}
-        heben $t \mapsto H\left( \frac{i-1}{m}, \frac{j-t}{m} \right) $ und stimmen für $t=0$ überein. Nach dem \nameref{thm:weghebungssatz} sind sie also gleich.
 
-        Analog zeigen wir: Ist $j>1$, so ist  $\tilde{H}_{ij}\mid _{Q_{ij} \cap  Q_{i,j-1}} = \tilde{H}_{i,j-1}\mid_{ Q_{ij}\cap  Q_{i,j-1}}$
+    Mit dieser Umkehrabbildung setzen wir nun naheliegenderweise $\tilde{H}_{ij}\coloneqq  s \circ  H|_{Q_{ij}}$. Wir müssen nun die Eigenschaften i) - iii) prüfen. i) ergibt sich unmittelbar aus der Wahl von $s$ mittels
+    \[
+        p \circ  \tilde{H}_{ij} \stackrel{\text{def}}{=} p \circ  (s \circ  H|_{Q_{ij}}) = (p \circ  s) \circ  H|_{Q_{ij}} = \id_{U_k} \circ  H|_{Q_{ij}} =  H|_{Q_{ij}}
+    .\] 
+
+    Eigenschaft ii) ergibt sich unmittelbar aus der Definition in \autoref{eq:def-von-s}, Eigenschaft iii) müssen wir nur für das neu hinzugekommene $\tilde{H}_{ij}$ zeigen, und auch nur für den Schnitt mit den (potenziell) benachbarten Quadraten links und unter $Q_{ij}$, weil die Schnitte sonst leer sind. Also bleibt zu zeigen:
+
+    \begin{claim}[linker Rand von $Q_{ij}$]
+        Ist $i>1$, so ist  $\tilde{H}_{ij}|_{Q_{ij} \cap  Q_{i-1,j}} = \tilde{H}_{i-1,j} |_{Q_{ij} \cap Q_{i-1,j}}$.
+    \end{claim}
+
+    \begin{subproof}
+        Es ist $Q_{ij}\cap Q_{i-1,j} = \left \{\frac{i-1}{m}\right\} \times [\frac{j-1}{m},\frac{j}{m}]$ und kann somit durch
+        \[
+            t \mapsto \left( \frac{i-1}{m}, \frac{j-1 + t}{m} \right) 
+        .\] 
+        für $t\in [0,1]$ parametrisiert werden.
+
+        Die entsprechenden Wege
+        \begin{IEEEeqnarray*}{rCl}
+            t &\mapsto &\tilde{H}_{ij}\left( \frac{i-1}{m}, \frac{j-1+t}{m} \right)  \\
+            t & \mapsto & \tilde{H}_{i-1,j} \left( \frac{i-1}{m}, \frac{j-1+t}{m} \right) 
+        \end{IEEEeqnarray*}
+        heben alse den Weg $t \mapsto H\left( \frac{i-1+t}{m}, \frac{j-1+t}{m} \right) $ und stimmen für $t=0$ am Wert
+        \[
+            \tilde{H}_{ij}\left( \frac{i-1}{m}, \frac{j-1}{m} \right) \stackrel{\text{def}}{=} \tilde{H}_{i-1,j}\left( \frac{i-1}{m},\frac{j-1}{m} \right)  
+        .\] überein (vergleiche auch wieder \autoref{eq:def-von-s}). Nach dem \nameref{thm:weghebungssatz} sind also beide Wege gleich, also stimmen $\tilde{H}_{ij}, \tilde{H}_{i-1,j}$ entsprechend überein.
 \end{subproof}
+\begin{claim}[unterer Rand von $Q_{ij}$]
+    Ist $j>1$, so ist  $\tilde{H}_{ij}|_{Q_{ij}\cap Q_{i,j-1}} = \tilde{H}_{i,j-1}|_{Q_{ij}\cap Q_{i,j-1}}$
+\end{claim}
+\begin{subproof}
+    Völlig analog zu Behauptung 1, der Schnitt ist der untere Rand von $Q_{ij}$ und kann analog parametrisiert werden.
+\end{subproof}
+
+Damit haben wir zusammen eine Abbildung $\tilde{H}_{ij}$ mit den geforderten Eigenschaften i) - iii) konstruiert. Es ist nun leicht zu prüfen, dass wir die $\tilde{H}_{ij}$ zu einer Abbildung
+    \begin{equation*}
+    \tilde{H}: \left| \begin{array}{c c l} 
+    I^2 & \longrightarrow & E \\
+    (x,y) & \longmapsto &  \tilde{H}_{ij}(x,y) \text{, wobei $i,j$ so, dass  $(x,y)\in Q_{ij}$} 
+    \end{array} \right.
+\end{equation*}
+zusammenfügen können, die die geforderten Eigenschaften besitzt.
+
+
 \item[Eindeutigkeit] Sei $\tilde{\tilde{H}}$ eine weitere Hebung mit $\tilde{\tilde{H}} (0,0) = \tilde{w}_0(0)$. Sei $(t,s) \in I^2$ und $w$ ein Weg von  $(0,0)$ nach  $(t,s)$ in  $I^2$ (z.B. der lineare Weg). Dann sind $\tilde{H} \circ w$ und $\tilde{\tilde{H}} \circ  w$ Hebungen von $H\circ  w$. mit demselben Anfangspunkt. 
 
     Nach der Eindeutigkeit im \nameref{thm:weghebungssatz} sind also auch schon $\tilde{H} \circ w$ und $\tilde{\tilde{H}} \circ w$ gleich, insbosender stimmen sie an $(t,s)$ überein, und somit  $\tilde{\tilde{H}}(t,s) = \tilde{H}(t,s) $. Da $(t,s)\in I^2$ beliebig war, folgt also wie gewünscht $\tilde{H} = \tilde{\tilde{H}} $.
 \end{description}
 \begin{enumerate}[i)]
     \setItemnumber{2}
-\item Der Weg $\tilde{H}(-,0)$ hebt $H(-,0)= w_0$ mit Anfangspunkt $\tilde{w}_0(0)$. Auch $\tilde{w}_0$ ist ein solcher Lift. Aus der Eindeutigkeit im \nameref{thm:weghebungssatz} folgt also genau $\tilde{H}(-,0) = \tilde{w}_0$.
-    \missingfigure{Illustration der verschiedenen Wege}
+\item Der Weg $\tilde{H}(-,0)$ hebt $H(-,0)= w_0$ mit Anfangspunkt $\tilde{w}_0(0)$. Auch $\tilde{w}_0$ ist ein solcher Lift. Aus der Eindeutigkeit im \nameref{thm:weghebungssatz} folgt also genau $\tilde{H}(-,0) = \tilde{w}_0$. $\tilde{H}(-,0)$ ist in folgender Skizze blau markiert. Bevor wir jedoch etwas über $\tilde{H}(-,1)$ aussagen können, müssen wir erst noch über die linke Kante von $I^2$ etwas lernen (im Bild orange).
+
+    \begin{minipage}{\textwidth}
+        \centering
+    \incfig{verschiedene-weghebungen-bei-homotopiehebung}
+    \end{minipage}
+
     Weiter hebt $\tilde{H}(0,-)$ den Weg $H(0,-) = c_{w_0(0)}$, weil $H$ eine Homotopie relativ Anfangspunkt ist. Auch  $c_{\tilde{w}_0(0)}$ ist eine solche Hebung (mit gleichem Anfangspunkt), also ist bereits $\tilde{H}(0,-) = c_{\tilde{w}_0(0)}$.
 
     Damit folgt bereits, dass $\tilde{H}$ eine Homotopie relativ Anfangspunkt ist, und dass $\tilde{H}(0,1) = c_{\tilde{w}_0(0)}$. Also hebt der Weg $\tilde{H}(-,1)$ den Weg $H(-,1) = w_1$ \textit{mit Anfangspunkt} $\tilde{w}_0(0) = \tilde{w}_1(0)$, und wegen der Eindeutigkeit der Wegeliftung erhalten wir wie gewünscht $\tilde{H}(-,1) = \tilde{w}_1$.
 \item Der Weg $\tilde{H}(1,-)$ hebt nun $H(1,-)$. Ist  $H(1,-)$ konstant, dann auch  $\tilde{H}(1,-)$, weil wir auch die konstante Hebung haben, und die Hebung eindeutig ist.
 \end{enumerate}
 \end{proof}
-
 \section{Beispiele für $\pi_1$}
 
 \begin{definition}
     Ein topologischer Raum $X$ heißt  \vocab[Topologischer Raum!einfach zusammenhängend]{einfach zusammenhängend}, falls $X$ wegzusammenhängend ist und je zwei Wege mit gleichen Anfangs- und Endpunkten homotop sind (relativ Anfangs- und Endpunkt).
+
+\begin{minipage}{\textwidth}
+    \centering
+    \incfig{einfach-zusammenhängender-raum}
+\end{minipage}
 \end{definition}
 
 \begin{lemma}
-    Ein Raum $X$ ist einfach zusammenhängend genau dann, wenn er wegzusammenhängend ist und  $\pi_1(X,x)$ trivialist für ein (oder äquivalent alle) $x\in X$.
+    Ein Raum $X$ ist einfach zusammenhängend genau dann, wenn er wegzusammenhängend ist und  $\pi_1(X,x)$ trivial ist für ein (oder äquivalent alle) $x\in X$.
 \end{lemma}
 
 \begin{proof}
