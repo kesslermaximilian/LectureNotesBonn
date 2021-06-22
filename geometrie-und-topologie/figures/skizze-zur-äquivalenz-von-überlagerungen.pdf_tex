@@ -1,6 +1,6 @@
 %% Creator: Inkscape inkscape 0.92.5, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'beweisskizze-zum-allgemeinen-liftungssatz.pdf' (pdf, eps, ps)
+%% Accompanies image file 'skizze-zur-äquivalenz-von-überlagerungen.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -53,18 +53,17 @@
   \begin{picture}(1,0.5)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0,0){\includegraphics[width=\unitlength,page=1]{beweisskizze-zum-allgemeinen-liftungssatz.pdf}}%
-    \put(0.84592292,0.39800294){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$E$\end{tabular}}}}%
-    \put(0.84749082,0.09539948){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X$\end{tabular}}}}%
-    \put(0.10842511,0.29290517){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$Y$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=2]{beweisskizze-zum-allgemeinen-liftungssatz.pdf}}%
-    \put(0.36457965,0.13930041){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$f$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=3]{beweisskizze-zum-allgemeinen-liftungssatz.pdf}}%
-    \put(0.17001168,0.24995282){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$w$\end{tabular}}}}%
-    \put(0.1855923,0.18570932){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\tilde{w}$\end{tabular}}}}%
-    \put(0.09218452,0.20877762){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_0$\end{tabular}}}}%
-    \put(0.5727438,0.06296349){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x_0$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=4]{beweisskizze-zum-allgemeinen-liftungssatz.pdf}}%
-    \put(0.56412042,0.3773262){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$e_0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{skizze-zur-äquivalenz-von-überlagerungen.pdf}}%
+    \put(0.74929072,0.11746699){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{skizze-zur-äquivalenz-von-überlagerungen.pdf}}%
+    \put(0.13065396,0.44230677){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$E$\end{tabular}}}}%
+    \put(0.54752057,0.43676338){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$E'$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{skizze-zur-äquivalenz-von-überlagerungen.pdf}}%
+    \put(0.43000911,0.09245745){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x_0$\end{tabular}}}}%
+    \put(0.2027322,0.34855982){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$e_0$\end{tabular}}}}%
+    \put(0.62957681,0.34858481){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$e_0'$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{skizze-zur-äquivalenz-von-überlagerungen.pdf}}%
+    \put(0.40892963,0.25416965){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p$\end{tabular}}}}%
+    \put(0.52645588,0.25084362){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p'$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

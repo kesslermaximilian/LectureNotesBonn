@@ -92,9 +92,10 @@ Nach dem \nameref{thm:homotopieliftungssatz} ist somit $\tilde{w} \star L(f \cir
     .\] 
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{thm:abbildung-von-s^n-nach-s^1-ist-homotop-zu-konstanter-abbildung-für-n-geq-2}
     Sei $n\geq 2$. Dann ist jede stetige Abbildung $f\colon  S^n \to  S^1$ homotop zu einer konstanten Abbildung.
 \end{theorem}
+
 \begin{proof}
     Da $n\geq 2$ ist, ist $\pi_1(S^n,x_0) = \left \{\star\right\} $ trivial. Also existiert eine Hebung
     \[
@@ -116,7 +117,7 @@ Nach dem \nameref{thm:homotopieliftungssatz} ist somit $\tilde{w} \star L(f \cir
 \end{example}
 \todo{Abbildung skizzieren}
 
-\begin{definition}
+\begin{definition}[Charakteristische Untergruppe]\label{def:charakteristische-untegruppe}
     Sei $p\colon  E \to  X$ eine Überlagerung und sei $x_0\in X, e_0\in p^{-1} (x_0)$. Dann heißt $p_*(\pi_1(E,e_0))\subset \pi_1(X,x_0)$ die \vocab{charakteristische Untergruppe}. 
 \end{definition}
 
@@ -124,7 +125,7 @@ Nach dem \nameref{thm:homotopieliftungssatz} ist somit $\tilde{w} \star L(f \cir
     Wir haben im \nameref{thm:allgemeiner-liftungssatz} bereits gesehen, dass diese Gruppe sehr wichtig ist.
 \end{oral}
 
-\begin{theorem}
+\begin{theorem}\label{thm:äquivalenz-von-überlagerungen-über-lokal-wegzsuammenhängendem-wegzusammenhängendem-raum}
     Sei $X$ wegzusammenhängend und lokal wegzusammenhängend und betrachte zwei Überlagerungen $p\colon  E\to X$, $p' \colon  E' \to  X$, sodass $E,E'$ zusammenhängend. Sei  $x_0\in X$ mit Urbildern $e_0\in p^{-1} (x_0)$, $e_0' \in p'^{-1} (x_0)$. Dann sind äquivalent:
     \begin{enumerate}[1)]
         \item Es existiert ein Homöomorphismus der Überlegerungen, d.h. ein $f\colon  E \to  E'$ mit $f(e_0) = e_0'$, sodass folgendes kommutiert:
@@ -140,3 +141,65 @@ Nach dem \nameref{thm:homotopieliftungssatz} ist somit $\tilde{w} \star L(f \cir
             .\] 
     \end{enumerate}
 \end{theorem}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{skizze-zur-äquivalenz-von-überlagerungen}
+    \caption{Skizze zu \autoref{thm:äquivalenz-von-überlagerungen-über-lokal-wegzsuammenhängendem-wegzusammenhängendem-raum}}
+    \label{fig:skizze-zur-äquivalenz-von-überlagerungen}
+\end{figure}
+
+\begin{oral}
+    Man könnte auch sagen, dass 1) $\implies$ 2) Teil des allgemeinen Hebungssatzes ist, aber wir machen das trotzdem nochmal.
+\end{oral}
+
+\begin{proof}[Beweis von \autoref{thm:äquivalenz-von-überlagerungen-über-lokal-wegzsuammenhängendem-wegzusammenhängendem-raum}]
+    Es ist 
+    \[
+        p_*(\pi_1(E,e_0)) = (p'_* \circ  f_*)(\pi_1(E,e_0)) \subset p'_*(\pi_1(E',e_0'))
+    .\] 
+    Analoges gilt mit $f^{-1}$, d.h. $p'_*(\pi_1(E',e_0'))\subset p_*(\pi_1(E,e_0))$ und offensichtlich sind die Abbildungen invers zueinander.
+
+    Für die andere Richtung beobachten wir zunächst, dass $E$ ebenfalls lokal wegzusammenhängend ist (nach  \autoref{thm:überlagerung-über-lokal-wegzusammenhängendem-raum-zerfällt-in-wegzusammenhängende-komponenten-von-e}).
+
+    Nach dem\nameref{thm:allgemeiner-liftungssatz} finden wir also eine Abbildunge $f\colon  E \to  E'$ mit $f(e_0) = e_0')$ und $p' \circ  f = p$. Analog existiert ein $g\colon  E ' \to  E$ mit $g(e_0') = e_0$ und $ p \circ  g = p'$. Es ist aber
+    \[
+        p \circ (g \circ  f) = (p \circ  g) \circ  f = p' \circ  f = p
+    .\] 
+    und  $f\circ  f(e_0) = g(e_0' ) = e_0$, also folgt aus der Eindeutigkeit der Hebung, dass $g \circ f = \id$. Da $\id_E$ aber auch eine Hebung von  $p\colon  E \to X$ ist, folgt bereits $g \circ  f = \id_E$, und analog $f \circ  g = \id_{E'}$. Also sind $f,f'$ Homöomorphismen.
+\end{proof}
+
+\begin{theorem}\label{thm:charakteristische-untergruppen-innerhalb-der-faser-sind-nur-konjugiert-wenn-weg-zwischen-urbildern-existiert}
+    Sei $p\colon  E \to  X$ eine Überlagerung mit $x_0\in X, e_0,e_0' \in p^{-1} (x_0)$ sowie $w\colon  I \to  E$ ein Weg von $e_0$ nach $e_0'$. Dann ist
+    \[
+        p_*(\pi_1(E,e_0)) = [p \circ  w] \star \pi_1(E,e_0') \star [p \circ  \overline{w}]
+    .\] 
+\end{theorem}
+
+
+\begin{corollary}
+    Ist $p\colon E\to X$ eine Überlagerung mit $E$ wegzusammenhängend, so hängt  $p_*(\pi_1(E,e_0))$ nur bis auf Konjugation von der Wahl von $e_0$ ab.
+\end{corollary}
+
+\begin{proof}[Beweis vom Satz]
+    Wir wissen, dass die Abbildung
+        \begin{equation*}
+        \begin{array}{c c l} 
+            \pi_1(E,e_0') & \longrightarrow & \pi(E,e_0) \\
+            \left[v\right] & \longmapsto &  \left[w \star v \star \overline{w}\right]
+        \end{array}
+    \end{equation*}
+    ein Isomorphismus ist. Es ist 
+    \[
+        p_*[w \star v \star \overline{w}] = [p \circ  (w \star v \star \overline{w})] = [ p \circ  w] \star [p \circ  v] \star [p \circ  \overline{w}]
+    .\] 
+und damit ist
+\[
+    p_*(\pi_1(E,e_0)) = [p \circ  w] \star \pi_1(E,e_0') \star [p \circ  \overline{w}]
+.\] 
+
+\end{proof}
+
+\begin{remark*}
+Leider musste ich heute die Vorlesung vorzeitig verlassen, deswegen endet die Mitschrift (erstmal) hier. Wird aber nachgetragen.
+\end{remark*}
