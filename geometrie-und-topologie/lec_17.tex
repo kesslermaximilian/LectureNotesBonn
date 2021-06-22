@@ -1,0 +1,142 @@
+%! TEX root = ./master.tex
+\lecture[]{Di 22 Jun 2021 12:09}{}
+
+\begin{lemma*}\label{lm:hilfslemma:wege-mit-gleichem-endpunkt-werden-auf-gleiche-endpunkte-geliftet}
+    Betrachte die gleiche Situation wie in vorherigem Satz. Seien $w$, $w'$ zwei Wege in $Y$ mit Anfangspunkt  $y_0$ und gleichem Endpunkt. Dann ist
+    \[
+        L(f \circ  w,e_0)(1) = L(f \circ w',e_0)(1)
+    .\] 
+\end{lemma*}
+
+\begin{proof}
+    Die Verknüpfung $w \star \overline{w'}$ ist eine Schleife an $y_0$. Dann ist $f\circ (w \star \overline{w'})$ eine Schleife an $x_0$ und
+    \[
+        [f \circ (w\star \overline{w'})] \in f_*(\pi_1(Y,y_0)) \subset p_*(\pi_1(E,e_0))
+    .\] 
+
+Sei $\tilde{w}$ eine Schleife in $E$ an  $e_0$, so dass $p \circ  \tilde{w}$ homotop ist zu $f \circ  (w \star \overline{w'}) = (f \circ  w) \star ( f \circ  \overline{w'})$ relativ Endpunkten.
+
+Also ist auch relativ Endpunkten:
+\[
+    (p \circ  \tilde{w}) \star (f \circ  w') \simeq (f \circ  w) \star (f \circ  \overline{w'}) \star (f \circ  w') \simeq f \circ  w
+.\] 
+
+Nun ist
+\[
+    (p \circ  \tilde{w}) \star (f \circ  w') = p \circ (\tilde{w} \star L(f \star w', e_0))
+.\] 
+und
+\[
+    f \circ  w \simeq p \circ  L(f \circ  w,e_0)
+.\] 
+Nach dem \nameref{thm:homotopieliftungssatz} ist somit $\tilde{w} \star L(f \circ  w', e_0)$ homotop (in $E$) zu  $L(f \circ  w, e_0)$ relativ Endpunkten. Insbesondere haben die beiden Wege den gleichen Endpunkt. Also
+\[
+    L(f \circ  w, e_0)(1) = \tilde{w} \star L(f \circ  w', e_0)(1) = L(f \circ  w', e_0)
+.\] 
+
+\end{proof}
+
+\begin{proof}[Fortsetzung des Beweises von \autoref{thm:allgemeiner-liftungssatz}]
+    Nun konstruieren wir uns die Hebung von $Y$ nach  $E$. Definiere  $\tilde{f}$ punktweise, indem wir für $y\in Y$ einen Weg $w$ von  $y_0$ nach $y$ wählen (denn  $Y$ ist nach Voraussetzung wegzusammenhängend), und dann
+    \[
+        \tilde{f}(y) \coloneqq  L(f\circ w, e_0)(1)
+    .\] 
+    setzen. Als erstes müssen wir prüfen, dass diese Definition wohldefiniert ist, d.h. $\tilde{f}(y)$ ist unabhängig von der Wahl von $y$. Das haben wir aber gerade genau in \autoref{lm:hilfslemma:wege-mit-gleichem-endpunkt-werden-auf-gleiche-endpunkte-geliftet} gesehen.
+
+    Wir prüfen, dass $\tilde{f}$ eine Hebung ist, dazu ist
+    \begin{IEEEeqnarray*}{rCl}
+        p(\tilde{f}(y)) & = & p(L(f \circ  w,e_0)(1)) \\
+                        & = & p(L(f \circ w,e_0))(1) \\
+                        & = & (f \circ w)(1) \\
+                        & = & f(w(1)) = f(y)
+    \end{IEEEeqnarray*}
+
+    Es bleibt zu zeigen, dass $\tilde{f}$ stetig ist.
+
+    \begin{claim}
+        Für jedes $y\in Y$ und jede Umgebung $V$ von  $\tilde{f}(y)$ existiert eine Umgebung $W$ von  $y$ mit  $\tilde{f}(W)\subset V$, d.h. $\tilde{f}$ ist stetig.
+    \end{claim}
+    \begin{subproof}
+        Sei $U\subset X$ eine offene Teilmenge von $X$, die  $f(y)$ enthält, und über der  $p$ trivial ist. Sei  $u\colon  p^{-1} (U) \to  U \times p^{-1} (f(y))$ ein Homöomorphismus über $p$, und setze dann  $V' \coloneqq  V \cap  u^{-1}(U \times \left \{\tilde{f}(y)\right\} )$. Es ist dann $p|_{V'}\colon  V' \to  p(V')$ eine Homöomorphismus mit  $p(V')$, einer Umgebung von  $f(y)$.
+
+        Jetzt erhalten wir mit $f^{-1}(p(V'))$ eine Umgebung von $y$. Da  $Y$ lokal wegzusammenhängend ist, finden wir eine wegzusammenhängende Umgebung  $W\subset f^{-1}(p(V'))$. Esverbleibt zu zeigen:
+    \end{subproof}
+
+    \begin{claim}
+        $\tilde{f}(w) \subset V'$, also insbesondere $\tilde{f}(y') \in V'$.
+    \end{claim}
+
+    \begin{subproof}
+        Sei $y' \in W$ und $w$ ein Weg von  $y_0$ nach $y$ in  $Y$ und  $w'$ ein Weg von  $y$ nach  $y'$ in  $W$. Dann ist  $w \star w'$ ein Weg von  $y_0$ nach $y'$. Es ist 
+         \begin{IEEEeqnarray*}{rCl}
+             \tilde{f}(y) & = & L(f \circ (w \star w ), e_0)(1) \\
+                          & = & L(f \circ w, e_0) \star L(f \circ  w', \underbrace{L(f \circ  w, e_0)(1)}_{= \tilde{f}(y)})(1) 
+         \end{IEEEeqnarray*}
+         Sehen wir uns den Weg $L(f \circ  w', \tilde{f}(y))$ genauer ein, so wissen wir - weil $p|_{V'}$ ein Homöomorphismus ist - , dass
+         \[
+             L(f \circ  w', \tilde{f}(y)) = p|_{V'}^{-1} \circ  f \circ  w'
+         .\] 
+         und hat somit Bild in $V'$. Insbesondere liegt auch der Endpunkte disees Weges, also  $\tilde{f}(y')$, in $V'$.
+    \end{subproof}
+
+    Es bleibt, die Eindeutigkeit von $\tilde{f}$ zu zeigen. Ist $g$ eine weitere Hebung von  $f$, so ist $g|_W$ eine Hebung von  $f \circ w$, also ist zwingendermaßen
+    \[
+        g(y) = g(w(1)) = L(f \circ w, e_0)(1) = \tilde{f}(y)
+    .\] 
+    nach Eindeutigkeit der Weghebung, also $\tilde{f} = g$ punktweise, und somit überall.
+    \[
+    \begin{tikzcd}
+        & & \ar{d}{p} \\
+        I \ar[dashed, bend left = 20]{urr} \ar{r}{w} & Y \ar{ur}{g} \ar{r}{f} &  X
+    \end{tikzcd}
+    .\] 
+\end{proof}
+
+\begin{theorem}
+    Sei $n\geq 2$. Dann ist jede stetige Abbildung $f\colon  S^n \to  S^1$ homotop zu einer konstanten Abbildung.
+\end{theorem}
+\begin{proof}
+    Da $n\geq 2$ ist, ist $\pi_1(S^n,x_0) = \left \{\star\right\} $ trivial. Also existiert eine Hebung
+    \[
+    \begin{tikzcd}
+        & \R \ar{d}{\exp } \\
+        S^n \ar[dashed]{ur}{\tilde{f}} \ar[swap]{r}{f} & S^1
+    \end{tikzcd}
+    .\] 
+    Da $\R$ zusammenziehbar (d.h. homotopieäquivalent zu $\star$, ist  $\tilde{f}$ nullhomoto (d.h. homotop zu einer konstanten Abbildung).
+
+    Sei $H$ eine Nullhomotopie, dann ist  $\exp  \circ  H$ eine Nullhomotopie von $f$.
+\end{proof}
+
+
+\begin{example}
+   Wir betrachten wieder die Sinuskurve des Topologen, und verbinden die beiden Wegzusammenhangskomponenten, und stellen uns das ganze wie einen 'verrückten' Kreis vor, und betrachten die typische Überlagerung von einem 'verrückten' $\R$. 
+
+   TODO
+\end{example}
+\todo{Abbildung skizzieren}
+
+\begin{definition}
+    Sei $p\colon  E \to  X$ eine Überlagerung und sei $x_0\in X, e_0\in p^{-1} (x_0)$. Dann heißt $p_*(\pi_1(E,e_0))\subset \pi_1(X,x_0)$ die \vocab{charakteristische Untergruppe}. 
+\end{definition}
+
+\begin{oral}
+    Wir haben im \nameref{thm:allgemeiner-liftungssatz} bereits gesehen, dass diese Gruppe sehr wichtig ist.
+\end{oral}
+
+\begin{theorem}
+    Sei $X$ wegzusammenhängend und lokal wegzusammenhängend und betrachte zwei Überlagerungen $p\colon  E\to X$, $p' \colon  E' \to  X$, sodass $E,E'$ zusammenhängend. Sei  $x_0\in X$ mit Urbildern $e_0\in p^{-1} (x_0)$, $e_0' \in p'^{-1} (x_0)$. Dann sind äquivalent:
+    \begin{enumerate}[1)]
+        \item Es existiert ein Homöomorphismus der Überlegerungen, d.h. ein $f\colon  E \to  E'$ mit $f(e_0) = e_0'$, sodass folgendes kommutiert:
+            \[
+            \begin{tikzcd}[column sep = tiny]
+                E \ar{rr}{f}[swap]{\cong} \ar[swap]{dr}{p} & & E' \ar{dl}{p'} \\
+            & X
+            \end{tikzcd}
+            \]
+        \item Die charakterischen Untergruppen stimmen überein, d.h.
+            \[
+                p_*(\pi_1(E,e_0)) = p'_*(\pi_1(E',e_0'))
+            .\] 
+    \end{enumerate}
+\end{theorem}
