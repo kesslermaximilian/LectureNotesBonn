@@ -1,5 +1,7 @@
 %! TEX root = ./master.tex
-\lecture[]{Do 24 Jun 2021 10:20}{}
+\lecture[Beweis des Existenzsatzes für universelle Überlagerungen: $H$-äquivalente Wege. Basis der Topologie von semilokal einfachzusammenhängenden, (lokal) wegzusammenhängenden Räumen. Decktransformationen]{Do 24 Jun 2021 10:20}{Existenzsatz für universelle Überlagerungen}
+
+Um die verbleibende Richtung $1)\implies 3)$ zeigen zu können, müssen wir uns im Folgenden recht viel erarbeiten. In allen nachfolgenden Sätzen des Kapitels gehen wir davon aus, dass wir uns in der Situation von \autoref{thm:universelle-überlagerungen-existieren-genau-für-semilokal-einfachzusammenhängende-lokal-wegzusammenhängenden-zusammenhängende-räume} befinden, und dass im Laufe des Kapitels eingeführte Konstruktionen vorhanden sind.
 
 \begin{definition*}\label{def:h-äquivalent-für-untegruppen}
     Sei $H\subset \pi_1(X,x_0)$ eine Untergruppe. Zwei Wege $w,w'$ in  $X$ mit  $w(0) = w'(0) = x_0$ heißen \vocab{$H$-äquivalent}, falls $w(1) = w'(1)$ und  $[w \star \overline{w}']\in H$. 
@@ -20,23 +22,38 @@ Das ist keine gängige Notation, und dient einfach nur, den Beweis besser aufsch
     Wir notieren $[w]_H$ für die korrespondierenden Äquivalenzklassen.
 \end{notation*}
 
-\begin{proof}
-    Reflexivität ist klar, weil $[w \star \overline{w}] = [c_{x_0}] \in H$.
-
-    Für Symmetrie benötigen wir nur, dass aus $g\in H$ auch $g^{-1}\in H$ folgt.
-
-    Für Transitivität benötigen wir, dass $g,g'\in H$ auch $gg'\in H$ impliziert, denn so ist
+\begin{proof}[Beweis von \autoref{lm:h-äquivalent-ist-äquivalenzrelation}]
+    \begin{description}
+        \item[Reflexivität] Klar, denn für $w$ beliebig ist  $[w \star \overline{w}] = [c_{x_0}]\in H$ das neutrale Element.
+        \item[Symmetrie] Ist $v \simeq_H w$, also  $[w \star \overline{v}] \in H$, so ist
+            \[
+                [v \star \overline{w}] = [\overline{w \star \overline{v}}] = [ w \star \overline{v}]^{-1} \in H
+            .\] 
+            weil $H$ unter Inversen abgeschlossen ist.
+        \item[Transitivität] Ist $w \simeq_H w'$ und  $w' \simeq H w''$, so ergibt sich
     \[
-        [\underbrace{w \star \overline{w'}}_{\in H} \star \underbrace{w' \star \overline{w''}}_{\in H}] = [ w \star \overline{w''}]
+        [w \star \overline{w''}] =         [\underbrace{w \star \overline{w'}}_{\in H} \star \underbrace{w' \star \overline{w''}}_{\in H}]
     .\] 
+aber $H$ ist unter Komposition abgeschlossen.
+    \end{description}
 \end{proof}
 
-Wir definieren
+Nun können wir unseren Überlagerungsraum - als Menge - bereits durch
 \[
     E(H) \coloneqq  \faktor{\left \{w\colon  I \to  X \mid  w(0) = x_0\right\} }{\text{H-Äquivalenz}}
 .\] 
+definieren, zusammen mit der Projektion
+    \begin{equation*}
+    p: \left| \begin{array}{c c l} 
+        E(H) & \longrightarrow & X \\
+        \left[w\right]_H & \longmapsto &  w(1)
+    \end{array} \right.
+\end{equation*}
 
-und $p\colon E(H) \to  X$ durch $p([w]_H) = w(1)$.
+\begin{remark*}
+    Man beachte, dass die Projektion wohldefiniert ist, weil nach \autoref{def:h-äquivalent-für-untegruppen} zwei $H$-äquivalente Wege insbesondere den gleichen Endpunkt besitzen. 
+\end{remark*}
+
 
  \begin{example}
      Ist $H = \left \{\star\right\} $ trivial, so sind $w$ und  $w'$  $H$-äquivalent genau dann, wenn  $w(1) = w'(1)$ und  $w \simeq w'$ relativ Endpunkten.
@@ -44,49 +61,64 @@ und $p\colon E(H) \to  X$ durch $p([w]_H) = w(1)$.
      Ist  $H = \pi_1(X,x_0)$, so sind $w$ und  $w'$  $H$-äquivalent genau dann, wenn  $w(1) = w'(1)$.
 \end{example}
 
+Unser nächstes Ziel ist es, den (zukünftigen) Überlagerungsraum $E(H)$ mit einer Topologie zu versehen. Dazu bedarf es einiger Vorbereitungen über die Topologie auf $X$ selbst.
+
 \begin{lemma}\label{lm:basis-vonsemilokal-einfachzusammenhängendem-zusammenhängendem-raum}
     Sei $X$ semilokal einfachzusammenhängend, lokal wegzusammenhängend und wegzusammenhängend. Dann ist
      \[
          \mathcal{B} \coloneqq  \left \{U\subset X \text{ offen}\mid  U \text{ ist wegzusammenhängend}, \pi_1(U) \to  \pi_1(X) \text{ ist trivial}\right\} 
     .\] 
-    eine Basis der Topologie.
+    eine Basis der Topologie auf $X$.
 \end{lemma}
 
 
 \begin{proof}
     Sei $V\subset X$ offen, $x\in V$. Es ist zu zeigen, dass es ein $U\in \mathcal{B}$ mit $x\in U\subset V$ gibt. 
 
-    Weil $X$ semilokal einfachzusammenhängend ist, gibt es eine Umgebung  $U'$ von  $x$ mit  $U'$ wegzusammenhängend und $\pi_1(U') \to  \pi_1(X)$ trivial sowie $U'\subset V$. Da $U'$ Umgebung ist, existiert ein  $U''\subset X$ offen mit $x\in U'' \subset U'$, und weil $X$ lokal wegzusammenhängend und  $U''$ offen ist auch  $U''$ lokal wegzusammenhängend. Die Wegekomponenten von  $U''$ sind nun offen in  $U''$ (nach  \autoref{thm:wegkomponenten-in-lokal-wegzusammenhängendem-raum-sind-offen}) und damit auch in $X$. 
+    Weil $X$ semilokal einfachzusammenhängend ist, gibt es eine Umgebung  $U'$ von  $x$ mit  $U'$ wegzusammenhängend und $\pi_1(U',x) \to  \pi_1(X,x)$ trivial sowie $U'\subset V$. Da $U'$ Umgebung ist, existiert ein  $U''\subset X$ offen mit $x\in U'' \subset U'$, und weil $X$ lokal wegzusammenhängend und  $U''$ offen ist auch  $U''$ lokal wegzusammenhängend. Die Wegekomponenten von  $U''$ sind nun offen in  $U''$ (nach  \autoref{thm:wegkomponenten-in-lokal-wegzusammenhängendem-raum-sind-offen}) und damit auch in $X$. 
 
     Sei $U$ die Wegekomponente von  $U''$, die  $x$ enthält. Dann ist  $U\subset X$ offen, wegzusammenhängend, $x\in U$, $U\subset U''\subset U'\subset V$, und
     \[
         \pi_1(U,x) \to  \pi_1(U',x) \stackrel{g \mapsto 0}{\longrightarrow}   \pi_1(X,x)
     .\] 
-    ist somit auch die triviale Abbildung. Also ist $U''$ ein Basiselement mit $x\in U''\subset V$.
+    ist somit auch die triviale Abbildung. Also ist $U$ ein Basiselement mit $x\in U\subset V$.
 \end{proof}
-\todo{basispunkte der gruppen}
 
-Sei $w\colon I\to x$         mit $w(0) = x_0$, $U\in \mathcal{B}$ mit $w(1) \in U$, so definiere
+\todo{Brauchen wir Wegzusammenhang im Beweis überhaupt?}
+
+Wir wollen unsere Überlagerung letztendlich so bauen, dass $p$ auf den ebigen Basiselementen der Topologie auf $X$ trivial ist. Wir benötigen also für ein solches Basiselement  $U\in \mathcal{B}$ mit $x\in U$ eine offene Umgebung um jedes Urbild in $p^{-1} (x)$, das homöomorph ist zu $U$, dann liegt folgende Definition nahe:
+
+\begin{dlemmadef}\label{def:offene-mengen-in-universeller-überlagerung}
+    Sei $U\in \mathcal{B}$ ein Basiselement, und sei $w\colon  I \to  X$ ein Weg mit $w(1) \in U$ (d.h. insbesondere $p([w]_H) \in U$), so definiere
 \[
     \mathcal{B}([w]_H,U) = \left \{[v]_H \in E(H) \mid v = w \star u, u\colon I\to U\right\}  
 .\]
+\end{dlemmadef}
 
-\begin{recap}
-    Das hängt wirklich nur von $[w]_H$ ab, nicht von der Wahl des Vetreters. Ist nämlich  $w \simeq_H w'$, so auch  $w \star u \simeq_H w' \star u$ wegen
+\begin{proof}[Beweis der Wohldefiniertheit]
+    Die Definition hängt nur von $[w]_H$ ab, nicht von der Wahl des Vetreters. Ist nämlich  $w \simeq_H w'$, so auch  $w \star u \simeq_H w' \star u$ wegen
      \[
-    w \star u \star \overline{u} \star \overline{w'} \simeq w \star \overline{w'} \simeq_H c_{x_0}
+         w \star u \star \overline{u} \star \overline{w'} \simeq w \star \overline{w'} \quad \implies\quad [(w \star u) \star\overline{w' \star u}] = [w \star \overline{w'}] \in H
     .\] 
-\end{recap}
+\end{proof}
 
-\begin{lemma}
-    Sei $[w]_H\in \mathcal{B}([w]_H,U)$. Dann ist
+\begin{remark*}
+    Intuitiv haben wir also für jedes $U$ und ein Urbild unter  $p$ eines Punktes aus  $U$, d.h. für  $[w]_H$, die Menge der Wege definiert, die 'nicht weit Weg von  $w$' sind, d.h. die sich nur um einen Weg in  $U$ unterscheiden. 
+
+    Das nächste Lemma zeigt, dass sich die so definierte Umgebung nicht ändert, wenn wir $w$ nur 'ein bisschen', d.h. mit einem Weg in  $U$, ändern:
+\end{remark*}
+
+\begin{lemma}\label{lm:b-umgebungen-in-e-h-sind-gleich-für-wege-die-sich-nur-um-weg-in-u-unterscheiden-bzw-invariant-unter-ersetzung-durch-element-der-umgebung}
+    Sei $[v]_H\in \mathcal{B}([w]_H,U)$. Dann ist
     \[
         \mathcal{B}([v]_H,U) = \mathcal{B}([w]_H,U)
     .\] 
 \end{lemma}
 
 \begin{proof}
-    '$\supseteq$'. Schreibe $v = w \star u$ mit  $u\colon  I \to  U$ nach Voraussetzung. Sei $[\tilde{v}]_H \in \mathcal{B}([w]_H,U)$ mit $\tilde{v} = w \star \tilde{u}$ mit $\tilde{u}\colon  I \to  U$ beliebig.
+    '$\supseteq$'. Wir können für $[v]$ einen Repräsentanten der Form $w \star u$ für  $u\colon  I \to U$ wählen, durch ersetzen von $v$ durch diesen Repräsentanten ändert sich die Aussage nicht, also sei OBdA  $v = w \star u$ für ein  $u\colon  I \to  U$.
+
+    Sei $[\tilde{v}]_H \in \mathcal{B}([w]_H,U)$ mit $\tilde{v} = w \star \tilde{u}$ mit $\tilde{u}\colon  I \to  U$ beliebig.
 
     Dann ist
     \[
@@ -97,20 +129,28 @@ Sei $w\colon I\to x$         mit $w(0) = x_0$, $U\in \mathcal{B}$ mit $w(1) \in 
     Insbesondere ist somit $[w]_H \in  \mathcal{B}([v]_H, U)$. Die Inklusion '$\subset $' folgt also analog.
 \end{proof}
 
-\begin{proposition}
-    Die Mengen $\mathcal{B}([w]_H, U)$ bilden eine Basis einer Topologie auf $E(H)$.
-\end{proposition}
+\begin{propositiondef}
+    Die Mengen $\mathcal{B}([w]_H, U)$ definieren eine Basis einer Topologie auf $E(H)$.
+\end{propositiondef}
 
 \begin{proof}
-    Seien $B([w]_H, U)$ und  $B([w']_H, U')$ zwei solche offenen Mengen, und wähle  $[v]_H \in \mathcal{B}([w]_H, U) \cap \mathcal{B}([w']_H, U')$. Nach Lemma 18.6 ist dann
+    Nach \autoref{thm:subbasis-ist-basis-wenn-schnitt-generiert-wird} müssen wir nur zeigen, dass der Schnitt zweier solcher Mengen wieder Vereinigung solcher ist, bzw. dass wir um jeden Punkt im Schnitt eine solche Umgebung im Schnitt finden.
+
+
+    Seien also $B([w]_H, U)$ und  $B([w']_H, U')$ zwei solche offenen Mengen, und wähle  
+    \[
+        [v]_H \in \mathcal{B}([w]_H, U) \cap \mathcal{B}([w']_H, U')
+    \]
+    beliebig. Nach \autoref{lm:b-umgebungen-in-e-h-sind-gleich-für-wege-die-sich-nur-um-weg-in-u-unterscheiden-bzw-invariant-unter-ersetzung-durch-element-der-umgebung} sind also die entsprechenden Mengen gleich:
     \[
         \mathcal{B}([w]_H, U) = \mathcal{B}([v]_H, U), \qquad \mathcal{B}([w']_H, U') = \mathcal{B}([v]_H, U')
     .\] 
-    Sei $U'' \subset U \cap  U'$, $U'' \in \mathcal{B}$ und $v(1) \in U''$. Dann ist
-    \[
-        \mathcal{B}([v]_H, U'') \subset \mathcal{B}([w]_H, U) \cap \mathcal{B}([w']_H, U')
-    .\] 
-    und enthält immer noch $[v]_H$.
+    Sei $U'' \subset U \cap  U'$, $U'' \in \mathcal{B}$ mit $v(1) \in U''$. Dann ist
+    \begin{IEEEeqnarray*}{rCl}
+        \mathcal{B}([v]_H, U'') & \subset  & \mathcal{B}([v]_H, U) \cap  \mathcal{B}([v]_H, U') \\
+                                & = & \mathcal{B}([w]_H, U) \cap \mathcal{B}([w']_H, U')
+    \end{IEEEeqnarray*}
+    Die Inklusion ergibt sich dabei unmittelbar aus \autoref{def:offene-mengen-in-universeller-überlagerung}, weil $U'' \subset U, U'$. Offensichtlich ist auch $[v]_H$ noch in dieser Umgebung enthalten.
 \end{proof}
 
 Wir statten $E(H)$ nun mit dieser Topologie aus.
@@ -121,14 +161,17 @@ Wir statten $E(H)$ nun mit dieser Topologie aus.
 
 
 \begin{proof}
+    Wir prüfen die Stetigkeit auf der Basis $\mathcal{B}$.
+
+
     Es ist zu zeigen, dass für $U\in \mathcal{B}$ auch $p^{-1} (U)\subset E(H)$ offen ist. Es ist
     \[
         p^{-1} (U) = \left \{[w]_H \in E(H) \mid  w(1) \in U\right\} = \bigcup_{[w]_H, w(1) \in U}  \mathcal{B}([w]_H, U)
     .\] 
 \end{proof}
 
-\begin{lemma}
-    Sei $[w]_H\in E(H), U \in \mathcal{B}$ mut $w(1) \in U$.  Dann ist
+\begin{lemma}\label{lm:homöomorphismus-zwischen-u-und-b-u-in-universeller-überlagerung}
+    Sei $U\in \mathcal{B}$ und $w\colon  I \to  X$ mit $w(1)\in U$, also $[w]_H \in E(H)$.
     \[
         p|_{B([w]_H, U)} \colon  \mathcal{B}([w]_H, U) \to  U
     .\] 
@@ -137,7 +180,7 @@ Wir statten $E(H)$ nun mit dieser Topologie aus.
 
 \begin{proof}
     \begin{description}
-        \item[Surjektivität]. Sei $x\in U$. Weil $U$ wegzsammenhängend gibt es einen Weg  $u\colon  I \to  U$ mit $u(0) = w(1)$ und  $u(1) = x$. Dann ist  $[w \star u]_H \in  \mathcal{B}([w]_H, U)$ und $p([w \star u]_H) = ( w \star u) (1) = u(1) = x$. 
+        \item[Surjektivität]. Sei $x\in U$. Weil $U$ wegzusammenhängend gibt es einen Weg  $u\colon  I \to  U$ mit $u(0) = w(1)$ und  $u(1) = x$. Dann ist  $[w \star u]_H \in  \mathcal{B}([w]_H, U)$ und $p([w \star u]_H) = ( w \star u) (1) = u(1) = x$. 
         \item[Injektivität] Seien $[v]_H, [\tilde{v}]_H\in \mathcal{B}([w]_H, U)$ mit gleichem Bild unter $p$, d.h.  $v(1) = \tilde{v}(1)$.
 
             Wir können annehmen, dass $v = w \star u$ und  $\tilde{v} = w \star \tilde{u}$. Dann ist
@@ -148,9 +191,9 @@ Wir statten $E(H)$ nun mit dieser Topologie aus.
              \[
                  [v \star \overline{\tilde{v}}] = [ w \star \overline{w}] = [c_{x_0}]
             .\] 
-            also $[v \star \overline{\tilde{v}}] = 0 \in H$, also wie gewünscht $[v]_H = [\tilde{v}_H$.
+            also $[v \star \overline{\tilde{v}}] = 0 \in H$, also wie gewünscht $[v]_H = [\tilde{v}]_H$.
     \end{description}
-    Insbesondere ist $p$ offen, da  Basiselemente auf Basiselemente gehen. Da $p$ auch stetig ist und  $B([w]_H, U)$ offen, ist auch 
+    Insbesondere ist $p$ offen, da  Basiselemente auf Basiselemente gehen (und Abbildungen mit Vereinigungen vertauschen). Da $p$ auch stetig ist und  $B([w]_H, U)$ offen, ist auch 
      \[
          p|_{B([w]_H, U)}
     .\] 
@@ -172,27 +215,34 @@ Wir statten $E(H)$ nun mit dieser Topologie aus.
     \begin{subproof}
         Die Richtung '$\supseteq$' ist klar.
 
-        Für ' $\subset $' sei $[v]_H \in p^{-1} (U)$ beliebig. Nach Lemma 18.9 ist $p|_{\mathcal{B}([v]_H, U)}\colon  \mathcal{B}([v]_H, U) \to  U$ ein Homöomorphismus, also insbesondere surjektiv und wir finden $[w]_H \in \mathcal{B}([v]_H, U)$ mit $p([w]_H) = x$.
+        Für ' $\subset $' sei $[v]_H \in p^{-1} (U)$ beliebig. Nach \autoref{lm:homöomorphismus-zwischen-u-und-b-u-in-universeller-überlagerung} ist $p|_{\mathcal{B}([v]_H, U)}\colon  \mathcal{B}([v]_H, U) \to  U$ ein Homöomorphismus, also insbesondere surjektiv und wir finden $[w]_H \in \mathcal{B}([v]_H, U)$ mit $p([w]_H) = x$.
 
-        Nach Lemma 18.6 ist nun  $\mathcal{B}([v]_H, U) = B([w]_H, U)$, also 
+        Nach \autoref{lm:b-umgebungen-in-e-h-sind-gleich-für-wege-die-sich-nur-um-weg-in-u-unterscheiden-bzw-invariant-unter-ersetzung-durch-element-der-umgebung} ist nun  $\mathcal{B}([v]_H, U) = B([w]_H, U)$, also 
         \[
             [v]_H \in \mathcal{B}([w]_H, U)
         .\] 
 
-        Die Vereinigung ist auch disjunkt: Angenommen, $[v]_H \in \mathcal{B}([w]_H, U)\cap \mathcal{B}([w']_H, U)$ mit $w(1) = w'(1) = x$, so erhalten wir nach 18.6 dass  $B([w]_H,U) = \mathcal{B}([v]_H, U) = \mathcal{B}([w']_H, U)$, und mit Lemma 18.9 ist $p|_{B([w']_H, U)}$ injektiv, also $[w]_H = [w']_H$.
+        Die Vereinigung ist auch disjunkt: Angenommen, $[v]_H \in \mathcal{B}([w]_H, U)\cap \mathcal{B}([w']_H, U)$ mit $[w]_H, [w']_H \in p^{-1} (x)$, d.h. $w(1) = w'(1) = x$. Dann erhalten wir nach \autoref{lm:b-umgebungen-in-e-h-sind-gleich-für-wege-die-sich-nur-um-weg-in-u-unterscheiden-bzw-invariant-unter-ersetzung-durch-element-der-umgebung}, dass  
+        \[
+            B([w]_H,U) = \mathcal{B}([v]_H, U) = \mathcal{B}([w']_H, U)
+        \]
+        und nach \autoref{lm:homöomorphismus-zwischen-u-und-b-u-in-universeller-überlagerung} ist $p|_{B([w']_H, U)}$ injektiv, also $[w]_H = [w']_H$, denn beide werden auf $w(1) = w'(1) = x$ abgebildet.
     \end{subproof}
-    Also 
-    \[
-        p^{-1} (U) = \bigsqcup_{[w]_H \in p^{-1} (x)} \mathcal{B}([w]_H, U) \stackrel{\cong}{\longrightarrow}   U \times p^{-1} (x)
-    .\] 
-    mittels
-    \[
-        [v]_H \mapsto (p([v]_H), [w]_H)
-    .\] 
-    ein Homöomorphismus über $U$ und  $p^{-1} (x)$ ist diskret, weil die disjunkte Vereinigung über offene Mengen war, die jeweils genau einen Punkt aus der Faser enthalten.
+    Also können wir unseren gewünschten Homöomorphismus durch
+        \begin{equation*}
+        \varphi : \left| \begin{array}{c c l} 
+            p^{-1} (U) = \bigsqcup\limits_{\left[w\right]_H \in p^{-1} (x)}\mathcal{B}(\left[w\right]_H, U) & \longrightarrow & U\times p^{-1} (x) \\
+            \left[v\right]_H \in \mathcal{B}(\left[w\right]_H,U) & \longmapsto &  (p(\left[v\right]_H), \left[w\right]_H)
+        \end{array} \right.
+    \end{equation*}
+    definieren. Dass es sich um einen Homöomorphismus handelt, ergibt sich unmittelbar aus \autoref{lm:homöomorphismus-zwischen-u-und-b-u-in-universeller-überlagerung}. Zudem ist $\varphi $ klarerweise eine Abbildung über $U$, und die Phaser  $p^{-1} (x)$ kann mit der diskreten Topologie versehen werden, weil auf der linken Seite alle Vereinigungsmengen offen sind und jede dieser genau zu einem Punkt der Faser korrespondiert.
+
+    Also ist $p$ eine Überlagerung.
 \end{proof}
 
-\begin{lemma}
+Es bleibt final zu zeigen, dass unsere Überlagerung charakteristische Untergruppe $H$ hat. Dazu benötigen wir noch eine Vorbereitung über die Wege in  $E(H)$.
+
+\begin{lemma}\label{lm:wege-partiell-zu-laufen-ist-ein-weg-in-e(h)}
     Sei $w\colon  I \to X$ ein Weg mit $w(0) = x_0$. Dann ist 
         \begin{equation*}
         \tilde{w}: \left| \begin{array}{c c l} 
@@ -203,22 +253,33 @@ Wir statten $E(H)$ nun mit dieser Topologie aus.
     mit $w_t(s) = w(ts)$ eine Hebung von  $w$ mit Anfangspunkt  $e_0 \coloneqq  [c_{x_0}]_H$.
 \end{lemma}
 
-\begin{proof}
-    $\tilde{w}$ ist stetig. Sei $t\in [0,1]$ und $U\in \mathcal{B}$ und $w(t) \in U$. Dann ist $\mathcal{B}([w_t]_H, U)$ eine offene Umgebung von $[w_t]_H$. Es genügt zu zeigen, dass  $\tilde{w}^{-1}(B([w_t]_H, U))\subset I$ offen ist.
+\begin{remark*}
+    Der Weg $w_t$ ist einfach derjenige Weg, der nur das Anfangsstück von  $w$ durchläuft, das man normalerweise im Intervall  $[0,t]$ zurücklegt. Da  $E(H)$ aus Wegen besteht, ist ein Weg in  $E(H)$ demnach ein Weg von Wegen.
+
+    Was läge also näher, als einen Weg aus $X$ im Zeitverlauf stückweise mehr entlangzulaufen, um ihn nach $E(H)$ zu heben?
+\end{remark*}
+
+\begin{proof}[Beweis von \autoref{lm:wege-partiell-zu-laufen-ist-ein-weg-in-e(h)}]
+    \begin{description}
+        \item[Stetigkeit von $\tilde{w}$:] 
+            Wir überprüfen dies für Basiselemente um Bildpunkte von $\tilde{w}$, d.h. es sei $t\in [0,1]$ beliebig, wähle dann $U\in \mathcal{B}$ mit $w(t) \in U$.
+
+            Dann ist $\mathcal{B}([w_t]_H, U)$ eine offene Umgebung von $[w_t]_H$. Es genügt zu zeigen, dass  $\tilde{w}^{-1}(B([w_t]_H, U))\subset I$ offen ist.
 
     Da $w$ stetig ist, ist $w^{-1}(U)\subset I$ offen, also gibt es $0\leq a < t < b \leq 1$ mit $w((a,b)) \subset U$.
 \begin{claim}
     Es ist $\tilde{w}((a,b)) \subset B([w_t]_H, U)$.
 \end{claim}
+    \end{description}
 
     \begin{subproof}
-        Sei $s\in (a,b)$. Falls $s\geq t$ ist, so ist $w_s \simeq w_t \star w_{t,s}$ wobei $w_{t,s}(r) = w(t + (s-t)r)$.
+        Sei $s\in (a,b)$. Falls $s\geq t$ ist, so ist $w_s \simeq w_t \star w_{t,s}$ wobei $w_{t,s}(r) = w(t + (s-t)r)$ und damit $w_{t,s}([0,1]) = w([t,s]) \subset w((a,b)) \subset U $.
 
         Also ist $[w_s]_H \in \mathcal{B}([w_t]_H, U)$. Analoges gilt für $s\leq t$ mit $w_s \simeq w_t \star \overline{w_{s,t}}$.
     \end{subproof}
     Also ist $\tilde{w}$ stetig. Nun ist
     \begin{itemize}
-        \item $\tilde{w}(0) = [w_0]_H = [c_{…0}]_H = e_0$.
+        \item $\tilde{w}(0) = [w_0]_H = [c_{x_0}]_H = e_0$.
         \item $p(\tilde{w}(t)) = w_t (1) = w(t)$
     \end{itemize}
     Also hebt $\tilde{w}$ den Weg  $w$.
@@ -226,16 +287,18 @@ Wir statten $E(H)$ nun mit dieser Topologie aus.
 
 
 \begin{proof}[Fortsetzung des Beweises von \autoref{thm:universelle-überlagerungen-existieren-genau-für-semilokal-einfachzusammenhängende-lokal-wegzusammenhängenden-zusammenhängende-räume}]
-    Es fehlt noch die Richtung $1) \implies 3)$.  Wir haben bereits gezeigt, dass $p\colon  E(H) \to  X$ eine Überlagerung ist.
+    Es fehlt noch die Richtung $1) \implies 3)$.  Wir haben bereits gezeigt, dass $p\colon  E(H) \to  X$ eine Überlagerung ist, es verbleibt zu zeigen, dass sie wegzusammenhängend ist und charakteristische Untergruppe $H$ besitzt.
 
-    \underline{1. Schritt}: $E(H)$ ist wegzusammenhängend. Sei  $[w]_H \in E(H)$. Nach Lemma 18.11 ist
+    Wir definieren der Einfachheit halber $e_0\coloneqq [w_{0}]\in p^{-1} (x_0) \subset E(H)$ als kanonisches Element aus der Faser von $x_0$.
+
+    \underline{1. Schritt}: $E(H)$ ist wegzusammenhängend. Sei  $[w]_H \in E(H)$ beliebig. Nach \autoref{lm:wege-partiell-zu-laufen-ist-ein-weg-in-e(h)} ist
         \begin{equation*}
         \tilde{w}: \left| \begin{array}{c c l} 
             I & \longrightarrow & E(H) \\
             t & \longmapsto &  [w_t]_H
         \end{array} \right.
     \end{equation*}
-    eine Hebung von $w$. Es ist  $\tilde{w}(0) = e_0, \tilde{w}(1) = [w_1]_H = [w]_H$, also ist $\tilde{w}$ ein Weg von $e_0$ nach $[w]_H$, also ist  $E(H)$ wegzusammenhängend, denn wir können von überall nach  $e_0$ laufen.
+    eine Hebung von $w$. Es ist  $\tilde{w}(0) = [w_0] = [c_{x_0}] = e_0, \tilde{w}(1) = [w_1]_H = [w]_H$, also ist $\tilde{w}$ ein Weg von $e_0$ nach $[w]_H$, also ist  $E(H)$ wegzusammenhängend, denn wir können von überall nach  $e_0$ laufen.
 
     \underline{2. Schritt} Es ist $p_*(\pi_1(E(H),e_0)) = H$.
 
@@ -243,7 +306,7 @@ Wir statten $E(H)$ nun mit dieser Topologie aus.
     \[
         \forall [w] \in \pi_1(X,x_0) \colon  [w] \in p_*(\pi_1(E(H),e_0)) \iff  \tilde{w} \text{ ist eine Schleife an $e_0$}
     .\] 
-    $\tilde{w}$ ist gegeben durch  $\tilde{w}(t) = [w_t]_H$. Also ist $\tilde{w}(1) = [w]_H$. Es ist zudem $[w]_H = [c_{x_0}] = e_0$ genau dann wenn $[w]\in H$. Also folgt
+    $\tilde{w}$ ist gegeben durch  $\tilde{w}(t) = [w_t]_H$. Also ist $\tilde{w}(1) = [w]_H$. Es ist zudem $[w]_H = [c_{x_0}] = e_0$ genau dann wenn $[w]\in H$, d.h. $\tilde{w}$ ist eine Schleife an $e_0$ genau dann, wenn $[w] \in H$. Also folgt zusammen
     \[
         p_*(\pi_1(E(H),e_0)) = H
     .\] 
@@ -259,7 +322,7 @@ Wir statten $E(H)$ nun mit dieser Topologie aus.
     & X
     \end{tikzcd}
     \]
-    ein Homöomorphismus über $X$.  Wir bezeichnen mit  $\Delta(p)$ die Menge der Decktransformationen, und diese bilden eine Gruppe.
+    über $X$.  Wir bezeichnen mit  $\Delta(p)$ die Menge der Decktransformationen, und diese bilden eine Gruppe.
 \end{lemmadef}
 
 \begin{proof}
