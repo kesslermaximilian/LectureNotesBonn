@@ -1,5 +1,5 @@
 %! TEX root = ./master.tex
-\lecture[]{Di 22 Jun 2021 12:09}{}
+\lecture[]{Di 22 Jun 2021 12:09}{Charakteristische Untergruppen}
 
 \begin{lemma*}\label{lm:hilfslemma:wege-mit-gleichem-endpunkt-werden-auf-gleiche-endpunkte-geliftet}
     Betrachte die gleiche Situation wie in vorherigem Satz. Seien $w$, $w'$ zwei Wege in $Y$ mit Anfangspunkt  $y_0$ und gleichem Endpunkt. Dann ist
@@ -172,12 +172,16 @@ Nach dem \nameref{thm:homotopieliftungssatz} ist somit $\tilde{w} \star L(f \cir
 \begin{theorem}\label{thm:charakteristische-untergruppen-innerhalb-der-faser-sind-nur-konjugiert-wenn-weg-zwischen-urbildern-existiert}
     Sei $p\colon  E \to  X$ eine Überlagerung mit $x_0\in X, e_0,e_0' \in p^{-1} (x_0)$ sowie $w\colon  I \to  E$ ein Weg von $e_0$ nach $e_0'$. Dann ist
     \[
-        p_*(\pi_1(E,e_0)) = [p \circ  w] \star \pi_1(E,e_0') \star [p \circ  \overline{w}]
+        p_*(\pi_1(E,e_0)) = [p \circ  w] \star p_*(\pi_1(E,e_0')) \star [p \circ  \overline{w}]
     .\] 
 \end{theorem}
 
+\begin{remark*}
+    Die Aussage des Satzes ist so zu verstehen, dass die beiden Gruppen $p_*(\pi_1(E,e_0))$ und $\pi_1(E,e_0')$
+\end{remark*}
 
-\begin{corollary}
+
+\begin{corollary}\label{cor:wegzusammenhängende-überlagerungen-besitzt-bis-auf-konjugation-eindeutige-charakteristische-untergruppe}
     Ist $p\colon E\to X$ eine Überlagerung mit $E$ wegzusammenhängend, so hängt  $p_*(\pi_1(E,e_0))$ nur bis auf Konjugation von der Wahl von $e_0$ ab.
 \end{corollary}
 
@@ -185,21 +189,89 @@ Nach dem \nameref{thm:homotopieliftungssatz} ist somit $\tilde{w} \star L(f \cir
     Wir wissen, dass die Abbildung
         \begin{equation*}
         \begin{array}{c c l} 
-            \pi_1(E,e_0') & \longrightarrow & \pi(E,e_0) \\
+            \pi_1(E,e_0') & \longrightarrow & \pi_1(E,e_0) \\
             \left[v\right] & \longmapsto &  \left[w \star v \star \overline{w}\right]
         \end{array}
     \end{equation*}
-    ein Isomorphismus ist. Es ist 
-    \[
-        p_*[w \star v \star \overline{w}] = [p \circ  (w \star v \star \overline{w})] = [ p \circ  w] \star [p \circ  v] \star [p \circ  \overline{w}]
-    .\] 
-und damit ist
+    ein Isomorphismus ist. Im Wesentlichen wenden wir nun einfach $\pi_1$ auf desen an, hierzu ist: 
+    \begin{IEEEeqnarray*}{rCl}
+        p_*[ w \star v \star \overline{w}] & = & [p \circ  (w \star v \star \overline{w})] \\
+                                           & = & [(\underbrace{p \circ  w}_{\substack{\text{Schleife} \\ \text{in $x_0$}}}) \star (p \circ v) \star (\underbrace{p \circ  \overline{w}}_{\substack{\text{Schleife}\\\text{in $x_0$}} })] \\
+                                           & = & [p \circ  w] \star [p \circ  v] \star [p \circ  \overline{w}]
+    \end{IEEEeqnarray*}
+    beachte, dass nun die $\star$ in der letzten Zeile die Verknüpfung in der Fundamentalgruppe  $\pi_1(X,x_0)$ bezeichnet.
 \[
-    p_*(\pi_1(E,e_0)) = [p \circ  w] \star \pi_1(E,e_0') \star [p \circ  \overline{w}]
+    p_*(\pi_1(E,e_0)) = [p \circ  w] \star p_*(\pi_1(E,e_0')) \star [p \circ  \overline{w}]
 .\] 
 
 \end{proof}
 
-\begin{remark*}
-Leider musste ich heute die Vorlesung vorzeitig verlassen, deswegen endet die Mitschrift (erstmal) hier. Wird aber nachgetragen.
-\end{remark*}
+\begin{theorem}
+    Sei $p\colon  E \to  X$ eine Überlagerung, $x_0\in X$, $e_0\in p^{-1} (X)$. Dann ist die Abbildung
+    \[
+        p_*\colon  \pi_1(E,e_0) \to  \pi_1(X,x_0)
+    .\] 
+    injektiv.
+\end{theorem}
+\begin{proof}
+    Für Injektivität genügt es (nach bekannter Gruppentheorie) zu zeigen, dass der Kern trivial ist.
+
+Sei $[w]\in \pi_1(E,e_0)$. Angenommen, $[p \circ  w] = 1 \coloneqq [c_{x_0}]\in \pi_1(X,x_0)$. Sei $H$ eine Homotopie von  $p \circ  w$ nach $c_{x_0}$. Es ist $p \circ  c_{e_0} = c_{x_0}$, also $c_{e_0}$ ein Lift von $c_{x_0}$ mit gleichem Anfangspunkt wie $w$.
+
+Nach dem \nameref{thm:homotopieliftungssatz} gibt es eine Homotopie von $w$ nach  $c_{e_0}$ relativ Endpunkten, diese Homotopie zeigt uns also genau, dass
+\[
+    [w] = [c_{e_0}]  = 1 \in \pi_1(E,e_0)
+.\] 
+und somit ist $\ker p_*$ trivial.
+\end{proof}
+
+\begin{example}[Zusammenhängende Überlagerungen der $S^1$]
+    Wir wollen alle zusammenhängenden Überlagerungen der $S^1$ bestimmen. Da  $S^1$ (lokal) wegzusammenhängend, können wir hierzu  \autoref{thm:äquivalenz-von-überlagerungen-über-lokal-wegzsuammenhängendem-wegzusammenhängendem-raum} verwenden und interessieren uns folglich für die charakteristischen Untergruppen der Überlagerung. Aus \autoref{cor:wegzusammenhängende-überlagerungen-besitzt-bis-auf-konjugation-eindeutige-charakteristische-untergruppe}  erhalten wir, dass die charakteristische Untergruppe eindeutig bestimmt ist, da wir uns wegzusammenhängende Überlagerungen der $S^1$ ansehen, und \autoref{thm:äquivalenz-von-überlagerungen-über-lokal-wegzsuammenhängendem-wegzusammenhängendem-raum} sagt uns dann auch, dass zwei Überlagerungen mit gleicher 
+
+    Die Untergruppen von $\pi_1(S^1,1)\cong \Z$ sind genau $\left \{0\right\} $ und $n\Z$ für $n\geq 1$. Eine Überlagerung mit Fundamentalgruppe $\left \{0\right\} $ ist genau
+    \[
+    \exp \colon  \R \to  S^1
+    .\] 
+    , Überlagerungen mit Fundamentalgruppe $n\Z$ sind.
+
+    TODO: Beispiel noch nicht fertig.
+\end{example}
+\label{beispiel fertig machen}
+
+
+\section{Die universelle Überlagerung}
+
+\begin{definition}[Semilokal einfachzusammenhängend]\label{def:semilokal-einfachzusammenhängend}
+    Ein Raum $X$ heißt  \vocab{semilokal einfachzusammenhängend}, wenn $X$ lokal wegzusammenhängend ist und es für jeden Punkt  $x\in X$ eine wegzusammenhängende Umgebung $U$ von  $x$ gibt, so dass die Abbildung
+    \[
+        ι_* \colon  \pi_1(U,x) \to  \pi_1(X,x)
+    .\] 
+    trivial ist.
+\end{definition}
+
+\begin{remark}
+    Es genügt an dieser Stelle, $\pi_1(U,x) = 0$ oder $\pi_1(X,x) = 0$ zu haben, aber das ist nicht gefordert.
+\end{remark}
+
+\begin{definition}[universelle Überlagerung]\label{def:universelle-überlagerung}
+    Sei $X$ wegzusammenhängend und lokal wegzusammenhängend. Eine Überlagerung  $p\colon  E \to X$ heißt \vocab{universell}, falls $E$ einfachzusammenhängend ist. 
+\end{definition}
+
+\begin{example}
+    Die Überlagerung  $\R \stackrel{\exp }{\longrightarrow} S^1$ ist eine universelle Überlagerung.
+\end{example}
+
+
+\begin{theorem}\label{thm:universelle-überlagerungen-existieren-genau-für-semilokal-einfachzusammenhängende-lokal-wegzusammenhängenden-zusammenhängende-räume}
+    Sei $X$ lokal wegzusammenhängend und zusammenhängend. Dann sind äquivalent:
+\begin{enumerate}[1)]
+        \item $X$ ist semilokal einfachzusammenhängend.
+        \item  $X$ hat eine universelle Überlagerung
+        \item Für jeden Basispunkt  $x_0\in X$ und jede Untergruppe $H\subset \pi_1(X,x_0)$ existiert eine wegzusammenhängende Überlagerung $p\colon  E \to  X$ mit $e_0\in p^{-1} (x_0)$, so dass $p_*(\pi_1(E,e_0)) = H$.
+    \end{enumerate}
+\end{theorem}
+
+
+\begin{proof}
+    Es fehlen hier die Richtungen $3 \implies 2 \implies 1$.
+\end{proof}

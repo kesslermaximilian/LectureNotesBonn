@@ -1,0 +1,128 @@
+%! TEX root = ./master.tex
+\lecture[]{Do 24 Jun 2021 10:20}{}
+
+\begin{definition*}\label{def:h-äquivalent-für-untegruppen}
+    Sei $H\subset \pi_1(X,x_0)$ eine Untergruppe. Zwei Wege $w,w'$ in  $X$ mit  $w(0) = w'(0) = x_0$ heißen \vocab{$H$-äquivalent}, falls $w(1) = w'(1)$ und  $[w \star \overline{w}']\in H$. 
+\end{definition*}
+
+\begin{oral}
+Das ist keine gängige Notation, und dient einfach nur, den Beweis besser aufschreiben zu können.    
+\end{oral}
+
+\begin{lemma}\label{lm:h-äquivalent-ist-äquivalenzrelation}
+    Dies definiert eine Äquivalenzrelation auf
+    \[
+        \left \{w\colon  I \to  X \mid w(0) = x_0\right\} 
+    .\] 
+\end{lemma}
+
+\begin{notation*}
+    Wir notieren $[w]_H$ für die korrespondierenden Äquivalenzklassen.
+\end{notation*}
+
+\begin{proof}
+    Reflexivität ist klar, weil $[w \star \overline{w}] = [c_{x_0}] \in H$.
+
+    Für Symmetrie benötigen wir nur, dass aus $g\in H$ auch $g^{-1}\in H$ folgt.
+
+    Für Transitivität benötigen wir, dass $g,g'\in H$ auch $gg'\in H$ impliziert, denn so ist
+    \[
+        [\underbrace{w \star \overline{w'}}_{\in H} \star \underbrace{w' \star \overline{w''}}_{\in H}] = [ w \star \overline{w''}]
+    .\] 
+\end{proof}
+
+Wir definieren
+\[
+    E(H) \coloneqq  \faktor{\left \{w\colon  I \to  X \mid  w(0) = x_0\right\} }{\text{H-Äquivalenz}}
+.\] 
+
+und $p\colon E(H) \to  X$ durch $p([w]_H) = w(1)$.
+
+ \begin{example}
+     Ist $H = \left \{\star\right\} $ trivial, so sind $w$ und  $w'$  $H$-äquivalent genau dann, wenn  $w(1) = w'(1)$ und  $w \simeq w'$ relativ Endpunkten.
+
+     Ist  $H = \pi_1(X,x_0)$, so sind $w$ und  $w'$  $H$-äquivalent genau dann, wenn  $w(1) = w'(1)$.
+\end{example}
+
+\begin{lemma}\label{lm:basis-vonsemilokal-einfachzusammenhängendem-zusammenhängendem-raum}
+    Sei $X$ semilokal einfachzusammenhängend, lokal wegzusammenhängend und wegzusammenhängend. Dann ist
+     \[
+         \mathcal{B} \coloneqq  \left \{U\subset X \text{ offen}\mid  U \text{ ist wegzusammenhängend}, \pi_1(U) \to  \pi_1(X) \text{ ist trivial}\right\} 
+    .\] 
+    eine Basis der Topologie.
+\end{lemma}
+
+
+\begin{proof}
+    Sei $V\subset X$ offen, $x\in V$. Es ist zu zeigen, dass es ein $U\in \mathcal{B}$ mit $x\in U\subset V$ gibt. 
+
+    Weil $X$ semilokal einfachzusammenhängend ist, gibt es eine Umgebung  $U'$ von  $x$ mit  $U'$ wegzusammenhängend und $\pi_1(U') \to  \pi_1(X)$ trivial sowie $U'\subset V$. Da $U'$ Umgebung ist, existiert ein  $U''\subset X$ offen mit $x\in U'' \subset U'$, und weil $X$ lokal wegzusammenhängend und  $U''$ offen ist auch  $U''$ lokal wegzusammenhängend. Die Wegekomponenten von  $U''$ sind nun offen in  $U''$ (nach  \autoref{thm:wegkomponenten-in-lokal-wegzusammenhängendem-raum-sind-offen}) und damit auch in $X$. 
+
+    Sei $U$ die Wegekomponente von  $U''$, die  $x$ enthält. Dann ist  $U\subset X$ offen, wegzusammenhängend, $x\in U$, $U\subset U''\subset U'\subset V$, und
+    \[
+        \pi_1(U,x) \to  \pi_1(U',x) \stackrel{g \mapsto 0}{\longrightarrow}   \pi_1(X,x)
+    .\] 
+    ist somit auch die triviale Abbildung. Also ist $U''$ ein Basiselement mit $x\in U''\subset V$.
+\end{proof}
+\todo{basispunkte der gruppen}
+
+Sei $w\colon I\to x$         mit $w(0) = x_0$, $U\in \mathcal{B}$ mit $w(1) \in U$, so definiere
+\[
+    \mathcal{B}([w]_H,U) = \left \{[v]_H \in E(H) \mid v = w \star u, u\colon I\to U\right\}  
+.\]
+
+\begin{recap}
+    Das hängt wirklich nur von $[w]_H$ ab, nicht von der Wahl des Vetreters. Ist nämlich  $w \simeq_H w'$, so auch  $w \star u \simeq_H w' \star u$ wegen
+     \[
+    w \star u \star \overline{u} \star \overline{w'} \simeq w \star \overline{w'} \simeq_H c_{x_0}
+    .\] 
+\end{recap}
+
+\begin{lemma}
+    Sei $[w]_H\in \mathcal{B}([w]_H,U)$. Dann ist
+    \[
+        \mathcal{B}([v]_H,U) = \mathcal{B}([w]_H,U)
+    .\] 
+\end{lemma}
+
+\begin{proof}
+    '$\supseteq$'. Schreibe $v = w \star u$ mit  $u\colon  I \to  U$ nach Voraussetzung. Sei $[\tilde{v}]_H \in \mathcal{B}([w]_H,U)$ mit $\tilde{v} = w \star \tilde{u}$ mit $\tilde{u}\colon  I \to  U$ beliebig.
+
+    Dann ist
+    \[
+        \tilde{v} = w \star \tilde{u} \simeq w \star u \star \overline{u} \star \tilde{u} = v \star (\underbrace{\overline{u} \star \tilde{u}}_{\text{Weg in $U$}})
+    .\] 
+    Also $[\tilde{v}]_H = [v \star (\overline{u} \star \tilde{u})]_H \in \mathcal{B}([v]_H, U)$.
+
+    Insbesondere ist somit $[w]_H \in  \mathcal{B}([v]_H, U)$. Die Inklusion '$\subset $' folgt also analog.
+\end{proof}
+
+\begin{proposition}
+    Die Mengen $\mathcal{B}([w]_H, U)$ bilden eine Basis einer Topologie auf $E(H)$.
+\end{proposition}
+
+\begin{proof}
+    Seien $B([w]_H, U)$ und  $B([w']_H, U')$ zwei solche offenen Mengen, und wähle  $[v]_H \in \mathcal{B}([w]_H, U) \cap \mathcal{B}([w']_H, U')$. Nach Lemma 18.6 ist dann
+    \[
+        \mathcal{B}([w]_H, U) = \mathcal{B}([v]_H, U), \qquad \mathcal{B}([w']_H, U') = \mathcal{B}([v]_H, U')
+    .\] 
+    Sei $U'' \subset U \cap  U'$, $U'' \in \mathcal{B}$ und $v(1) \in U''$. Dann ist
+    \[
+        \mathcal{B}([v]_H, U'') \subset \mathcal{B}([w]_H, U) \cap \mathcal{B}([w']_H, U')
+    .\] 
+    und enthält immer noch $[v]_H$.
+\end{proof}
+
+Wir statten $E(H)$ nun mit dieser Topologie aus.
+
+ \begin{corollary}
+     Mit dieser Topologie ist die Abbildung $p\colon  E(H) \to  X$ stetig.
+\end{corollary}
+
+
+\begin{proof}
+    Es ist zu zeigen, dass für $U\in \mathcal{B}$ auch $p^{-1} (U)\subset E(H)$ offen ist. Es ist
+    \[
+        p^{-1} (U) = \left \{[w]_H \in E(H) \mid  w(1) \in U\right\} = \bigcup_{[w]_H, w(1) \in U}  \mathcal{B}([w]_H, U)
+    .\] 
+\end{proof}
