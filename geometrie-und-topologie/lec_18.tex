@@ -126,3 +126,142 @@ Wir statten $E(H)$ nun mit dieser Topologie aus.
         p^{-1} (U) = \left \{[w]_H \in E(H) \mid  w(1) \in U\right\} = \bigcup_{[w]_H, w(1) \in U}  \mathcal{B}([w]_H, U)
     .\] 
 \end{proof}
+
+\begin{lemma}
+    Sei $[w]_H\in E(H), U \in \mathcal{B}$ mut $w(1) \in U$.  Dann ist
+    \[
+        p|_{B([w]_H, U)} \colon  \mathcal{B}([w]_H, U) \to  U
+    .\] 
+    ein Homöomorphismus.
+\end{lemma}
+
+\begin{proof}
+    \begin{description}
+        \item[Surjektivität]. Sei $x\in U$. Weil $U$ wegzsammenhängend gibt es einen Weg  $u\colon  I \to  U$ mit $u(0) = w(1)$ und  $u(1) = x$. Dann ist  $[w \star u]_H \in  \mathcal{B}([w]_H, U)$ und $p([w \star u]_H) = ( w \star u) (1) = u(1) = x$. 
+        \item[Injektivität] Seien $[v]_H, [\tilde{v}]_H\in \mathcal{B}([w]_H, U)$ mit gleichem Bild unter $p$, d.h.  $v(1) = \tilde{v}(1)$.
+
+            Wir können annehmen, dass $v = w \star u$ und  $\tilde{v} = w \star \tilde{u}$. Dann ist
+            \[
+                [ v \star \overline{\tilde{v}}] = [ w \star \underbrace{u \star \overline{\tilde{u}}}_{\text{Schleife in $U$}}\star \overline{w}]
+            .\] 
+            Weil $\pi_1(U) \to  \pi_1(X)$ trivial, ist diese Schleife in $U$ also in  $X$ nullhomotop, und somit
+             \[
+                 [v \star \overline{\tilde{v}}] = [ w \star \overline{w}] = [c_{x_0}]
+            .\] 
+            also $[v \star \overline{\tilde{v}}] = 0 \in H$, also wie gewünscht $[v]_H = [\tilde{v}_H$.
+    \end{description}
+    Insbesondere ist $p$ offen, da  Basiselemente auf Basiselemente gehen. Da $p$ auch stetig ist und  $B([w]_H, U)$ offen, ist auch 
+     \[
+         p|_{B([w]_H, U)}
+    .\] 
+    offen und stetig, und somit ein Homöomorphismus.
+\end{proof}
+
+\begin{proposition}
+    $p$ ist eine Überlagerung.
+\end{proposition}
+
+\begin{proof}
+    Sei $x\in X$, wähle ein Basiselement  $U\in \mathcal{B}$ mit $x\in U$.
+    \begin{claim}
+        Es ist
+        \[
+            p^{-1} (U) = \bigsqcup_{[w]_H \in p^{-1} (x)} \mathcal{B}([w]_H, U)
+        .\] 
+    \end{claim}
+    \begin{subproof}
+        Die Richtung '$\supseteq$' ist klar.
+
+        Für ' $\subset $' sei $[v]_H \in p^{-1} (U)$ beliebig. Nach Lemma 18.9 ist $p|_{\mathcal{B}([v]_H, U)}\colon  \mathcal{B}([v]_H, U) \to  U$ ein Homöomorphismus, also insbesondere surjektiv und wir finden $[w]_H \in \mathcal{B}([v]_H, U)$ mit $p([w]_H) = x$.
+
+        Nach Lemma 18.6 ist nun  $\mathcal{B}([v]_H, U) = B([w]_H, U)$, also 
+        \[
+            [v]_H \in \mathcal{B}([w]_H, U)
+        .\] 
+
+        Die Vereinigung ist auch disjunkt: Angenommen, $[v]_H \in \mathcal{B}([w]_H, U)\cap \mathcal{B}([w']_H, U)$ mit $w(1) = w'(1) = x$, so erhalten wir nach 18.6 dass  $B([w]_H,U) = \mathcal{B}([v]_H, U) = \mathcal{B}([w']_H, U)$, und mit Lemma 18.9 ist $p|_{B([w']_H, U)}$ injektiv, also $[w]_H = [w']_H$.
+    \end{subproof}
+    Also 
+    \[
+        p^{-1} (U) = \bigsqcup_{[w]_H \in p^{-1} (x)} \mathcal{B}([w]_H, U) \stackrel{\cong}{\longrightarrow}   U \times p^{-1} (x)
+    .\] 
+    mittels
+    \[
+        [v]_H \mapsto (p([v]_H), [w]_H)
+    .\] 
+    ein Homöomorphismus über $U$ und  $p^{-1} (x)$ ist diskret, weil die disjunkte Vereinigung über offene Mengen war, die jeweils genau einen Punkt aus der Faser enthalten.
+\end{proof}
+
+\begin{lemma}
+    Sei $w\colon  I \to X$ ein Weg mit $w(0) = x_0$. Dann ist 
+        \begin{equation*}
+        \tilde{w}: \left| \begin{array}{c c l} 
+            I & \longrightarrow & E(H) \\
+            t & \longmapsto &  [w_t]_H
+        \end{array} \right.
+    \end{equation*}
+    mit $w_t(s) = w(ts)$ eine Hebung von  $w$ mit Anfangspunkt  $e_0 \coloneqq  [c_{x_0}]_H$.
+\end{lemma}
+
+\begin{proof}
+    $\tilde{w}$ ist stetig. Sei $t\in [0,1]$ und $U\in \mathcal{B}$ und $w(t) \in U$. Dann ist $\mathcal{B}([w_t]_H, U)$ eine offene Umgebung von $[w_t]_H$. Es genügt zu zeigen, dass  $\tilde{w}^{-1}(B([w_t]_H, U))\subset I$ offen ist.
+
+    Da $w$ stetig ist, ist $w^{-1}(U)\subset I$ offen, also gibt es $0\leq a < t < b \leq 1$ mit $w((a,b)) \subset U$.
+\begin{claim}
+    Es ist $\tilde{w}((a,b)) \subset B([w_t]_H, U)$.
+\end{claim}
+
+    \begin{subproof}
+        Sei $s\in (a,b)$. Falls $s\geq t$ ist, so ist $w_s \simeq w_t \star w_{t,s}$ wobei $w_{t,s}(r) = w(t + (s-t)r)$.
+
+        Also ist $[w_s]_H \in \mathcal{B}([w_t]_H, U)$. Analoges gilt für $s\leq t$ mit $w_s \simeq w_t \star \overline{w_{s,t}}$.
+    \end{subproof}
+    Also ist $\tilde{w}$ stetig. Nun ist
+    \begin{itemize}
+        \item $\tilde{w}(0) = [w_0]_H = [c_{…0}]_H = e_0$.
+        \item $p(\tilde{w}(t)) = w_t (1) = w(t)$
+    \end{itemize}
+    Also hebt $\tilde{w}$ den Weg  $w$.
+\end{proof}
+
+
+\begin{proof}[Fortsetzung des Beweises von \autoref{thm:universelle-überlagerungen-existieren-genau-für-semilokal-einfachzusammenhängende-lokal-wegzusammenhängenden-zusammenhängende-räume}]
+    Es fehlt noch die Richtung $1) \implies 3)$.  Wir haben bereits gezeigt, dass $p\colon  E(H) \to  X$ eine Überlagerung ist.
+
+    \underline{1. Schritt}: $E(H)$ ist wegzusammenhängend. Sei  $[w]_H \in E(H)$. Nach Lemma 18.11 ist
+        \begin{equation*}
+        \tilde{w}: \left| \begin{array}{c c l} 
+            I & \longrightarrow & E(H) \\
+            t & \longmapsto &  [w_t]_H
+        \end{array} \right.
+    \end{equation*}
+    eine Hebung von $w$. Es ist  $\tilde{w}(0) = e_0, \tilde{w}(1) = [w_1]_H = [w]_H$, also ist $\tilde{w}$ ein Weg von $e_0$ nach $[w]_H$, also ist  $E(H)$ wegzusammenhängend, denn wir können von überall nach  $e_0$ laufen.
+
+    \underline{2. Schritt} Es ist $p_*(\pi_1(E(H),e_0)) = H$.
+
+    Nach dem Wegehebungssatz und dem Homotopiehebungssatz gilt:
+    \[
+        \forall [w] \in \pi_1(X,x_0) \colon  [w] \in p_*(\pi_1(E(H),e_0)) \iff  \tilde{w} \text{ ist eine Schleife an $e_0$}
+    .\] 
+    $\tilde{w}$ ist gegeben durch  $\tilde{w}(t) = [w_t]_H$. Also ist $\tilde{w}(1) = [w]_H$. Es ist zudem $[w]_H = [c_{x_0}] = e_0$ genau dann wenn $[w]\in H$. Also folgt
+    \[
+        p_*(\pi_1(E(H),e_0)) = H
+    .\] 
+    wie gewünscht.
+\end{proof}
+
+\section{Decktransformationen}
+\begin{lemmadef}[Decktransformation]\label{def:decktransformation}
+    Sei $p\colon  E \to  X$ eine Überlagerung. Eine \vocab{Decktransformation} von $p$ ist ein Homöomorphismus
+     \[
+    \begin{tikzcd}[column sep = tiny]
+        E \ar{rr}{f}[swap]{\cong} \ar[swap]{dr}{p} & & E \ar{dl}{p} \\
+    & X
+    \end{tikzcd}
+    \]
+    ein Homöomorphismus über $X$.  Wir bezeichnen mit  $\Delta(p)$ die Menge der Decktransformationen, und diese bilden eine Gruppe.
+\end{lemmadef}
+
+\begin{proof}
+    Sind $f,g\in \Delta(p)$ ist $(p \circ  g) \circ  f = p \circ  f = p$, und somit $g \circ  f \in \Delta(p)$. Für $f\in \Delta(p)$ ist auch $f^{-1}\in \Delta(p)$.
+\end{proof}
