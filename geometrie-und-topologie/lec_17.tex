@@ -142,7 +142,9 @@ Nach dem \nameref{thm:homotopieliftungssatz} ist somit $\tilde{w} \star L(f \cir
 \end{theorem}
 
 \begin{warning}
-    Die Bedingung 2) erforder wirklich, dass $p_*(\pi_1(E,e_0))$, $p'_*(\pi_1(E',e_0'))$ als Untergruppen von $\pi_1(X,x_0)$ \textit{gleich} sind, nicht nur homöomorph.
+    Die Bedingung 2) erfordert wirklich, dass $p_*(\pi_1(E,e_0))$, $p'_*(\pi_1(E',e_0'))$ als Untergruppen von $\pi_1(X,x_0)$ \textit{gleich} sind, nicht nur homöomorph.
+
+    Vergleiche hierzu auch \autoref{ex:zusammenhängende-überlagerungen-der-s1}. 
 \end{warning}
 
 \begin{figure}[ht]
@@ -180,9 +182,14 @@ Nach dem \nameref{thm:homotopieliftungssatz} ist somit $\tilde{w} \star L(f \cir
 \end{theorem}
 
 \begin{remark*}
-    Die Aussage des Satzes ist so zu verstehen, dass die beiden Gruppen $p_*(\pi_1(E,e_0))$ und $p_*(\pi_1(E,e_0'))$ als \textit{Untergruppen} von $\pi_1(X,x_0)$ gleich sind, nicht, dass sie isomorph sind.
-
-    Vergleiche hierzu dann auch \autoref{ex:zusammenhängende-überlagerungen-der-s1}. 
+    Die Aussage des Satzes ist so zu verstehen, dass die beiden Gruppen $p_*(\pi_1(E,e_0))$ und $p_*(\pi_1(E,e_0'))$ als \textit{Untergruppen} von $\pi_1(X,x_0)$ zueinander konjugiert sind mittels des Isomorphismus
+        \begin{equation*}
+        \varphi : \left| \begin{array}{c c l} 
+            p_*(\pi_1(E,e_0)) & \longrightarrow & p_*(\pi_1(E,e_0')) \\
+            \left[v\right] & \longmapsto &  \left[p \circ  w\right] \star \left[v\right] \star \left[p \circ  \overline{w}\right]
+        \end{array} \right.
+    \end{equation*}
+Insbesondere sind sie also isomorph.
 \end{remark*}
 
 
