@@ -61,6 +61,10 @@
     Diest ist eine Untergruppe von $G$.
 \end{definition}
 
+\begin{remark*}
+    Der Begriff Normalisator kommt daher, dass es sich bei $N_GH$ um die größte Untergruppe von  $G$ handelt, in der  $H$ noch normal ist. Ist  $H$ ein Normalteiler von  $G$, so ergibt sich  $N_GH = G$. Außerdem erkennt man so, dass auch  $H \leq  N_GH$.
+\end{remark*}
+
 \begin{remark}
     Die Bedingung $gH g^{-1} = H$ sagt \textit{nicht} notwendigerweise aus, dass $ghg^{-1} = h$ für $h\in H$, nur dass die beiden entstehenden Mengen gleich sind.    
 \end{remark}
@@ -162,9 +166,9 @@ Insbesondere erhalten wir
             so folgt aus Injektivität von $\varphi $ zunächst $f(e_0) = g(e_0)$, aber $f,g$ sind Hebungen von  $p$ und stimmen in  $e_0$ überein, also gilt $f=g$ nach der Eindeutigkeit im  \nameref{thm:allgemeiner-liftungssatz}.
         \item[Surjektivität] Sei $[w] \in N_{\pi_1(X,x_0)}H$ ein Element aus dem Normalisator. Sei $e_0' \coloneqq  L(w,e_0)(1)$ der Endpunkt der Hebung von $e_0'$.
 
-            Es ist
+            Es ist nach \autoref{thm:charakteristische-untergruppen-innerhalb-der-faser-sind-nur-konjugiert-wenn-weg-zwischen-urbildern-existiert} nun:
             \begin{IEEEeqnarray*}{rCl}
-                p_*(\pi_1(E,e_0)) & = & [p \circ  L(w,e_0)]^{-1}\star H \star [p \circ  L(w,e_0)] \\
+                p_*(\pi_1(E,e_0')) & = & [\underbrace{p \circ  L(w,e_0)}_{=w^{-1}}]^{-1}\star H \star [\underbrace{p \circ  L(w,e_0)}_{= w}] \\
                                   & \stackrel{[w]\in N_{\pi_1(X,x_0)}H}{=}  & H
             \end{IEEEeqnarray*}
             Nach \autoref{thm:äquivalenz-von-überlagerungen-über-lokal-wegzsuammenhängendem-wegzusammenhängendem-raum} gibt es also einen Homöomorphismus $f\colon  E \stackrel{\cong}{\longrightarrow} E$ mit $p \circ  f = p$ und $f(e_0) = e_0'$, bei $f$ handelt es sich dann um eine Decktransformation, und wir sehen leicht
