@@ -454,6 +454,7 @@
 %https://tex.stackexchange.com/questions/283502/reset-counter-at-beginning-of-proof
 \newtheorem{claim}{\ifenglish Claim\else Behauptung\fi}
 \AtBeginEnvironment{proof}{\setcounter{claim}{0}}
+\newtheorem*{claim*}{\ifenglish Claim\else Behauptung\fi}
 
 \theoremstyle{definition}
 \newtheorem*{fact}{\ifenglish Fact\else Fakt\fi}
