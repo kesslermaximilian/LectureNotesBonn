@@ -1,0 +1,176 @@
+%! TEX root = ./master.tex
+\lecture[]{Di 29 Jun 2021 12:14}{Decktransformationen}
+
+\begin{example}
+    \begin{enumerate}[1)]
+        \item Betrachte wieder die Überlagerung $\exp \colon  \R \to  S^1$.
+            \begin{claim*}
+                $\Delta(\exp) = \left \{T_n \mid  n\in \Z\right\} $ mit $T_n(x) = x+n$.
+            \end{claim*}
+            \begin{proof}
+                Wir zeigen zunächst, dass es sich überhaupt um Decktransformationen handelt. Offensichtlich sind das Automorphismen von $\R$, wir müssen noch zeigen, dass diese über $S^1$ sind, es ist hierzu
+                 \[
+                     \exp (T_n(x)) = \exp (x+n) = \exp (x)
+                .\] 
+
+                Sei nun $f\in \Delta(\exp )$ eine beliebige Decktransformation. Dann ist $f(0) \in \Z$ weil $\exp ^{-1}(1) \in \Z$ und $f$ ein Morphismus über  $S^1$ ist. Betrachte nun
+                    \begin{equation*}
+            \varphi \colon \left|        \begin{array}{c c l} 
+                    \R & \longrightarrow & \R \\
+                    x & \longmapsto &  f(x) - (x + f(0))
+                    \end{array}\right.
+                \end{equation*}
+               Dann ist
+               \[
+                   \exp (f(x) - (x + f(0)) = \exp (f(x)) \cdot  \exp (x)^{-1} \cdot \exp (f(0))^{-1} = \exp (x) \exp (x)^{-1} = 1
+               .\] 
+               Also ist $\varphi (\R) \in \Z$, also konstant weil $\Z$ die diskrete Topologie trägt. Mit $f(0) - (0 + f(0)) = 0$ sehen wir $\varphi  \equiv 0$.
+                \[
+                    f(x) = x + f(0) \quad \implies \quad f = T_{f(0)}
+               .\] 
+               also haben wir tatsächlich alle solchen Überlagerungen gefunden.
+            \end{proof}
+        \item Betrachte für $n\geq 2$ die Überlagerung $p\colon  S^n \to  \R\mathbb{P}^n$.
+            \begin{claim*}
+                Dann ist $\Delta(p) = \left \{\id_{S^n}, ι\right\} $, wobei $ι$ die Antipodalabbildung sein sollte.
+            \end{claim*}
+            \begin{proof}
+                Es ist klar, dass die beiden vorgegebenen Abbildungen Decktransformationen sind.
+
+                Ist $f\in \Delta(p)$, so ist bereits $f(x) = \sgn(x) \cdot x$, wobei
+                \[
+                \sgn \colon  S^n \to  \left \{-1,1\right\} 
+                .\] 
+                stetig ist. Die Abbildung $\sgn$ ist also konstant, und es folgt  $f=\id_{S^n}$ für $\sgn \equiv 1$, und $f = ι$ für  $\sgn \equiv -1$.
+            \end{proof}
+
+            Also ist $\Delta(p) \cong \Z / 2\Z$, denn es gibt nur eine Gruppe mit 2 Elementen.
+    \end{enumerate}
+\end{example}
+\todo{Buchstabe für die Antipodalabbildung?}
+
+\begin{notation*}
+    Ist $H$ eine Untergruppe von  $G$, so schreiben wir  $H \leq G$, nicht wie ansonsten üblich $H \subset G$.
+\end{notation*}
+
+\begin{definition}[Normalisator]\label{def:normalisator}
+    Sei $H\leq  G$ eine Untergruppe. Der \vocab{Normalisator} von $H$ in  $G$ ist definiert durch
+    \[
+    N_GH \coloneqq  \left \{g\in G \mid  gH g^{-1} = H\right\} 
+    .\] 
+    Diest ist eine Untergruppe von $G$.
+\end{definition}
+
+\begin{remark}
+    Die Bedingung $gH g^{-1} = H$ sagt \textit{nicht} notwendigerweise aus, dass $ghg^{-1} = h$ für $h\in H$, nur dass die beiden entstehenden Mengen gleich sind.    
+\end{remark}
+
+\begin{remark}
+    Per Definition ist $H$ normal in  $N_GH$. Also ist $H \backslash N_GH$ (die Menge der Linksnebenklassen) wieder eine Gruppe mittels
+    \[
+        (Hg) (Hg') = H(gg')
+    .\] 
+\end{remark}
+
+\begin{oral}
+    Es gibt erstmal keinen Grund, warum wir die \textit{Links}nebenklassen verwenden, für die Rechtsnebenklassen gilt Obiges auch. Wir werden aber später im Zusammenhang mit Gruppentheorie sehen, dass es aus Konsistenzgründen besser ist, jetzt schon mit Linksnebenklassen zu arbeiten, damit wir später nicht zwischen den beiden Konzepten wechseln müssen.
+\end{oral}
+
+\underline{Erinnerung} Ist $p\colon  E\to X$ eine Überlagerung mit $X$ zusammenhängend und lokal wegzusammenhängend,  $x_0\in X$ und $e_0\in p^{-1} (x_0)$ sowie $H\coloneqq p_*(\pi_1(E,e_0))$ die charakteristischen Untergruppe. Dann ist
+    \begin{equation*}
+    \varphi : \left| \begin{array}{c c l} 
+        E & \longrightarrow & \left \{\text{Weg $w$ in  $X$}\mid  w(0) = x_0\right\} / \text{$H$-Äquivalenz} \\
+e & \longmapsto &  \left[ p \circ  v \right] _H
+    \end{array} \right.
+\end{equation*}
+eine Bijektion, wobei $v$ ein Weg von  $e_0$ nach $e$ sei.
+\todo{Erklärung davon}
+
+Insbesondere erhalten wir
+\[
+    \varphi (p^{-1} (x_0)) = \faktor{\pi_1(X,x_0)}{\text{$H$-Äquivalenz}}
+.\] 
+
+\begin{theorem}\label{thm:isomorphismus-von-decktransformationen-mit-nebenklassengruppe-von-charakteristischer-untergruppe-in-seinem-normalisator}
+    Seien $E,X,p,x_0,e_0,H$ wie oben.
+    \begin{enumerate}[1)]
+        \item Für $f\in \Delta(p)$ ist
+            \[
+                \varphi (f(e_0)) \in H \backslash N_{\pi_1(X,x_0)}H
+            .\] 
+        \item Die Abbildung
+                \begin{equation*}
+                \psi : \left| \begin{array}{c c l} 
+                    \Delta(p) & \longrightarrow & H \backslash N_{\pi_1(X,x_0)}H \\
+                    f & \longmapsto &  \varphi (f(e_0))
+                \end{array} \right.
+            \end{equation*}
+           ist ein Gruppenisomorphismus. 
+    \end{enumerate}
+\end{theorem}
+
+\begin{dcorollary}
+    Ist $p$ die universelle Überlagerung von  $X$, so ist
+    \[
+        \Delta(p) \cong \pi_1(X,x_0)
+    .\] 
+\end{dcorollary}
+
+\begin{proof}
+    Ist $p$ die universelle Überlagerung, so ist  $H = p_*(\pi_1(E,e_0)) = \left \{1\right\} $ die triviale Untergruppe, d.h. $N_{\pi_1(X,x_0)}H = \pi_1(X,x_0)$.
+\end{proof}
+
+\begin{proof}[Beweis von \autoref{thm:isomorphismus-von-decktransformationen-mit-nebenklassengruppe-von-charakteristischer-untergruppe-in-seinem-normalisator}]
+    \begin{enumerate}[1)]
+        \item Es ist $f$ eine Hebung von  $p$, denn es kommutiert ja
+            \[
+             \begin{tikzcd}
+                & E \ar{d}{p} \\
+                 E \ar{ur}{f} \ar[swap]{r}{p} & X
+            \end{tikzcd}
+        \]
+    Nach dem \nameref{thm:allgemeiner-liftungssatz} ergibt sich nun
+    \[
+        H = p_*(\pi_1(E,e)) \leq  p_*(\pi_1(E,f(e_0))
+    .\] 
+    Sei $v$ ein Weg von  $e_0$ zu $f(e_0)$. Dann ist
+    \[
+        H\leq p_*(\pi_1(E,f(e_0)) = [p \circ  v] ^{-1} \star p_*(\pi_1(E,e_0)) \star [p \circ  v]
+    .\]
+    Also ergibt sich zusammen
+    \[
+        [p \circ  v] ^{-1} \star H \star [p \circ  v] \leq H
+    .\] 
+    Vertauschen von $e_0,f(e_0)$ sowie Ersetzung von $f$ durch  $f^{-1}$ ergibt nun, dass auch
+    \[
+        [p \circ  v] \star H \star [p \circ v] ^{-1} \leq H
+    .\] 
+    und aus Symmetrie folgt dann
+    \[
+        [p \circ  v] \star H \star [p \circ  v] ^{-1} = H
+    .\] 
+    also folgt $[p \circ v] \in N_{\pi_1(X,x_0)} H$, und somit insbesondere
+    \[
+        \varphi (f(e_0)) = [p \circ  v]_H \in H \backslash N_{\pi_1(X,x_0)} H
+    .\] 
+\item
+    \begin{description}
+        \item[Injektivität] Seien $f,g \in \Delta(p)$ mit
+            \[
+                \varphi (f(e_0)) f \psi (f) = \psi (g) = \varphi (g(e_0))
+            .\] 
+            so folgt aus Injektivität von $\varphi $ zunächst $f(e_0) = g(e_0)$, aber $f,g$ sind Hebungen von  $p$ und stimmen in  $e_0$ überein, also gilt $f=g$ nach der Eindeutigkeit im  \nameref{thm:allgemeiner-liftungssatz}.
+        \item[Surjektivität] Sei $[w] \in N_{\pi_1(X,x_0)}H$ ein Element aus dem Normalisator. Sei $e_0' \coloneqq  L(w,e_0)(1)$ der Endpunkt der Hebung von $e_0'$.
+
+            Es ist
+            \begin{IEEEeqnarray*}{rCl}
+                p_*(\pi_1(E,e_0)) & = & [p \circ  L(w,e_0)]^{-1}\star H \star [p \circ  L(w,e_0)] \\
+                                  & \stackrel{[w]\in N_{\pi_1(X,x_0)}H}{=}  & H
+            \end{IEEEeqnarray*}
+            Nach \autoref{thm:äquivalenz-von-überlagerungen-über-lokal-wegzsuammenhängendem-wegzusammenhängendem-raum} gibt es also einen Homöomorphismus $f\colon  E \stackrel{\cong}{\longrightarrow} E$ mit $p \circ  f = p$ und $f(e_0) = e_0'$, bei $f$ handelt es sich dann um eine Decktransformation, und wir sehen leicht
+             \[
+                 \psi (f) = \varphi (f(e_0)) = \varphi (e_0') = [p \circ  L(w,e_0)]_H = [w]_H
+            .\] 
+    \end{description}
+    \end{enumerate}
+\end{proof}
