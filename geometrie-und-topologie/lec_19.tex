@@ -90,7 +90,7 @@ e & \longmapsto &  \left[ p \circ  v \right] _H
 eine Bijektion, wobei $v$ ein Weg von  $e_0$ nach $e$ sei.
 \todo{Erklärung davon}
 
-Insbesondere erhalten wir
+Insbesondere erhalten wir auch eine Bijektion
 \[
     \varphi (p^{-1} (x_0)) = \faktor{\pi_1(X,x_0)}{\text{$H$-Äquivalenz}}
 .\] 
@@ -113,7 +113,7 @@ Insbesondere erhalten wir
     \end{enumerate}
 \end{theorem}
 
-\begin{dcorollary}
+\begin{dcorollary}\label{cor:bei-universeller-überlagerung-sind-decktransformationen-isomorph-zu-fundamentalgruppe}
     Ist $p$ die universelle Überlagerung von  $X$, so ist
     \[
         \Delta(p) \cong \pi_1(X,x_0)
@@ -175,6 +175,108 @@ Insbesondere erhalten wir
              \[
                  \psi (f) = \varphi (f(e_0)) = \varphi (e_0') = [p \circ  L(w,e_0)]_H = [w]_H
             .\] 
+        \item[Gruppenhomomorphismus]
+            Seien $f,g \in \Delta(p)$ und $v$ ein Weg von  $e_0$ nach $f(e_0)$ sowie $v'$ ein Weg von  $e_0$ nach $g(e_0)$. Dann ist $g \circ v$ ein Weg von $g(e_0)$ nach $g(f(e_0))$ und $v' \star (g \circ v)$ ein Weg von $e_0$ nach $g(f(e_0))$.
+
+            Es ist nun
+            \begin{IEEEeqnarray*}{rCl}
+                \psi (g \circ f) & = & [p \circ  (v\star (g \circ v))]_H \\
+                                 & = & H[p \circ  (v' \star (g \circ v))] \\
+                                 & = & H[(p \circ  v') \star p(g \circ v)] \\
+                                 & = & H[p\circ v')] \star H[p (g \circ v)] \\
+                                 & \stackrel{p \circ  g = p}{=}  & H[p \circ v'] \star H[p \circ v] \\
+                                 & = & \psi (g) \star \psi (f)
+            \end{IEEEeqnarray*}
     \end{description}
     \end{enumerate}
 \end{proof}
+
+\begin{remark*}
+    Hier kam in der Vorlesung etwas zu Gruppen und Nebenklassen etc. Das wird noch nachgeholt, ich war mit Links- / Rechtsnebenklassen und deren Bezeichnung selbst etwas verwirrt.
+\end{remark*}
+
+
+\begin{definition}[$G$-Menge]\label{def:g-menge}
+    Sei $G$ eine Gruppe. Eine \vocab[$G$-Menge]{(Rechts-) $G$-Menge} ist eine Menge  $X$ mit einer Abbildung
+        \begin{equation*}
+        .: \left| \begin{array}{c c l} 
+        X\times G & \longrightarrow & X \\
+        (x,g) & \longmapsto &  x.g
+        \end{array} \right.
+    \end{equation*}
+    für die gilt
+    \begin{enumerate}[i)]
+        \item $x.1 = x$ für  $x\in X$
+        \item $(x.g).h = x.(gh)$ für  $x\in X$ und $g,h\in G$.
+    \end{enumerate}
+    Ein \vocab{Homomorphismus von $G$-Mengen} ist eine Abbildung $f\colon X \to  Y$, so dass
+\[
+    f(x.g) = f(x).g \qquad \forall x\in X, g\in G
+.\] 
+\end{definition}
+
+\begin{remark}[Ent- oder auch Verwirrung bezüglich Rinks und Lechts]
+    Analoges können wir für links-$G$-Mengen definieren, dann fordern wir  $h.(g.x) = (hg).x$. Eine Links- $G$-menge ist eine Rechts-$G$-Menge mittels
+     \[
+    x.g \coloneqq g^{-1}x.
+    .\] 
+    bzw. wir können auch eine Links-$G$-Menge als Rechts-$G^{\op}$-Menge auffassen.
+
+Eine Links-$G$-Menge ist nämlich nichts anderes als Ein Funktor  $\cat{G} \to  \Set$, und eine Rechts-$G$-Menge ist ein Funktor  $\cat{G}^{\op} \to  \Set$, aber wegen $\cat{G} \cong \cat{G}^{\op}$ sind die Konzepte äquivalent.
+\end{remark}
+
+\begin{trivial}
+    $G$-Mengen sind also genau Funktoren  $\cat{G} \to  \Set$, und Morphismen von $G$-Mengen  $X,Y \colon  \cat{G} \to  \Set$ sind genau natürliche Transformationen $X \to Y$.
+
+    Die Kategorie der $G$-Mengen über einer Gruppe  $G$ ist dann genau die Funktorkategorie  $[\cat{G},\Set]$.
+\end{trivial}
+
+\begin{example}
+    Ist $H\leq G$, so ist $H \backslash G$ eine  $G$-Menge mittels  $(Hg)g' = H(gg')$.
+\end{example}
+
+\begin{example}\label{ex:fundamentalgruppe-der-kleinschen-flasche-mittels-semidirektem-produkt-z-z}
+    Das semidirekte Produkt $\Z \rtimes Z$ von $\Z$ mit $\Z$ ist die Gruppe mit Menge $\Z\times \Z$ und Verknüpfung
+    \[
+        (n,m)(n',m') = (n+(-1)^m n', m + m')
+    .\] 
+    Es gibt eine Rechtswirkung
+        \begin{equation*}
+        \begin{array}{c c l} 
+            \R^2\times (\Z\rtimes \Z) & \longrightarrow & \R^2 \\
+            ((x,y),(n,m)) & \longmapsto &  ((-1)^m(x+n),y+m)
+        \end{array}
+    \end{equation*}
+    (Übung, dass das die Axiome erfüllt).
+    \begin{claim*}
+        $\forall (x,y) \in \R^2 \; \exists (n,m) \in \Z\rtimes \Z$, sodass
+        \[
+            (x,y).(n.m) \in I^2
+        .\] 
+    \end{claim*}
+    \begin{proof}
+        Sei $(x,y) \in \R^2$ beliebig. Zunächst existiert ein $m\in \Z$, sodass $y + m \in I$, und dann existiert ein $n\in \Z$ mit $(-1)^m x + n\in I$, dann ist
+        \[
+            (x,y) . \underbrace{(0,m).(n,0)}_{=((-1)^mn, m)} = ((-1)^mx, y+m)(n,0) = ((-1)^mx + n, y+m)
+        .\] 
+    \end{proof}
+        Falls $x\not\in \Z, y\not\in \Z$, so sind $n,m$ eindeutig bestimmt. Mittels den Gleichungen
+        \[
+            (t,0).(0,1) = (-t,1) \qquad (0,t).(1,0) = (1,t)
+        .\] 
+        folgt nun, dass $\faktor{\R^2}{(\Z \rtimes \Z)}$ die Kleinsche Flasche ist.
+        \begin{claim*}
+            Die Abbildung $\R^2 \to  \faktor{\R^2}{\Z \rtimes \Z}$ ist eine Überlagerung und $\Z \rtimes \Z$ sind die Decktransformationen.
+        \end{claim*}
+        \begin{proof}
+            Übung.
+        \end{proof}
+        Da $\R^2$ einfach zusammenhängend ist, folgt mit \autoref{cor:bei-universeller-überlagerung-sind-decktransformationen-isomorph-zu-fundamentalgruppe}, dass
+        \[
+            \pi_1(K) \cong \Z \rtimes \Z
+        .\] 
+\end{example}
+
+\begin{oral}
+    Semidirekte Produkte machen zwischen beliebigen Gruppen $G, H$ sind, wenn wir eine Wirkung von $G$ auf  $H$ haben. In obigem Fall gibt es aber nur eine nichttriviale Wirkung von  $\Z$ auf $\Z$, weswegn wir von \textit{dem} semidirekten Produkt $\Z \rtimes \Z$ sprechen können. 
+\end{oral}
