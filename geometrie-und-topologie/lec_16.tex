@@ -2,7 +2,7 @@
 \lecture[Bijektion zwischen Faser und Fundamentalgruppe für einfach zusammenhängende Überlagerungen. Fundamentalgruppe von $S^1$. Einfacher Zusammenhang von  $\R^n$, $ninn\N$ und $S^n$, $n\geq 2$. Stereographische Projektion $S^n \setminus \left\{\star\right\}\cong \R^n$. Lokal Wegzusammenhängende Räume und ihre Wegzusammenhangskomponenten. Überlagerungen über lokal wegzusammenhängenden Räumen. Allgemeiner Liftungssatz.]{Do 17 Jun 2021 10:15}{Die Fundamentalgruppe von $S^1$}
 
 \begin{notation*}
-    Sei $p\colon  E \to  X$ eine Überlagerung, $w\colon  I \to  X$ ein Weg mit $w(0) = x$ und  $e\in p^{-1} (x)$. Dann notieren wir mit $L(w,e)$ die Hebung von  $w$ mit Anfangspunkt  $e$, die nach dem \autoref{thm:weghebungssatz } eindeutig existiert.
+    Sei $p\colon  E \to  X$ eine Überlagerung, $w\colon  I \to  X$ ein Weg mit $w(0) = x$ und  $e\in p^{-1} (x)$. Dann notieren wir mit $L(w,e)$ die Hebung von  $w$ mit Anfangspunkt  $e$, die nach dem \nameref{thm:weghebungssatz} eindeutig existiert.
 \end{notation*}
 
 \begin{theorem}\label{thm:fundamentalgruppe-durch-überlagerung-mit-einfach-zusammenhängendem-raum}
@@ -51,7 +51,7 @@
     \[
         L(w\star w', 0) = L(w,0) \star L(w',L(w,0)(1))
     .\]
-    (wir heben zunächst $w$, und müssen verknüpfen mit der Wegung von  $w'$, die am Endpunkt der Hebung von  $w$, also an  $L(w,0)(1)$, beginnt). Wir interessieren uns für den Endpunkt von $L(w\star w',0)$, denn auf diesen bildet  $\varphi $ den Weg $w \star w'$ ab. Dazu genügt, den Endpunkt von  $L(w', L(w,0)(1))$ zu bestimmen, dies tun wir, indem wir den Weg parametrisieren:
+    (wir heben zunächst $w$, und müssen verknüpfen mit der Weghebung von  $w'$, die am Endpunkt der Hebung von  $w$, also an  $L(w,0)(1)$, beginnt). Wir interessieren uns für den Endpunkt von $L(w\star w',0)$, denn auf diesen bildet  $\varphi $ den Weg $w \star w'$ ab. Dazu genügt, den Endpunkt von  $L(w', L(w,0)(1))$ zu bestimmen, dies tun wir, indem wir den Weg parametrisieren:
     \[
         L(w',L(w,0)(1))(t) = L(w',0)(t) + L(w,0)(1)
     .\] 
@@ -296,7 +296,7 @@ Jede solche Umgebung enthält Punkte beider ursprünglicher Zusammenhangskompone
 \end{theorem}
 
 \begin{oral}
-    Eigenschaft 1) gilt nicht mit Wegzusammenhang, dazu betrachte als Gegenbeispiele eine triviale Überlagerung $S^1 \times F \to  S^1$ für $F\neq \left \{\star\right\} $.
+    Wir können die Implikation $1)$ nicht durch Wegzusammenhang von $E$ ersetzen, dazu betrachte als Gegenbeispiel eine triviale Überlagerung $S^1 \times F \to  S^1$ für $F\neq \left \{\star\right\} $.
 \end{oral}
 
 \begin{proof}
