@@ -384,6 +384,7 @@
         \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowstars *\else\fi, numbered = no]{#4*}
         \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}\ifshowdaggers $^{\dagger}$\else\fi, numbered = no]{d#4}
     \fi
+    \declaretheorem[style=#3,name=\makefirstuc{\expandafter\theoremname}, sibling=dummy]{n#4}
     \ifincludestars\else\renewenvironment{#4*}{\comment}{\endcomment}\fi
 }
 

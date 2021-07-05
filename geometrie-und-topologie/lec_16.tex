@@ -343,7 +343,7 @@ Jede solche Umgebung enthält Punkte beider ursprünglicher Zusammenhangskompone
     \end{enumerate}
 \end{proof}
 
-\begin{theorem}[Allgemeiner Liftungssatz]\label{thm:allgemeiner-liftungssatz}
+\begin{restatable}[Allgemeiner Liftungssatz]{theorem}{liftungssatz}\label{thm:allgemeiner-liftungssatz}
     Sei $p\colon  E \to X$ eine Überlagerung, $x_0\in X$, $e_0\in p^{-1} (x_0)$. Sei $Y$ wegzusammenhängend und lokal wegzusammenhängend. Sei  $y_0\in Y$ und $f\colon  (Y,y_0) \to  (X,x_0)$ eine punktierte Abbildung.
 
     Dann sind äquivalent:
@@ -352,7 +352,7 @@ Jede solche Umgebung enthält Punkte beider ursprünglicher Zusammenhangskompone
         \item Es ist $f_*(\pi_1(Y,y_0)) \subset p_*(\pi_1(E,e_0))$
     \end{enumerate}
     Ist eine der Bedingungen erfüllt, so ist $\tilde{f}$ eindeutig.
-\end{theorem}
+\end{restatable}
 
 \begin{proof}
     '1)$\implies$2)' Sei $\tilde{f}\colon (Y,y_0) \to  (E,e_0)$ eine Hebung, also $p \circ  \tilde{f} = f$. Wegen Funktorialität von $\pi_1$ ergibt sich dann

@@ -1,0 +1,349 @@
+%! TEX root = ./master.tex
+\lecture[]{Mo 05 Jul 2021 10:18}{}
+
+Wir starten mit einem Überblick der letzten Vorlesungen:
+
+%\liftungssatz*
+
+Ebenfalls sollte man sich \autoref{def:charakteristische-untegruppe}, \autoref{thm:äquivalenz-von-überlagerungen-über-lokal-wegzsuammenhängendem-wegzusammenhängendem-raum}, und \autoref{thm:charakteristische-untergruppen-innerhalb-der-faser-sind-nur-konjugiert-wenn-weg-zwischen-urbildern-existiert} ins Gedächtnis rufen.
+
+\todo{Füge 17.6-17.8 hier ein}
+
+Ebenfalls wichtig ist \autoref{thm:universelle-überlagerungen-existieren-genau-für-semilokal-einfachzusammenhängende-lokal-wegzusammenhängenden-zusammenhängende-räume}
+
+Insgesamt können wir folgendes zusammenfassen:
+
+\[
+    \faktor{\text{zsh. Überlagerungen von $X$}}{\text{Hom über $X$ }} \stackrel{1:1}{\leftrightarrow} \left \{\text{Konjugationsklassen von Untergruppen in $\pi_1(X,x_0)$}\right\} 
+.\]
+
+\begin{oral}
+    Das ganze ist schon sehr toll, aber bisher 'nur' eine mengentheoretische Aussage. Wir würden gerne auch die Homomorphismen (nicht-Isomorphismen insbesondere, die Isomorphismen verstehen wir, zumindest deren Existenz) verstehen.
+
+    Der Hauptsatz der Überlagerungstheorie verfolgt genau dieses Ziel, er gibt eine kategorientheoritschere Verallgemeinerung von obiger Bijektion.
+\end{oral}
+
+\begin{definition}
+    Eine $G$-Menge  $X$ heißt  \vocab{transitiv}, falls $\forall x,y \in X$ $\exists g\in G$ mit $x.g = y$. 
+\end{definition}
+
+\begin{dnotation}
+   Wir sagen auch, dass die Wirkung von $G$ auf  $X$ transitiv ist. 
+\end{dnotation}
+
+\begin{example}
+    Sei $H\subset G$ eine Untergruppe. Dann ist $H \backslash G$, die Menge der Nebenklassen von  $H$, eine transitive  $G$-Menge. Für  $Hg, Hg' \in  H \backslash G$ haben wir nämlich die Wirkung $Hg.(g^{-1}g') = Hg'$.
+\end{example}
+
+\begin{lemmadef}[Bahn]\label{def:bahn-orbit}
+    Sei $X$ eine  $G$-Menge und  $x\in X$. Dann definiert
+    \[
+    x.G = \left \{x.g \mid  g\in G\right\} 
+    .\] 
+    die \vocab{Bahn} oder auch \vocab{Orbit} von $x$. Dann ist  $x.G$ eine Unter- $G$-Menge und  $x.G$ ist transitiv.
+\end{lemmadef}
+\begin{proof}
+    \begin{description}
+        \item[Abgeschlossenheit] Sei $x.g \in x.G$ beliebig, dann ist die Wirkung unter einem beliebigen $g'$ genau
+            \[
+                (x.g).g' = x.(g \circ g')
+            .\] 
+            in $x.G$ enthalten, weil  $g \circ  g'\in G$.
+        \item[Transitivität] Seien $x.g$ und  $x.g'\in x.G$ beliebig. Dann ist
+            \[
+                (x.g).(gg^{-1}) = x.(gg^{-1}g') = x.g'
+            .\] 
+            und somit ist die Wirkung transitiv.
+    \end{description}
+\end{proof}
+
+\begin{lemma}
+Sei $X$ eine  $G$-Menge. Seien $x,x' \in X$ beliebig. Dann ist $x.G = x'.G$ oder  $(x.G) \cap  (x'.G) = \emptyset$.
+\end{lemma}
+
+\begin{proof}
+    Nimm an, dass $(x.G) \cap  (x'.G) \neq  \emptyset$. Wähle also ein $y$ mit 
+     \[
+         y\in  (x.G) \cap  (x'.G)
+    .\] 
+    Dann ist also $y = x.g = x'.g'$ für  $g,g' \in G$. Dann ist aber für alle $h\in G$ auch
+    \[
+        x.h = x.(g.g^{-1}).h = (x.g).g^{-1}.h = y.g^{-1}.h = x'.(g'g^{-1}h) \in x'G
+    .\] 
+    also ergibt sich $x.G \subset x'G$. Aus Symmetrie folgt $x'.G \subset x.G$, also sind die Klassen gleich.
+\end{proof}
+
+\begin{dcorollary}\label{cor:g-menge-ist-disjunkte-vereinigung-der-bahnen}
+    Jede $G$-Menge ist die disjunkte Vereinigung ihrer Bahnen.
+\end{dcorollary}
+
+\begin{dlemmadef}[Stabilisator]\label{def:stabilisator}
+    Sei $X$ eine  $G$-Menge und  $x\in X$. Dann ist der \vocab{Stabilisator} von $x$ die Untergruppe
+    \[
+    G_x = \left \{g\in G \mid  x.g = x\right\}\leq  G
+    .\] 
+\end{dlemmadef}
+\begin{proof}
+    Ist $g\in G_x$, so ergibt sich
+    \[
+        x = x.e = x.(gg^{-1}) = x.g.g^{-1} = x.g^{-1}
+    .\] 
+    also ist auch $g^{-1}\in G_x$. Sind zudem $g,h\in G_x$ beliebig, so erhalten wir mit
+    \[
+        x.(gh) = x.g.h = x.h = x
+    .\] 
+    auch sofort, dass $gh \in G_x$. Also ist $g_x \leq  G$ tatsächlich eine Untergruppe wie behauptet.
+\end{proof}
+
+\begin{lemma}
+    Sei $X$ eine  $G$-Menge und  $x\in X$. Dann ist $x.G$ isomorph (als  $G$-Menge) zu  $G_x \backslash G$.
+\end{lemma}
+\begin{proof}
+    Definiere
+        \begin{equation*}
+        \varphi : \left| \begin{array}{c c l} 
+        G_x \backslash G & \longrightarrow & x.G \\
+        G_xg & \longmapsto &  x.g
+        \end{array} \right.
+    \end{equation*}
+    \begin{description}
+        \item[Wohldefiniertheit] Gleiche Elemente auf der linken Seite unterscheiden sich in ihrer Darstellung nur um ein Element aus $h\in G_x$, wir wollen zeigen, dass dies gleiches Bild ergibt:
+            \[
+                \varphi (G_xhg) = x.(hg) = x.h.g = x.g = \varphi (G_xg)
+            .\] 
+        \item[Injektivität] Ist $x.g = x.g'$, dann ergibt sich auch
+             \[
+            x = x.g'.g^{-1}
+            .\] 
+            und daraus folgt bereits, dass $g'g^{-1} \in G_x$ nach Definition, also
+            \[
+                G_xg = G_xg'(g^{-1}g) = G_x(\underbrace{g'g^{-1}}_{\in G_x})g = G_xg'
+            .\] 
+            also waren auch schon die Nebenklassen gleich.
+        \item[Surjektivität] Ist $x.g\in x.G$ beliebig, so ist offensichtlich
+            \[
+                x.g = \varphi (G_xg)
+            .\] 
+        \item[$G$-Äquivarianz] (Homomorphismus von $G$-Mengen). Es ist
+             \[
+                 \varphi ((G_xg)g') = \varphi (G_x(gg')) = x.(gg') = (x.g).g' = \varphi (G_xg).g'
+            .\] 
+    \end{description}
+    Die Mengentheoretische Umkehrabbildung ist dann auch $G$-Äquivariant, also ist  $\varphi $ ein Isomorphismus.
+\end{proof}
+
+    \begin{oral}
+        Auch, wenn das im Allgemeinen nicht so ist, dass Mengentheorischer Isomorphismus + Kategorientheoretischer Homomorphismus $\implies$ Kategorieller Isomorphismus (das gilt ja z.B. in $\Top$ nicht, siehe  $\exp \colon  [0,1) \to  S^1$), gilt dies für $G$-Mengen (und im Übrigen auch für Gruppen).
+    \end{oral}
+
+Also ist jede $G$-menge isomorph zu einer disjunkten Vereinigung um $G$-Mengen der Form $H \backslash G$, wobei  $H\leq G$.
+
+\begin{warning}
+    Auch, wenn wir die Notation $H \backslash G$ verwendet haben, wollen wir damit nicht notwendigerweise ausdrücken, dass  $H$ normal ist in  $G$, wir haben nur die Menge der Nebenklassen betrachtet, und zwar als Menge.
+\end{warning}
+
+\section{Hauptsatz der Überlagerungstheorie}
+
+Sei in diesem Kapitel stets $p\colon  E\to X$ eine Überlagerung.
+
+\begin{lemmadef}
+    Die Gruppe $\pi_1(X,x_0)$ wirkt folgendermaßen auf $p^{-1} (x_0)$: Sei $e\in p^{-1} (x_0)$, und $[w]\in \pi_1(X,x_0)$, dann definiere
+    \[
+        e.[w] = L(w,e)(1) \in p^{-1} (x_0)
+    .\] 
+    Mit dieser Wirkung ist $p^{-1} (x_0)$ eine $G$-Menge.
+\end{lemmadef}
+\begin{proof}
+    \begin{description}
+        \item[Wohldefiniertheit] Sind $w,w'$ homotop relativ Endpunkten sind, dann auch  $L(w,e)$ und  $L(w',e)$ nach dem \nameref{thm:homotopieliftungssatz}, also sind insbesondere ihre Endpunkte gleich.
+        \item[Axiome der Gruppenwirkung] Es ist offenbar
+            \[
+                e.[c_{x_0}] = L(c_{x_0},e) = c_{e}(1) = e
+            .\] 
+            und auch 
+            \begin{IEEEeqnarray*}{rCl}
+                e.([w] \star [w]) & = & L(w \star w,e)(1) \\
+                                  & = & (L(w,e)\star L(w',L(w,e)(1)))(1) \\
+                                  & = & L(w',\underbrace{L(w,e(1)}_{= e.[w]})(1) \\
+                                  & = & (e.[w]).[w']
+            \end{IEEEeqnarray*}
+    \end{description}
+\end{proof}
+
+\begin{oral}
+    An dieser Stelle geht das einzige Mal ein, dass wir links-$G$-Mengen betrachtet haben, weil wir die Verknüpfung von Schleifen in dieser Richtung definiert hatten.
+\end{oral}
+
+\begin{lemma}
+    Sind $p\colon  E\to X$ und $p'\colon E'\to X$ Überlagerungen sowie $x_0\in X$. Sei $f\colon  E\to  E'$ eine Abbbildung von Überlagerungen, d.h. $p = p' \circ f$. Dann ist
+    \[
+        f|_{p^{-1} (x_0)}\colon  p^{-1} (x_0) \to  p'^{-1}(x_0)
+    .\] 
+    ein Homomorpismus von $\pi_1(X,x_0)$-Mengen.
+\end{lemma}
+\begin{proof}
+    \begin{description}
+        \item[Wohldefiniertheit] Sei $e\in p^{-1} (x_0)$. Dann ist $p'(f(e)) = p(e) = x_0$, also ist $f(e) \in p^{-1} (x_0)$.
+        \item[Äquivarianz] Sei $e\in p^{-1} (x_0)$ sowie $[w]\in \pi_1(X,x_0)$ beliebig. Dann ist
+            \[
+                f(e).[w] = L_{p'}(w,f(e))(1) \stackrel{!}{=} f \circ L_p(w,e)(1) = f(e.[w])
+            .\] 
+            Das ergibt sich aber, indem wir nachrechnen, dass $f \circ  L_p(w,e)$ \textit{eine} Liftung ist, denn
+            \[
+                p' \circ  f \circ  L_p(w,e) = p \circ  L_p(w,e) = w
+            .\]
+            aber mittlerweile ist uns klar, dass Liftungen eindeutig sind nach dem \nameref{thm:weghebungssatz}.
+    \end{description}
+\end{proof}
+
+\begin{lemma}\label{lm:funktor-von-überlagerungen-in-pi-1-mengen}
+    Die Zuordnung
+    \begin{IEEEeqnarray*}{cCc}
+        \text{Überlagerungen von $X$} &\longrightarrow &\pi_1(X,x_0)\text{-Mengen} \\ \\
+    \begin{tikzcd}
+        E \ar{d}{p} \\ X
+    \end{tikzcd}
+    \qquad&    \longmapsto  & \qquad p^{-1} (x_0) \\ \\
+    \begin{tikzcd}[column sep = tiny]
+    E \ar{rr}{f} \ar[swap]{dr}{p} & & E' \ar{dl}{p'} \\
+    & X
+\end{tikzcd} \qquad & \longmapsto &  \qquad     f|_{p^{-1} (x_0)}: p^{-1} (x_0) \to  p'^{-1}(x_0)
+    \end{IEEEeqnarray*}
+    ist ein Funktor.
+\end{lemma}
+\begin{proof}
+    Wir haben schon gezeigt, dass das eine Wohldefinierte Zuordnung (Abbildung) ist. Wir müssen noch zeigen, dass das ganze mit Verknüpfung verträglich ist, und Identitäten auf Identitäten gehen. Ist also
+    \[
+    \begin{tikzcd}[column sep = tiny]
+    E' \ar{rr}{g} \ar[swap]{dr}{p'} & & E'' \ar{dl}{p''} \\
+    & X
+    \end{tikzcd}
+    \]
+    ein weiterer Morphismun von Überlagerungen, so ist
+    \[
+        (g \circ f)|_{p^{-1} (x_0)} = g|_{p^{-1} (x_0)}  \circ  f|_{p^{-1} (x_0)}
+    .\] 
+    und es ist sicherlich auch
+    \[
+        (\id_E)|_{p^{-1} (x_0)} = \id_{p^{-1}(x_0)}
+    .\] 
+    also erfüllt diese Abbildung die Eigenschaften eines Funktors.
+\end{proof}
+
+
+\begin{theorem}[Hauptsatz der Überlagerungstheorie]
+    Sei $X$ zusammenhängend, lokal wegzusammenhängend, semilokal einfachzusammenhängend sowie  $x_0\in X$. Dann ist der Funktor aus \autoref{lm:funktor-von-überlagerungen-in-pi-1-mengen} eine Äquivalenz von Kategorien. Das heißt:
+    \begin{enumerate}[1)]
+        \item Für jede $\pi_1(X,x_0)$-Menge $M$ gibt es eine Überlagerung  $p\colon  E \to X$, so dass $p^{-1} (x_0)$ isomorph ist (als $\pi_1(X,x_0)$-Menge) zu  $M$. (\textit{essentielle Surjektivität})
+        \item Für zwei Überlagerungen $p\colon  E \to X$ und $p' \colon  E' \to  X$ ist die Zuordnung
+            \begin{IEEEeqnarray*}{cCc}
+                \left\{
+                \begin{tikzcd}[column sep = tiny]
+                E \ar{rr}{f} \ar[swap]{dr}{p} & & E' \ar{dl}{p'} \\
+                & X
+        \end{tikzcd}\right\} & \longmapsto & \left \{f|_{p^{-1} (x_0)\colon  p^{-1} (x_0) \to  p'^{-1}(x_0)}\right\} 
+            \end{IEEEeqnarray*}
+    \end{enumerate}
+\end{theorem}
+
+\begin{oral}
+    Für die 'Entpackung' dieser kategorientheoretischen Aussage haben wir die Charakterisierung von TODO.
+\end{oral}
+
+\begin{remark}
+    Die Eigenschaft, dass $X$ semilokal einfachzusammenhängend ist, benötigen wir nur für Eigenschaft 1), um z.B. eine universelle Überlagerung konstruieren zu können. Für 2) genügt es allerdings zu fordern, dass  $X$ zusammenhängend und lokal wegzusammenhängend ist.
+\end{remark}
+
+Wir verschieben den Beweis zunächst, und geben einen Ausblick auf den weiteren Verlauf der Vorlesung.
+
+\begin{theorem}[Seifert-van-Kampen]\label{thm:seifert-van-kampen}
+    Sei $X$ ein Raum, seien  $U_1,U_2\subset X$ offen, sodass $U_1\cup U_2 = X$, und bezeichne  $U_3 \coloneqq  U_1 \cap U_2$.
+
+    Sind $U_1,U_2,U_3$ wegzusammenhängend und nicht-leer sowie $x_0\in U_3$, dann ist
+    \[
+    \begin{tikzcd}
+        \pi_1(U_3,x_0) \ar[swap]{d}{} \ar{r}{} & \pi_1(U_1,x_0) \ar{d}{} \\
+        \pi_1(U_2,x_0) \ar[swap]{r}{} & \pi_1(X,x_0)
+    \end{tikzcd}
+    l\]
+    ein Pushout von Gruppen, d.h. für jede Gruppe $H$ und kompatible Morphismen  $\pi_1(U_1,x_0) \to  H$ sowie $\pi_1(U_2,x_0) \to  H$ existiert ein eindeutig bestimmter Morphismus $\pi_1(X,x_0) \to  H$. Visualisiert:
+    \[
+    \begin{tikzcd}
+        \pi_1(U_3,x_0) \ar[swap]{d}{} \ar{r}{} & \pi_1(U_1,x_0) \ar{d}{} \\
+        \pi_1(U_2,x_0) \ar[swap]{r}{} & \pi_1(X,x_0)
+    \end{tikzcd}
+    \]
+\end{theorem}
+
+\begin{remark}
+    Ein Pushout in Gruppen ist ein sogenanntes \textit{amalgisiertes Produkt}, d.h.
+    \[
+    \begin{tikzcd}
+        H \ar[swap]{d}{} \ar{r}{} & G_1 \ar{d}{} \\
+        G_2 \ar[swap]{r}{} & G_1 \star_H G_2
+    \end{tikzcd}
+    \]
+    ist ein Pushout.
+\end{remark}
+
+\begin{ddefinition}[Amalgisiertes Produkt]
+    Seien $G_1,G_2$ zwei Gruppen. Sind $G_i = \left< E_i \mid  R_i \right> $ Darstellungen der Gruppen, so ist das \vocab{freie Produkt} von $G_1$ und $G_2$ die Gruppe bestimmt durch
+    \[
+G_1 \star G_2 \coloneqq      \left< E_1 \cup E_2\mid R_1 \cup R_2 \right> 
+    .\] 
+    ,d.h. die Menge aller (endlichen) Wörter mit Elementen aus $G_1$ und $G_2$ mit den kanonischen Verknupfungen von Elementen aus $G_1,G_2$, aber keinerlei weiteren Relationen.
+
+    Sind $\varphi_1\colon H \to  G_1$ und $\varphi_2\colon H\to G_2$ Gruppenhomomorphismen, so ist das \vocab{amalgasierte Produkt} von $G_1$ und $G_2$ über $H$ (mit den Morphismen  $\varphi_1,\varphi_2$) definiert als
+\[
+    G_1\star_H G_2 \coloneqq  \faktor{G_1 \star G_2}{\varphi_1(h) \sim  \varphi_2(h)}
+.\] 
+\end{ddefinition}
+
+\begin{example}\label{ex:fundamentalgruppe-von-s1-wedge-s1}
+    Betrachte $S^1 \twedge S^1$, wir wollen $\pi_1(S^1 \twedge S^1, 1)$ berechnen, und haben dazu $U_1 = ι_1(S^1)$ und $U_2 = ι_2(S^1)$, dann sind beide offenen Mengen nichtleer und wegzusammenhängend, und es ist $U_1 \cap U_2 = \left \{1\right\} $ einelementig. Also ergibt sich
+    \[
+        \pi_1(S^1 \twedge S^1,1) \cong \pi_1(S^1,1) \star_{\pi_1(\left \{1\right\} ,1)} \pi_1(S^1,1) \cong \pi_1(S^1,1) \star \pi_1(S^1,1) \cong \Z \star \Z \cong F_2 = \left< a,b \right> 
+    .\] 
+    \begin{oral}
+        Eigentlich hätten wir $U_1,U_2$ hier offen wählen müssen, um den Satz anwenden zu können. Die Umgebung 'ein bisschen' größer zu machen zerstört aber offensichtlich nichts an der Fundamentalgruppe von $S^1$, deswegen ist das in Ordnung und einfach ein formales Ausformulieren.
+    \end{oral}
+\end{example}
+
+\begin{example}[Nicht-Beispiel]
+    Der Wegzusammenhang ist essentiell!. Wenn wir $S^1 = D^1 \cup_{S^0} D^1$ schreiben, so ist der Schnitt nicht zusammenhängend, weswegen wir nicht die falsche Aussage
+    \[
+        \Z \cong \pi_1(S^1,1) \cong \pi_1(D^1,1) \star_{\pi_1(S^0,1)} \pi_1(D^1,1) \cong \left \{1\right\}  \star_{\left \{1\right\} \star \left \{1\right\} } \cong \left \{1\right\} 
+    .\] 
+    folgern.
+
+    Es ist ebenfalls essentiell, die Offenheit zu fordern, sonst können wir z.B. $S^1$ einfach 'auftrennen'.
+\end{example}
+
+
+\begin{oral}
+    Man kann die Aussage verallgemeinern und die Annahme des Wegzusammenhangs fallen lassen, wenn man statt den Fundamentalgruppen die Fundamentalgruppoide verwendet. Das ist aber nicht unser Ziel, weil dann die Pushouts deutich komplizierter werden.
+\end{oral}
+
+\begin{example}
+    Sei $G = \left< a_1,\ldots,a_n\mid r \right> $ eine Gruppe auf $n$ Erzeugern und einer Relation  $r$. Wir wollen einen Raum konstruieren, der  $\pi_1(X,x_0) = G$ ergibt.
+
+    Betrachte dazu
+    \[
+    Y \coloneqq  \bigvee_{i=1}^{n} S^1
+    .\] 
+    d.h. ein Zusammenkleben von $n$ Schleifen, dann erhalten wir $\pi_1(Y,1) \cong \left< a_1,\ldots,a_n \right> $ als freie Gruppe in $n$ Erzeugern (folgt induktiv aus \autoref{ex:fundamentalgruppe-von-s1-wedge-s1}). Wähle nun eine Schleife $S^1 \stackrel{f}{\longrightarrow} Y$, die $r$ repräsentiert. Definiere nun den Raum  $X$ als das Pushout
+     \[
+    \begin{tikzcd}
+        S^1 \ar[swap]{d}{} \ar{r}{f} & Y \ar{d}{} \\
+        D^2 \ar[swap]{r}{} & X
+    \end{tikzcd}
+    \]
+   und betrachte
+   \[
+       U_1 \coloneqq  {D^2}\degree, \qquad U_2\coloneqq X \setminus \left \{\text{Mittelpunkt von $D^2$}\right\} \simeq Y
+   .\] 
+   Dann ist $U_3 \cong {D^2}\degree \setminus \left \{\text{Mittelpunkt}\right\} \simeq S^1$ und somit
+   \[
+       \pi_1(X) \cong \pi_1(U_1) \star_{\pi_1(U_3)} \pi_1(U_2) \cong \left \{1\right\} \star_{\Z} \pi_1(Y) \cong \faktor{\pi_1(Y)}{\left< \left< r \right>  \right> } = \left< a_1,\ldots,a_n|r \right>  = G
+   .\] 
+\end{example}
