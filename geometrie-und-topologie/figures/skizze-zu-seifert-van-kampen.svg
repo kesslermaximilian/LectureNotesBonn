@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="240mm"
+   height="120mm"
+   viewBox="0 0 240 120"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="skizze-zu-seifert-van-kampen.svg">
+  <defs
+     id="defs2">
+    <marker
+       markerWidth="0.911"
+       markerHeight="1.690"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       id="marker-arrow-0.5308">
+      <g
+         id="g80"
+         transform="scale(2.153529264004019)">
+        <path
+           id="path78"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+           d="M -1.55415,2.0722 C -1.42464,1.29512 0,0.1295 0.38852,0 0,-0.1295 -1.42464,-1.29512 -1.55415,-2.0722" />
+      </g>
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.406257"
+     inkscape:cx="439.17191"
+     inkscape:cy="201.36779"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showborder="true"
+     width="200mm"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1916"
+     inkscape:window-height="1027"
+     inkscape:window-x="0"
+     inkscape:window-y="1100"
+     inkscape:window-maximized="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid815"
+       units="mm"
+       spacingx="10"
+       spacingy="10"
+       empspacing="4"
+       dotted="false" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-177)">
+    <ellipse
+       style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.14044082;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:none;marker-end:none"
+       id="path8"
+       cx="78.833672"
+       cy="226.53886"
+       rx="56.632309"
+       ry="26.246534" />
+    <ellipse
+       style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.14044082;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:none;marker-end:none"
+       id="path12"
+       cx="149.67111"
+       cy="228.13812"
+       rx="74.224068"
+       ry="37.441296" />
+    <ellipse
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.06088157;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:none;marker-end:none"
+       id="path45"
+       cx="97.648392"
+       cy="239.05067"
+       rx="0.90824103"
+       ry="0.90824085" />
+    <text
+       id="text22"
+       xml:space="preserve"
+       style="font-size:2.64583325px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       y="245.01189"
+       x="93.808372"><tspan
+         id="tspan20"
+         sodipodi:role="line"
+         x="93.808372"
+         y="245.01189"
+         style="stroke-width:0.26458332">$x_0$</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 98.024696,238.86251 c 0,0 -26.528758,-0.75258 -32.549468,-3.38665 -6.02071,-2.63406 20.131751,-11.47698 36.500562,-9.9718 16.36881,1.50518 63.97005,6.96145 64.1582,-4.13924 -0.37629,-7.33774 -31.04429,-9.40736 -61.33599,-9.5955 -30.291707,-0.18815 -66.604118,3.38665 -69.238178,12.04142 -2.634062,8.65477 8.090329,21.63693 19.567308,21.63693 11.476979,0 42.897566,-6.58516 42.897566,-6.58516 z"
+       id="path34"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccscsssc" />
+    <ellipse
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.06088157;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:none;marker-end:none"
+       id="path45-3"
+       cx="89.558067"
+       cy="225.6922"
+       rx="0.90824103"
+       ry="0.90824085" />
+    <ellipse
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.06088157;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:none;marker-end:none"
+       id="path45-6"
+       cx="107.24391"
+       cy="211.76932"
+       rx="0.90824103"
+       ry="0.90824085" />
+    <text
+       id="text50"
+       xml:space="preserve"
+       style="font-size:2.64583325px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       y="207.57059"
+       x="102.27499"><tspan
+         id="tspan48"
+         sodipodi:role="line"
+         x="102.27499"
+         y="207.57059"
+         style="stroke-width:0.26458332">$x_2$</tspan></text>
+    <text
+       id="text64"
+       xml:space="preserve"
+       style="font-size:2.64583325px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       y="222.99866"
+       x="85.341751"><tspan
+         id="tspan62"
+         sodipodi:role="line"
+         x="85.341751"
+         y="222.99866"
+         style="stroke-width:0.26458332">$x_1$</tspan></text>
+    <text
+       id="text95"
+       xml:space="preserve"
+       style="font-size:2.64583325px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       y="270.9762"
+       x="68.046463"><tspan
+         id="tspan93"
+         sodipodi:role="line"
+         x="68.046463"
+         y="270.9762"
+         style="stroke-width:0.26458332">$\pi_1(U_1,x_0) \star \pi_1(U_2,x_0) \twoheadrightarrow \pi_1(x,x_0)$</tspan></text>
+    <text
+       id="text109"
+       xml:space="preserve"
+       style="font-size:2.64583325px;font-family:monospace;-inkscape-font-specification:'monospace, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       y="278.45865"
+       x="76.94709"><tspan
+         id="tspan107"
+         sodipodi:role="line"
+         x="76.94709"
+         y="278.45865"
+         style="stroke-width:0.26458332">(Die Skizze wird natürlich noch verbessert)</tspan></text>
+  </g>
+</svg>
