@@ -63,13 +63,13 @@ Nach dem \nameref{thm:homotopieliftungssatz} ist somit $\tilde{w} \star L(f \cir
     \end{subproof}
 
     \begin{claim}
-        $\tilde{f}(w) \subset V'$, also insbesondere $\tilde{f}(y') \in V'$.
+        $\tilde{f}(W) \subset V'$, also insbesondere $\tilde{f}(y') \in V'$.
     \end{claim}
 
     \begin{subproof}
         Sei $y' \in W$ und $w$ ein Weg von  $y_0$ nach $y$ in  $Y$ und  $w'$ ein Weg von  $y$ nach  $y'$ in  $W$. Dann ist  $w \star w'$ ein Weg von  $y_0$ nach $y'$. Es ist 
          \begin{IEEEeqnarray*}{rCl}
-             \tilde{f}(y) & = & L(f \circ (w \star w ), e_0)(1) \\
+             \tilde{f}(y') & = & L(f \circ (w \star w' ), e_0)(1) \\
                           & = & L(f \circ w, e_0) \star L(f \circ  w', \underbrace{L(f \circ  w, e_0)(1)}_{= \tilde{f}(y)})(1) 
          \end{IEEEeqnarray*}
          Sehen wir uns den Weg $L(f \circ  w', \tilde{f}(y))$ genauer ein, so wissen wir - weil $p|_{V'}$ ein Homöomorphismus ist - , dass
@@ -142,7 +142,7 @@ Nach dem \nameref{thm:homotopieliftungssatz} ist somit $\tilde{w} \star L(f \cir
 \end{theorem}
 
 \begin{warning}
-    Die Bedingung 2) erfordert wirklich, dass $p_*(\pi_1(E,e_0))$, $p'_*(\pi_1(E',e_0'))$ als Untergruppen von $\pi_1(X,x_0)$ \textit{gleich} sind, nicht nur homöomorph.
+    Die Bedingung 2) erfordert wirklich, dass $p_*(\pi_1(E,e_0))$, $p'_*(\pi_1(E',e_0'))$ als Untergruppen von $\pi_1(X,x_0)$ \textit{gleich} sind, nicht nur isomorph.
 
     Vergleiche hierzu auch \autoref{ex:zusammenhängende-überlagerungen-der-s1}. 
 \end{warning}
@@ -205,7 +205,7 @@ Insbesondere sind sie also isomorph.
             \left[v\right] & \longmapsto &  \left[w \star v \star \overline{w}\right]
         \end{array}
     \end{equation*}
-    ein Isomorphismus ist. Im Wesentlichen wenden wir nun einfach $\pi_1$ auf desen an, hierzu ist: 
+    ein Isomorphismus ist. Im Wesentlichen wenden wir nun einfach $\pi_1$ (bzw. $p_*$) auf diesen an, hierzu ist: 
     \begin{IEEEeqnarray*}{rCl}
         p_*[ w \star v \star \overline{w}] & = & [p \circ  (w \star v \star \overline{w})] \\
                                            & = & [(\underbrace{p \circ  w}_{\substack{\text{Schleife} \\ \text{in $x_0$}}}) \star (p \circ v) \star (\underbrace{p \circ  \overline{w}}_{\substack{\text{Schleife}\\\text{in $x_0$}} })] \\
