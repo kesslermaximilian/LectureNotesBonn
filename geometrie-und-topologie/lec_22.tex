@@ -1,6 +1,11 @@
 %! TEX root = ./master.tex
 \lecture[]{Do 08 Jul 2021 10:11}{}
 
+\begin{warning}[Anmerkung d. Editors]
+    Die Nummerierung ist hier noch völlig kaputt, weil wir jetzt wieder in Kapitel 20 weitermachen, wo wir letzte Woche Donnerstag aufgehört haben, und Aru aber am Dienstag schon mit Kapitel 21 begonnen hatte. Die nächste Proposition sollte 20.5 sein (die 5 stimmt zufällig), ich muss mir noch überlegen, wie genau ich das löse, bis dahin ist das einfach kaputt.
+\end{warning}
+
+
 Ziel der heutigen Vorlesung ist es, den \nameref{} zu beweisen.
 
 Wir erinnerns uns daran, dass die Wirkung von $\pi_1(X,x_0)$ auf $p^{-1} (x_0)$ durch
@@ -73,7 +78,7 @@ Also ist $e.\pi_1(X,x_0) \cong p_*(\pi_1(E,e)) \backslash \pi_1(X,x_0)$.
         Sei $x\in X$ und $x\in U\subset X$ eine wegzusammenhängende Umgebung mit $\pi_1(U) \to  \pi_1(X)$ trivial. Dann ist $U$ eine trivialisierende Umgebung für alle  $p(H_i)$ und damit auch für  $p$.
     \end{claim}
     \begin{subproof}
-        Folgt unmittelbar aus der Konstruktion, die wir gewählt hatten.\todo{Ref}
+        Folgt unmittelbar aus der Konstruktion, die wir gewählt hatten, denn wir haben gezeigt, dass die trivialisierenden Umgebungen genau diejenigen Basiselement von $X$ aus  \autoref{lm:basis-vonsemilokal-einfachzusammenhängendem-zusammenhängendem-raum} sind, und diese waren unabhängig von der Überlagerung.
     \end{subproof}
     \underline{2. Schritt} Wir zeigen die volltreue.
 
@@ -131,7 +136,7 @@ Also ist $e.\pi_1(X,x_0) \cong p_*(\pi_1(E,e)) \backslash \pi_1(X,x_0)$.
         Es gilt nun sogar 'automatisch' $f|_{\tilde{E}}(e') = \tilde{f}(e')$ für alle $e' \in p^{-1} (x_0) \cap  \tilde{E}$.
     \end{claim}
     \begin{subproof}
-        Mit Lemma nach der Pause
+        Mit \autoref{cor:f-und-f-til-sind-gleich-im-hauptsatz}  nach der Pause.
     \end{subproof}
     Definiere nun $f\colon  E \to  E'$ durch
     \[
@@ -141,6 +146,130 @@ Also ist $e.\pi_1(X,x_0) \cong p_*(\pi_1(E,e)) \backslash \pi_1(X,x_0)$.
 \end{proof}
 
 
-\begin{lemma}
-    todo.
+\begin{lemma}\label{lm:morphismus-von-g-mengen-von-transitiver-menge-ist-auf-einem-element-bestimmt}
+    Sei $G$ eine Gruppe,  $M$ eine transitive  $G$-Menge.  $N$ eine  $G$-Menge,  $m\in M$ und $\varphi ,\varphi '\colon M \to  N$ Morphismen von $G$-Mengen. Dann ist bereits $\varphi  \equiv  \varphi '$.
 \end{lemma}
+\begin{proof}
+    Sei $m' \in M$ beliebig. Wegen Transitivität existiert $g\in G$ mit $m.g = m'$. Also rechnen wir einfach nach:
+     \[
+         \varphi (m') = \varphi (m.g) = \varphi (m).g = \varphi' (m).g = \varphi' (m.g) = \varphi '(m')
+    .\] 
+\end{proof}
+
+\begin{corollary}\label{cor:f-und-f-til-sind-gleich-im-hauptsatz}
+    Es gilt $f|_{\tilde{E}}(e') = \tilde{f}(e')$ für alle $e'\in p^{-1} (x_0) \cap  \tilde{E}$.
+\end{corollary}
+
+\begin{proof}
+    Folgt als Spezialfall von \autoref{lm:morphismus-von-g-mengen-von-transitiver-menge-ist-auf-einem-element-bestimmt} mit $G = \pi_1(X,x_0)$, $M = p^{-1} (x_0) \cap \tilde{E}$, $N = p'^{-1}(x_0)$ sowie $m = e$ und 
+     \[
+         \varphi  = (f|_{\tilde{E}})|_{p^{-1} (x_0)\cap \tilde{E}} \qquad \varphi ' = \tilde{f}|_{p^{-1} (x_0) \cap \tilde{E}}
+    .\] 
+\end{proof}
+
+Damit ist nun der Beweis von \autoref{thm:hauptsatz-der-überlagerungstheorie} abgeschlossen.
+
+Wir erinnern uns an \autoref{def:decktransformation} 
+
+%\decktransformation
+
+und an den verbundenen \autoref{thm:isomorphismus-von-decktransformationen-mit-nebenklassengruppe-von-charakteristischer-untergruppe-in-seinem-normalisator}.
+
+\missingfigure{Überlagerung von $S^1 \twedge S^1$}
+
+
+\underline{Alternativer Beweis}
+
+Es sind $\Delta(p)$ genau die Automorphismen der Überlagerung  $p\colon  E \to X$. Nach dem Hauptsatz sind diese also isomorph zu den Automorphismen von $p^{-1} (x_0)$ als $\pi_1(X,x_0)$-Mengen, die wiederum isomorph sind zu den Automorphismen $p_*(\pi_1(E,e_0)) \backslash \pi_1(X,x_0)$, d.h.
+\[
+    \Delta(p) = \Aut \left(
+    \begin{tikzcd}
+        E \ar{d}{p} \\ X
+    \end{tikzcd}\right) 
+    \cong \Aut_{\pi_1(X,x_0)-\text{Mengen}} (p^{-1} (x_0)) \cong \Aut \left( p_*(\pi_1(E,e_0)) \backslash \pi_1(x,x_0) \right) 
+.\] 
+
+\begin{proposition}
+    Es ist
+    \[
+        \Aut_{G-\text{Mengen}}(H \backslash G) \cong H \backslash N_GH
+    .\] 
+\end{proposition}
+\begin{proof}
+    Sei $f\colon  H \backslash G \to  H \backslash G\in \Aut (H \backslash G)$ ein solcher Automorphismus.
+    \begin{enumerate}[1)]
+    \item Dann ist $f$ bereits eindeutig bestimmt durch  $f(H)$ nach \autoref{lm:morphismus-von-g-mengen-von-transitiver-menge-ist-auf-einem-element-bestimmt}.
+    \item $f(H.1) \in H \backslash N_GH$. ist $f(H.1) = H.g_0$, dann ist für alle $h\in H$ auch $H.g_0 = f(H.1) = f(H.h) = f(H.1).h = H.g_0.h$.
+
+        Daraus folgt bereits, dass $\exists h_1,h_1 \in H$ mit $h_1g_0 = h_2g_0h$, also nach umformen
+        \[
+       h_2^{-1}h_1 = g_0hg_0^{-1}
+        .\] 
+        wegen $h\in H$ beliebig ergibt sich also bereits $g_0Hg_0^{-1}\subset H$. Das Inverse schickt $Hg_0$ auf $H$. Also schickt se  $H$ auf  $Hg_0^{-1}$. Analog zeigen wir, dass $g_0^{-1}Hg_0 \subset H$, also auch $H\subset g_0Hg_0^{-1}\subset H$ und somit schlussendlich
+        \[
+        H = g_0Hg_0^{-1} \qquad \implies \qquad g_0\in N_GH
+        .\] 
+        Die Abbildung
+        \[
+            f \mapsto f(H\cdot 1)
+        .\] 
+        ist also wohldefiniert und injektiv nach 1)
+
+    \item Wir zeigen noch Surjektivität. Ist $g_0\in N_GH$, so behaupten wir, dass
+        \[
+        Hg \mapsto Hg_0g
+        .\] 
+        wohldefiniert und $G$-äquivariant ist. Die Äquivarianz ist nach Definition offensichtlich. Für Wohldefiniertheit bilden wir ab
+         \[
+             Hhg \mapsto H g_0hg \stackrel{g_0\in N_GH}{=} H h'g_0g = Hg_0g
+        .\] 
+        Da $N_GH$ eine Untergruppe ist, ist auch  $g_0^{-1}\in N_GH$, also hat die Abbildung ein Inverses, und zwar
+        \[
+        Hg \mapsto Hg_0^{-1}g
+        .\] 
+\end{enumerate}
+\end{proof}
+
+Wir wollen nun noch den Satz von Seifert van Kampen beweisen.
+\begin{proof}[Beweis von \autoref{thm:seifert-van-kampen}]
+    Wir wollen zunächst eine Surjektion
+    \[
+        \pi_1(U_1,x_0) \star p_1(U_2,x_0) \twoheadrightarrow p_1(x,x_0)
+    .\] 
+    finden, wie auch schon in der letzten Vorlesung angedeutet. Da $I$ kompakt ist, existiert  für jeden Weg $[w] \in \pi_1(X,x_0)$ ein $k\in \N$, sodass
+    \[
+w_l \coloneqq         w|_{\left[ \frac{l}{k}, \frac{l+1}{k} \right) } \subset U_i
+    .\] 
+    für alle $l$. Für alle  $l\in \left \{1,k-1\right\}$ wähle einen Weg $v_l$ von  $w\left( \frac{l}{k} \right) $ nach $x_0$ in 
+    \[
+    \begin{cases}
+        U_3 & \text{falls } w\left( \frac{l}{k} \right) \in U_3 \\
+        U_1 & \text{falls } w\left( \frac{l}{k} \right) \not\in U_2 \\
+        U_2 & \text{falls } w\left( \frac{l}{k} \right)  \not\in U_1
+    \end{cases}
+    .\] 
+    Wir können nun schreiben
+    \[
+        [w] = [w_0\star v_1] \star [v_1^{-1} w_1 v_2] \star \ldots \star [v_{k-1}^{-1}w_{k-1}]
+    .\] 
+    und jeder der geklammerten Wege verläuft nun in einem der $U_i$.
+\begin{claim}
+    Es ist $\ker(p) = \left< \varphi 1([w])\varphi 2([w])^{-1} \mid  [w] \in \pi_1(U_3,x_0) \right> $.
+\end{claim}
+\begin{subproof}
+    Sei $[w]$ ein beliebiger Weg in  $X$, und schreibe diesen wieder in der Form
+     \[
+         [w] = [w_1] \star \ldots \star [w_k] = [v_1] \star \ldots \star [v_l]
+    .\] 
+    mit $w_i, v_i \in U_i$. OBdA sei $k=l$, sonst füge triviale Wgee ein. Sei  $H$ eine Homotopie von 
+     \[
+    w_1 \star \ldots \star w_k \simeq v_1 \star \ldots \star v_l
+    .\] 
+    \missingfigure{Skizze der Homotopie}
+\end{subproof}
+\end{proof}
+
+
+\begin{remark}[Anmerkung d. Editors]
+    Ich habe das Gefühl, dass die Mitschrift heute besonders chaotisch geworden ist, ich hatte nebenher ein paar andere Sachen zu tun. Sie sollte vollständig sein, hat aber wohl ein paar mehr Fehler als sonst. Ich sollte das bis Freitag Vormittag gefixt haben, schaut also potentiell morgen mittag nochmal vorbei, dann sollten die Vorlesungen von dieser Woche in ordentlicher Form existieren.
+\end{remark}
