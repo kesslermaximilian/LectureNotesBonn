@@ -1,0 +1,146 @@
+%! TEX root = ./master.tex
+\lecture[]{Do 08 Jul 2021 10:11}{}
+
+Ziel der heutigen Vorlesung ist es, den \nameref{} zu beweisen.
+
+Wir erinnerns uns daran, dass die Wirkung von $\pi_1(X,x_0)$ auf $p^{-1} (x_0)$ durch
+\[
+    e.[w] \coloneqq  L(w,e)(1)
+.\] 
+gegeben ist.
+\todo{Nummerierung fixen}
+\begin{proposition}
+    Sei $p\colon E\to X$ eine Überlagerung,  $X$ wegzusammenhängend sowie  $x_0\in X$. Dann induziert die Inklusion $p^{-1} (x_0) \hookrightarrow E$ eine Bijektion
+    \[
+        \left \{\pi_1(X,x_0) - \text{Bahnen von } p^{-1} (x_0) \right\}  \stackrel{1:1}{\longleftrightarrow} \left \{\text{Wegekomponenten von } E\right\} 
+    .\] 
+\end{proposition}
+
+\begin{proof}
+    \begin{description}
+        \item[Wohldefiniertheit] Zu zeigen: Für $e\in p^{-1} (x_0)$ liegen $e$ und  $e.[w]$ in der gleichen Wegekomponente. Es ist aber
+             \[
+                 e.[w] = L(w,e)(1)
+            .\] 
+            und damit ist $L(w,e)$ ein Weg von  $e$ nach  $e.[w]$, und somit liegen die Punkte in der gleichen Wegekomponenten von  $E$.
+        \item[Injektivität] Seien  $e,e'\in p^{-1} (x_0)$, so dass diese auf die gleiche Wegkomponenten abgebildet werden, dann gibt es einen Weg $v$ von  $e$ nach  $e'$. Dann ist
+             \[
+                 e.\underbrace{[p \circ  v]}_{\in \pi_1(X,x_0)}  = L(p \circ  v, e)(1) = v(1) = e'
+            .\] 
+            also liegen $e,e'$ in der gleichen Bahn.
+        \item[Surjektivität] Sei  $\tilde{E}$ eine Wegekomponente von $E$ sowie  $e\in \tilde{E}$. Aufgrund des Wegzusammenhangs von $X$ finden wir einen Weg  $v$ von  $p(e)$ nach  $x_0$. Dann ist $L(v,e)$ ein Weg von  $e$ mit Endpunkt in  $p^{-1} (x_0)$, also $\tilde{E} \cap  p^{-1} (x_0) \neq  \emptyset$.
+    \end{description}
+\end{proof}
+
+Ist $e\in p^{-1} (x_0)$, so ist der Orbit
+\[
+    e.\pi_1(x,x_0) \cong_{\pi_1(X,x_0)-\text{Menge}} \pi_1(X,x_0)_e \backslash \pi_1(X,x_0)
+.\] 
+
+Also interessieren wir uns auch für Elemente aus dem Stabilisator $\pi_1(x,x_0)_e$. Hierzu ist
+\[
+    e.[w] = e \iff  L(w,e)(1) = e \iff  L(w,e) \text{ ist Schleife an } e \iff  [w] \in  p_*(\pi_1(E,e))
+.\] 
+
+Also ist $e.\pi_1(X,x_0) \cong p_*(\pi_1(E,e)) \backslash \pi_1(X,x_0)$.
+
+\begin{proof}[Beweis von \autoref{thm:hauptsatz-der-überlagerungstheorie}]
+    \underline{1. Schritt} Wir zeigen die essentielle Surjektivität. Sei $M$ eine  $\pi_1(X,x_0)$-Menge. Dann ist $M$ isomorph zu einer disjunkten Vereinigung
+    \[
+        M = \bigsqcup_{i\in I} H_i \backslash \pi_1(X,x_0)
+    .\] 
+    Mit $H_i \leq  \pi_1(X,x_0)$. Nach \autoref{thm:universelle-überlagerungen-existieren-genau-für-semilokal-einfachzusammenhängende-lokal-wegzusammenhängenden-zusammenhängende-räume} existieren Räume $E(H_i)$, sodass
+     \[
+         p(H_i) \colon  E(H_i) \to  X
+    .\] 
+    sowie $e_i\in p(H_i)^{-1}(x_0)$ mit 
+    \[
+        p(H_i)_* \pi_1(E(H_i),e_i) = H_i
+    .\] 
+\todo{Referenzen}
+    Dann ist $p(H_i)^{-1}(x_0)$ isomorph zu $H_i \backslash \pi_1(X,x_0)$ nach ebiger Proposition und der Vorüberlegung. Wir betrachten nun die disjunkte Vereinigung
+    \[
+        p\coloneqq  \coprod p(H_i) \colon  \coprod _{i \in I} E(H_i) \to  X
+    .\] 
+    so ist
+    \[
+        p^{-1} (x_0) = \bigsqcup p(H_i)^{-1}(x_0) \cong \coprod_{i \in I} H_i \backslash \pi_1(X,x_0) \cong M
+    .\] 
+    \begin{remark}
+        Es fehlt noch zu zeigen, dass $p$ überhaupt eine Überlagerung ist, im allgemeinen ist das Koprodukt von Überlagerungen nämlich \textit{nicht} zwingend wieder eine Überlagerung. Wir müssen das also in diesem konkreten Fall noch zeigen.
+    \end{remark}
+    \begin{claim}
+        Sei $x\in X$ und $x\in U\subset X$ eine wegzusammenhängende Umgebung mit $\pi_1(U) \to  \pi_1(X)$ trivial. Dann ist $U$ eine trivialisierende Umgebung für alle  $p(H_i)$ und damit auch für  $p$.
+    \end{claim}
+    \begin{subproof}
+        Folgt unmittelbar aus der Konstruktion, die wir gewählt hatten.\todo{Ref}
+    \end{subproof}
+    \underline{2. Schritt} Wir zeigen die volltreue.
+
+    \underline{Injektivität} Seien $f,\hat{f}$ zweie Überlagerungsabbildungen, d.h.
+    \[
+    \begin{tikzcd}[column sep = tiny]
+        E \ar{rr}{f}[swap]{\hat{f}} \ar[swap]{dr}{p} & & E' \ar{dl}{p'} \\
+    & X
+    \end{tikzcd}
+    \]
+    die unter dem Funktor das gleiche Bild haben, d.h. $f|_{p^{-1} (x_0)} = \hat{f}|_{p^{-1} (x_0)}$. Wir wollen zeigen, dass dann auch schon $f \equiv  \hat{f}$. Sei $\tilde{E} \subset E$ eine beliebige Wegekomponenten. Es genügt zu zeigen, dass $f|_E = \hat{f}|_{\tilde{E}}$.
+
+    Da $X$ lokal wegzusammenhängend ist  $p|_{\tilde{E}}\colon \tilde{E} \to  X$ bereits eine Überlagerung nach \autoref{thm:überlagerung-über-lokal-wegzusammenhängendem-raum-zerfällt-in-wegzusammenhängende-komponenten-von-e}.
+
+    Es ist $\tilde{E} \cap  p^{-1} (x_0) \neq  \emptyset$. Sei $e\in \tilde{E} \cap  p^{-1} (x_0)$. Dann sind $f|_{\tilde{E}}$ und $\hat{f}|_{\tilde{E}}$ Hebungen von
+    \[
+        \begin{tikzcd}[column sep = large, row sep = large]
+        & E' \ar{d}{p'} \\
+        \tilde{E} \ar[shift left]{ur}{f|_{\tilde{E}}} \ar[shift right, swap]{ur}{\hat{f}|_{\tilde{E}}} \ar{r}{p|_{\tilde{E}}} & X
+    \end{tikzcd}
+    .\] 
+
+    \underline{Surjektivität}. Sei $\tilde{f} \colon  p^{-1} (x_0) \to  p'^{-1}(x_0)$ ein Homomorphismus von $\pi_1(X,x_0)$-Mengen. Wir möchten zeigen, dass dieser auch schon von einer Überlagerungsabbildung $f\colon  E \to  E'$ induziert wird. 
+
+    Sei wieder $\tilde{E} \subset E$ eine Wegekomponente, dann ist $p^{-1} (x_0) \cap \tilde{E}$ genau eine Bahn von $p^{-1} (x_0)$ nach ebiger Proposition.
+
+    Sei $e\in p^{-1} (x_0) \cap \tilde{E}$, dann ist
+    \[
+        p^{-1} (x_0) \cap  \tilde{E} \cong \underbrace{p_*(\pi_1(E,e))}_{\coloneqq H} \backslash \pi_1(X,x_0)
+    .\] 
+    nach der Vorüberlegung. Es ist $\tilde{f}(e) \in p'^{-1}(x_0)$.
+
+    \begin{claim}
+        Es ist $H\leq  p_*'(\pi_1(E',\tilde{f}(e)))$.
+    \end{claim}
+    \begin{subproof}
+        Sei $h\in H$. Dann ist gerade
+        \[
+            \tilde{f}(e).  h = \tilde{f}(e.h) = \tilde{f}(e) \implies h\in \pi_1(x,x_0)_{\tilde{f}(e)}
+        .\] 
+        Also ergibt sich
+        \[
+            H \leq  \pi_1(X,x_0)_{\tilde{f}(e)} = p_*'(\pi_1(E',\tilde{f}(e)))
+        .\] 
+    \end{subproof}
+
+    Nach dem \nameref{thm:allgemeiner-liftungssatz} existiert also eine Abbildung $f|_{\tilde{E}}\colon \tilde{E} \to  E'$ mit $f|_{\tilde{E}}(e) = \tilde{f}(e)$.
+    \[
+    \begin{tikzcd}
+        & E \ar{d}{p'} \\
+        \tilde{E} \ar[dashed]{ur}{f|_{\tilde{E}}} \ar[swap]{r}{p|_{\tilde{E}}} & X
+    \end{tikzcd}
+    .\]
+    \begin{claim}
+        Es gilt nun sogar 'automatisch' $f|_{\tilde{E}}(e') = \tilde{f}(e')$ für alle $e' \in p^{-1} (x_0) \cap  \tilde{E}$.
+    \end{claim}
+    \begin{subproof}
+        Mit Lemma nach der Pause
+    \end{subproof}
+    Definiere nun $f\colon  E \to  E'$ durch
+    \[
+    E = \coprod \tilde{E} \stackrel{\coprod f|_{\tilde{E}}}{\longrightarrow} E'
+    .\] 
+    Dann ist $f|_{p^{-1} (x_0)} = \tilde{f}$ nach ebiger Behauptung.
+\end{proof}
+
+
+\begin{lemma}
+    todo.
+\end{lemma}
