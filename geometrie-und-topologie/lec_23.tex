@@ -1,0 +1,77 @@
+%! TEX root = ./master.tex
+\lecture[]{Di 13 Jul 2021 12:12}{}
+
+
+\begin{proof}[Fortsetzung des Beweises zu Seifert van Kampen]
+    Wir haben schon bewiesen, dass $\psi $ surjektiv ist.
+    \begin{notation*}
+        Seien $a,b$ Wege in  $X$ (an  $x_0$). Dann schreiben wir
+        \begin{itemize}
+            \item $a \sim _{U_i} b\coloneqq $ $a$ und  $b$ sind homotope Wege in  $U_i$, für $i=1,2,3$.
+            \item  $a\sim_X b\coloneqq $ $a$ und  $b$ sind homotope Wege in  $X$
+            \item $[a]_{U_i}$ für die Klasso von $a$ in  $\pi_1(U_i,x_0)$, wobei wir implizit fordern, dass $a$ bereits in  $U_i$ liegt.
+            \item  $[a]_X\coloneqq $ die Klasse von $a$ in  $\pi_1(X,x_0)$
+        \end{itemize}
+    \end{notation*}
+    z.B. ist nun $\varphi 1([a]_{U_3}) = [a]_{U_1}$ sowie $\varphi_2 ([a]_{U_3}) = [a]_{U_2}$.
+    \begin{notation*}
+        Es bezeichne $\cdot$ die Wegemultiplikation, und es bezeichne  $\star$ die Multiplikation im freine Produkt  $\pi_1(U_1,x_0) \star \pi_1(U_2,x_0)$.
+    \end{notation*}
+    Damit ergibt sich nun z.B.
+    \begin{IEEEeqnarray*}{rCl}
+        \psi ([a_1]_{U_1} \star [a_2]_{U_2} \star \ldots \star [a_m]_{U_2}) & = & \psi_1([a_1]_{U_1}) \cdot \psi_2 [a_2]_{U_2}  \ldots
+    \end{IEEEeqnarray*}
+
+    Sei $N$ der normale Abschluss
+     \[
+         N\coloneqq  \overline{F(\pi_1(U_3,x_0))}
+    .\] 
+    Es ist dann noch zu zeigen, dass $N = \ker \psi $.
+
+    \underline{1. Schritt}: Wir zeigen, dass $N \leq  \ker \psi $. Es genügt zu zeigen, dass $F(\pi_1(U_3,x_0)) \subset  \ker \psi $, denn $\ker \psi $ ist normal.
+
+    Sei also $[a]_{U_3}\in \pi_2(U_3,x_0)$, dann ist
+    \begin{comment}
+    \begin{IEEEeqnarray*}{rCl}
+        \psi  \circ  F([a]_{U_3}) & = & \psi (\varphi_1 ([a]_{U_3}) \star \varphi _2[a]_{U_3}^{-1}) \\
+                                  & = & \psi ([a]_{U_1} \star [a]_{U_2}^{-1}) \\
+                                  & = & \psi _1 [a]_{U_1} \cdot \psi _2 [a]^{-1}_{U_2} \\
+                                  & = & [a]_X \cdot [a]^{-1}_X \\
+                                  [ a \cdot a^{-1}]_X = 1
+    \end{IEEEeqnarray*}
+    \end{comment}
+
+    \underline{2. Schritt}: Es ist $\ker \psi  \leq  N$. 
+
+    Sei $\gamma = [a_1]_{U_1}\star [a_2]_{U_2} \star \ldots \star [a_k]_{U_2}\in \pi_1(U_1,x_0) \star \pi_1(U_2,x_0)$ mit $\psi (\gamma) = 1$ ein generisches Element aus dem Kern. Wir können $\gamma$ stets in diese Form bringen, indem wir Buchstaben aus der gleichen Fundamentalgruppe miteinander verknüpfen, und am Anfang bzw. Ende evtl. mit trivialen Wegen auffüllen.
+
+    Es ist also  $[a_1 \cdot \ldots \cdot a_k]_X = 1 \iff  a_1\cdot \ldots \cdot a_k \sim _X c_{X_0}$. Zu zeigen ist, dass $\gamma \in N$.
+
+    Sei $H\colon [0,1]\times [0,1]\to X$ eine Homotopie (relativ Endpunkten) von $a_1 \cdot \ldots \cdot a_k$ nach $c_{x_0}$. Setze nun für $n$ groß
+     \[
+    S_{ij} \coloneqq  \left[ \frac{i-1}{n}, \frac{i}{n} \right] \times \left[ \frac{j-i}{n}, \frac{j}{n} \right] 
+    .\] 
+    Da $[0,1] \times [0,1]$ kompakt ist, $\exists n\in \N$, sodass jedes $S_{ij}$ durch $H$ in  $U_1$ oder $U_2$ abgebildet wird. Zudem wählen wir $n$ groß genug (bzw. vor allem korrekt als Vielfaches), sodass die Endpunkte von  $a_i$ von der Form $\frac{i'}{n}$ für ein geeignetes $i'$ sind.
+
+    Setze  $a_{ij}\coloneqq H|_{\left[ \frac{i-}{n}, \frac{i}{n} \right]\times \left \{\frac{j}{n}\right\}  }$. Damit stellen wir fest:
+    \begin{IEEEeqnarray*}{rCl}
+        H|_{[0,1]\times 0} & = & a_1 \cdot a_2\cdot a_3\cdot \ldots\cdot a_k \\
+                           & = & (\underbrace{a_{10}\cdot a_{20}\cdot \ldots \cdot a_{p_0}}_{ = a_1}) \cdot (a_{p+1,0}\cdot \ldots)\cdot \ldots\cdot \underbrace{(a_{q,0}\cdot \ldots\cdot a_{n,0})}_{=a_k}
+    \end{IEEEeqnarray*}
+
+    Setze zudem $v_{ij}\coloneqq H\left( \frac{i}{n}, \frac{j}{n} \right) $ und $b_{ij}\coloneqq H|_{\left \{\frac{i}{n}\right\} \times  \left[ \frac{j-1}{n}, \frac{j}{n} \right] }$.
+
+    Also ergibt sich in $\pi_1(U_1,x_0) \star \pi_1(U_2,x_0)$
+    \[
+        \gamma = [a_{10} \cdot \ldots \cdot a_{p_0}]_{U_1} \star [a_{p+1,0}\cdot \ldots] \star \ldots \cdot [a_{r,0} \cdot  \ldots \cdot a_{n,0}]_{U_2}
+    .\] 
+    Wahle wege $h_{ij}$ von $x_0$ nach $v_{ij}$, wobei dieser Wege in $U_l$ verlaufe, wenn  $v_{ij}$ in $U_l$ verläuft (der Weg ist also möglichst restriktiv). Falls  $v_{ij} = x_0$, so wähle die konstante Schleife.
+
+    Setzen wir nun $\tilde{a_{ij}}\coloneqq h_{i-1,j} \cdot a_{ij} \cdot h_{ij}^{-1}$, so haben wir Schleifen gebaut, die per Definition in $U_1$ oder $U_2$ verlaufen (oder beides).
+
+    Dann ist auch weiterhin
+    \begin{IEEEeqnarray*}{rCl}
+        \gamma & = & [a_{10} \cdot  \ldots \cdot  a_{p_0}]_{U_1} \cdot  \ldots\cdot [a_{r,0} \cdot \ldots.\cdot a_{n,0}]_{U_2} \\
+               & = & [\tilde{a_{10}}_{U_1}  \star [\tilde{a_{20}}_{U_1}
+    \end{IEEEeqnarray*}
+\end{proof}
