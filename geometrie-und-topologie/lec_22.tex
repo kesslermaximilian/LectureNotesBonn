@@ -259,7 +259,7 @@ Wir wollen nun noch den Satz von \nameref{thm:seifert-van-kampen} beweisen.
 \begin{proof}[Beweis von \autoref{thm:seifert-van-kampen}]
     Wir wollen zunächst eine Surjektion
     \[
-        \pi_1(U_1,x_0) \star p_1(U_2,x_0) \twoheadrightarrow p_1(x,x_0)
+\psi \colon         \pi_1(U_1,x_0) \star \pi_1(U_2,x_0) \twoheadrightarrow \pi_1(X,x_0)
     .\] 
     finden, wie auch schon in der letzten Vorlesung angedeutet. Da $I$ kompakt ist, existiert  für jeden Weg $[w] \in \pi_1(X,x_0)$ ein $k\in \N$, sodass
     \[
@@ -278,18 +278,8 @@ w_l \coloneqq         w|_{\left[ \frac{l}{k}, \frac{l+1}{k} \right) } \subset U_
         [w] = [w_0\star v_1] \star [v_1^{-1} w_1 v_2] \star \ldots \star [v_{k-1}^{-1}w_{k-1}]
     .\] 
     und jeder der geklammerten Wege verläuft nun in einem der $U_i$.
-\begin{claim}
-    Es ist $\ker(p) = \left< \varphi 1([w])\varphi 2([w])^{-1} \mid  [w] \in \pi_1(U_3,x_0) \right> $.
-\end{claim}
-\begin{subproof}
-    Sei $[w]$ ein beliebiger Weg in  $X$, und schreibe diesen wieder in der Form
-     \[
-         [w] = [w_1] \star \ldots \star [w_k] = [v_1] \star \ldots \star [v_l]
-    .\] 
-    mit $w_i, v_i \in U_i$. OBdA sei $k=l$, sonst füge triviale Wgee ein. Sei  $H$ eine Homotopie von 
-     \[
-    w_1 \star \ldots \star w_k \simeq v_1 \star \ldots \star v_l
-    .\] 
-    \missingfigure{Skizze der Homotopie}
-\end{subproof}
 \end{proof}
+
+\begin{remark*}
+    An dieser Stelle fehlt eine Skizze zum weiteren Verlauf des Beweises.
+\end{remark*}
