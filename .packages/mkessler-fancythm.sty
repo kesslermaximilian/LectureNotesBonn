@@ -14,6 +14,8 @@
 \newif\ifnumbersmallenvironmentswiththeorem\numbersmallenvironmentswiththeoremfalse
 \newif\ifnumbersmallenvironments\numbersmallenvironmentsfalse
 
+\newif\ifbeamer\beamerfalse
+
 \newcommand{\fancythmlinewidth}{2pt}
 \newcommand{\fancythmskipabove}{8pt}
 
@@ -90,6 +92,7 @@
 
 \DeclareOptionX{english}{\englishtrue}
 \DeclareOptionX{german}{\englishfalse}
+\DeclareOptionX{beamer}{\beamertrue}
 
 \DeclareOptionX{showdaggers}{\setkeys{mkesslerfancythm}{showdaggers=#1}}
 \DeclareOptionX{ownenvironments}{\setkeys{mkesslerfancythm}{ownenvironments=#1}}
@@ -167,6 +170,17 @@
 \mdfdefinestyle{mdyellowmargin}{%
     skipabove =\fancythmskipabove,
     linecolor=yellow!80!orange,
+    linewidth = \fancythmlinewidth,
+    leftmargin = 0cm,
+    rightmargin=0cm,
+    rightline=false,
+    topline=false,
+    bottomline=false
+}
+
+\mdfdefinestyle{mdgraymargin}{%
+    skipabove =\fancythmskipabove,
+    linecolor=gray,
     linewidth = \fancythmlinewidth,
     leftmargin = 0cm,
     rightmargin=0cm,
@@ -281,6 +295,12 @@
 	postheadspace={0.3em},
     notefont=\mdseries
 ]{thmyellowmargin}
+
+\declaretheoremstyle[
+	mdframed={style=mdgraymargin},
+	postheadspace={0.3em},
+    notefont=\mdseries
+]{thmgraymargin}
 
 \declaretheoremstyle[
 	mdframed={style=mdvioletmarginandfill},
@@ -416,6 +436,10 @@
 \declaresmalltheorem[Frage]{thmblackmarginandfill}{question}
 \declaresmalltheorem[Organisatorisches][Organisational stuff]{thmblackmargin}{orga}
 \newcounter{blatt}
+%\RequirePackage{savesym}
+%\savesymbol{aside}
+%\declaresmalltheorem[Nebenbemerkung]{thmgraymargin}{aside}
+%\restoresymbol{Color}{aside}
 
 %%Aufgaben environment to include exercises at the end of the documnt
 %%%This is really a UGLY hack, since autoref actlly does not work properly, so we overwrite the autoref-name of itmes (!)
@@ -447,33 +471,41 @@
 
 
 \theoremstyle{plain}
-\newtheorem{variant}{\ifenglish Variant\else Variante\fi}
+\ifbeamer\else\newtheorem{variant}{\ifenglish Variant\else Variante\fi}
 \newtheorem{assumption}{\ifenglish Assumption\else Annahme\fi}
+\fi
 
 %%Give claim an own counter and let it reset at each proof
 %See also at:
 %https://tex.stackexchange.com/questions/283502/reset-counter-at-beginning-of-proof
+\ifbeamer\else
 \newtheorem{claim}{\ifenglish Claim\else Behauptung\fi}
 \AtBeginEnvironment{proof}{\setcounter{claim}{0}}
 \newtheorem*{claim*}{\ifenglish Claim\else Behauptung\fi}
+\fi
 
 \theoremstyle{definition}
 \newtheorem*{fact}{\ifenglish Fact\else Fakt\fi}
-\newtheorem*{note}{\ifenglish Note\else Anmerkung\fi}
+\ifbeamer\else\newtheorem*{note}{\ifenglish Note\else Anmerkung\fi}\fi
 \newtheorem*{warning}{\color{red}\ifenglish Warning \else Warnung\fi}
-\newtheorem*{goal}{\ifenglish Goal \else Ziel\fi}
+\ifbeamer\else\newtheorem*{goal}{\ifenglish Goal \else Ziel\fi}\fi
 \newtheorem*{strategy}{\ifenglish Proof Strategy \else Beweisstrategie\fi}
 \newtheorem*{goal*}{\ifenglish Goal* \else Ziel*\fi}
 \newtheorem*{problem}{Problem}
-\newtheorem*{info}{Information}
-\newtheorem*{moral}{Moral}
-\newtheorem*{answer}{\ifenglish Answer\else Antwort\fi}
+\ifbeamer\else\newtheorem*{info}{Information}\fi
+\newenvironment{moral}{%
+	\begin{mdframed}[linecolor=green!70!black]%
+	\bfseries\color{green!50!black}}%
+	{\end{mdframed}}
+
+\ifbeamer\else\newtheorem*{answer}{\ifenglish Answer\else Antwort\fi}\fi
 \newtheorem*{observe}{\ifenglish Observe\else Beobachte\fi}
-\newtheorem*{property}{\ifenglish Property\else Eigenschaft\fi}
-\newtheorem*{intuition}{Intuition}
-\newtheorem*{recall}{\ifenglish Recall\else Erinnerung\fi}
+\ifbeamer\else\newtheorem*{property}{\ifenglish Property\else Eigenschaft\fi}\fi
+\ifbeamer\else\newtheorem*{intuition}{Intuition}\fi
+\ifbeamer\else\newtheorem*{recall}{\ifenglish Recall\else Erinnerung\fi}\fi
 \newtheorem*{idea}{\ifenglish Idea\else Idee\fi}
-\newtheorem{exercise}{\ifenglish Exercise\else Aufgabe\fi}[section]
+\ifbeamer\else\newtheorem{exercise}{\ifenglish Exercise\else Aufgabe\fi}[section]\fi
+\newtheorem{reminder}{\ifenglish Reminder\else Erinnerung\fi}
 
 %Numbering of environments with a fractional environment number, see
 % https://tex.stackexchange.com/questions/598076/how-to-have-a-fractional-environment-number/598080?noredirect=1#comment1499689_598080
