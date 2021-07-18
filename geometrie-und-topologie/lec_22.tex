@@ -1,12 +1,19 @@
 %! TEX root = ./master.tex
-\lecture[]{Do 08 Jul 2021 10:11}{}
+\lecture[Bijektion zwischen Orbits und Wegekomponenten. Morphismen von transitiven $g$-Mengen. Alternativer Beweis des Isomorphismus  $\Delta(p) \cong H \backslash N_{\pi_1(X,x_0)}H$. Beginn des Beweises von Seifert-van-Kampen.]{Do 08 Jul 2021 10:11}{Beweis des Hauptsatzes der Überlagerungstheorie}
 
-\begin{warning}[Anmerkung d. Editors]
-    Die Nummerierung ist hier noch völlig kaputt, weil wir jetzt wieder in Kapitel 20 weitermachen, wo wir letzte Woche Donnerstag aufgehört haben, und Aru aber am Dienstag schon mit Kapitel 21 begonnen hatte. Die nächste Proposition sollte 20.5 sein (die 5 stimmt zufällig), ich muss mir noch überlegen, wie genau ich das löse, bis dahin ist das einfach kaputt.
-\end{warning}
+\setcounter{section}{20}
+\setcounter{dummy}{4}
+\setcounter{smalldummy}{11}
 
 
-Ziel der heutigen Vorlesung ist es, den \nameref{} zu beweisen.
+\begin{remark*}[Nummerierung]
+    Wir befinden uns nun wieder in Kapitel 20, wo wir letzten Donnerstag den \autoref{thm:hauptsatz-der-überlagerungstheorie} formuliert hatten. Aru hatte am Dienstag bereits Kapitel 21 begonnen, das wir an dieser Stelle unterbrechen, wir machen also in Kapitel 20 weiter.
+\end{remark*}
+
+Ziel der heutigen Vorlesung ist es, den \nameref{thm:hauptsatz-der-überlagerungstheorie} zu beweisen:
+
+\providecommand\ThmHauptsatzUeberlagerungstheorie{\section{test}}
+\ThmHauptsatzUeberlagerungstheorie*
 
 Wir erinnerns uns daran, dass die Wirkung von $\pi_1(X,x_0)$ auf $p^{-1} (x_0)$ durch
 \[
@@ -14,6 +21,8 @@ Wir erinnerns uns daran, dass die Wirkung von $\pi_1(X,x_0)$ auf $p^{-1} (x_0)$ 
 .\] 
 gegeben ist.
 \todo{Nummerierung fixen}
+
+
 \begin{proposition}
     Sei $p\colon E\to X$ eine Überlagerung,  $X$ wegzusammenhängend sowie  $x_0\in X$. Dann induziert die Inklusion $p^{-1} (x_0) \hookrightarrow E$ eine Bijektion
     \[
@@ -169,17 +178,20 @@ Also ist $e.\pi_1(X,x_0) \cong p_*(\pi_1(E,e)) \backslash \pi_1(X,x_0)$.
 
 Damit ist nun der Beweis von \autoref{thm:hauptsatz-der-überlagerungstheorie} abgeschlossen.
 
-Wir erinnern uns an \autoref{def:decktransformation} 
+Wir erinnerns uns kurz an:
 
-%\decktransformation
+\LmDecktransformation*
+
+\ThmDecktransformationNormalisator*
 
 und an den verbundenen \autoref{thm:isomorphismus-von-decktransformationen-mit-nebenklassengruppe-von-charakteristischer-untergruppe-in-seinem-normalisator}.
 
 \missingfigure{Überlagerung von $S^1 \twedge S^1$}
 
+Mit dem \autoref{thm:hauptsatz-der-überlagerungstheorie} ergibt sich nun der folgende Alternative Beweis:
 
-\underline{Alternativer Beweis}
-
+\begin{proof}[Alternativer Beweis von \autoref{thm:isomorphismus-von-decktransformationen-mit-nebenklassengruppe-von-charakteristischer-untergruppe-in-seinem-normalisator}]
+    
 Es sind $\Delta(p)$ genau die Automorphismen der Überlagerung  $p\colon  E \to X$. Nach dem Hauptsatz sind diese also isomorph zu den Automorphismen von $p^{-1} (x_0)$ als $\pi_1(X,x_0)$-Mengen, die wiederum isomorph sind zu den Automorphismen $p_*(\pi_1(E,e_0)) \backslash \pi_1(X,x_0)$, d.h.
 \[
     \Delta(p) = \Aut \left(
@@ -188,6 +200,8 @@ Es sind $\Delta(p)$ genau die Automorphismen der Überlagerung  $p\colon  E \to 
     \end{tikzcd}\right) 
     \cong \Aut_{\pi_1(X,x_0)-\text{Mengen}} (p^{-1} (x_0)) \cong \Aut \left( p_*(\pi_1(E,e_0)) \backslash \pi_1(x,x_0) \right) 
 .\] 
+\end{proof}
+\todo{Das Faktor-Package auch mal für links-faktoren machen und einbinden}
 
 \begin{proposition}
     Es ist
@@ -230,7 +244,18 @@ Es sind $\Delta(p)$ genau die Automorphismen der Überlagerung  $p\colon  E \to 
 \end{enumerate}
 \end{proof}
 
-Wir wollen nun noch den Satz von Seifert van Kampen beweisen.
+
+\setcounter{section}{21}
+\setcounter{dummy}{4}
+\setcounter{smalldummy}{11}
+
+
+\begin{remark*}
+    Jetzt setzen wir wieder Kapitel 21 fort.
+\end{remark*}
+
+Wir wollen nun noch den Satz von \nameref{thm:seifert-van-kampen} beweisen.
+
 \begin{proof}[Beweis von \autoref{thm:seifert-van-kampen}]
     Wir wollen zunächst eine Surjektion
     \[

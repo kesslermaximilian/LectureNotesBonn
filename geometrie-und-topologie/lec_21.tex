@@ -7,24 +7,24 @@
 
 \section{Der Satz von Seifert von Kampen und CW-Komplexe}
 
-\begin{theorem}[Seifert-van-Kampen]\label{thm:seifert-van-kampen}
+\begin{restatable}[Seifert-van-Kampen]{theorem}{ThmSeifertVanKampen}\label{thm:seifert-van-kampen}
     Sei $X$ ein Raum, seien  $U_1,U_2\subset X$ offen, sodass $U_1\cup U_2 = X$, und bezeichne  $U_3 \coloneqq  U_1 \cap U_2$.
 
     Sind $U_1,U_2,U_3$ wegzusammenhängend und nicht-leer sowie $x_0\in U_3$, dann ist
     \[
-    \begin{tikzcd}
-        \pi_1(U_3,x_0) \ar[swap]{d}{} \ar{r}{} & \pi_1(U_1,x_0) \ar{d}{} \\
-        \pi_1(U_2,x_0) \ar[swap]{r}{} & \pi_1(X,x_0)
+        \begin{tikzcd}[ampersand replacement = \&]
+        \pi_1(U_3,x_0) \ar[swap]{d}{} \ar{r}{} \& \pi_1(U_1,x_0) \ar{d}{} \\
+        \pi_1(U_2,x_0) \ar[swap]{r}{} \& \pi_1(X,x_0)
     \end{tikzcd}
     l\]
     ein Pushout von Gruppen, d.h. für jede Gruppe $H$ und kompatible Morphismen  $\pi_1(U_1,x_0) \to  H$ sowie $\pi_1(U_2,x_0) \to  H$ existiert ein eindeutig bestimmter Morphismus $\pi_1(X,x_0) \to  H$. Visualisiert:
     \[
-    \begin{tikzcd}
-        \pi_1(U_3,x_0) \ar[swap]{d}{} \ar{r}{} & \pi_1(U_1,x_0) \ar{d}{} \\
-        \pi_1(U_2,x_0) \ar[swap]{r}{} & \pi_1(X,x_0)
+        \begin{tikzcd}[ampersand replacement = \&]
+        \pi_1(U_3,x_0) \ar[swap]{d}{} \ar{r}{} \& \pi_1(U_1,x_0) \ar{d}{} \\
+        \pi_1(U_2,x_0) \ar[swap]{r}{} \& \pi_1(X,x_0)
     \end{tikzcd}
     \]
-\end{theorem}
+\end{restatable}
 
 \begin{figure}[ht]
     \centering

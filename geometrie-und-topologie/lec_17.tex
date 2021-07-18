@@ -124,9 +124,23 @@ Nach dem \nameref{thm:homotopieliftungssatz} ist somit $\tilde{w} \star L(f \cir
     Wir haben im \nameref{thm:allgemeiner-liftungssatz} bereits gesehen, dass diese Gruppe sehr wichtig ist.
 \end{oral}
 
-\begin{restatable}{theorem}{ThmHomoeomorpheUeberlagerungen}\label{thm:bla}
-    bla
+\begin{restatable}{theorem}{ThmHomoeomorpheUeberlagerungen}\label{thm:äquivalenz-von-überlagerungen-über-lokal-wegzsuammenhängendem-wegzusammenhängendem-raum}
+    Sei $X$ wegzusammenhängend und lokal wegzusammenhängend und betrachte zwei Überlagerungen $p\colon  E\to X$, $p' \colon  E' \to  X$, sodass $E,E'$ zusammenhängend. Sei  $x_0\in X$ mit Urbildern $e_0\in p^{-1} (x_0)$, $e_0' \in p'^{-1} (x_0)$. Dann sind äquivalent:
+    \begin{enumerate}[1)]
+        \item Es existiert ein Homöomorphismus der Überlegerungen, d.h. ein $f\colon  E \to  E'$ mit $f(e_0) = e_0'$, sodass folgendes kommutiert:
+            \[
+                \begin{tikzcd}[column sep = tiny, ampersand replacement = \&]
+                E \ar{rr}{f}[swap]{\cong} \ar[swap]{dr}{p} \& \& E' \ar{dl}{p'} \\
+            \& X
+            \end{tikzcd}
+            \]
+        \item Die charakterischen Untergruppen stimmen überein, d.h.
+            \[
+                p_*(\pi_1(E,e_0)) = p'_*(\pi_1(E',e_0'))
+            .\] 
+    \end{enumerate}
 \end{restatable}
+
 
 \begin{warning}
     Die Bedingung 2) erfordert wirklich, dass $p_*(\pi_1(E,e_0))$, $p'_*(\pi_1(E',e_0'))$ als Untergruppen von $\pi_1(X,x_0)$ \textit{gleich} sind, nicht nur isomorph.
@@ -316,14 +330,14 @@ Im Folgenden Kapitel widmen wir uns dem Ziel für 'schöne' Räume ein \textit{u
 \end{example}
 
 
-\begin{theorem}\label{thm:universelle-überlagerungen-existieren-genau-für-semilokal-einfachzusammenhängende-lokal-wegzusammenhängenden-zusammenhängende-räume}
+\begin{restatable}{theorem}{ThmUniverselleUeberlagerung}\label{thm:universelle-überlagerungen-existieren-genau-für-semilokal-einfachzusammenhängende-lokal-wegzusammenhängenden-zusammenhängende-räume}
     Sei $X$ lokal wegzusammenhängend und zusammenhängend. Dann sind äquivalent:
 \begin{enumerate}[1)]
         \item $X$ ist semilokal einfachzusammenhängend.
         \item  $X$ hat eine universelle Überlagerung
         \item Für jeden Basispunkt  $x_0\in X$ und jede Untergruppe $H\subset \pi_1(X,x_0)$ existiert eine wegzusammenhängende Überlagerung $p\colon  E \to  X$ mit $e_0\in p^{-1} (x_0)$, so dass $p_*(\pi_1(E,e_0)) = H$.
     \end{enumerate}
-\end{theorem}
+\end{restatable}
 
 \begin{proof}
     '$3)\implies 2)$' ist einfach ein Spezialfall, indem wir $H = \left \{0\right\} $ als die triviale Untergruppe wählen, denn dann ist $p_*(\pi_1(E,e_0)) = \left \{0\right\} $, und wir wissen bereits nach \autoref{thm:fundamentalgruppe-durch-überlagerung-mit-einfach-zusammenhängendem-raum} dass $p_*$ injektiv ist, also ist bereits $\pi_1(E,e_0) = \left \{0\right\} $, und somit ist $E$ einfach zusammenhängend.

@@ -11,11 +11,7 @@ Wir starten mit einem Überblick der letzten Vorlesungen:
 
 \ThmKonjugierteCharakteristischeUntergruppen*
 
-Ebenfalls sollte man sich \autoref{def:charakteristische-untegruppe}, \autoref{thm:äquivalenz-von-überlagerungen-über-lokal-wegzsuammenhängendem-wegzusammenhängendem-raum}, und \autoref{thm:charakteristische-untergruppen-innerhalb-der-faser-sind-nur-konjugiert-wenn-weg-zwischen-urbildern-existiert} ins Gedächtnis rufen.
-
-\todo{Füge 17.6-17.8 hier ein}
-
-Ebenfalls wichtig ist \autoref{thm:universelle-überlagerungen-existieren-genau-für-semilokal-einfachzusammenhängende-lokal-wegzusammenhängenden-zusammenhängende-räume}
+\ThmUniverselleUeberlagerung*
 
 Insgesamt können wir folgendes zusammenfassen:
 
@@ -237,20 +233,20 @@ Sei in diesem Kapitel stets $p\colon  E\to X$ eine Überlagerung.
 \end{proof}
 
 
-\begin{theorem}[Hauptsatz der Überlagerungstheorie]\label{thm:hauptsatz-der-überlagerungstheorie}
+\begin{restatable}[Hauptsatz der Überlagerungstheorie]{theorem}{ThmHauptsatzUeberlagerungstheorie}\label{thm:hauptsatz-der-überlagerungstheorie}
     Sei $X$ zusammenhängend, lokal wegzusammenhängend, semilokal einfachzusammenhängend sowie  $x_0\in X$. Dann ist der Funktor aus \autoref{lm:funktor-von-überlagerungen-in-pi-1-mengen} eine Äquivalenz von Kategorien. Das heißt:
     \begin{enumerate}[1)]
         \item Für jede $\pi_1(X,x_0)$-Menge $M$ gibt es eine Überlagerung  $p\colon  E \to X$, so dass $p^{-1} (x_0)$ isomorph ist (als $\pi_1(X,x_0)$-Menge) zu  $M$. (\textit{essentielle Surjektivität})
         \item Für zwei Überlagerungen $p\colon  E \to X$ und $p' \colon  E' \to  X$ ist die Zuordnung
             \begin{IEEEeqnarray*}{cCc}
                 \left\{
-                \begin{tikzcd}[column sep = tiny]
-                E \ar{rr}{f} \ar[swap]{dr}{p} & & E' \ar{dl}{p'} \\
-                & X
+                    \begin{tikzcd}[column sep = tiny, ampersand replacement = \&]
+                E \ar{rr}{f} \ar[swap]{dr}{p} \& \& E' \ar{dl}{p'} \\
+                \& X
         \end{tikzcd}\right\} & \longmapsto & \left \{f|_{p^{-1} (x_0)\colon  p^{-1} (x_0) \to  p'^{-1}(x_0)}\right\} 
             \end{IEEEeqnarray*}
     \end{enumerate}
-\end{theorem}
+\end{restatable}
 
 \begin{oral}
     Für die 'Entpackung' dieser kategorientheoretischen Aussage haben wir die Charakterisierung von TODO.
@@ -262,7 +258,7 @@ Sei in diesem Kapitel stets $p\colon  E\to X$ eine Überlagerung.
 
 Wir verschieben den Beweis zunächst, und geben einen Ausblick auf den weiteren Verlauf der Vorlesung.
 
-\begin{theorem}[Seifert-van-Kampen]\label{thm:seifert-van-kampen}
+\begin{theorem*}[Seifert-van-Kampen]
     Sei $X$ ein Raum, seien  $U_1,U_2\subset X$ offen, sodass $U_1\cup U_2 = X$, und bezeichne  $U_3 \coloneqq  U_1 \cap U_2$.
 
     Sind $U_1,U_2,U_3$ wegzusammenhängend und nicht-leer sowie $x_0\in U_3$, dann ist
@@ -279,7 +275,8 @@ Wir verschieben den Beweis zunächst, und geben einen Ausblick auf den weiteren 
         \pi_1(U_2,x_0) \ar[swap]{r}{} & \pi_1(X,x_0)
     \end{tikzcd}
     \]
-\end{theorem}
+\end{theorem*}
+\todo{Make this be a restate of the 'real' instance of seifert van kampen'}
 
 \begin{remark}
     Ein Pushout in Gruppen ist ein sogenanntes \textit{amalgisiertes Produkt}, d.h.
