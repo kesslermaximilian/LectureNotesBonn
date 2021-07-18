@@ -317,9 +317,9 @@ Es bleibt final zu zeigen, dass unsere Überlagerung charakteristische Untergrup
 \begin{restatable}[Decktransformation]{lemmadef}{decktransformation}\label{def:decktransformation}
     Sei $p\colon  E \to  X$ eine Überlagerung. Eine \vocab{Decktransformation} von $p$ ist ein Homöomorphismus
      \[
-    \begin{tikzcd}[column sep = tiny]
-        E \ar{rr}{f}[swap]{\cong} \ar[swap]{dr}{p} & & E \ar{dl}{p} \\
-    & X
+         \begin{tikzcd}[column sep = tiny, ampersand replacement = \&]
+        E \ar{rr}{f}[swap]{\cong} \ar[swap]{dr}{p} \& \& E \ar{dl}{p} \\
+    \& X
     \end{tikzcd}
     \]
     über $X$.  Wir bezeichnen mit  $\Delta(p)$ die Menge der Decktransformationen, und diese bilden eine Gruppe.
