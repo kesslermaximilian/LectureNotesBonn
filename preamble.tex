@@ -1,0 +1,183 @@
+%Preamble Mainly taken from
+%https://github.com/gillescastel/university-setup/blob/master/preamble.tex
+%but edited for own purposes
+
+%%%%%OWN
+%%Own basic packages
+\usepackage{mkessler-math}
+\usepackage{mkessler-fancythm} %%Options available:
+%lecturenumbers -> number theorems like in the lecture (default, even it ommited)
+%truenumbers -> number all theorems (corollarys, lemmata, etc), even if not numbered in the lecture
+%numberall -> number examples, notation, remark, ... as well (and all theorems etc).
+%Choose as you like
+\usepackage{mkessler-operators}
+
+\usepackage{datetime}
+
+%Name
+\date{{\normalfont Mitschrift}\\{\sc Maximilian Keßler}}
+
+
+%%Tocloft package for making a list of lectures
+\usepackage[subfigure]{tocloft}
+\newcommand\listlecturename{Übersicht der Vorlesungen}
+\newlistof{lecture}{lec}{\listlecturename}
+\renewcommand{\cftdot}{}
+\renewcommand\cftlecturefont{\normalfont\bfseries}
+\renewcommand\cftlecturepagefont{\normalfont\bfseries}
+\renewcommand\cftlectitlefont{\Large\bfseries}
+\renewcommand\cftbeforelectureskip{1em}
+
+
+%Bibilography
+\addbibresource{bibliography.bib}
+
+
+%%%%%%Preamble from Gilles Castel, although parts are cut out or are slightly modified for own purposes.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%MIT License
+
+%Copyright (c) 2019 Gilles Castel
+
+%Permission is hereby granted, free of charge, to any person obtaining a copy
+%of this software and associated documentation files (the "Software"), to deal
+%in the Software without restriction, including without limitation the rights
+%to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+%copies of the Software, and to permit persons to whom the Software is
+%furnished to do so, subject to the following conditions:
+
+%The above copyright notice and this permission notice shall be included in all
+%copies or substantial portions of the Software.
+
+%THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+%IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+%FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+%AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+%LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+%OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+%SOFTWARE.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Some basic packages
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{float}
+
+% for wrapping text around figures
+\usepackage{wrapfig}
+
+%%This option is for now commented out, not sure what it does, but causes errors
+%\pdfminorversion=7
+
+
+% Don't indent paragraphs, leave some space between them
+\usepackage{parskip}
+
+% Hide page number when page is empty
+\usepackage{emptypage}
+% Other font I sometimes use.
+\usepackage{xcolor}
+% \usepackage{cmbright}
+
+% Math stuff
+\usepackage{amsfonts}
+
+% Put x \to \infty below \lim
+\let\svlim\lim\def\lim{\svlim\limits}
+
+%Make implies and impliedby shorter
+\let\implies\Rightarrow
+\let\impliedby\Leftarrow
+\let\iff\Leftrightarrow
+\let\epsilon\varepsilon
+
+% Command for short corrections
+% Usage: 1+1=\correct{3}{2}
+
+% Environments
+\makeatother
+
+% Fix some spacing
+% http://tex.stackexchange.com/questions/22119/how-can-i-change-the-spacing-before-theorems-with-amsthm
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=\parskip \thm@postskip=0pt
+}
+
+
+% \lecture starts a new lecture (les in dutch)
+%
+% Usage:
+% \lecture{1}{di 12 feb 2019 16:00}{Inleiding}
+%
+% This adds a section heading with the number / title of the lecture and a
+% margin paragraph with the date.
+
+% I use \dateparts here to hide the year (2019). This way, I can easily parse
+% the date of each lecture unambiguously while still having a human-friendly
+% short format printed to the pdf.
+
+\usepackage{xifthen}
+\def\testdateparts#1{\dateparts#1\relax}
+\def\dateparts#1 #2 #3 #4 #5\relax{
+    \marginpar{\small\textsf{\mbox{#1 #2 #3 #5}}}
+}
+
+\def\@lecture{}%
+\newcommand{\lecture}[3][]{
+    \refstepcounter{lecture}
+    \ifthenelse{\isempty{#3}}{%
+    \def\@lecture{\ifenglish Lecture\else Vorlesung\fi\, \thelecture}%
+    }{%
+    \def\@lecture{\ifenglish Lecture\else Vorlesung\fi\, \thelecture: #3}%
+    }%
+    \marginpar{\small\textsf{\parbox{10em}{\ifenglish Lecture \else Vorlesung\fi\, \thelecture \\#2}}}
+    \addcontentsline{lec}{lecture}{\ifenglish Lecture \else Vorlesung\fi \,\thelecture\,(#2)}
+    \ifthenelse{\isempty{#1}}{}{\addtocontents{lec}{\smallskip\hspace{1.5em}\protect\parbox{\dimexpr\textwidth-\@pnumwidth - 7em}{#1}}}
+}
+
+% These are the fancy headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% LE: left even
+% RO: right odd
+% CE, CO: center even, center odd
+% My name for when I print my lecture notes to use for an open book exam.
+% \fancyhead[LE,RO]{Gilles Castel}
+
+\fancyhead[RO,LE]{\@lecture} % Right odd,  Left even
+\fancyhead[RE,LO]{}          % Right even, Left odd
+
+\fancyfoot[RO,LE]{\thepage}  % Right odd,  Left even
+\fancyfoot[RE,LO]{}          % Right even, Left odd
+\fancyfoot[C]{\leftmark}     % Center
+
+\makeatother
+
+% Todonotes and inline notes in fancy boxes
+\usepackage{todonotes}
+
+% Make boxes breakable
+\tcbuselibrary{breakable}
+
+% Figure support as explained in my blog post.
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+% Fix some stuff
+% %http://tex.stackexchange.com/questions/76273/multiple-pdfs-with-page-group-included-in-a-single-page-warning
+\pdfsuppresswarningpagegroup=1
+
+
+
+
+

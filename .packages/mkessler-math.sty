@@ -7,6 +7,11 @@
 \DeclareOption{german}{\englishfalse}
 \DeclareOption{english}{\englishtrue}
 
+%If beamer shall be activated
+\newif\ifbeamer\beamerfalse
+\DeclareOption{beamer}{\beamertrue}
+\DeclareOption{nobeamer}{\beamerfalse}
+
 %Options for onehalf-spacing of lines
 \newif\ifonehalfspacing\onehalfspacingfalse %default is normalspace
 \DeclareOption{onehalfspacing}{\onehalfspacingtrue}
@@ -73,7 +78,9 @@
 \RequirePackage{subcaption}
 \RequirePackage{latexsym}
 \RequirePackage{mathrsfs}
+\ifbeamer\else
 \RequirePackage[shortlabels]{enumitem}
+\fi
 \RequirePackage{wrapfig}
 
 %Pgfplots
