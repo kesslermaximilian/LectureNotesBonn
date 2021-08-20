@@ -346,10 +346,14 @@
 %%\makenumberedtheorem[german Name]{style}{Name}
 \RequirePackage{xparse}
 
-\newcounter{dummy}
-\counterwithin{dummy}{section}
-\newcounter{smalldummy}
-\counterwithin{smalldummy}{dummy}  % Make belowtheorem reset each time theorem resets
+
+\declaretheorem[numberwithin=section]{dummy}
+\declaretheorem[numberwithin=dummy]{smalldummy}
+
+%\newcounter{dummy}
+%\counterwithin{dummy}{section}
+%\newcounter{smalldummy}
+%\counterwithin{smalldummy}{dummy}  % Make belowtheorem reset each time theorem resets
 
 \NewDocumentCommand{\declarebigtheorem}{O{} O{} m m O{}}{
     %First, store the name of the theorem in \theoremname
