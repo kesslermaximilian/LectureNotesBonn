@@ -5,8 +5,13 @@
 \assistant[f]{Arunima Ray}
 \author{Maximilian Keßler}
 
-\RequirePackage{mkessler-math}
-\RequirePackage{mkessler-fancythm}
+\usepackage{mkessler-hypersetup}
+\usepackage{mkessler-math}
+\usepackage{mkessler-fancythm}
+\usepackage{mkessler-vocab}
+\usepackage{mkessler-bibliography}
+
+
 \input{exercises/preambleBlatt.tex}
 
 \setuptodonotes{disable}
@@ -20,6 +25,9 @@
     %Table of contents
     \cleardoublepage
     \tableofcontents
+
+    \cleardoublepage
+    \listoftodos
 
     %List of lectures with their corresponding keywords
     \cleardoublepage
