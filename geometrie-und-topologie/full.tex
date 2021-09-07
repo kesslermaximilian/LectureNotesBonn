@@ -1,4 +1,4 @@
-\documentclass[a4paper, german, lecturenumbers = true, number small environments = theorem]{mkessler-script}
+\documentclass[fancyfoot, a4paper, german, lecturenumbers = true, number small environments = theorem]{mkessler-script}
 
 \course{Einführung in die Geometrie und Topologie}
 \lecturer{Daniel Kasprowski}
@@ -10,10 +10,26 @@
 \usepackage{mkessler-fancythm}
 \usepackage{mkessler-vocab}
 \usepackage{mkessler-bibliography}
+\usepackage[fancyhead]{mkessler-lectures}
+\usepackage{castel-figures}
 
+\RequirePackage{float}
+
+% for wrapping text around figures
+\RequirePackage{wrapfig}
+
+% Don't indent paragraphs, leave some space between them
+\RequirePackage{parskip}
+
+% Hide page number when page is empty
+\RequirePackage{emptypage}
+
+% Put x \to \infty below \lim
+\let\svlim\lim\def\lim{\svlim\limits}
 
 \input{exercises/preambleBlatt.tex}
 
+\usepackage{todonotes}
 \setuptodonotes{disable}
 
 
