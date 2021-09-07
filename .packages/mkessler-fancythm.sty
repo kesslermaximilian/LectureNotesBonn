@@ -224,6 +224,17 @@
     bottomline=false
 }
 
+\mdfdefinestyle{mdredmargin}{%
+    skipabove =\fancythmskipabove,
+    linecolor=red,
+    linewidth = \fancythmlinewidth,
+    leftmargin = 0cm,
+    rightmargin=0cm,
+    rightline=false,
+    topline=false,
+    bottomline=false
+}
+
 \mdfdefinestyle{mdorangemarginbluefill}{%
     skipabove =\fancythmskipabove,
     linecolor=orange,
@@ -307,6 +318,12 @@
 	postheadspace={0.3em},
     notefont=\mdseries
 ]{thmvioletmarginandfill}
+
+\declaretheoremstyle[
+	mdframed={style=mdredmargin},
+	postheadspace={0.3em},
+    notefont=\mdseries
+]{thmredmargin}
 
 \declaretheoremstyle[
 	mdframed={style=mdvioletmargin},
@@ -439,6 +456,7 @@
 \declaresmalltheorem[Trivial Nonsense][Trivial Nonsense]{thmyellowmargin}{trivial}
 \declaresmalltheorem[Frage]{thmblackmarginandfill}{question}
 \declaresmalltheorem[Organisatorisches][Organisational stuff]{thmblackmargin}{orga}
+\declaresmalltheorem[Fakt]{thmredmargin}{fact}
 \newcounter{blatt}
 %\RequirePackage{savesym}
 %\savesymbol{aside}
@@ -494,7 +512,6 @@
 \fi
 
 \theoremstyle{definition}
-\newtheorem*{fact}{\ifenglish Fact\else Fakt\fi}
 \ifbeamer\else\newtheorem*{note}{\ifenglish Note\else Anmerkung\fi}\fi
 \newtheorem*{warning}{\color{red}\ifenglish Warning \else Warnung\fi}
 \ifbeamer\else\newtheorem*{goal}{\ifenglish Goal \else Ziel\fi}\fi
