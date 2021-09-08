@@ -3,7 +3,7 @@ These are (inofficial) lecture notes of my courses taken at the University of Bo
 ## Contents
 | Semester | Course | Lecturer | |
 | --- | --- | --- | --- |
-| SS 2021 | Algorithmische Mathematik II | Prof. Dr. Patrik Ferrari | [Skript](https://kesslermaximilian.github.io/AlgorithmischeMathematik2/2021_AlgorithmischeMathematikII.pdf) |
+| SS 2021 | Algorithmische Mathematik II | Prof. Dr. Patrik Ferrari | [Skript](https://kesslermaximilian.github.io/AlgorithmischeMathematik2/2021_AlgorithmischeMathematik.pdf) |
 | SS 2021 | Einführung in die Geometrie und Topologie | Dr. Daniel Kasprowski | [Skript](https://kesslermaximilian.github.io/GeometrieUndTopologie/2021_Topologie.pdf)|
 | WS 20/21 | Einführung in die diskrete Mathematik | Prof. Dr. Jens Vygen | [Skript (incomplete)](https://kesslermaximilian.github.io/LectureNotesBonn/2020_EDM_incomplete.pdf), [Summary](https://kesslermaximilian.github.io/LectureNotesBonn/2020_EDM_summary.pdf)|
 
