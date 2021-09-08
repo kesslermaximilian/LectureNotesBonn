@@ -9,6 +9,14 @@ These are (inofficial) lecture notes of my courses taken at the University of Bo
 
 For further information on each lecture, visit the corresponding GitHub repository (here included as submodules).
 
+## Build
+If you want to build all the notes yourself, you an either
+
+- Go to one of the submodule-repositories, clone it and follow the corresponding instructions there. You can do this for each of the courses
+- Clone this repository. Then you can 
+    - `make init` : This will initialize submodules
+    - `make all` : This will compile all scripts of the submodules
+
 ## License
 The preamble of these documents is (mainly) taken from https://github.com/gillescastel/university-setup and published under the MIT-License. The corresponding part of the preamble is marked and the license is included.
 The custom packages are 'self-written', feel free to use or customise them for your own wishes.
