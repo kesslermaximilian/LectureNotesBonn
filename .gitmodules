@@ -1,0 +1,6 @@
+[submodule "GeometrieUndTopologie"]
+	path = GeometrieUndTopologie
+	url = https://github.com/kesslermaximilian/GeometrieUndTopologie.git
+[submodule "AlgorithmischeMathematik2"]
+	path = AlgorithmischeMathematik2
+	url = https://github.com/kesslermaximilian/AlgorithmischeMathematik2.git
